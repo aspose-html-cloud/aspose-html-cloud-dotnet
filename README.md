@@ -1,3 +1,5 @@
+<img src="Data/header.png">
+
 # Aspose.HTML Cloud SDK for .NET [![NuGet](https://img.shields.io/nuget/v/Aspose.HTML-Cloud.svg)](https://www.nuget.org/packages/Aspose.HTML-Cloud/)
 This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applications quickly and easily, with zero initial cost.
 
@@ -5,11 +7,11 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 * Conversion of HTML document into various formats; PDF, XPS document formats and JPEG, PNG, BMP, TIFF raster graphics formats are supported
 * Conversion of MHTML document into the same formats that are supported for HTML
 * Translation of HTML document between various human languages; the following language pairs are currently supported:
-** English to German
-** English to French
-** English to Russian
-** German to English
-** Russian to English
+- English to German
+- English to French
+- English to Russian
+- German to English
+- Russian to English
 * Extraction of HTML fragments using XPath queries
 * Extraction of all HTML document images in a ZIP archive
 
@@ -87,6 +89,31 @@ namespace MyAppNamespace
     }
 }
 ```
+
+## Dependencies
+- .NET Framework 4.0 or later
+- [Json.NET (9.0.1 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+- [Aspose.Storage-Cloud (1.0.10 or later)] (https://www.nuget.org/packages/Aspose.Storage-Cloud/)
+
+## Roadmap
+
+Known issues that we are set to fix soon:
+* Translate & conversion 'put' methods of Python version of SDK - will be fixed in the next versions.
+* Get supported language pairs - issue of Aspose.HTML.Cloud; will be fixed in the next versions.
+
+In the upcoming releases, we are set to implement a number of new features:
+* Add more language pairs to translate: German-to-English, Russian-to-English, French-to-English and some others.
+* Improve quality of translation.
+* Translation feature of texts on `*.jpg, *.png, *.tiff` etc. files.
+
+## Resources
+
+- **Website:** [www.aspose.com](http://www.aspose.com)
+- **Product Home:** [Aspose.HTML for Cloud](https://products.aspose.cloud/html/cloud)
+- **Documentation:** [Aspose.HTML for Cloud Documentation](https://docs.aspose.cloud/display/htmlcloud/Home)
+- **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.com/c/html)
+- **Blog:** [Aspose.HTML for Cloud Blog](http://www.aspose.com/blogs/aspose-products/aspose-html-product-family.html)
+
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/html).
