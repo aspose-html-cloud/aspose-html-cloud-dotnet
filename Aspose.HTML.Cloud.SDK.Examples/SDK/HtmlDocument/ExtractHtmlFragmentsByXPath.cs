@@ -1,16 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Com.Aspose.Storage;
 using Com.Aspose.Storage.Api;
-using Com.Aspose.Html;
 using Com.Aspose.Html.Api;
 using Com.Aspose.Html.Api.Interfaces;
-using Aspose.HTML.Cloud.Examples.SDK;
 
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
 {

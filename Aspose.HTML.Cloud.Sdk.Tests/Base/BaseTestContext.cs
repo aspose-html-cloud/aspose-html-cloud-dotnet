@@ -36,7 +36,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     /// </summary>
     public abstract class BaseTestContext
     {
-        protected const string BaseProductUri = @"http://api-dev.aspose.cloud";
+        protected const string BaseProductUri = @"http://api-qa.aspose.cloud";
 
         private Keys keys;
 
@@ -60,6 +60,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             this.DocumentApi = new DocumentApi(
                 configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
             this.TranslationApi = new TranslationApi(
+                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
+            this.OcrApi = new OcrApi(
                 configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
 
             this.StorageApi = new StorageApi(this.keys.AppKey, this.keys.AppSid, BaseProductUri + "/v1.1");
@@ -110,6 +112,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         protected ConversionApi ConversionApi { get; set; }
         protected DocumentApi DocumentApi { get; set; }
         protected TranslationApi TranslationApi { get; set; }
+        protected OcrApi OcrApi { get; set; }
 
         /// <summary>
         /// AppSid

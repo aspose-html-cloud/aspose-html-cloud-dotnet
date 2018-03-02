@@ -59,6 +59,9 @@
     <Compile Include="SDK\HtmlConvert\ConvertHTMLLocal.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByXPath.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAll.cs" />
+    <Compile Include="SDK\HtmlDocument\GetDocument.cs" />
+    <Compile Include="SDK\HtmlOcr\RecognizeAndImportToHTML.cs" />
+    <Compile Include="SDK\HtmlOcr\RecognizeAndTranslateToHTML.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLByUrl.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLByUrlToStorage.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLFromStorage.cs" />
@@ -76,6 +79,7 @@
       <Name>Aspose.HTML.Cloud.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

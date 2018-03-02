@@ -52,7 +52,9 @@
     <Compile Include="Com\Aspose\Html\Api\ConversionApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\Interfaces\IConversionApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\Interfaces\IDocumentApi.cs" />
+    <Compile Include="Com\Aspose\Html\Api\Interfaces\IOcrApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\Interfaces\ITranslationApi.cs" />
+    <Compile Include="Com\Aspose\Html\Api\OcrApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\TranslationApi.cs" />
     <Compile Include="Com\Aspose\Html\Client\ApiClient.cs" />
     <Compile Include="Com\Aspose\Html\Client\ApiException.cs" />

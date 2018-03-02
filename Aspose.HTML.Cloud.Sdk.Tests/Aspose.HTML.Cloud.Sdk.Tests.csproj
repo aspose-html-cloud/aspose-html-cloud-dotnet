@@ -66,6 +66,7 @@
     <Compile Include="Conversion\ConversionStorageFileTest.cs" />
     <Compile Include="Conversion\ConversionStreamToStorageTest.cs" />
     <Compile Include="Document\DocumentFragmentsTest.cs" />
+    <Compile Include="OCR\OcrRecognizeTest.cs" />
     <Compile Include="Translation\TranslateByUrlTest.cs" />
     <Compile Include="Translation\TranslateStorageFileTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

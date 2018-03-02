@@ -7,6 +7,7 @@ using Aspose.HTML.Cloud.Examples.SDK;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlDocument;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlConvert;
+using Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr;
 
 namespace Aspose.HTML.Cloud.Examples
 {
@@ -32,7 +33,7 @@ namespace Aspose.HTML.Cloud.Examples
             //runner = new ExtractHTMLImagesAll();
 
             // == Example #4 == convert HTML document from URL to PDF
-            runner = new ConvertHTMLByUrl("pdf");
+            //runner = new ConvertHTMLByUrl("pdf");
 
             // == Example #5 == convert HTML document from URL to XPS
             //runner = new ConvertHTMLByUrl("xps");
@@ -51,7 +52,12 @@ namespace Aspose.HTML.Cloud.Examples
 
             // == Example #11 == translate HTML document from English to French and save to storage
             //runner = new TranslateHTMLByUrlToStorage("en", "fr");
+            
+            // == Example #12 == Recognize text content from image and create HTML document with it
+            //runner = new RecognizeAndImportToHTML();
 
+            // == Example #13 == Recognize text content from image, create HTML and translate the text content
+            runner = new RecognizeAndTranslateToHTML("en", "fr");
 
             //Console.WriteLine("\nPress any key to continue....");
             //Console.ReadKey();

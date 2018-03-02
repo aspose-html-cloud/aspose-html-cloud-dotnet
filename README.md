@@ -14,6 +14,8 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 - Russian to English
 * Extraction of HTML fragments using XPath queries
 * Extraction of all HTML document images in a ZIP archive
+* Recognition of text content of an image using the OCR service and its import into HTML document.
+* Recognition of text content of an image, import into HTML document with further translation to other languages.
 
 See [API Reference](https://apireference.aspose.cloud/words/) for full API specification.
 
@@ -45,6 +47,12 @@ From within Visual Studio:
 3. Click on *Manage NuGet Packages...*
 4. Click on the *Browse* tab and search for "Aspose.HTML-Cloud".
 5. Click on the Aspose.HTML-Cloud package, select the appropriate version in the right-tab and click *Install*.
+
+### Run tests and examples.
+
+To run tests, first modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites).
+
+To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up AppSID, AppKey, and optionally DataPath.
 
 ### Sample usage
 
@@ -95,16 +103,17 @@ namespace MyAppNamespace
 - [Json.NET (9.0.1 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
 - [Aspose.Storage-Cloud (1.0.10 or later)] (https://www.nuget.org/packages/Aspose.Storage-Cloud/)
 
+
 ## Roadmap
 
 Known issues that we are set to fix soon:
-* Translate & conversion 'put' methods of Python version of SDK - will be fixed in the next versions.
 * Get supported language pairs - issue of Aspose.HTML.Cloud; will be fixed in the next versions.
 
 In the upcoming releases, we are set to implement a number of new features:
-* Add more language pairs to translate: German-to-English, Russian-to-English, French-to-English and some others.
+* Add more language pairs to translate: French-to-English, English-to-Japanese, Japanese-to-English and some others.
 * Improve quality of translation.
-* Translation feature of texts on `*.jpg, *.png, *.tiff` etc. files.
+
+
 
 ## Resources
 
