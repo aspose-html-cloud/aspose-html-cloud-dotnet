@@ -74,12 +74,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aspose.HTML.Cloud.Sdk\Aspose.HTML.Cloud.Sdk.csproj">
-      <Project>{d3c41dde-d9af-4084-b40e-d89bd5800fee}</Project>
-      <Name>Aspose.HTML.Cloud.Sdk</Name>
+    <ProjectReference Include="..\Aspose.HTML-Cloud\Aspose.HTML-Cloud.csproj">
+      <Project>{7267ec34-07f9-47b0-939d-c3e6d0a156f7}</Project>
+      <Name>Aspose.HTML-Cloud</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
