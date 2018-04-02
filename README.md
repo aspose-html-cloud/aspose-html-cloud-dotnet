@@ -18,7 +18,7 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 * Recognition of text content of an image using the OCR service and its import into HTML document.
 * Recognition of text content of an image, import into HTML document with further translation to other languages.
 
-See [API Reference](https://apireference.aspose.cloud/words/) for full API specification.
+See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
 
 ## How to use the SDK?
 The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
@@ -118,11 +118,11 @@ In the upcoming releases, we are set to implement a number of new features:
 
 ## Resources
 
-- **Website:** [www.aspose.com](http://www.aspose.com)
+- **Website:** [www.aspose.cloud](https://www.aspose.cloud/)
 - **Product Home:** [Aspose.HTML for Cloud](https://products.aspose.cloud/html/cloud)
 - **Documentation:** [Aspose.HTML for Cloud Documentation](https://docs.aspose.cloud/display/htmlcloud/Home)
-- **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.com/c/html)
-- **Blog:** [Aspose.HTML for Cloud Blog](http://www.aspose.com/blogs/aspose-products/aspose-html-product-family.html)
+- **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.cloud/c/html)
+- **Blog:** [Aspose.HTML for Cloud Blog](https://blog.aspose.cloud/category/aspose-products/aspose-html-product-family/)
 
 
 ## Contact Us
