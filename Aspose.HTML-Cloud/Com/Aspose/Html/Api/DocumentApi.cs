@@ -1,15 +1,44 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright company="Aspose" file="DocumentApi.cs">
+//   Copyright (c) 2018 Aspose.HTML for Cloud
+// </copyright>
+// <summary>
+//   Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+// 
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+// 
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 using System;
+using System.IO;
 using System.Collections.Generic;
 using RestSharp;
 using Com.Aspose.Html.Client;
 using Com.Aspose.Html.Api.Interfaces;
+using Com.Aspose.Html.NativeClient;
+
 
 namespace Com.Aspose.Html.Api
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class DocumentApi : IDocumentApi
+    public class DocumentApi : ApiBase, IDocumentApi
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HtmlDocumentApi"/> class.
@@ -18,35 +47,9 @@ namespace Com.Aspose.Html.Api
 		/// <param name="apiSid">The api sid.</param>
         /// <param name="basePath">The base path.</param>
         public DocumentApi(String apiKey, String apiSid, String basePath)
+            : base(apiKey, apiSid, basePath)
         {
-            this.ApiClient = new ApiClient(apiKey, apiSid, basePath);
         }
-    
-        /// <summary>
-        /// Sets the base path of the API client.
-        /// </summary>
-        /// <param name="basePath">The base path</param>
-        /// <value>The base path</value>
-        public void SetBasePath(String basePath)
-        {
-            this.ApiClient.BasePath = basePath;
-        }
-    
-        /// <summary>
-        /// Gets the base path of the API client.
-        /// </summary>
-        /// <param name="basePath">The base path</param>
-        /// <value>The base path</value>
-        public String GetBasePath(String basePath)
-        {
-            return this.ApiClient.BasePath;
-        }
-    
-        /// <summary>
-        /// Gets or sets the API client.
-        /// </summary>
-        /// <value>An instance of the ApiClient</value>
-        public ApiClient ApiClient {get; set;}
     
         /// <summary>
         /// Return the HTML document by the name from default or specified storage. 
@@ -55,38 +58,28 @@ namespace Com.Aspose.Html.Api
         /// <param name="storage">The document folder</param> 
         /// <param name="folder">The document folder.</param> 
         /// <returns>System.IO.Stream</returns>            
-        public System.IO.Stream GetDocument (string name, string storage, string folder)
+        public Stream GetDocument (string name, string storage, string folder)
         {
-            
+            var methodName = "GetDocument";
             // verify the required parameter 'name' is set
             if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetDocument");
             
     
             var path = "/html/{name}";
             path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "name" + "}", ApiClient.ParameterToString(name));
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
     
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
-    
-            if (storage != null) queryParams.Add("storage", ApiClient.ParameterToString(storage)); // query parameter
-            if (folder != null) queryParams.Add("folder", ApiClient.ParameterToString(folder)); // query parameter
+     
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
                                         
             // authentication setting, if any
             String[] authSettings = new String[] {  };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetDocument: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetDocument: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (System.IO.Stream) ApiClient.Deserialize(response.Content, typeof(System.IO.Stream), response.Headers);
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
         }
     
         /// <summary>
@@ -98,9 +91,9 @@ namespace Com.Aspose.Html.Api
         /// <param name="storage">The document storage.</param> 
         /// <param name="folder">The document folder.</param> 
         /// <returns>System.IO.Stream</returns>            
-        public System.IO.Stream GetDocumentFragmentByXPath (string name, string xPath, string outFormat, string storage, string folder)
+        public Stream GetDocumentFragmentByXPath (string name, string xPath, string outFormat, string storage, string folder)
         {
-            
+            var methodName = "GetDocumentFragmentByXPath";
             // verify the required parameter 'name' is set
             if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetDocumentFragmentByXPath");
             
@@ -113,31 +106,21 @@ namespace Com.Aspose.Html.Api
     
             var path = "/html/{name}/fragments/{outFormat}";
             path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "name" + "}", ApiClient.ParameterToString(name));
-            path = path.Replace("{" + "outFormat" + "}", ApiClient.ParameterToString(outFormat));
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+            path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
     
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
-    
-             if (xPath != null) queryParams.Add("xPath", ApiClient.ParameterToString(xPath)); // query parameter
-             if (storage != null) queryParams.Add("storage", ApiClient.ParameterToString(storage)); // query parameter
-             if (folder != null) queryParams.Add("folder", ApiClient.ParameterToString(folder)); // query parameter
+
+             if (xPath != null) queryParams.Add("xPath", ApiClientUtils.ParameterToString(xPath)); // query parameter
+             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
                                         
             // authentication setting, if any
             String[] authSettings = new String[] {  };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetDocumentFragmentByXPath: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetDocumentFragmentByXPath: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (System.IO.Stream) ApiClient.Deserialize(response.Content, typeof(System.IO.Stream), response.Headers);
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
         }
     
         /// <summary>
@@ -147,38 +130,27 @@ namespace Com.Aspose.Html.Api
         /// <param name="storage">The document storage.</param> 
         /// <param name="folder">The document folder.</param> 
         /// <returns>System.IO.Stream</returns>            
-        public System.IO.Stream GetDocumentImages (string name, string storage, string folder)
+        public Stream GetDocumentImages (string name, string storage, string folder)
         {
-            
+            var methodName = "GetDocumentImages";
             // verify the required parameter 'name' is set
             if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetDocumentImages");
-            
     
             var path = "/html/{name}/images/all";
             path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "name" + "}", ApiClient.ParameterToString(name));
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
     
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
     
-             if (storage != null) queryParams.Add("storage", ApiClient.ParameterToString(storage)); // query parameter
-             if (folder != null) queryParams.Add("folder", ApiClient.ParameterToString(folder)); // query parameter
+             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
                                         
             // authentication setting, if any
             String[] authSettings = new String[] {  };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetDocumentImages: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetDocumentImages: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (System.IO.Stream) ApiClient.Deserialize(response.Content, typeof(System.IO.Stream), response.Headers);
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
         }
     
     }

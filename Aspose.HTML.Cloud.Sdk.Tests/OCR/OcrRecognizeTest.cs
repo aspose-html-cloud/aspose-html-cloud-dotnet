@@ -60,7 +60,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
 
             var result = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.GetType() == typeof(FileStream));
+            Assert.IsTrue(result is FileStream);
             Assert.IsTrue(File.Exists(((FileStream)result).Name));
         }
 
@@ -78,7 +78,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
 
             var result = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.GetType() == typeof(FileStream));
+            Assert.IsTrue(result is FileStream);
             Assert.IsTrue(File.Exists(((FileStream)result).Name));
         }
 

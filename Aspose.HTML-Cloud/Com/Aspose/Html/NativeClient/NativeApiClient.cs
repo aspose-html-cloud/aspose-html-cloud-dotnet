@@ -1,4 +1,29 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright company="Aspose" file="NativeApiClient.cs">
+//   Copyright (c) 2018 Aspose.HTML for Cloud
+// </copyright>
+// <summary>
+//   Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+// 
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+// 
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +31,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using Com.Aspose.Html.NativeClient.Authentication;
 
 namespace Com.Aspose.Html.NativeClient
 {
@@ -14,15 +41,64 @@ namespace Com.Aspose.Html.NativeClient
     /// </summary>
     public class NativeApiClient
     {
-        private string AppKey { get; set; }
-        private string AppSid { get; set; }
-        private string BasePath { get; set; }
+        public string AppKey { get; protected set; }
+        public string AppSid { get; protected set; }
+        public string BasePath { get; set; }
+        //public string Version { get; protected set; }
+        //public bool Debug { get; protected set; }
 
-        public NativeApiClient(string appKey, string appSid, string basePath = "http://api.aspose.cloud/v1.1")
+        public TimeSpan Timeout { get; set; }
+
+        private IAuthenticator Authenticator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appKey"></param>
+        /// <param name="appSid"></param>
+        /// <param name="basePath"></param>
+        /// <param name="auth"></param>
+        public NativeApiClient(string appKey, string appSid, string basePath = "http://api.aspose.cloud/v1.1",
+            IAuthenticator auth = null)
         {
             AppKey = appKey;
             AppSid = appSid;
             BasePath = basePath;
+            //Version = version;
+            //Debug = debug;
+            Timeout = new TimeSpan(0, 5, 0);
+
+            Authenticator = auth ?? new OAuth2(appSid, appKey, basePath);
+        }
+
+        public HttpResponseMessage CallGet(string methodPath, IDictionary<string, string> parameters)
+        {
+            string requestUrl = formatQuery(methodPath, parameters);
+            HttpClient client = new HttpClient() { Timeout = this.Timeout };
+
+            //string signedUrl = SignUrl(requestUrl);
+            //HttpRequestMessage request = new HttpRequestMessage()
+            //{
+            //    RequestUri = new Uri(signedUrl),
+            //    Method = HttpMethod.Get
+            //};
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(requestUrl),
+                Method = HttpMethod.Get
+            };
+            //request.Headers.UserAgent.Add(new ProductInfoHeaderValue("Aspose.HTML for Cloud SDK for .NET"));
+
+            HttpResponseMessage response = null;
+            if (Authenticator.Authenticate(request))
+            {
+                Task task = client.SendAsync(request)
+                    .ContinueWith((tsk) => { response = tsk.Result; }
+                );
+                task.Wait();
+            }
+            return response;
         }
 
         public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters)

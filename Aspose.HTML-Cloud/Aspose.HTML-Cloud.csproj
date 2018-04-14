@@ -38,18 +38,21 @@
     </Reference>
     <Reference Include="RestSharp.Net2, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.Net2.1.1.11\lib\net20\RestSharp.Net2.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Com\Aspose\Html\Api\ApiBase.cs" />
     <Compile Include="Com\Aspose\Html\Api\ConversionApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\DocumentApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\Interfaces\IConversionApi.cs" />
@@ -61,8 +64,11 @@
     <Compile Include="Com\Aspose\Html\Client\ApiClient.cs" />
     <Compile Include="Com\Aspose\Html\Client\ApiException.cs" />
     <Compile Include="Com\Aspose\Html\Client\Configuration.cs" />
+    <Compile Include="Com\Aspose\Html\NativeClient\ApiClientUtils.cs" />
+    <Compile Include="Com\Aspose\Html\NativeClient\Authentication\IAuthenticator.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\NativeApiClient.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\NativeRestResponse.cs" />
+    <Compile Include="Com\Aspose\Html\NativeClient\Authentication\OAuth2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

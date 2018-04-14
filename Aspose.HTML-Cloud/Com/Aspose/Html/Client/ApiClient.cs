@@ -6,6 +6,7 @@ using System.IO;
 using System.Web;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 using RestSharp;
@@ -14,8 +15,9 @@ using RestSharp.Extensions;
 namespace Com.Aspose.Html.Client
 {
     /// <summary>
-    /// API client is mainly responible for making the HTTP call to the API backend.
+    /// DEPRECATED: API client is mainly responible for making the HTTP call to the API backend.
     /// </summary>
+    [Obsolete]
     public class ApiClient
     {
 		public class OAuth2 : IAuthenticator
@@ -141,6 +143,7 @@ namespace Com.Aspose.Html.Client
                     .AddHeader("Content-Type", "application/x-www-form-urlencoded")
                     .AddParameter("grant_type", grantType);
             }
+
             public void RefreshToken()
             {
                 authFlow = AuthFlow.RefreshAccessTokenPending;

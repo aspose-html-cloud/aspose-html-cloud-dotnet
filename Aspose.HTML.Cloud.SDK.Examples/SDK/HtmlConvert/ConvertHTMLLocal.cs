@@ -54,21 +54,21 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                 {
                     case "pdf":
                         outFile += ".pdf";
-                        response = convApi.PutConvertDocumentToPdf(
-                            srcStream, outFile, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                        //response = convApi.PutConvertDocumentToPdf(
+                        //    srcStream, outFile, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "xps":
-                        response = convApi.PutConvertDocumentToXps(
-                            srcStream, outFile, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                        //response = convApi.PutConvertDocumentToXps(
+                        //    srcStream, outFile, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "jpeg":
                     case "bmp":
                     case "png":
                     case "tiff":
-                        response = convApi.PutConvertDocumentToImage(
-                            srcStream, Format, outFile, width, height, 
-                            leftMargin, rightMargin, topMargin, bottomMargin,
-                            xResolution, yResolution, storage);
+                        //response = convApi.PutConvertDocumentToImage(
+                        //    srcStream, Format, outFile, width, height, 
+                        //    leftMargin, rightMargin, topMargin, bottomMargin,
+                        //    xResolution, yResolution, storage);
                         break;
                     default:
                         throw new ArgumentException($"Unsupported output format: {Format}");

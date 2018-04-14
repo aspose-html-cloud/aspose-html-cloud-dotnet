@@ -1,4 +1,30 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright company="Aspose" file="OcrApi.cs">
+//   Copyright (c) 2018 Aspose.HTML for Cloud
+// </copyright>
+// <summary>
+//   Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+// 
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+// 
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using System;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
@@ -12,61 +38,31 @@ using Com.Aspose.Html.Api.Interfaces;
 
 namespace Com.Aspose.Html.Api
 {
-    public class OcrApi : IOcrApi
+
+    public class OcrApi : ApiBase, IOcrApi
     {
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConversionApi"/> class.
+        /// Constructor. Initializes a new instance of the <see cref="ConversionApi"/> class.
         /// </summary>
         /// <param name="apiKey">The api key.</param>
         /// <param name="apiSid">The api sid.</param>
         /// <param name="basePath">The base path.</param>
         public OcrApi(String apiKey, String apiSid, String basePath)
+            : base(apiKey, apiSid, basePath)
         {
-            this.ApiClient = new ApiClient(apiKey, apiSid, basePath);
-            this.NativeApiClient = new NativeApiClient(apiKey, apiSid, basePath);
         }
-
-        /// <summary>
-        /// Sets the base path of the API client.
-        /// </summary>
-        /// <param name="basePath">The base path</param>
-        /// <value>The base path</value>
-        public void SetBasePath(String basePath)
-        {
-            this.ApiClient.BasePath = basePath;
-        }
-
-        /// <summary>
-        /// Gets the base path of the API client.
-        /// </summary>
-        /// <param name="basePath">The base path</param>
-        /// <value>The base path</value>
-        public String GetBasePath(String basePath)
-        {
-            return this.ApiClient.BasePath;
-        }
-
-        /// <summary>
-        /// Gets or sets the API client.
-        /// </summary>
-        /// <value>An instance of the ApiClient</value>
-        public ApiClient ApiClient { get; set; }
-
-        /// <summary>
-        /// Gets or sets the API client for PUTs - workaround
-        /// </summary>
-        public NativeApiClient NativeApiClient { get; set; }
-
+ 
         #region IOcrApi implementation
 
         public Stream GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
         {
+            var methodName = "GetRecognizeAndImportToHtml";
             // verify the required parameter 'name' is set
             if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetRecognizeAndImportToHtml");
 
             var path = "/html/{name}/ocr/import";
-            path = path.Replace("{" + "name" + "}", ApiClient.ParameterToString(name));
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
 
             if (string.IsNullOrEmpty(engineLang)) engineLang = "en";
 
@@ -76,27 +72,19 @@ namespace Com.Aspose.Html.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
-            if (storage != null) queryParams.Add("storage", ApiClient.ParameterToString(storage)); // query parameter
-            if (folder != null) queryParams.Add("folder", ApiClient.ParameterToString(folder)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
-            // make the HTTP request
-            IRestResponse response = (IRestResponse)ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException((int)response.StatusCode, "Error calling GetTranslateDocument: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException((int)response.StatusCode, "Error calling GetTranslateDocument: " + response.ErrorMessage, response.ErrorMessage);
-
-            return (System.IO.Stream)ApiClient.Deserialize(response, typeof(System.IO.Stream));
-            //return (System.IO.Stream) ApiClient.Deserialize(response.Content, typeof(System.IO.Stream), response.Headers);
-
+            var response = CallGetApi(path, queryParams);
+            return response;
         }
 
         public Stream GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
+            var methodName = "GetRecognizeAndTranslateToHtml";
             // verify the required parameter 'name' is set
             if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetRecognizeAndTranslateToHtml");
             // verify the required parameter 'srcLang' is set
@@ -106,32 +94,21 @@ namespace Com.Aspose.Html.Api
             if (resLang == null) throw new ApiException(400, "Missing required parameter 'resLang' when calling GetRecognizeAndTranslateToHtml");
 
             var path = "/html/{name}/ocr/translate/{srcLang}/{resLang}";
-            path = path.Replace("{" + "name" + "}", ApiClient.ParameterToString(name));
-            path = path.Replace("{" + "srcLang" + "}", ApiClient.ParameterToString(srcLang));
-            path = path.Replace("{" + "resLang" + "}", ApiClient.ParameterToString(resLang));
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+            path = path.Replace("{" + "srcLang" + "}", ApiClientUtils.ParameterToString(srcLang));
+            path = path.Replace("{" + "resLang" + "}", ApiClientUtils.ParameterToString(resLang));
 
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
 
-            if (storage != null) queryParams.Add("storage", ApiClient.ParameterToString(storage)); // query parameter
-            if (folder != null) queryParams.Add("folder", ApiClient.ParameterToString(folder)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
-            // make the HTTP request
-            IRestResponse response = (IRestResponse)ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException((int)response.StatusCode, "Error calling GetTranslateDocument: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException((int)response.StatusCode, "Error calling GetTranslateDocument: " + response.ErrorMessage, response.ErrorMessage);
-
-            return (System.IO.Stream)ApiClient.Deserialize(response, typeof(System.IO.Stream));
-            //return (System.IO.Stream) ApiClient.Deserialize(response.Content, typeof(System.IO.Stream), response.Headers);
+            var response = CallGetApi(path, queryParams);
+            return response;
         }
 
         #endregion

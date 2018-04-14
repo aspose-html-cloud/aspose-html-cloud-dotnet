@@ -1,6 +1,6 @@
 ﻿// // --------------------------------------------------------------------------------------------------------------------
 // // <copyright company="Aspose" file="BaseTestContext.cs">
-// //   Copyright (c) 2017 Aspose.HTML for Cloud
+// //   Copyright (c) 2018 Aspose.HTML for Cloud
 // // </copyright>
 // // <summary>
 // //   Permission is hereby granted, free of charge, to any person obtaining a copy

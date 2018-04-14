@@ -26,7 +26,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
 
             Stream stream = DocumentApi.GetDocumentFragmentByXPath(name, xpath, "plain", null, folder);
             Assert.IsNotNull(stream);
-            Assert.IsTrue(stream.GetType() == typeof(FileStream));
+            Assert.IsTrue(stream is FileStream);
             Assert.IsTrue(File.Exists(((FileStream)stream).Name));
         }
 

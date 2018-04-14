@@ -30,47 +30,47 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
             Assert.IsTrue(File.Exists(((FileStream)stream).Name));
         }
 
-        [TestMethod]
-        public void Test_PutHtmlTranslate_en_de_1()
-        {
-            string name = "testpage1.html";
-            string folder = "HtmlTestTranslate";
-            string storagePath = $"{folder}/{name}";
+        //[TestMethod]
+        //public void Test_PutHtmlTranslate_en_de_1()
+        //{
+        //    string name = "testpage1.html";
+        //    string folder = "HtmlTestTranslate";
+        //    string storagePath = $"{folder}/{name}";
 
-            string srcPath = Path.Combine(dataFolder, name);
+        //    string srcPath = Path.Combine(dataFolder, name);
 
-            StorageApi.PutCreate(storagePath, null, null, File.ReadAllBytes(srcPath));
-            FileExistResponse resp = StorageApi.GetIsExist(storagePath, null, null);
-            Assert.IsTrue(resp.FileExist.IsExist);
+        //    StorageApi.PutCreate(storagePath, null, null, File.ReadAllBytes(srcPath));
+        //    FileExistResponse resp = StorageApi.GetIsExist(storagePath, null, null);
+        //    Assert.IsTrue(resp.FileExist.IsExist);
 
-            var response = TranslationApi.PutTranslateDocument(name, "en", "de", folder);
-            Assert.AreEqual("storage", (string)response.Content);
-            Assert.IsTrue(response.ContentName != null);
+        //    var response = TranslationApi.PutTranslateDocument(name, "en", "de", folder);
+        //    Assert.AreEqual("storage", (string)response.Content);
+        //    Assert.IsTrue(response.ContentName != null);
 
-            storagePath = string.Format("{0}/{1}", folder, response.ContentName);
-            var stResp = StorageApi.GetIsExist(storagePath, null, null);
-            Assert.IsTrue(stResp.FileExist.IsExist);
-        }
+        //    storagePath = string.Format("{0}/{1}", folder, response.ContentName);
+        //    var stResp = StorageApi.GetIsExist(storagePath, null, null);
+        //    Assert.IsTrue(stResp.FileExist.IsExist);
+        //}
 
-        [TestMethod]
-        public void Test_PutHtmlTranslate_en_ru_1()
-        {
-            string name = "testpage1.html";
-            string folder = "HtmlTestTranslate";
-            string storagePath = $"{folder}/{name}";
+        //[TestMethod]
+        //public void Test_PutHtmlTranslate_en_ru_1()
+        //{
+        //    string name = "testpage1.html";
+        //    string folder = "HtmlTestTranslate";
+        //    string storagePath = $"{folder}/{name}";
 
-            string srcPath = Path.Combine(dataFolder, name);
-            StorageApi.PutCreate(storagePath, null, null, File.ReadAllBytes(srcPath));
-            FileExistResponse resp = StorageApi.GetIsExist(storagePath, null, null);
-            Assert.IsTrue(resp.FileExist.IsExist);
+        //    string srcPath = Path.Combine(dataFolder, name);
+        //    StorageApi.PutCreate(storagePath, null, null, File.ReadAllBytes(srcPath));
+        //    FileExistResponse resp = StorageApi.GetIsExist(storagePath, null, null);
+        //    Assert.IsTrue(resp.FileExist.IsExist);
 
-            var response = TranslationApi.PutTranslateDocument(name, "en", "ru", folder);
-            Assert.AreEqual("storage", (string)response.Content);
-            Assert.IsTrue(response.ContentName != null);
+        //    var response = TranslationApi.PutTranslateDocument(name, "en", "ru", folder);
+        //    Assert.AreEqual("storage", (string)response.Content);
+        //    Assert.IsTrue(response.ContentName != null);
 
-            storagePath = string.Format("{0}/{1}", folder, response.ContentName);
-            var stResp = StorageApi.GetIsExist(storagePath, null, null);
-            Assert.IsTrue(stResp.FileExist.IsExist);
-        }
+        //    storagePath = string.Format("{0}/{1}", folder, response.ContentName);
+        //    var stResp = StorageApi.GetIsExist(storagePath, null, null);
+        //    Assert.IsTrue(stResp.FileExist.IsExist);
+        //}
     }
 }

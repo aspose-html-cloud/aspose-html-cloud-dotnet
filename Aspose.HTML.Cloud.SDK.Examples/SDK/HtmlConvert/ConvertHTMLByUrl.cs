@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.IO;
 using Com.Aspose.Html.Api;
 using Com.Aspose.Html.Api.Interfaces;
@@ -37,16 +37,16 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             switch (Format)
             {
                 case "pdf":
-                    response = convApi.GetConvertDocumentToPdfByUrl(FileUrl, 1200, 800);
+                    //response = convApi.GetConvertDocumentToPdfByUrl(FileUrl, 1200, 800);
                     break;
                 case "xps":
-                    response = convApi.GetConvertDocumentToXps(FileUrl, 1200, 800);
+                    //response = convApi.GetConvertDocumentToXps(FileUrl, 1200, 800);
                     break;
                 case "jpeg":
                 case "bmp":
                 case "png":
                 case "tiff":
-                    response = convApi.GetConvertDocumentToImage(Format, FileUrl, 800, 1200);
+                    //response = convApi.GetConvertDocumentToImage(Format, FileUrl, 800, 1200);
                     break;
                 default:
                     throw new ArgumentException($"Unsupported output format: {Format}");

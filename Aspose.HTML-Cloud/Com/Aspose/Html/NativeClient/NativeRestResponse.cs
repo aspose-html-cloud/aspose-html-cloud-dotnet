@@ -27,5 +27,23 @@ namespace Com.Aspose.Html.NativeClient
         public RespContentType ContentType { get; set; }
         public object Content { get; set; }
         public string ContentName { get; set; }
+
+        public Stream GetContentAsStream()
+        {
+            if(StatusCode == HttpStatusCode.OK && ContentType == RespContentType.Stream)
+            {
+                Stream stream = Content as Stream;
+                return stream;
+            }
+            return null;
+        }
+
+        public void SaveContentAsFile(string outDir)
+        {
+            if (StatusCode == HttpStatusCode.OK && ContentType == RespContentType.Stream)
+            {
+
+            }
+        }
     }
 }
