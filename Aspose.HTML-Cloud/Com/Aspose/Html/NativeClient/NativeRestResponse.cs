@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net;
 
-using RestSharp;
 
 namespace Com.Aspose.Html.NativeClient
 {
-    public class NativeRestResponse
+ 
+    internal class NativeRestResponse
     {
         public enum RespContentType
         {

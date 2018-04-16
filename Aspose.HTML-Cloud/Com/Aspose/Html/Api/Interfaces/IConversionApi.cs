@@ -22,23 +22,15 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Com.Aspose.Html.Client;
-using Com.Aspose.Html.NativeClient;
 
 namespace Com.Aspose.Html.Api.Interfaces
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the HTML conversion API endpoints
     /// </summary>
     public interface IConversionApi
     {
-
         /// <summary>
         /// Convert the HTML document to the specified image format. 
         /// </summary>
@@ -52,9 +44,9 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <param name="bottomMargin">Bottom image margin.</param>
         /// <param name="xResolution">Horizontal image resolution; 96 ppi by default.</param>
         /// <param name="yResolution">Vertical image resolution; 96 ppi by default.</param>
-        /// <param name="folder">The document folder.</param>
-        /// <param name="storage">The document storage.</param>
-        /// <returns>System.IO.Stream</returns>
+        /// <param name="folder">The source document folder.</param>
+        /// <param name="storage">The source document storage.</param>
+        /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
         Stream GetConvertDocumentToImage(
             string name, string outFormat,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -64,7 +56,7 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <summary>
         /// Convert the HTML document to the specified image format by URL. 
         /// </summary>
-        /// <param name="sourceUrl">The source file name.</param>
+        /// <param name="sourceUrl">The source page URL.</param>
         /// <param name="outFormat">Output image format.</param>
         /// <param name="width">Resulting image width. </param>
         /// <param name="height">Resulting image height. </param>
@@ -74,8 +66,8 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <param name="bottomMargin">Bottom image margin.</param>
         /// <param name="xResolution">Horizontal image resolution; 96 ppi by default.</param>
         /// <param name="yResolution">Vertical image resolution; 96 ppi by default.</param>
-        /// <param name="storage">The document storage.</param>
-        /// <returns>System.IO.Stream</returns>
+        /// <param name="storage">The source document storage.</param>
+        /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
         Stream GetConvertDocumentToImageByUrl(
             string sourceUrl, string outFormat,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -86,15 +78,15 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// Convert the HTML document to PDF. 
         /// </summary>
         /// <param name="name">The source file name.</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
-        /// <param name="folder">The document folder.</param>
-        /// <param name="storage">The document storage.</param>
-        /// <returns>System.IO.Stream</returns>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top document page margin.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="folder">The source document folder.</param>
+        /// <param name="storage">The source document storage.</param>
+        /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
         Stream GetConvertDocumentToPdf(
              string name,
              int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -103,15 +95,15 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <summary>
         /// Convert the HTML document to PDF by URL. 
         /// </summary>
-        /// <param name="sourceUrl">The source file name.</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="sourceUrl">The source page URL.</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top image document page.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">The document storage.</param>
-        /// <returns>System.IO.Stream</returns>
+        /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
         Stream GetConvertDocumentToPdfByUrl(
             string sourceUrl,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -121,15 +113,15 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// Convert the HTML document to XPS. 
         /// </summary>
         /// <param name="name">The source file name.</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top image document page.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
-        /// <returns>System.IO.Stream</returns>
+        /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
         Stream GetConvertDocumentToXps(
              string name,
              int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -138,15 +130,15 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <summary>
         /// Convert the HTML document to XPS by URL. 
         /// </summary>
-        /// <param name="sourceUrl">The source file name.</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="sourceUrl">The source page URL.</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top document page margin.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">The document storage.</param>
-        /// <returns>System.IO.Stream</returns>
+        /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
         Stream GetConvertDocumentToXpsByUrl(
             string sourceUrl,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,

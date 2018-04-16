@@ -36,9 +36,6 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp.Net2, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.Net2.1.1.11\lib\net20\RestSharp.Net2.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -61,12 +58,11 @@
     <Compile Include="Com\Aspose\Html\Api\Interfaces\ITranslationApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\OcrApi.cs" />
     <Compile Include="Com\Aspose\Html\Api\TranslationApi.cs" />
-    <Compile Include="Com\Aspose\Html\Client\ApiClient.cs" />
     <Compile Include="Com\Aspose\Html\Client\ApiException.cs" />
     <Compile Include="Com\Aspose\Html\Client\Configuration.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\ApiClientUtils.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\Authentication\IAuthenticator.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\NativeApiClient.cs" />
+    <Compile Include="Com\Aspose\Html\NativeClient\ApiClient.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\NativeRestResponse.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\Authentication\OAuth2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

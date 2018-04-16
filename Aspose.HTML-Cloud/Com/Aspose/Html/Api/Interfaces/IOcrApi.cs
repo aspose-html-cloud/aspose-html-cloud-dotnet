@@ -23,16 +23,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Com.Aspose.Html.NativeClient;
 
 namespace Com.Aspose.Html.Api.Interfaces
 {
+    /// <summary>
+    /// Represents a collection of functions to interact with the OCR to HTML API endpoints
+    /// </summary>
     interface IOcrApi
     {
         /// <summary>
@@ -42,7 +39,7 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <param name="engineLang">String | Optional. OCR engine language. </param>
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>System.IO.Stream | </returns>
+        /// <returns>System.IO.Stream |  Stream of resulting document. </returns>
         Stream GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null);
 
         /// <summary>
@@ -53,7 +50,7 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <param name="resLang">String | Result language.</param>
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>System.IO.Stream | </returns>
+        /// <returns>System.IO.Stream |  Stream of resulting document.</returns>
         Stream GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null);
     }
 }

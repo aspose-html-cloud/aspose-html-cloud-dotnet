@@ -35,6 +35,9 @@ using Com.Aspose.Html.NativeClient;
 
 namespace Com.Aspose.Html.Api
 {
+    /// <summary>
+    /// Base abstract class for REST API wrapper classes.
+    /// </summary>
     public abstract class ApiBase
     {
         /// <summary>
@@ -46,19 +49,12 @@ namespace Com.Aspose.Html.Api
         public ApiBase(String apiKey, String apiSid, String basePath)
         {
             this.ApiClient = new ApiClient(apiKey, apiSid, basePath);
-            this.NativeApiClient = new NativeApiClient(apiKey, apiSid, basePath);
         }
 
-        /// <summary>
-        /// Gets or sets the API client.
+         /// <summary>
+        /// Gets or sets the API client
         /// </summary>
-        /// <value>An instance of the ApiClient</value>
         public ApiClient ApiClient { get; set; }
-
-        /// <summary>
-        /// Gets or sets the API client for PUTs - workaround
-        /// </summary>
-        public NativeApiClient NativeApiClient { get; set; }
 
 
         /// <summary>
@@ -68,7 +64,7 @@ namespace Com.Aspose.Html.Api
         /// <value>The base path</value>
         public void SetBasePath(String basePath)
         {
-            this.NativeApiClient.BasePath = basePath;
+            this.ApiClient.BasePath = basePath;
         }
 
         /// <summary>
@@ -78,42 +74,27 @@ namespace Com.Aspose.Html.Api
         /// <value>The base path</value>
         public String GetBasePath(String basePath)
         {
-            return this.NativeApiClient.BasePath;
+            return this.ApiClient.BasePath;
         }
 
-        protected NativeRestResponse CallGetApi_i(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
-        {
-            HttpResponseMessage resp = NativeApiClient.CallGet(path, queryParams);
-
-            if (((int)resp.StatusCode) >= 400)
-                throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
-            else if (((int)resp.StatusCode) == 0)
-                throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}: {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
-
-            NativeRestResponse response = new NativeRestResponse()
-            {
-                StatusCode = resp.StatusCode,
-                ContentType = NativeRestResponse.RespContentType.Stream,
-                MimeType = resp.Content.Headers.ContentType.ToString(),
-                ContentName = resp.Content.Headers.ContentDisposition.FileName,
-                Content = resp.Content.ReadAsStreamAsync().Result
-            };
-
-            return response;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="queryParams"></param>
+        /// <param name="methodName"></param>
+        /// <returns></returns>
         protected Stream CallGetApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
         {
-            HttpResponseMessage resp = NativeApiClient.CallGet(path, queryParams);
-
+            HttpResponseMessage resp = ApiClient.CallGet(path, queryParams);
+      
             if (((int)resp.StatusCode) >= 400)
                 throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}", 
+                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
             else if (((int)resp.StatusCode) == 0)
                 throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}: {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
 
             string outDir = String.IsNullOrEmpty(Configuration.TempFolderPath)
                      ? Path.GetTempPath()

@@ -31,7 +31,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using RestSharp;
 using Com.Aspose.Html.Client;
 using Com.Aspose.Html.NativeClient;
 using Com.Aspose.Html.Api.Interfaces;
@@ -52,9 +51,17 @@ namespace Com.Aspose.Html.Api
             : base(apiKey, apiSid, basePath)
         {
         }
- 
+
         #region IOcrApi implementation
 
+        /// <summary>
+        /// Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
+        /// </summary>
+        /// <param name="name">String | Document name.</param>
+        /// <param name="engineLang">String | Optional. OCR engine language. </param>
+        /// <param name="folder">String | Optional. The document folder.</param>
+        /// <param name="storage">String | Optional. The document storage.</param>
+        /// <returns>System.IO.Stream |  Stream of resulting document. </returns>
         public Stream GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
         {
             var methodName = "GetRecognizeAndImportToHtml";
@@ -68,9 +75,6 @@ namespace Com.Aspose.Html.Api
 
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
 
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
@@ -78,10 +82,19 @@ namespace Com.Aspose.Html.Api
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
-            var response = CallGetApi(path, queryParams);
+            var response = CallGetApi(path, queryParams, methodName);
             return response;
         }
 
+        /// <summary>
+        /// Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
+        /// </summary>
+        /// <param name="name">String | Document name.</param>
+        /// <param name="srcLang">String | Source language (considered as OCR engine language too).</param>
+        /// <param name="resLang">String | Result language.</param>
+        /// <param name="folder">String | Optional. The document folder.</param>
+        /// <param name="storage">String | Optional. The document storage.</param>
+        /// <returns>System.IO.Stream |  Stream of resulting document.</returns>
         public Stream GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             var methodName = "GetRecognizeAndTranslateToHtml";
@@ -107,7 +120,7 @@ namespace Com.Aspose.Html.Api
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
-            var response = CallGetApi(path, queryParams);
+            var response = CallGetApi(path, queryParams, methodName);
             return response;
         }
 

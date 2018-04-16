@@ -23,14 +23,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Com.Aspose.Html.Client;
-using Com.Aspose.Html.NativeClient;
-using Com.Aspose.Html.Api.Interfaces;
 
 namespace Com.Aspose.Html.Api.Interfaces
 {
@@ -47,15 +40,16 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <param name="resLang">Result language.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>NativeRestResponse | </returns>
+        /// <returns>Stream | Stream of resulting document.</returns>
         Stream GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null);
+        
         /// <summary>
         /// Translate the HTML document specified by its URL. 
         /// </summary>
         /// <param name="sourceUrl">Source document URL.</param>
         /// <param name="srcLang">Source language.</param>
         /// <param name="resLang">Result language.</param>
-        /// <returns>NativeRestResponse | </returns>
+        /// <returns>Stream | Stream of resulting document.</returns>
         Stream GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang);
        
     }

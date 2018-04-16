@@ -23,19 +23,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Com.Aspose.Html.Client;
-using Com.Aspose.Html.NativeClient;
-using Com.Aspose.Html.Api.Interfaces;
 
 namespace Com.Aspose.Html.Api.Interfaces
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the HTML document manipulation API endpoints
     /// </summary>
     public interface IDocumentApi
     {
@@ -45,8 +38,9 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <param name="name">The document name.</param>
         /// <param name="storage">The document folder</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>Stream</returns>
+        /// <returns>System.IO.Stream | Stream containing the requested document</returns>
         Stream GetDocument(string name, string storage, string folder);
+
         /// <summary>
         /// Return list of HTML fragments matching the specified XPath query.  
         /// </summary>
@@ -55,15 +49,17 @@ namespace Com.Aspose.Html.Api.Interfaces
         /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>Stream</returns>
+        /// <returns>System.IO.Stream | Stream containing the requested fragments</returns>
+        /// 
         Stream GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder);
+
         /// <summary>
         /// Return all HTML document images packaged as a ZIP archive. 
         /// </summary>
         /// <param name="name">The document name.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>Stream </returns>
+        /// <returns>System.IO.Stream | Stream containing the ZIP archive of all images.</returns>
         Stream GetDocumentImages(string name, string storage, string folder);
     }
 

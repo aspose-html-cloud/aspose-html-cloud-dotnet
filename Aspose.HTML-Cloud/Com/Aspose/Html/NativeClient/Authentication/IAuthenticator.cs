@@ -32,8 +32,12 @@ using System.Threading.Tasks;
 
 namespace Com.Aspose.Html.NativeClient.Authentication
 {
+    /// <summary>
+    /// Internally used interface. Represents abstraction of the authentification functionality.
+    /// </summary>
     public interface IAuthenticator
     {
         bool Authenticate(HttpRequestMessage request);
+        void RetryAuthentication();
     }
 }

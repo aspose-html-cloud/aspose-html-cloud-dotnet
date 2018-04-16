@@ -30,10 +30,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 
 namespace Com.Aspose.Html.NativeClient.Authentication
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class OAuth2 : IAuthenticator
     {
         public enum AuthFlow
@@ -43,9 +47,58 @@ namespace Com.Aspose.Html.NativeClient.Authentication
             Obtained
         }
 
+        class OAuthData
+        {
+            public string ClientId { get; private set; }
+
+            public string AccessToken { get; private set; }
+            public string TokenType { get; private set; }
+            public int ExpiresInSeconds { get; private set; }
+            public DateTime IssuedOn { get; private set; }
+            public DateTime ExpiresOn => IssuedOn.AddSeconds(ExpiresInSeconds);
+            public bool IsAccessTokenExpired => DateTime.UtcNow > ExpiresOn;
+
+            public string RefreshToken { get; private set; }
+            public int RefreshTokenLifeTimeInMinutes { get; private set; }
+            public DateTime RefreshTokenExpiresOn => IssuedOn.AddMinutes(RefreshTokenLifeTimeInMinutes);
+            public bool IsRefreshTokenExpired => DateTime.UtcNow > RefreshTokenExpiresOn;
+
+            public string Error { get; private set; }
+            public string ErrorDescription { get; private set; }
+
+            public bool HasError => !string.IsNullOrEmpty(Error);
+
+            public static OAuthData Deserialize(string content)
+            {
+                var result = new OAuthData();
+                Dictionary<string, object> dict =
+                    JsonConvert.DeserializeObject<Dictionary<string, object>>(content);
+                if (dict.ContainsKey("error"))
+                {
+                    result.Error = dict["error"].ToString();
+                    result.ErrorDescription = dict.ContainsKey("error_description") ? dict["error_description"].ToString() : "";
+                }
+                if (dict.ContainsKey("access_token"))
+                {
+                    result.AccessToken = dict["access_token"].ToString();
+                    result.TokenType = dict["token_type"].ToString();
+                    result.ExpiresInSeconds = Convert.ToInt32(dict["expires_in"]);
+                    result.RefreshToken = dict["refresh_token"].ToString();
+                    result.ClientId = dict["client_id"].ToString();
+                    result.RefreshTokenLifeTimeInMinutes =
+                        Convert.ToInt32(dict["clientRefreshTokenLifeTimeInMinutes"]);
+                    result.IssuedOn = DateTime.Now;
+                }
+
+                return result;
+            }
+        }
+
         private string m_ClientId;
         private string m_ClientSecret;
         private AuthFlow m_authFlow;
+
+        private OAuthData m_authData = null;
 
         public OAuth2(string clientId, string clientSecret, string baseUrl)
         {
@@ -83,12 +136,13 @@ namespace Com.Aspose.Html.NativeClient.Authentication
                         break;
                     case AuthFlow.RefreshAccessTokenPending:
 
-                        var refreshToken = "";
+                        if(m_authData == null)
+                            throw new Exception($"Wrong OAuth2 flow");
 
                         authReqContent = new List<KeyValuePair<string, string>>
                         {
                             new KeyValuePair<string, string>("grant_type", "refresh_token"),
-                            new KeyValuePair<string, string>("refresh_token", refreshToken)
+                            new KeyValuePair<string, string>("refresh_token", m_authData.RefreshToken)
                         };
                         break;
                     default:
@@ -99,16 +153,32 @@ namespace Com.Aspose.Html.NativeClient.Authentication
                 var authResponse = authClient.SendAsync(authReq).Result;
                 if(authResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-
+                    var content = authResponse.Content.ReadAsStringAsync().Result;
+                    m_authData = OAuthData.Deserialize(content);
                     m_authFlow = AuthFlow.Obtained;
                 }
-
             }
-            string hdrValue = string.Format("Bearer {0}", "");
-            if(!request.Headers.Contains("Authorization"))
-                request.Headers.Add("Authorization", hdrValue);
 
+            if(m_authData != null)
+            {
+                if(m_authData.HasError)
+                    throw new Exception($"OAuth 2.0: Authentication error: {m_authData.Error}", new Exception(m_authData.ErrorDescription));
+                request.Headers.Add("Authorization", AuthorizationHeaderValue);
+            }
             return true;
+        }
+
+        private string AuthorizationHeaderValue
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(m_authData?.TokenType))
+                    return string.Empty;
+
+                char[] tokenType = m_authData?.TokenType.ToCharArray();
+                tokenType[0] = char.ToUpper(tokenType[0]);
+                return $"{new String(tokenType)} {m_authData?.AccessToken}";
+            }
         }
 
         private string GetHost(string url)
@@ -116,31 +186,10 @@ namespace Com.Aspose.Html.NativeClient.Authentication
             return new Uri(url).GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped);
         }
 
-        private dynamic AcquireOAuth2TokensByClientCreds(string url)
+        public void RetryAuthentication()
         {
-            var content = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("grant_type", "client_credentials"),
-                new KeyValuePair<string, string>("client_id", m_ClientId),
-                new KeyValuePair<string, string>("client_secret", m_ClientSecret)
-            };
-
-            var client = new HttpClient();
-            var request = new HttpRequestMessage()
-            {
-                RequestUri = new Uri(url),
-                Method = HttpMethod.Post
-            };
-
-            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.Add("ContentType", "application/x-www-form-urlencoded");
-            request.Content = new FormUrlEncodedContent(content);
-
-            var response = client.SendAsync(request).Result;
-            response.EnsureSuccessStatusCode();
-
-            dynamic ticket = null; // await response.Content.ReadAsAsync<dynamic>();
-            return ticket;
+            m_authFlow = AuthFlow.RefreshAccessTokenPending;
         }
+
     }
 }

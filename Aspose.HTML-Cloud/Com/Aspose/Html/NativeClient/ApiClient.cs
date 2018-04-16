@@ -39,7 +39,7 @@ namespace Com.Aspose.Html.NativeClient
     /// <summary>
     /// Quick workaround to encapsulate PUT calls - instead of RestSharp.Net2
     /// </summary>
-    public class NativeApiClient
+    public class ApiClient
     {
         public string AppKey { get; protected set; }
         public string AppSid { get; protected set; }
@@ -58,7 +58,7 @@ namespace Com.Aspose.Html.NativeClient
         /// <param name="appSid"></param>
         /// <param name="basePath"></param>
         /// <param name="auth"></param>
-        public NativeApiClient(string appKey, string appSid, string basePath = "http://api.aspose.cloud/v1.1",
+        public ApiClient(string appKey, string appSid, string basePath = "http://api.aspose.cloud/v1.1",
             IAuthenticator auth = null)
         {
             AppKey = appKey;
@@ -75,51 +75,53 @@ namespace Com.Aspose.Html.NativeClient
         {
             string requestUrl = formatQuery(methodPath, parameters);
             HttpClient client = new HttpClient() { Timeout = this.Timeout };
-
-            //string signedUrl = SignUrl(requestUrl);
-            //HttpRequestMessage request = new HttpRequestMessage()
-            //{
-            //    RequestUri = new Uri(signedUrl),
-            //    Method = HttpMethod.Get
-            //};
-
             HttpRequestMessage request = new HttpRequestMessage()
             {
                 RequestUri = new Uri(requestUrl),
                 Method = HttpMethod.Get
             };
-            //request.Headers.UserAgent.Add(new ProductInfoHeaderValue("Aspose.HTML for Cloud SDK for .NET"));
 
             HttpResponseMessage response = null;
-            if (Authenticator.Authenticate(request))
+            int retries = 2;
+            while (retries-- > 0)
             {
-                Task task = client.SendAsync(request)
-                    .ContinueWith((tsk) => { response = tsk.Result; }
-                );
-                task.Wait();
+                if (Authenticator.Authenticate(request))
+                {
+                    Task task = client.SendAsync(request)
+                        .ContinueWith((tsk) => { response = tsk.Result; }
+                    );
+                    task.Wait();
+                    
+                    if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized
+                        || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+                        Authenticator.RetryAuthentication();
+                    }
+                    break;
+                }
             }
             return response;
         }
 
-        public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters)
-        {
-            string requestUrl = formatQuery(methodPath, parameters);
-            return CallPutWithRequestContent(requestUrl);
-        }
+        //public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters)
+        //{
+        //    string requestUrl = formatQuery(methodPath, parameters);
+        //    return CallPutWithRequestContent(requestUrl);
+        //}
 
-        public HttpResponseMessage CallPutWithRequestContent(string methodPath, HttpContent content, IDictionary<string, string> parameters)
-        {
-            string requestUrl = formatQuery(methodPath, parameters);
-            return CallPutWithRequestContent(requestUrl, content);
-        }
+        //public HttpResponseMessage CallPutWithRequestContent(string methodPath, HttpContent content, IDictionary<string, string> parameters)
+        //{
+        //    string requestUrl = formatQuery(methodPath, parameters);
+        //    return CallPutWithRequestContent(requestUrl, content);
+        //}
 
-        public HttpResponseMessage CallPutWithRequestContent(string requestUrl, HttpContent content = null)
-        {
-            HttpClient client = new HttpClient();
-            string signedUrl = SignUrl(requestUrl);
-            HttpResponseMessage response = client.PutAsync(signedUrl, content).Result;
-            return response;
-        }
+        //public HttpResponseMessage CallPutWithRequestContent(string requestUrl, HttpContent content = null)
+        //{
+        //    HttpClient client = new HttpClient();
+        //    string signedUrl = SignUrl(requestUrl);
+        //    HttpResponseMessage response = client.PutAsync(signedUrl, content).Result;
+        //    return response;
+        //}
 
         private string formatQuery(string methodPath, IDictionary<string, string> parameters)
         {
@@ -145,39 +147,41 @@ namespace Com.Aspose.Html.NativeClient
             return sb.ToString();
         }
 
-        private string SignUrl(string url)
-        {
-            url = url.Trim('?');
+        #region REM - obsolete authentication method
+        //private string SignUrl(string url)
+        //{
+        //    url = url.Trim('?');
 
-            var uri = new Uri(url);
-            url = string.Format("{0}{1}appsid={2}",
-                url,
-                string.IsNullOrEmpty(uri.Query) ? '?' : '&',
-                AppSid);
+        //    var uri = new Uri(url);
+        //    url = string.Format("{0}{1}appsid={2}",
+        //        url,
+        //        string.IsNullOrEmpty(uri.Query) ? '?' : '&',
+        //        AppSid);
 
-            var signature = GetSignature(url, AppKey);
+        //    var signature = GetSignature(url, AppKey);
 
-            var result = string.Format("{0}&signature={1}", url, signature);
-            return result;
-        }
+        //    var result = string.Format("{0}&signature={1}", url, signature);
+        //    return result;
+        //}
 
-        private string GetSignature(string url, string key)
-        {
-            var encoding = new ASCIIEncoding();
-            // converting key to bytes will throw an exception, need to replace '-' and '_' characters first.
-            var usablePrivateKey = key.Replace("-", "+").Replace("_", "/");
-            var privateKeyBytes = Convert.FromBase64String(usablePrivateKey);
+        //private string GetSignature(string url, string key)
+        //{
+        //    var encoding = new ASCIIEncoding();
+        //    // converting key to bytes will throw an exception, need to replace '-' and '_' characters first.
+        //    var usablePrivateKey = key.Replace("-", "+").Replace("_", "/");
+        //    var privateKeyBytes = Convert.FromBase64String(usablePrivateKey);
 
-            var uri = new Uri(url);
-            var encodedPathAndQueryBytes = encoding.GetBytes(uri.LocalPath + uri.Query);
+        //    var uri = new Uri(url);
+        //    var encodedPathAndQueryBytes = encoding.GetBytes(uri.LocalPath + uri.Query);
 
-            // compute the hash
-            var algorithm = new HMACSHA1(privateKeyBytes);
-            var hash = algorithm.ComputeHash(encodedPathAndQueryBytes);
+        //    // compute the hash
+        //    var algorithm = new HMACSHA1(privateKeyBytes);
+        //    var hash = algorithm.ComputeHash(encodedPathAndQueryBytes);
 
-            // convert the bytes to string and make url-safe by replacing '+' and '/' characters
-            var result = Convert.ToBase64String(hash).Replace("+", "-").Replace("/", "_");
-            return result;
-        }
+        //    // convert the bytes to string and make url-safe by replacing '+' and '/' characters
+        //    var result = Convert.ToBase64String(hash).Replace("+", "-").Replace("/", "_");
+        //    return result;
+        //}
+        #endregion
     }
 }
