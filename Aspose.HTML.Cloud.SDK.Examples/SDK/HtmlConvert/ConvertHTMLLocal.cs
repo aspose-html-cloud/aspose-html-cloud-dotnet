@@ -48,58 +48,41 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             using (Stream srcStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 IConversionApi convApi = new ConversionApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-                NativeRestResponse response = null;
+                Stream response = null;
                 // call SDK methods that convert HTML document to supported out format
                 switch (Format)
                 {
                     case "pdf":
                         outFile += ".pdf";
-                        //response = convApi.PutConvertDocumentToPdf(
-                        //    srcStream, outFile, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                        response = convApi.GetConvertDocumentToPdf(
+                            name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
                         break;
                     case "xps":
-                        //response = convApi.PutConvertDocumentToXps(
-                        //    srcStream, outFile, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                        response = convApi.GetConvertDocumentToXps(
+                            name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
                         break;
                     case "jpeg":
                     case "bmp":
                     case "png":
                     case "tiff":
-                        //response = convApi.PutConvertDocumentToImage(
-                        //    srcStream, Format, outFile, width, height, 
-                        //    leftMargin, rightMargin, topMargin, bottomMargin,
-                        //    xResolution, yResolution, storage);
+                        response = convApi.GetConvertDocumentToImage(
+                            name, Format, width, height,
+                            leftMargin, rightMargin, topMargin, bottomMargin,
+                            xResolution, yResolution, folder, storage);
                         break;
                     default:
                         throw new ArgumentException($"Unsupported output format: {Format}");
                 }
 
-                if (response != null
-                    && (string)response.Content == "storage"
-                    && response.ContentType == NativeRestResponse.RespContentType.FileName)
+                if (response != null && response is FileStream)
                 {
-                    // get the result file name from response object
-                    string outFileName = response.ContentName;
-                    StorageApi storageApi = new StorageApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-                    FileExistResponse resp2 = storageApi.GetIsExist(outFileName, null, null);
-                    if (resp2.FileExist.IsExist)
+                    string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
+                    using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                     {
-                        // if result file exists in the storage, try to downloa it to the local file system
-                        var resp3 = storageApi.GetDownload(outFileName, null, null);
-                        if (resp3.ResponseStream != null)
-                        {
-                            string outPath = Path.Combine(CommonSettings.OutDirectory, outFileName);
-                            using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
-                            {
-                                fstr.Write(resp3.ResponseStream, 0, resp3.ResponseStream.Length);
-                                fstr.Flush();
-                                Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error: result file wasn't saved to storage.");
+                        response.Position = 0;
+                        response.CopyTo(fstr);
+                        fstr.Flush();
+                        Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
                     }
                 }
             }
