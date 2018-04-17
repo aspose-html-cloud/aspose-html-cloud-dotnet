@@ -50,9 +50,7 @@ namespace Aspose.HTML.Cloud.Examples
             // == Example #10 == translate HTML document from English to French
             //runner = new TranslateHTMLByUrl("en", "fr");
 
-            // == Example #11 == translate HTML document from English to French and save to storage
-            //runner = new TranslateHTMLByUrlToStorage("en", "fr");
-            
+         
             // == Example #12 == Recognize text content from image and create HTML document with it
             //runner = new RecognizeAndImportToHTML();
 

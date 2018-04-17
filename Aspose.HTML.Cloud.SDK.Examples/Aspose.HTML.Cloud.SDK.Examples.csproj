@@ -63,7 +63,6 @@
     <Compile Include="SDK\HtmlOcr\RecognizeAndImportToHTML.cs" />
     <Compile Include="SDK\HtmlOcr\RecognizeAndTranslateToHTML.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLByUrl.cs" />
-    <Compile Include="SDK\HtmlTranslate\TranslateHTMLByUrlToStorage.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLFromStorage.cs" />
     <Compile Include="SDK\ISdkRunner.cs" />
     <Compile Include="SDK\SdkBaseRunner.cs" />
