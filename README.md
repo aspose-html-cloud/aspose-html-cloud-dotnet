@@ -18,7 +18,7 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 * Recognition of text content of an image using the OCR service and its import into HTML document.
 * Recognition of text content of an image, import into HTML document with further translation to other languages.
 
-See [API Reference](https://apireference.aspose.cloud/words/) for full API specification.
+See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
 
 ## How to use the SDK?
 The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
@@ -127,14 +127,11 @@ Class | Method | HTTP request | Description
 *ConversionApi* | [**GetConvertDocumentToPdfByUrl**](docs/ConversionApi.md#GetConvertDocumentToPdfByUrl) | **GET** /html/convert/pdf | Convert the HTML page from the web by its URL to PDF.
 *ConversionApi* | [**GetConvertDocumentToXps**](docs/ConversionApi.md#GetConvertDocumentToXps) | **GET** /html/{name}/convert/xps | Convert the HTML document from the storage by its name to XPS.
 *ConversionApi* | [**GetConvertDocumentToXpsByUrl**](docs/ConversionApi.md#GetConvertDocumentToXpsByUrl) | **GET** /html/convert/xps | Convert the HTML page from the web by its URL to XPS.
-
-*DocumentApi* | [**GetDocument**](docs/DocumentApi.md#documentGetDocument) | **GET** /html/{name} | Return the HTML document by the name from default or specified storage.
-*DocumentApi* | [**GetDocumentFragmentByXPath**](docs/DocumentApi.md#documentGetDocumentFragmentByXPath) | **GET** /html/{name}/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query. 
-*DocumentApi* | [**GetDocumentImages**](docs/DocumentApi.md#documentGetDocumentImages) | **GET** /html/{name}/images/all | Return all HTML document images packaged as a ZIP archive.
-
+*DocumentApi* | [**GetDocument**](docs/DocumentApi.md#GetDocument) | **GET** /html/{name} | Return the HTML document by the name from default or specified storage.
+*DocumentApi* | [**GetDocumentFragmentByXPath**](docs/DocumentApi.md#GetDocumentFragmentByXPath) | **GET** /html/{name}/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query. 
+*DocumentApi* | [**GetDocumentImages**](docs/DocumentApi.md#GetDocumentImages) | **GET** /html/{name}/images/all | Return all HTML document images packaged as a ZIP archive.
 *TranslationApi* | [**GetTranslateDocument**](docs/TranslationApi.md#GetTranslateDocument) | **GET** /html/{name}/translate/{srcLang}/{resLang} | Translate the HTML document specified by the name from default or specified storage.
 *TranslationApi* | [**GetTranslateDocumentByUrl**](docs/TranslationApi.md#GetTranslateDocumentByUrl) | **GET** /html/translate/{srcLang}/{resLang} | Translate the HTML document specified by its URL.
-
 *OcrApi* | [**GetRecognizeAndImportToHtml**](docs/OcrApi.md#GetRecognizeAndImportToHtml) | **GET** /html/{name}/ocr/import | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
 *OcrApi* | [**GetRecognizeAndTranslateToHtml**](docs/OcrApi.md#GetRecognizeAndTranslateToHtml) | **GET** /html/ocr/translate/{srcLang}/{resLang} | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
 
@@ -142,11 +139,11 @@ Class | Method | HTTP request | Description
 
 ## Resources
 
-- **Website:** [www.aspose.com](http://www.aspose.com)
+- **Website:** [www.aspose.com](http://www.aspose.cloud)
 - **Product Home:** [Aspose.HTML for Cloud](https://products.aspose.cloud/html/cloud)
 - **Documentation:** [Aspose.HTML for Cloud Documentation](https://docs.aspose.cloud/display/htmlcloud/Home)
-- **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.com/c/html)
-- **Blog:** [Aspose.HTML for Cloud Blog](http://www.aspose.com/blogs/aspose-products/aspose-html-product-family.html)
+- **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.cloud/c/html)
+- **Blog:** [Aspose.HTML for Cloud Blog](https://blog.aspose.cloud/category/aspose-products/aspose-html-cloud/)
 
 
 ## Contact Us

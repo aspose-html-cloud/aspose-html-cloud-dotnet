@@ -3,20 +3,20 @@
   <metadata>
     <id>Aspose.HTML-Cloud</id>
 	<title>Aspose.HTML Cloud SDK for .NET</title>
-    <version>18.2.0</version>
+    <version>18.3.0</version>
     <authors>asposecloud</authors>
     <owners>asposemarketplace</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
-    <releaseNotes>Release of Aspose.HTML Cloud for .NET SDK (v.18.02)</releaseNotes>
+    <releaseNotes>Release of Aspose.HTML Cloud for .NET SDK (v.18.03)</releaseNotes>
     <copyright>Aspose 2002-2018. All Rights Reserved.</copyright>
     <tags>aspose.html html translate translation conversion pdf xps image xpath ocr</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="9.0.1" />
-	  <dependency id="RestSharp.Net2" version="1.1.11" />
     </dependencies>
   </metadata>
   <files>
+	<file src="readme.txt" target="" />  
 	<file src="bin\Release\Aspose.HTML-Cloud.dll" target="lib\net4.5" />
 	<file src="bin\Release\Aspose.HTML-Cloud.XML" target="lib\net4.5" />
   </files>
