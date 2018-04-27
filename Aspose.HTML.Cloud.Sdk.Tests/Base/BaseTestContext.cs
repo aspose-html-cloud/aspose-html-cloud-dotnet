@@ -27,8 +27,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 {
     using System.IO;
     using Com.Aspose.Storage.Api;
-    using Com.Aspose.Html.Api;
-    using Com.Aspose.Html.Client;
+    using Aspose.Html.Cloud.Sdk.Api;
+    using Aspose.Html.Cloud.Sdk.Client;
     using Newtonsoft.Json;
 
     /// <summary>

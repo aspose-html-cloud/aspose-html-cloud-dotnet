@@ -33,12 +33,11 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
 
-namespace Com.Aspose.Html.NativeClient.Authentication
+namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 {
     /// <summary>
     /// 
     /// </summary>
-    [Obsolete]
     class OAuth2 : IAuthenticator
     {
         public enum AuthFlow

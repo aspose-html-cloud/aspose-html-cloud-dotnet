@@ -30,12 +30,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Com.Aspose.Html.Client
+namespace Aspose.Html.Cloud.Sdk.Client
 {
     /// <summary>
     /// Represents a set of configuration settings
     /// </summary>
-    [Obsolete]
     public class Configuration
     {
         #region _static members_

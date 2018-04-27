@@ -35,6 +35,7 @@ namespace Com.Aspose.Html.NativeClient.Authentication
     /// <summary>
     /// Internally used interface. Represents abstraction of the authentification functionality.
     /// </summary>
+    [Obsolete]
     public interface IAuthenticator
     {
         bool Authenticate(HttpRequestMessage request);

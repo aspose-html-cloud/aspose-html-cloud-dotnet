@@ -2,9 +2,8 @@
 using System.IO;
 using Com.Aspose.Storage.Model;
 using Com.Aspose.Storage.Api;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
-using Com.Aspose.Html.NativeClient;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 {

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 using Com.Aspose.Storage;
 using Com.Aspose.Storage.Api;
-using Com.Aspose.Html;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.HTML.Cloud.Examples.SDK;
 
 namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr

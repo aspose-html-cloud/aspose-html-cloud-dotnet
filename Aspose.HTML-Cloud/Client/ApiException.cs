@@ -25,12 +25,12 @@
 
 using System;
 
-namespace Com.Aspose.Html.Client {
-    /// <summary>
-    /// API Exception
-    /// </summary>
-    [Obsolete]
-    public class ApiException : Exception {
+namespace Aspose.Html.Cloud.Sdk.Client
+{
+  /// <summary>
+  /// API Exception
+  /// </summary>
+  public class ApiException : Exception {
       /// <summary>
       /// Gets or sets the error code (HTTP status code)
       /// </summary>

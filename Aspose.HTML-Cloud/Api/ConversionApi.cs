@@ -30,17 +30,14 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using Com.Aspose.Html.Client;
-using Com.Aspose.Html.NativeClient;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Client;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
-namespace Com.Aspose.Html.Api
+namespace Aspose.Html.Cloud.Sdk.Api
 {
     /// <summary>
     /// Represents a collection of functions to interact with the HTML conversion API endpoints
     /// </summary>
-    /// 
-    [Obsolete]
     public class ConversionApi : ApiBase, IConversionApi
     {
         private static Dictionary<string, Tuple<string, string>> s_mimeTypes = new Dictionary<string, Tuple<string, string>>();

@@ -31,13 +31,12 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using Com.Aspose.Html.Client;
-using Com.Aspose.Html.NativeClient;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Client;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
-namespace Com.Aspose.Html.Api
+namespace Aspose.Html.Cloud.Sdk.Api
 {
-    [Obsolete]
+
     public class OcrApi : ApiBase, IOcrApi
     {
 

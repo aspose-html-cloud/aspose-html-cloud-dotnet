@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="NativeApiClient.cs">
+// <copyright company="Aspose" file="ApiClient.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -34,12 +34,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Com.Aspose.Html.NativeClient.Authentication;
 
-namespace Com.Aspose.Html.NativeClient
+namespace Aspose.Html.Cloud.Sdk.Client
 {
     /// <summary>
     /// Quick workaround to encapsulate PUT calls - instead of RestSharp.Net2
     /// </summary>
-    [Obsolete]
     public class ApiClient
     {
         public string AppKey { get; protected set; }

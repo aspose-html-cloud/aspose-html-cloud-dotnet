@@ -27,17 +27,15 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using Com.Aspose.Html.Client;
-using Com.Aspose.Html.Api.Interfaces;
-using Com.Aspose.Html.NativeClient;
+using Aspose.Html.Cloud.Sdk.Client;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 
-namespace Com.Aspose.Html.Api
+namespace Aspose.Html.Cloud.Sdk.Api
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    [Obsolete]
     public class DocumentApi : ApiBase, IDocumentApi
     {
         /// <summary>

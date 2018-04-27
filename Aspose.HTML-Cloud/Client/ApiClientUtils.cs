@@ -33,9 +33,8 @@ using System.Web;
 using Com.Aspose.Html.Client;
 
 
-namespace Com.Aspose.Html.NativeClient
+namespace Aspose.Html.Cloud.Sdk.Client
 {
-    [Obsolete]
     public static class ApiClientUtils
     {
         private static Dictionary<string, string> s_mimeTypes = new Dictionary<string, string>();

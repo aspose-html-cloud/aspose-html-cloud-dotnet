@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ITranslationApi.cs">
+// <copyright company="Aspose" file="IDocumentApi.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -22,38 +22,45 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
+
 using System.IO;
 
-namespace Com.Aspose.Html.Api.Interfaces
+namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the HTML document manipulation API endpoints
     /// </summary>
-    /// 
-    [Obsolete]
-    public interface ITranslationApi
+    public interface IDocumentApi
     {
         /// <summary>
-        /// Translate the HTML document specified by the name from default or specified storage. 
+        /// Return the HTML document by the name from default or specified storage. 
         /// </summary>
-        /// <param name="name">Document name.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
+        /// <param name="name">The document name.</param>
+        /// <param name="storage">The document folder</param>
+        /// <param name="folder">The document folder.</param>
+        /// <returns>System.IO.Stream | Stream containing the requested document</returns>
+        Stream GetDocument(string name, string storage, string folder);
+
+        /// <summary>
+        /// Return list of HTML fragments matching the specified XPath query.  
+        /// </summary>
+        /// <param name="name">The document name.</param>
+        /// <param name="xPath">XPath query string.</param>
+        /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>Stream | Stream of resulting document.</returns>
-        Stream GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null);
-        
+        /// <returns>System.IO.Stream | Stream containing the requested fragments</returns>
+        /// 
+        Stream GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder);
+
         /// <summary>
-        /// Translate the HTML document specified by its URL. 
+        /// Return all HTML document images packaged as a ZIP archive. 
         /// </summary>
-        /// <param name="sourceUrl">Source document URL.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
-        /// <returns>Stream | Stream of resulting document.</returns>
-        Stream GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang);
-       
+        /// <param name="name">The document name.</param>
+        /// <param name="storage">The document storage.</param>
+        /// <param name="folder">The document folder.</param>
+        /// <returns>System.IO.Stream | Stream containing the ZIP archive of all images.</returns>
+        Stream GetDocumentImages(string name, string storage, string folder);
     }
 
 }

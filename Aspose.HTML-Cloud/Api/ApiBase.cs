@@ -33,12 +33,11 @@ using System.Web;
 using Com.Aspose.Html.Client;
 using Com.Aspose.Html.NativeClient;
 
-namespace Com.Aspose.Html.Api
+namespace Aspose.Html.Cloud.Sdk.Api
 {
     /// <summary>
     /// Base abstract class for REST API wrapper classes.
     /// </summary>
-    [Obsolete]
     public abstract class ApiBase
     {
         /// <summary>

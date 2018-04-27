@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using Com.Aspose.Html.Api;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
 {

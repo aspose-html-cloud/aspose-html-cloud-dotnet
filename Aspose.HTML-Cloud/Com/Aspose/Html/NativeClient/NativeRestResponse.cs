@@ -1,16 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
 using System.Net;
 
 
 namespace Com.Aspose.Html.NativeClient
 {
- 
+    [Obsolete]
     internal class NativeRestResponse
     {
         public enum RespContentType

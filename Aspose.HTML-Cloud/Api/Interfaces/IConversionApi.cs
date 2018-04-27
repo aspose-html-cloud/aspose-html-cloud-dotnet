@@ -22,16 +22,13 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
 using System.IO;
 
-namespace Com.Aspose.Html.Api.Interfaces
+namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
     /// <summary>
     /// Represents a collection of functions to interact with the HTML conversion API endpoints
     /// </summary>
-    /// 
-    [Obsolete]
     public interface IConversionApi
     {
         /// <summary>

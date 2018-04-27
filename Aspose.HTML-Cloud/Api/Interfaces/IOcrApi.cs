@@ -22,16 +22,14 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
+
 using System.IO;
 
-namespace Com.Aspose.Html.Api.Interfaces
+namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
     /// <summary>
     /// Represents a collection of functions to interact with the OCR to HTML API endpoints
     /// </summary>
-    /// 
-    [Obsolete]
     interface IOcrApi
     {
         /// <summary>

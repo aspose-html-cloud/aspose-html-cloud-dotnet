@@ -22,7 +22,7 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
+using System;
 using System.IO;
 
 namespace Com.Aspose.Html.Api.Interfaces
@@ -30,6 +30,8 @@ namespace Com.Aspose.Html.Api.Interfaces
     /// <summary>
     /// Represents a collection of functions to interact with the HTML document manipulation API endpoints
     /// </summary>
+    /// 
+    [Obsolete]
     public interface IDocumentApi
     {
         /// <summary>
