@@ -55,8 +55,10 @@
     <Compile Include="Api\Interfaces\IConversionApi.cs" />
     <Compile Include="Api\Interfaces\IDocumentApi.cs" />
     <Compile Include="Api\Interfaces\IOcrApi.cs" />
+    <Compile Include="Api\Interfaces\ISummarizationApi.cs" />
     <Compile Include="Api\Interfaces\ITranslationApi.cs" />
     <Compile Include="Api\OcrApi.cs" />
+    <Compile Include="Api\SummarizationApi.cs" />
     <Compile Include="Api\TranslationApi.cs" />
     <Compile Include="Client\ApiClient.cs" />
     <Compile Include="Client\ApiClientUtils.cs" />

@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Com.Aspose.Storage.Model;
+using Aspose.Storage.Cloud.Sdk.Model;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
 {

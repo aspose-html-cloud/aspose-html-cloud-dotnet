@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-using Com.Aspose.Storage.Api;
-using Com.Aspose.Storage.Model;
+using Aspose.Storage.Cloud.Sdk.Api;
+using Aspose.Storage.Cloud.Sdk.Model;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -37,10 +37,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
                 var storagePath = !string.IsNullOrEmpty(folder)
                     ? string.Format("{0}/{1}", folder, name) : name;
 
-                StorageApi storageApi = new StorageApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-                storageApi.PutCreate(storagePath, null, storage, File.ReadAllBytes(srcPath));
-                var response = storageApi.GetIsExist(storagePath, null, storage);
-                if(response.FileExist.IsExist)
+                bool uploaded = SdkBaseRunner.uploadToStorage(storagePath, CommonSettings.DataFolder);
+
+                if(uploaded)
                 {
                     TranslationApi transApi = new TranslationApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
                     Stream stream = transApi.GetTranslateDocument(name, SrcLang, ResLang, folder, storage);

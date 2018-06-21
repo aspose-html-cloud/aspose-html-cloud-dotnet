@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-using Com.Aspose.Storage.Model;
-using Com.Aspose.Storage.Api;
+using Aspose.Storage.Cloud.Sdk.Model;
+using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 

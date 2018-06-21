@@ -2,7 +2,8 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Com.Aspose.Storage.Model;
+using Aspose.Storage.Cloud.Sdk.Model;
+using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
 {
@@ -19,9 +20,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
             string storagePath = $"{folder}/{name}";
 
             string srcPath = Path.Combine(dataFolder, name);
-            StorageApi.PutCreate(storagePath, null, null, File.ReadAllBytes(srcPath));
-            FileExistResponse resp = StorageApi.GetIsExist(storagePath, null, null);
-            Assert.IsTrue(resp.FileExist.IsExist);
+            using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
+            {
+                PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
+                this.StorageApi.PutCreate(reqCr);
+                GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
+                FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
+                Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+            }
 
             Stream stream = TranslationApi.GetTranslateDocument(
                 name, "en", "fr", folder, null);

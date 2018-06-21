@@ -1,18 +1,17 @@
-# TranslationApi
+# SummarizationApi
 
 All URIs are relative to *https://api.aspose.cloud/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetTranslateDocument**](TranslationApi.md#GetTranslateDocument) | **GET** /html/{name}/translate/{srcLang}/{resLang} | Translate the HTML document specified by the name from default or specified storage.
-[**GetTranslateDocumentByUrl**](TranslationApi.md#GetTranslateDocumentByUrl) | **GET** /html/{name}/translate/{srcLang}/{resLang} | Translate the HTML document specified by its URL.
+*SummarizationApi* | [**GetDetectHtmlKeywords**](docs/SummarizationApi.md#GetDetectHtmlKeywords) | **GET** /html/{name}/summ/keywords | Detect keywords of the HTML document specified by the name from default or specified storage.
+*SummarizationApi* | [**GetDetectHtmlKeywordsByUrl**](docs/SummarizationApi.md#GetDetectHtmlKeywordsByUrl) | **GET** /html/summ/keywords | Detect keywords of the HTML document specified by its URL.
 
+<a name="GetDetectHtmlKeywords"></a>
 
-<a name="GetTranslateDocument"></a>
-# **GetTranslateDocument**
-> Stream GetTranslateDocument(name, srcLang, resLang, storage, folder)
+# **GetDetectHtmlKeywords**
+> Stream GetDetectHtmlKeywords(name, storage, folder)
 
-Translate the HTML document specified by the name from default or specified storage.
 
 ### Example
 ```csharp
@@ -28,20 +27,14 @@ public static void Main(string[] args)
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
 	
-	string name = "testpage4_embcss.html";
+	string name = "testpage.html";
 	
 	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(name)}_EnglishToFrench.html.zip");
-	
-	string srcLang = "en";    // String | Source language.
-	string resLang = "fr";    // String | Result language.
-	string folder = null;     // root folder
-	string storage = null;    // default storage
-
+	string outFile = Path.Combine(outPath, $"{name}_keywords.json";
 	try
 	{
-	    ITranslationApi transApi = new TranslationApi(appKey, appSID, BasePath);
-		var response = transApi.GetTranslateDocument(name, srcLang, resLang, storage, folder);
+	    ISummarizationApi summApi = new SummarizationApi(appKey, appSID, BasePath);
+		var response = summApi.GetDetectHtmlKeywords(name, storage, folder);
 			
 		if(response != null && response is FileStream)
 		{
@@ -59,15 +52,14 @@ public static void Main(string[] args)
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}
 }
-```
+
+```csharp
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Document name. |
- **srcLang** | **String**| Source language. |
- **resLang** | **String**| Result language. |
  **storage** | **String**| The document storage. | [optional]
  **folder** | **String**| The document folder. | [optional]
 
@@ -83,12 +75,13 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: multipart/form-data
+ 
+ 
+<a name="GetDetectHtmlKeywordsByUrl"></a>
 
-<a name="translationGetTranslateDocumentByUrl"></a>
-# **GetTranslateDocumentByUrl**
-> Stream GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang)
+# **GetDetectHtmlKeywordsByUrl**
+> Stream GetDetectHtmlKeywordsByUrl(sourceUrl)
 
-Translate the HTML document specified by its URL.
 
 ### Example
 ```csharp
@@ -105,20 +98,14 @@ public static void Main(string[] args)
 	string BasePath = "https://api.aspose.cloud/v1.1";
 	
 	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
+	Uri uri = new Uri(sourceUrl);
+	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_keywords.json");
 	
 	string outPath = @"d:\Out";
-	Uri uri = new Uri(sourceUrl);
-	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_EnglishToFrench.html.zip");
-	
-	string srcLang = "en";    // String | Source language.
-	string resLang = "fr";    // String | Result language.
-	string folder = null;     // root folder
-	string storage = null;    // default storage
-
 	try
 	{
-	    ITranslationApi transApi = new TranslationApi(appKey, appSID, BasePath);
-		var response = docApi.GetTranslateDocument(sourceUrl, srcLang, resLang);
+	    ISummarizationApi summApi = new SummarizationApi(appKey, appSID, BasePath);
+		var response = summApi.GetDetectHtmlKeywordsByUrl(sourceUrl);
 			
 		if(response != null && response is FileStream)
 		{
@@ -136,19 +123,18 @@ public static void Main(string[] args)
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}
 }
-```
+
+```csharp
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sourceUrl** | **String**| Source document URL. |
- **srcLang** | **String**| Source language. |
- **resLang** | **String**| Result language. |
+ **sourceUrl** | **String**| Document URL. |
 
 ### Return type
 
-[**Stream**](Stream.md)
+[**Stream**](FileStream.md)
 
 ### Authorization
 
@@ -158,5 +144,5 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: multipart/form-data
-
-
+ 
+ 

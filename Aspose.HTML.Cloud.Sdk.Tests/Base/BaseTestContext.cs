@@ -26,7 +26,8 @@
 namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 {
     using System.IO;
-    using Com.Aspose.Storage.Api;
+    using Aspose.Storage.Cloud.Sdk.Api;
+    //using Aspose.Storage.Cloud.Sdk;
     using Aspose.Html.Cloud.Sdk.Api;
     using Aspose.Html.Cloud.Sdk.Client;
     using Newtonsoft.Json;
@@ -36,7 +37,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     /// </summary>
     public abstract class BaseTestContext
     {
-        protected const string BaseProductUri = @"http://api-qa.aspose.cloud";
+        protected const string DefBaseProductUri = @"http://aspose-qa.aspose.cloud";
+        //protected const string BaseProductUri = @"http://sikorsky-js3.dynabic.com:9083";
 
         private Keys keys;
 
@@ -54,7 +56,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 throw new FileNotFoundException("servercreds.json doesn't contain AppKey and AppSid");
             }
 
-            var configuration = new Configuration { ApiBaseUrl = BaseProductUri, AppKey = this.keys.AppKey, AppSid = this.keys.AppSid };
+            var configuration = new Configuration { ApiBaseUrl = this.keys.BaseProductUri, AppKey = this.keys.AppKey, AppSid = this.keys.AppSid };
             this.ConversionApi = new ConversionApi(
                 configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
             this.DocumentApi = new DocumentApi(
@@ -63,8 +65,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
             this.OcrApi = new OcrApi(
                 configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
+            this.SummarizationApi = new SummarizationApi(
+                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
 
-            this.StorageApi = new StorageApi(this.keys.AppKey, this.keys.AppSid, BaseProductUri + "/v1.1");
+            Aspose.Storage.Cloud.Sdk.Configuration storageConf = new Storage.Cloud.Sdk.Configuration()
+            {
+                ApiBaseUrl = configuration.ApiBaseUrl, // + "/v1.1",
+                AppKey = configuration.AppKey,
+                AppSid = configuration.AppSid
+            };
+            this.StorageApi = new StorageApi(storageConf);
         }
 
         /// <summary>
@@ -113,6 +123,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         protected DocumentApi DocumentApi { get; set; }
         protected TranslationApi TranslationApi { get; set; }
         protected OcrApi OcrApi { get; set; }
+        protected SummarizationApi SummarizationApi { get; set; }
 
         /// <summary>
         /// AppSid
@@ -148,9 +159,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 
         private class Keys
         {
+            [JsonProperty(PropertyName = "AppSid")]
             public string AppSid { get; set; }
-
+            [JsonProperty(PropertyName = "AppKey")]
             public string AppKey { get; set; }
+            [JsonProperty(PropertyName = "basePath")]
+            public string BaseProductUri { get; set; }
+            //[JsonProperty(PropertyName = "authPath")]
+            //public string AuthServerPath { get; set; }
         }
     }
 }

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.IO;
-using Com.Aspose.Storage.Api;
+using Aspose.Storage.Cloud.Sdk;
+using Aspose.Storage.Cloud.Sdk.Api;
+using Aspose.Storage.Cloud.Sdk.Model;
+using Aspose.Storage.Cloud.Sdk.Model.Requests;
+
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -18,15 +22,14 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
         {
             var name = "testpage3_embcss.html";
             var xPath = "//ol/li";
-            StorageApi storageApi = new StorageApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
             // Upload source file to cloud storage (default is AmazonS3)
             var srcPath = Path.Combine(CommonSettings.DataFolder, name);
             if (File.Exists(srcPath))
-                storageApi.PutCreate(name, null, null, File.ReadAllBytes(srcPath));
+            {
+                SdkBaseRunner.uploadToStorage(name, CommonSettings.DataFolder);
+            }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));
-
-            var response = storageApi.GetIsExist(name, null, null);
 
             IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.

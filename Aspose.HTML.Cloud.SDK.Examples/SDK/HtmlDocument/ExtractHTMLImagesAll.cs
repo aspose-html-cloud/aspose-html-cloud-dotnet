@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Com.Aspose.Storage.Api;
+using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -21,13 +21,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             string folder = "HtmlTemp"; // storage folder name
 
             string filePath = Path.Combine(CommonSettings.DataFolder, name);
-            StorageApi storageApi = new StorageApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-            string storagePath = string.IsNullOrEmpty(folder) ? name : string.Format("{0}/{1}", folder, name);
             if (File.Exists(filePath))
             {
-                // upload source file to the cloud storage (default is AmazonS3)
-                //filePath = string.Format("file:///{0}", filePath.Replace('\\', '/'));
-                storageApi.PutCreate(storagePath, null, null, File.ReadAllBytes(filePath));
+                SdkBaseRunner.uploadToStorage(name, CommonSettings.DataFolder);
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", filePath));

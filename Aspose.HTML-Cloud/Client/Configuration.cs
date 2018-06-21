@@ -42,7 +42,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "18.3.0";
+        public const string Version = "18.5.0";
   
         /// <summary>
         /// Gets or sets the username (HTTP basic authentication).
