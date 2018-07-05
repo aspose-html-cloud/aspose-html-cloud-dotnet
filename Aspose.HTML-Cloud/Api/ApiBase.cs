@@ -30,8 +30,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
-using Com.Aspose.Html.Client;
-using Com.Aspose.Html.NativeClient;
+//using Com.Aspose.Html.Client;
+//using Com.Aspose.Html.NativeClient;
+
+using Aspose.Html.Cloud.Sdk.Client;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api
 {
@@ -112,6 +115,26 @@ namespace Aspose.Html.Cloud.Sdk.Api
             task.Wait();
             return outStream;
         }
+
+        protected AsposeResponse CallPutApi(string path, Dictionary<string, string> queryParams, Stream bodyStream, string methodName = "<unknown>")
+        {
+            HttpResponseMessage resp = ApiClient.CallPut(path, queryParams, bodyStream);
+            if (((int)resp.StatusCode) >= 400)
+                throw new ApiException((int)resp.StatusCode,
+                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
+                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
+            else if (((int)resp.StatusCode) == 0)
+                throw new ApiException((int)resp.StatusCode,
+                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+
+            var response = new AsposeResponse()
+            {
+                Code = (int)resp.StatusCode,
+                Status = resp.StatusCode.ToString()
+            };
+            return response;
+        }
+
 
     }
 }

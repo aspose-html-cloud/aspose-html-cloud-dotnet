@@ -12,7 +12,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
     /// Aspose.HTML Cloud for .NET SDK - examples.
     /// =========================================
     /// Example that demonstrates how to translate the HTML document by its name in the cloud storage
-    /// and to get tte result in the response stream.
+    /// and to get result as the response stream.
     /// </summary>
     public class TranslateHTMLFromStorage : ISdkRunner
     {
@@ -37,7 +37,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
                 var storagePath = !string.IsNullOrEmpty(folder)
                     ? string.Format("{0}/{1}", folder, name) : name;
 
-                bool uploaded = SdkBaseRunner.uploadToStorage(storagePath, CommonSettings.DataFolder);
+                bool uploaded = SdkBaseRunner.UploadToStorage(storagePath, CommonSettings.DataFolder);
 
                 if(uploaded)
                 {

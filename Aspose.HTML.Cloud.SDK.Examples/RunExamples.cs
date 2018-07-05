@@ -23,38 +23,51 @@ namespace Aspose.HTML.Cloud.Examples
 
             // Uncomment the one you want to try out
 
-            // == Example #1 == extract HTML fragments by XPath query
+            // == Example == extract HTML fragments by XPath query
             //runner = new ExtractHtmlFragmentsByXPath();
 
-            // == Example #2 == extract HTML fragments by XPath query
+            // == Example == extract HTML fragments by XPath query
             //runner = new ExtractHtmlFragmentsByXPath();
 
-            // == Example #3 == extract all images from HTML document as an archive
+            // == Example == extract all images from HTML document as an archive
             //runner = new ExtractHTMLImagesAll();
 
-            // == Example #4 == convert HTML document from URL to PDF
+
+            // == Example == convert HTML document from URL to PDF
             //runner = new ConvertHTMLByUrl("pdf");
 
-            // == Example #5 == convert HTML document from URL to XPS
+            // == Example == convert HTML document from URL to XPS
             //runner = new ConvertHTMLByUrl("xps");
 
-            // == Example #6 == convert HTML document from URL to JPEG
+            // == Example == convert HTML document from URL to JPEG
             //runner = new ConvertHTMLByUrl("jpeg");
 
-            // == Example #7 == convert HTML document from local filesystem to PDF
-            //runner = new ConvertHTMLLocal("pdf");
+            // == Example == convert HTML document from storage to PDF
+            //runner = new ConvertHTMLByName("pdf");
 
-            // == Example #8 == translate HTML document from English to French
+            // == Example == convert HTML document from storage to XPS
+            //runner = new ConvertHTMLByName("xps");
+
+            // == Example == convert HTML document from storage to JPEG
+            //runner = new ConvertHTMLByName("jpeg");
+
+            // == Example == convert HTML document from storage to PDF and save result to storage
+            //runner = new ConvertHTMLByNameToStorage("pdf");
+
+            // == Example == convert HTML document from local file system to PDF and save result to storage
+            //runner = new ConvertHTMLLocalToStorage("pdf");
+
+            // == Example == translate HTML document from English to French
             //runner = new TranslateHTMLFromStorage("en", "fr");
 
-            // == Example #10 == translate HTML document from English to French
+            // == Example == translate HTML document from English to French
             //runner = new TranslateHTMLByUrl("en", "fr");
 
-         
-            // == Example #12 == Recognize text content from image and create HTML document with it
+
+            // == Example == Recognize text content from image and create HTML document with it
             //runner = new RecognizeAndImportToHTML();
 
-            // == Example #13 == Recognize text content from image, create HTML and translate the text content
+            // == Example == Recognize text content from image, create HTML and translate the text content
             runner = new RecognizeAndTranslateToHTML("en", "fr");
 
             //Console.WriteLine("\nPress any key to continue....");

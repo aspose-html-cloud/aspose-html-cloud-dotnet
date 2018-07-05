@@ -31,6 +31,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using Aspose.Html.Cloud.Sdk.Client;
+using Aspose.Html.Cloud.Sdk.Api.Model;
+using Aspose.Html.Cloud.Sdk.Api.Model.Requests;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 namespace Aspose.Html.Cloud.Sdk.Api
@@ -416,21 +418,20 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="rightMargin">Right image margin.</param>
         /// <param name="topMargin">Top image margin.</param>
         /// <param name="bottomMargin">Bottom image margin.</param>
-        /// <param name="xResolution">Horizontal image resolution; 96 ppi by default.</param>
-        /// <param name="yResolution">Vertical image resolution; 96 ppi by default.</param>
+        /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
         public Stream GetConvertDocumentToImage(string name, string outFormat, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
-            int? topMargin = default(int?), int? bottomMargin = default(int?), int? xResolution = default(int?), int? yResolution = default(int?), 
+            int? topMargin = default(int?), int? bottomMargin = default(int?), int? resolution = default(int?), 
             string folder = null, string storage = null)
         {
             var methodName = "GetConvertDocumentToImage";
             // verify the required parameter 'name' is set
-            if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetConvertDocumentToImage");
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
             // verify the required parameter 'outFormat' is set
-            if (outFormat == null) throw new ApiException(400, "Missing required parameter 'outFormat' when calling GetConvertDocumentToImage");
+            if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
 
             var path = "/html/{name}/convert/image/{outFormat}";
             //path = path.Replace("{format}", "json");
@@ -446,8 +447,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
             if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
             if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
-            if (xResolution != null) queryParams.Add("xResolution", ApiClientUtils.ParameterToString(xResolution)); // query parameter
-            if (yResolution != null) queryParams.Add("yResolution", ApiClientUtils.ParameterToString(yResolution)); // query parameter
+            if (resolution != null) queryParams.Add("resolution", ApiClientUtils.ParameterToString(resolution)); // query parameter
             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
@@ -468,14 +468,11 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="rightMargin">Right image margin.</param>
         /// <param name="topMargin">Top image margin.</param>
         /// <param name="bottomMargin">Bottom image margin.</param>
-        /// <param name="xResolution">Horizontal image resolution; 96 ppi by default.</param>
-        /// <param name="yResolution">Vertical image resolution; 96 ppi by default.</param>
-        /// <param name="storage">The document storage.</param>
+        /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
         public Stream GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
-            int? topMargin = default(int?), int? bottomMargin = default(int?), int? xResolution = default(int?), int? yResolution = default(int?), 
-            string storage = null)
+            int? topMargin = default(int?), int? bottomMargin = default(int?), int? resolution = default(int?))
         {
             var methodName = "GetConvertDocumentToImageByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -498,9 +495,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
             if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
             if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
-            if (xResolution != null) queryParams.Add("xResolution", ApiClientUtils.ParameterToString(xResolution)); // query parameter
-            if (yResolution != null) queryParams.Add("yResolution", ApiClientUtils.ParameterToString(yResolution)); // query parameter
-            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            if (resolution != null) queryParams.Add("resolution", ApiClientUtils.ParameterToString(resolution)); // query parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -563,11 +558,10 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="rightMargin">Right document page margin.</param>
         /// <param name="topMargin">Top image document page.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
-        /// <param name="storage">The document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
         public Stream GetConvertDocumentToPdfByUrl(string sourceUrl, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
-            int? topMargin = default(int?), int? bottomMargin = default(int?), string storage = null)
+            int? topMargin = default(int?), int? bottomMargin = default(int?))
         {
             var methodName = "GetConvertDocumentToPdfByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -586,8 +580,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
             if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
             if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
-            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
-
+       
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
@@ -648,11 +641,10 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="rightMargin">Right document page margin.</param>
         /// <param name="topMargin">Top document page margin.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
-        /// <param name="storage">The document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
         public Stream GetConvertDocumentToXpsByUrl(string sourceUrl, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
-            int? topMargin = default(int?), int? bottomMargin = default(int?), string storage = null)
+            int? topMargin = default(int?), int? bottomMargin = default(int?))
         {
             var methodName = "GetConvertDocumentToXpsByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -671,12 +663,206 @@ namespace Aspose.Html.Cloud.Sdk.Api
             if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
             if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
+ 
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToImage(string name, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string folder = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToImage";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+            // verify the required parameter 'outFormat' is set
+            if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
+            // verify the required parameter 'outFormat' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/{name}/convert/image/{outFormat}";
+            //path = path.Replace("{format}", "json");
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+            path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("outPath", ApiClientUtils.ParameterToString(outPath)); // required query parameter
+
+            if (width != null) queryParams.Add("width", ApiClientUtils.ParameterToString(width)); // query parameter
+            if (height != null) queryParams.Add("height", ApiClientUtils.ParameterToString(height)); // query parameter
+            if (leftMargin != null) queryParams.Add("leftMargin", ApiClientUtils.ParameterToString(leftMargin)); // query parameter
+            if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
+            if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
+            if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
+            if (resolution != null) queryParams.Add("resolution", ApiClientUtils.ParameterToString(resolution)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
-            var response = CallGetApi(path, queryParams, methodName);
+            var response = CallPutApi(path, queryParams, null, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToImage(Stream inStream, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToImage";
+
+            if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
+            // verify the required parameter 'outFormat' is set
+            if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
+            // verify the required parameter 'outPath' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/convert/image/{outFormat}";
+            //path = path.Replace("{format}", "json");
+            path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("outPath", ApiClientUtils.ParameterToString(outPath)); // required query parameter
+
+            if (width != null) queryParams.Add("width", ApiClientUtils.ParameterToString(width)); // query parameter
+            if (height != null) queryParams.Add("height", ApiClientUtils.ParameterToString(height)); // query parameter
+            if (leftMargin != null) queryParams.Add("leftMargin", ApiClientUtils.ParameterToString(leftMargin)); // query parameter
+            if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
+            if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
+            if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
+            if (resolution != null) queryParams.Add("resolution", ApiClientUtils.ParameterToString(resolution)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+            var response = CallPutApi(path, queryParams, inStream, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToPdf(string name, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToPdf";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+            // verify the required parameter 'outPath' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/{name}/convert/pdf";
+            //path = path.Replace("{format}", "json");
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("outPath", ApiClientUtils.ParameterToString(outPath)); // required query parameter
+
+            if (width != null) queryParams.Add("width", ApiClientUtils.ParameterToString(width)); // query parameter
+            if (height != null) queryParams.Add("height", ApiClientUtils.ParameterToString(height)); // query parameter
+            if (leftMargin != null) queryParams.Add("leftMargin", ApiClientUtils.ParameterToString(leftMargin)); // query parameter
+            if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
+            if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
+            if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallPutApi(path, queryParams, null, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToPdf(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToPdf";
+            if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
+            // verify the required parameter 'outPath' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/convert/pdf";
+            //path = path.Replace("{format}", "json");
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("outPath", ApiClientUtils.ParameterToString(outPath)); // required query parameter
+
+            if (width != null) queryParams.Add("width", ApiClientUtils.ParameterToString(width)); // query parameter
+            if (height != null) queryParams.Add("height", ApiClientUtils.ParameterToString(height)); // query parameter
+            if (leftMargin != null) queryParams.Add("leftMargin", ApiClientUtils.ParameterToString(leftMargin)); // query parameter
+            if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
+            if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
+            if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+            var response = CallPutApi(path, queryParams, inStream, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToXps(string name, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToXps";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+            // verify the required parameter 'outPath' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/{name}/convert/xps";
+            //path = path.Replace("{format}", "json");
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("outPath", ApiClientUtils.ParameterToString(outPath)); // required query parameter
+
+            if (width != null) queryParams.Add("width", ApiClientUtils.ParameterToString(width)); // query parameter
+            if (height != null) queryParams.Add("height", ApiClientUtils.ParameterToString(height)); // query parameter
+            if (leftMargin != null) queryParams.Add("leftMargin", ApiClientUtils.ParameterToString(leftMargin)); // query parameter
+            if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
+            if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
+            if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallPutApi(path, queryParams, null, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToXps(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToXps";
+            if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
+            // verify the required parameter 'outPath' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/convert/xps";
+            //path = path.Replace("{format}", "json");
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("outPath", ApiClientUtils.ParameterToString(outPath)); // required query parameter
+
+            if (width != null) queryParams.Add("width", ApiClientUtils.ParameterToString(width)); // query parameter
+            if (height != null) queryParams.Add("height", ApiClientUtils.ParameterToString(height)); // query parameter
+            if (leftMargin != null) queryParams.Add("leftMargin", ApiClientUtils.ParameterToString(leftMargin)); // query parameter
+            if (rightMargin != null) queryParams.Add("rightMargin", ApiClientUtils.ParameterToString(rightMargin)); // query parameter
+            if (topMargin != null) queryParams.Add("topMargin", ApiClientUtils.ParameterToString(topMargin)); // query parameter
+            if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+            var response = CallPutApi(path, queryParams, inStream, methodName);
             return response;
         }
     }

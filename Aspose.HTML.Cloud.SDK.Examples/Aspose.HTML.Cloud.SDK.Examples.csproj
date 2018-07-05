@@ -7,7 +7,7 @@
     <ProjectGuid>{BE6A8026-BF88-47E2-BC76-BCC4A62DDD86}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aspose.HTML.Cloud.SDK.Examples</RootNamespace>
+    <RootNamespace>Aspose.HTML.Cloud.Examples</RootNamespace>
     <AssemblyName>Aspose.HTML.Cloud.SDK.Examples</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -53,8 +53,10 @@
     <Compile Include="RunExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SDK\CommonSettings.cs" />
+    <Compile Include="SDK\HtmlConvert\ConvertHTMLByName.cs" />
     <Compile Include="SDK\HtmlConvert\ConvertHTMLByUrl.cs" />
-    <Compile Include="SDK\HtmlConvert\ConvertHTMLLocal.cs" />
+    <Compile Include="SDK\HtmlConvert\ConvertHTMLByNameToStorage.cs" />
+    <Compile Include="SDK\HtmlConvert\ConvertHTMLLocalToStorage.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByXPath.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAll.cs" />
     <Compile Include="SDK\HtmlDocument\GetDocument.cs" />

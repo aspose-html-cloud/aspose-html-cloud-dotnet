@@ -80,7 +80,7 @@
     <Compile Include="Base\DirectoryHelper.cs" />
     <Compile Include="Conversion\ConversionByUrlTest.cs" />
     <Compile Include="Conversion\ConversionStorageFileTest.cs" />
-    <Compile Include="Conversion\ConversionStreamToStorageTest.cs" />
+    <Compile Include="Conversion\ConversionSaveToStorageTest.cs" />
     <Compile Include="Document\DocumentFragmentsTest.cs" />
     <Compile Include="OCR\OcrRecognizeTest.cs" />
     <Compile Include="Summarization\DetectKeywordsByUrlTest.cs" />

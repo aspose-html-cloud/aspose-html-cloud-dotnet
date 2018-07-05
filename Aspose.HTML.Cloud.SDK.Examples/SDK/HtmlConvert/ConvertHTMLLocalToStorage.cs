@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Model;
+//using Aspose.Storage.Cloud.Sdk.Model;
 using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+
 
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 {
@@ -13,11 +15,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
     /// Example that demonstrates how to convert HTML page in the local filesystem passing it to the request stream,
     /// convert it to one of the supported by Aspose.HTML for Cloud and save it to the cloud storage.
     /// </summary>
-    public class ConvertHTMLLocal : ISdkRunner
+    public class ConvertHTMLLocalToStorage : ISdkRunner
     {
         private string Format { get; set; }
 
-        public ConvertHTMLLocal(string format)
+        public ConvertHTMLLocalToStorage(string format)
         {
             Format = format;
         }
@@ -29,7 +31,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             if (!File.Exists(path))
                 throw new FileNotFoundException("File not found in the Data folder", name);
 
-            string folder = null;
+            string folder = "/Testout/Conversion";
             string storage = null;
 
             int width = 800;
@@ -38,51 +40,44 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             int rightMargin = 15;
             int topMargin = 15;
             int bottomMargin = 15;
-            int xResolution = 96;
-            int yResolution = 96;
+            int resolution = 96;
 
             string ext = (Format == "tiff") ? "tif" : ((Format == "jpeg") ? "jpg" : Format);
-            string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted.{ext}";
+            string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}.{ext}";
+            string outPath = Path.Combine(folder, outFile).Replace('\\', '/');
 
             using (Stream srcStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 IConversionApi convApi = new ConversionApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-                Stream response = null;
+                AsposeResponse response = null;
                 // call SDK methods that convert HTML document to supported out format
                 switch (Format)
                 {
                     case "pdf":
                         outFile += ".pdf";
-                        response = convApi.GetConvertDocumentToPdf(
-                            name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
+                        response = convApi.PutConvertDocumentToPdf(
+                            srcStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "xps":
-                        response = convApi.GetConvertDocumentToXps(
-                            name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
+                        response = convApi.PutConvertDocumentToXps(
+                            srcStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "jpeg":
                     case "bmp":
                     case "png":
                     case "tiff":
-                        response = convApi.GetConvertDocumentToImage(
-                            name, Format, width, height,
+                        response = convApi.PutConvertDocumentToImage(
+                            srcStream, Format, outPath, width, height,
                             leftMargin, rightMargin, topMargin, bottomMargin,
-                            xResolution, yResolution, folder, storage);
+                            resolution, storage);
                         break;
                     default:
                         throw new ArgumentException($"Unsupported output format: {Format}");
                 }
 
-                if (response != null && response is FileStream)
+                if (response != null)
                 {
-                    string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
-                    using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
-                    {
-                        response.Position = 0;
-                        response.CopyTo(fstr);
-                        fstr.Flush();
-                        Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
-                    }
+                    Console.WriteLine(string.Format("\nResult file uploaded to: {0}", outPath));
                 }
             }
         }

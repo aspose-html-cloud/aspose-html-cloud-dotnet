@@ -98,7 +98,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="sourceUrl">Source document URL.</param>
         /// <param name="srcLang">Source language.</param>
         /// <param name="resLang">Result language.</param>
-        /// <returns>Stream | Stream of resulting document.</returns>   
+        /// <returns>Stream | Stream of resulting document.</returns> 
+        //[Obsolete]
         public Stream GetTranslateDocumentByUrl (string sourceUrl, string srcLang, string resLang)
         {
             var methodName = "GetTranslateDocumentByUrl";

@@ -121,7 +121,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                     Method = HttpMethod.Post
                 };
                 authReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                authReq.Headers.Add("ContentType", "application/x-www-form-urlencoded");
+                authReq.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                 List<KeyValuePair<string, string>> authReqContent;
                 switch (m_authFlow)
                 {

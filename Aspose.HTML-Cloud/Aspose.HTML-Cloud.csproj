@@ -57,6 +57,9 @@
     <Compile Include="Api\Interfaces\IOcrApi.cs" />
     <Compile Include="Api\Interfaces\ISummarizationApi.cs" />
     <Compile Include="Api\Interfaces\ITranslationApi.cs" />
+    <Compile Include="Api\Model\AsposeResponse.cs" />
+    <Compile Include="Api\Model\Requests\ConversionRequest.cs" />
+    <Compile Include="Api\Model\Requests\TranslationRequest.cs" />
     <Compile Include="Api\OcrApi.cs" />
     <Compile Include="Api\SummarizationApi.cs" />
     <Compile Include="Api\TranslationApi.cs" />

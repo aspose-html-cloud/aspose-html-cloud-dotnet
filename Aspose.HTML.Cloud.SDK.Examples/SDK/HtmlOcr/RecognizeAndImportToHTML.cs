@@ -13,6 +13,12 @@ using Aspose.HTML.Cloud.Examples.SDK;
 
 namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr
 {
+    /// <summary>
+    /// Aspose.HTML Cloud for .NET SDK - examples.
+    /// =========================================
+    /// Example that demonstrates how to recognize the image text content and create HTML document of it;
+    /// source image is in the storage, and the resulting document is returned in the response stream.
+    /// </summary>
     public class RecognizeAndImportToHTML : ISdkRunner
     {
         public void Run()

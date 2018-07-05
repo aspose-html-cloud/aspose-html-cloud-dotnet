@@ -26,7 +26,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             var srcPath = Path.Combine(CommonSettings.DataFolder, name);
             if (File.Exists(srcPath))
             {
-                SdkBaseRunner.uploadToStorage(name, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(name, CommonSettings.DataFolder);
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));

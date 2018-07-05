@@ -15,7 +15,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK
     public abstract class SdkBaseRunner
     {
  
-        public static bool uploadToStorage(string storagePath, string srcDir = null)
+        public static bool UploadToStorage(string storagePath, string srcDir = null)
         {
             var name = Path.GetFileName(storagePath);
             Configuration storageConf = new Storage.Cloud.Sdk.Configuration()

@@ -1,19 +1,17 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-using Aspose.Storage.Cloud.Sdk;
-using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
-using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.HTML.Cloud.Examples.SDK;
 
 namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr
 {
+    /// <summary>
+    /// Aspose.HTML Cloud for .NET SDK - examples.
+    /// =========================================
+    /// Example that demonstrates how to recognize the image text content, create an HTML document of it and translate it to specified language;
+    /// (currently only English is supported as OCR engine language);
+    /// source image is in the storage, and the resulting document is returned in the response stream.
+    /// </summary>
     public class RecognizeAndTranslateToHTML : ISdkRunner
     {
         string SrcLang { get; set; }

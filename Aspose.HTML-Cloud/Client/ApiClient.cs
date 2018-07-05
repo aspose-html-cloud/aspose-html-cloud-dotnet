@@ -74,33 +74,58 @@ namespace Aspose.Html.Cloud.Sdk.Client
         public HttpResponseMessage CallGet(string methodPath, IDictionary<string, string> parameters)
         {
             string requestUrl = formatQuery(methodPath, parameters);
-            HttpClient client = new HttpClient() { Timeout = this.Timeout };
             HttpRequestMessage request = new HttpRequestMessage()
             {
                 RequestUri = new Uri(requestUrl),
                 Method = HttpMethod.Get
             };
 
-            HttpResponseMessage response = null;
-            int retries = 2;
-            while (retries-- > 0)
+            return authorizeAndCallRequest(request);
+        }
+
+        public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters, string body = null)
+        {
+            string requestUrl = formatQuery(methodPath, parameters);
+            HttpRequestMessage request = new HttpRequestMessage()
             {
-                if (Authenticator.Authenticate(request))
-                {
-                    Task task = client.SendAsync(request)
-                        .ContinueWith((tsk) => { response = tsk.Result; }
-                    );
-                    task.Wait();
-                    
-                    if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized
-                        || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    {
-                        Authenticator.RetryAuthentication();
-                    }
-                    break;
-                }
+                RequestUri = new Uri(requestUrl),
+                Method = HttpMethod.Put
+            };
+            if(body != null)
+            {
+                request.Content = new StringContent(body);
             }
-            return response;
+            return authorizeAndCallRequest(request);
+        }
+
+        public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters, Stream bodyStream)
+        {
+            string requestUrl = formatQuery(methodPath, parameters);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(requestUrl),
+                Method = HttpMethod.Put
+            };
+            if(bodyStream != null)
+            {
+                request.Content = new StreamContent(bodyStream);
+            }
+            return authorizeAndCallRequest(request);
+        }
+
+        public HttpResponseMessage CallPost(string methodPath, IDictionary<string, string> parameters, string body = null)
+        {
+            string requestUrl = formatQuery(methodPath, parameters);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(requestUrl),
+                Method = HttpMethod.Post
+            };
+            if (body != null)
+            {
+                request.Content = new StringContent(body);
+            }
+            return authorizeAndCallRequest(request);
         }
 
         //public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters)
@@ -145,6 +170,33 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 throw new ArgumentException("Malformed BasePath has been specified");
 
             return sb.ToString();
+        }
+
+        private HttpResponseMessage authorizeAndCallRequest(HttpRequestMessage request)
+        {
+            HttpResponseMessage response = null;
+            using (HttpClient client = new HttpClient() { Timeout = this.Timeout })
+            {
+                int retries = 2;
+                while (retries-- > 0)
+                {
+                    if (Authenticator.Authenticate(request))
+                    {
+                        Task task = client.SendAsync(request)
+                            .ContinueWith((tsk) => { response = tsk.Result; }
+                        );
+                        task.Wait();
+
+                        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized
+                            || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                        {
+                            Authenticator.RetryAuthentication();
+                        }
+                        break;
+                    }
+                }
+            }
+            return response;
         }
 
         #region REM - obsolete authentication method
