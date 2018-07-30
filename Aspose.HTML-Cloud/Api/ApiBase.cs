@@ -102,8 +102,9 @@ namespace Aspose.Html.Cloud.Sdk.Api
             string outDir = String.IsNullOrEmpty(Configuration.TempFolderPath)
                      ? Path.GetTempPath()
                      : Configuration.TempFolderPath;
-
-            string outPath = Path.Combine(outDir, resp.Content.Headers.ContentDisposition.FileName);
+            var fileName = (resp.Content.Headers.ContentDisposition != null)
+                ? resp.Content.Headers.ContentDisposition.FileName : "result.txt";
+            string outPath = Path.Combine(outDir, fileName);
             Stream outStream = File.OpenWrite(outPath);
 
             Task task = resp.Content.ReadAsStreamAsync()

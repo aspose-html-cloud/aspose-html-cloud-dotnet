@@ -122,6 +122,34 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
+        public Stream GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
+        {
+            var methodName = "GetDocumentFragmentByXPathByUrl";
+            // verify the required parameter 'sourceUrl' is set
+            if (sourceUrl == null) throw new ApiException(400, $"Missing required parameter 'sourceUrl' when calling {methodName}");
+            // verify the required parameter 'xPath' is set
+            if (xPath == null) throw new ApiException(400, $"Missing required parameter 'xPath' when calling {methodName}");
+            // verify the required parameter 'outFormat' is set
+            if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
+
+
+            var path = "/html/fragments/{outFormat}";
+            path = path.Replace("{format}", "json");
+            path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("sourceUrl", ApiClientUtils.ParameterToString(sourceUrl)); // query parameter
+            queryParams.Add("xPath", ApiClientUtils.ParameterToString(xPath));         // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
+
         /// <summary>
         /// Return all HTML document images packaged as a ZIP archive. 
         /// </summary>
@@ -151,6 +179,24 @@ namespace Aspose.Html.Cloud.Sdk.Api
             var response = CallGetApi(path, queryParams, methodName);
             return response;
         }
-    
+
+        public Stream GetDocumentImagesByUrl(string sourceUrl)
+        {
+            var methodName = "GetDocumentImagesByUrl";
+            // verify the required parameter 'name' is set
+            if (sourceUrl == null) throw new ApiException(400, $"Missing required parameter 'sourceUrl' when calling {methodName}");
+
+            var path = "/html/images/all";
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("sourceUrl", ApiClientUtils.ParameterToString(sourceUrl)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
     }
 }

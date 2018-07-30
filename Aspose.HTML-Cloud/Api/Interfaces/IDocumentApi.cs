@@ -61,6 +61,22 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The document folder.</param>
         /// <returns>System.IO.Stream | Stream containing the ZIP archive of all images.</returns>
         Stream GetDocumentImages(string name, string storage, string folder);
+
+        /// <summary>
+        /// Return list of HTML fragments matching the specified XPath query by Web page URL.
+        /// </summary>
+        /// <param name="sourceUrl">Source page URL</param>
+        /// <param name="xPath">XPath query string.</param>
+        /// <returns></returns>
+        Stream GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat);
+
+        /// <summary>
+        /// Return all HTML document images packaged as a ZIP archive by Web page URL.
+        /// </summary>
+        /// <param name="sourceUrl">Source page URL</param>
+        /// <returns></returns>
+        Stream GetDocumentImagesByUrl(string sourceUrl);
+
     }
 
 }
