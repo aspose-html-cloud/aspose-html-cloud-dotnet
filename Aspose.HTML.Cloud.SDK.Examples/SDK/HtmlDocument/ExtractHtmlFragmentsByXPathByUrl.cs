@@ -20,7 +20,25 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
     {
         public void Run()
         {
-            throw new NotImplementedException();
+            var url = "http://www.sukidog.com/jpierre/strings/basics.htm";
+            var name = "basics.htm";
+            var xpath = ".//p";
+
+            IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            // call the SDK method that returns a query result in the response stream.
+            Stream stream = docApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
+            if (stream != null && typeof(FileStream) == stream.GetType())
+            {
+                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_images.zip";
+                string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
+                using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+                {
+                    stream.Position = 0;
+                    stream.CopyTo(fstr);
+                    fstr.Flush();
+                    Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
+                }
+            }
         }
     }
 }
