@@ -162,7 +162,7 @@ No authorization required
  - **Accept**: multipart/form-data
  
 <a name="GetDocumentFragmentByXPathByUrl"></a>
-# **GetDocumentFragmentByXPath**
+# **GetDocumentFragmentByXPathByUrl**
 > Stream GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat)
 
 Return list of HTML fragments matching the specified XPath query - from a Web page by its URL. 
