@@ -18,8 +18,8 @@ Recognize text content from the source image file by its name from default or sp
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -92,8 +92,8 @@ Recognize text content from the source image file by its name from default or sp
 ```csharp
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {

@@ -19,8 +19,8 @@ Translate the HTML document specified by the name from default or specified stor
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -95,8 +95,8 @@ Translate the HTML document specified by its URL.
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {

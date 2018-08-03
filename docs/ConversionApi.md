@@ -29,8 +29,8 @@ Convert the HTML document from the storage by its name to the specified image fo
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -123,8 +123,8 @@ Convert the HTML page from the web by its URL to the specified image format.
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -211,8 +211,8 @@ Convert the HTML document from the storage by its name to PDF.
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -300,8 +300,8 @@ Convert the HTML page from the web by its URL to PDF.
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -385,8 +385,8 @@ Convert the HTML document from the storage by its name to XPS.
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -473,8 +473,8 @@ Convert the HTML page from the web by its URL to XPS.
 
 using System;
 using System.IO;
-using Com.Aspose.Html.Api;
-using Com.Aspose.Html.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
@@ -557,7 +557,13 @@ Convert the HTML document from the storage by its name to the specified image fo
 ### Example
 
 ```csharp
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
+public static void Main(string[] args)
+{
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
@@ -591,6 +597,7 @@ Convert the HTML document from the storage by its name to the specified image fo
 	{
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}	
+}
 ```
 
 ### Parameters
@@ -634,6 +641,13 @@ Convert the HTML document from the request stream to the specified image format 
 
 ```csharp
 
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+
+public static void Main(string[] args)
+{
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
@@ -672,6 +686,7 @@ Convert the HTML document from the request stream to the specified image format 
 	{
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}	
+}
 ```
 
 ### Parameters
@@ -713,7 +728,13 @@ Convert the HTML document from the storage by its name to PDF and save to the st
 ### Example
 
 ```csharp
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
+public static void Main(string[] args)
+{
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
@@ -745,6 +766,8 @@ Convert the HTML document from the storage by its name to PDF and save to the st
 	{
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}	
+}
+
 ```
 
 ### Parameters
@@ -784,7 +807,13 @@ Convert the HTML document from the request stream to PDF and save to the storage
 ### Example
 
 ```csharp
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
+public static void Main(string[] args)
+{
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
@@ -822,6 +851,8 @@ Convert the HTML document from the request stream to PDF and save to the storage
 	{
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}	
+}
+
 ```
 
 ### Parameters
@@ -861,6 +892,13 @@ Convert the HTML document from the storage by its name to XPS and save to the st
 
 ```csharp
 
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+
+public static void Main(string[] args)
+{
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
@@ -892,6 +930,8 @@ Convert the HTML document from the storage by its name to XPS and save to the st
 	{
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}	
+}
+
 ```
 
 ### Parameters
@@ -931,7 +971,13 @@ Convert the HTML document from the request stream to PDF and save to the storage
 ### Example
 
 ```csharp
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
+public static void Main(string[] args)
+{
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
@@ -968,6 +1014,7 @@ Convert the HTML document from the request stream to PDF and save to the storage
 	{
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}	
+}
 ```
 
 ### Parameters
