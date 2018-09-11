@@ -78,6 +78,54 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         }
 
         [TestMethod]
+        public void Test_GetDocumentFragmentByCSS_1()
+        {
+            string name = "testpage5.html.zip";
+            string csssel = "p";
+            string folder = "HtmlTestDoc";
+            string storagePath = $"{folder}/{name}";
+
+            string srcPath = Path.Combine(dataFolder, name);
+            using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
+            {
+                PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
+                this.StorageApi.PutCreate(reqCr);
+                GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
+                FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
+                Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+            }
+
+            Stream stream = DocumentApi.GetDocumentFragmentByXPath(name, csssel, "plain", null, folder);
+            Assert.IsNotNull(stream);
+            Assert.IsTrue(stream is FileStream);
+            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+        }
+
+        [TestMethod]
+        public void Test_GetDocumentFragmentByCSS_2()
+        {
+            string name = "testpage1.html";
+            string csssel = "ol>li";
+            string folder = "HtmlTestDoc";
+            string storagePath = $"{folder}/{name}";
+
+            string srcPath = Path.Combine(dataFolder, name);
+            using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
+            {
+                PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
+                this.StorageApi.PutCreate(reqCr);
+                GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
+                FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
+                Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+            }
+
+            Stream stream = DocumentApi.GetDocumentFragmentByXPath(name, csssel, "plain", null, folder);
+            Assert.IsNotNull(stream);
+            Assert.IsTrue(stream is FileStream);
+            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+        }
+
+        [TestMethod]
         public void Test_GetDocumentFragmentByXPathByUrl_1()
         {
             var url = testUrls[0];
@@ -96,6 +144,30 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var xpath = ".//p";
 
             Stream stream = DocumentApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
+            Assert.IsNotNull(stream);
+            Assert.IsTrue(stream.GetType() == typeof(FileStream));
+            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+        }
+
+        [TestMethod]
+        public void Test_GetDocumentFragmentByCSSByUrl_1()
+        {
+            var url = testUrls[0];
+            var csssel = "div.container";
+
+            Stream stream = DocumentApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
+            Assert.IsNotNull(stream);
+            Assert.IsTrue(stream.GetType() == typeof(FileStream));
+            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+        }
+
+        [TestMethod]
+        public void Test_GetDocumentFragmentByCSSByUrl_2()
+        {
+            var url = testUrls[3];
+            var csssel = "p";
+
+            Stream stream = DocumentApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
             Assert.IsNotNull(stream);
             Assert.IsTrue(stream.GetType() == typeof(FileStream));
             Assert.IsTrue(File.Exists(((FileStream)stream).Name));

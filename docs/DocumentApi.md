@@ -2,6 +2,7 @@
 
 All URIs are relative to *https://api.aspose.cloud/v1.1*
 
+
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetDocument**](DocumentApi.md#GetDocument) | **GET** /html/{name} | Return the HTML document by the name from default or specified storage.
@@ -31,13 +32,15 @@ public static void Main(string[] args)
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
 	
-	string name = "testpage4_embcss.html";
+	string name = "testpage4_embcss.html"; 
+			// source image name; put here your file name
+	        // source file should be uploaded first to the storage by {folder}/{filename} path using Aspose.Storage Cloud API
 	
 	string outPath = @"d:\Out";
 	string outFile = Path.Combine(outPath, name);
 	
-	string folder = null;     // root folder
-	string storage = null;    // default storage
+	string folder = null;     // root folder by default;  put folder path here
+	string storage = null;    // default storage; put storage name here
 
 	try
 	{
@@ -106,13 +109,13 @@ public static void Main(string[] args)
 	
 	string name = "testpage4_embcss.html";
 	String xPath = ".//p/@class";              // String | XPath query string.
-	string outFormat = "plain";             // String | Output format. Possible values: 'plain' and 'json'.
+	string outFormat = "plain";                // String | Output format. Possible values: 'plain' and 'json'.
 	
 	string outPath = @"d:\Out";
 	string outFile = Path.Combine(outPath, $"{name}_fragments.txt");
 	
-	string folder = null;     // root folder
-	string storage = null;    // default storage
+	string folder = null;     // root folder by default;  put folder path here
+	string storage = null;    // default storage; put storage name here
 
 	try
 	{
@@ -188,8 +191,8 @@ public static void Main(string[] args)
 	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_fragments.txt");
 	
 	string xPath = ".//p/@class";              // String | XPath query string.
-	string outFormat = "plain";             // String | Output format. Possible values: 'plain' and 'json'.
-	
+	string outFormat = "plain";                // String | Output format. Possible values: 'plain' and 'json'.
+	 
 	try
 	{
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);

@@ -81,6 +81,80 @@ namespace Aspose.Html.Cloud.Sdk.Api
         }
 
         /// <summary>
+        /// Return list of HTML fragments matching the specified CSS selector.  
+        /// </summary>
+        /// <param name="name">The document name.</param>
+        /// <param name="selector">CSS selector string.</param>
+        /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
+        /// <param name="storage">The document storage.</param>
+        /// <param name="folder">The document folder.</param>
+        /// <returns>System.IO.Stream | Stream containing the requested fragments</returns>
+        public Stream GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder)
+        {
+            var methodName = "GetDocumentFragmentByCSSSelector";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+
+            // verify the required parameter 'xPath' is set
+            if (selector == null) throw new ApiException(400, $"Missing required parameter 'selector' when calling {methodName}");
+
+            // verify the required parameter 'outFormat' is set
+            if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
+
+            var path = "/html/{name}/fragments/css/{outFormat}";
+            path = path.Replace("{format}", "json");
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+            path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            if (selector != null) queryParams.Add("selector", ApiClientUtils.ParameterToString(selector)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
+
+
+        /// <summary>
+        /// Return list of HTML fragments matching the specified CSS selector by Web page URL.
+        /// </summary>
+        /// <param name="sourceUrl">Source page URL</param>
+        /// <param name="selector">CSS selector string.</param>
+        /// <returns></returns>
+        public Stream GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat)
+        {
+            var methodName = "GetDocumentFragmentByXPathByUrl";
+            // verify the required parameter 'sourceUrl' is set
+            if (sourceUrl == null) throw new ApiException(400, $"Missing required parameter 'sourceUrl' when calling {methodName}");
+            // verify the required parameter 'xPath' is set
+            if (selector == null) throw new ApiException(400, $"Missing required parameter 'selector' when calling {methodName}");
+            // verify the required parameter 'outFormat' is set
+            if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
+
+            var path = "/html/fragments/css/{outFormat}";
+            path = path.Replace("{format}", "json");
+            path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("sourceUrl", ApiClientUtils.ParameterToString(sourceUrl)); // query parameter
+            queryParams.Add("selector", ApiClientUtils.ParameterToString(selector));   // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
+
+        /// <summary>
         /// Return list of HTML fragments matching the specified XPath query.  
         /// </summary>
         /// <param name="name">The document name.</param>
@@ -122,6 +196,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
+        /// <summary>
+        /// Return list of HTML fragments matching the specified XPath query by Web page URL.
+        /// </summary>
+        /// <param name="sourceUrl">Source page URL</param>
+        /// <param name="xPath">XPath query string.</param>
+        /// <returns></returns>
         public Stream GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
         {
             var methodName = "GetDocumentFragmentByXPathByUrl";
@@ -180,6 +260,11 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
+        /// <summary>
+        /// Return all HTML document images packaged as a ZIP archive by Web page URL.
+        /// </summary>
+        /// <param name="sourceUrl">Source page URL</param>
+        /// <returns></returns>
         public Stream GetDocumentImagesByUrl(string sourceUrl)
         {
             var methodName = "GetDocumentImagesByUrl";

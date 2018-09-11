@@ -29,7 +29,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             Stream stream = docApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
             if (stream != null && typeof(FileStream) == stream.GetType())
             {
-                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_images.zip";
+                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_fragments.txt";
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {
