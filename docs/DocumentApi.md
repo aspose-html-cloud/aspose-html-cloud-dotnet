@@ -2,11 +2,14 @@
 
 All URIs are relative to *https://api.aspose.cloud/v1.1*
 
+
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetDocument**](DocumentApi.md#GetDocument) | **GET** /html/{name} | Return the HTML document by the name from default or specified storage.
 [**GetDocumentFragmentByXPath**](DocumentApi.md#GetDocumentFragmentByXPath) | **GET** /html/{name}/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query. 
 [**GetDocumentFragmentByXPathByUrl**](DocumentApi.md#GetDocumentFragmentByXPathByUrl) | **GET** /html/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query - from a Web page by its URL.
+[**GetDocumentFragmentByCSSSelector**](DocumentApi.md#GetDocumentFragmentByCSSSelector) | **GET** /html/{name}/fragments/css/{outFormat} | Return list of HTML fragments matching the specified CSS selector. 
+[**GetDocumentFragmentByCSSSelectorByUrl**](DocumentApi.md#GetDocumentFragmentByCSSSelectorByUrl) | **GET** /html/fragments/css/{outFormat} | Return list of HTML fragments matching the specified CSS selector - from a Web page by its URL.
 [**GetDocumentImages**](DocumentApi.md#GetDocumentImages) | **GET** /html/{name}/images/all | Return all HTML document images packaged as a ZIP archive.
 [**GetDocumentImagesByUrl**](DocumentApi.md#GetDocumentImagesByUrl) | **GET** /html/images/all | Return all HTML document images packaged as a ZIP archive - from a Web page by its URL.
 
@@ -31,13 +34,15 @@ public static void Main(string[] args)
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
 	
-	string name = "testpage4_embcss.html";
+	string name = "testpage4_embcss.html"; 
+			// source image name; put here your file name
+	        // source file should be uploaded first to the storage by {folder}/{filename} path using Aspose.Storage Cloud API
 	
 	string outPath = @"d:\Out";
 	string outFile = Path.Combine(outPath, name);
 	
-	string folder = null;     // root folder
-	string storage = null;    // default storage
+	string folder = null;     // root folder by default;  put folder path here
+	string storage = null;    // default storage; put storage name here
 
 	try
 	{
@@ -61,7 +66,6 @@ public static void Main(string[] args)
 	}
 }
 ```
-
 
 ### Parameters
 
@@ -106,13 +110,13 @@ public static void Main(string[] args)
 	
 	string name = "testpage4_embcss.html";
 	String xPath = ".//p/@class";              // String | XPath query string.
-	string outFormat = "plain";             // String | Output format. Possible values: 'plain' and 'json'.
+	string outFormat = "plain";                // String | Output format. Possible values: 'plain' and 'json'.
 	
 	string outPath = @"d:\Out";
 	string outFile = Path.Combine(outPath, $"{name}_fragments.txt");
 	
-	string folder = null;     // root folder
-	string storage = null;    // default storage
+	string folder = null;     // root folder by default;  put folder path here
+	string storage = null;    // default storage; put storage name here
 
 	try
 	{
@@ -188,8 +192,8 @@ public static void Main(string[] args)
 	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_fragments.txt");
 	
 	string xPath = ".//p/@class";              // String | XPath query string.
-	string outFormat = "plain";             // String | Output format. Possible values: 'plain' and 'json'.
-	
+	string outFormat = "plain";                // String | Output format. Possible values: 'plain' and 'json'.
+	 
 	try
 	{
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
@@ -236,6 +240,165 @@ No authorization required
  - **Content-Type**: application/json, text/plain
  - **Accept**: multipart/form-data
 
+
+<a name="GetDocumentFragmentByCSSSelector"></a>
+# **GetDocumentFragmentByCSSSelector**
+> Stream GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder)
+
+Return list of HTML fragments matching the specified CSS selector. 
+
+### Example
+```csharp
+
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+
+public static void Main(string[] args)
+{
+	string appKey = "XXXXX";   // put here your app key
+	string appSID = "XXXXX";   // put here your app SID
+	string BasePath = "https://api.aspose.cloud/v1.1";
+	
+	string name = "testpage4_embcss.html";
+	String selector = "p[class]";       // String | CSS selector string.
+	string outFormat = "plain";         // String | Output format. Possible values: 'plain' and 'json'.
+	
+	string outPath = @"d:\Out";
+	string outFile = Path.Combine(outPath, $"{name}_css_fragments.txt");
+	
+	string folder = null;     // root folder by default;  put folder path here
+	string storage = null;    // default storage; put storage name here
+
+	try
+	{
+	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+		var response = docApi.GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder);
+			
+		if(response != null && response is FileStream)
+		{
+			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+			{
+				response.CopyTo(fstr);
+				fstr.Flush();
+				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+			}
+		}
+	}
+	catch(Exception ex)
+	{
+		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+	}
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| The document name. |
+ **selector** | **String**| CSS selector string. |
+ **outFormat** | **String**| Output format. Possible values: &#39;plain&#39; and &#39;json&#39;. |
+ **storage** | **String**| The document storage. | [optional]
+ **folder** | **String**| The document folder. | [optional]
+
+### Return type
+
+[**Stream**](FileStream.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: multipart/form-data
+
+
+#########################################################################
+
+ 
+<a name="GetDocumentFragmentByCSSSelectorByUrl"></a>
+# **GetDocumentFragmentByCSSSelectorByUrl**
+> Stream GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, xPath, outFormat)
+
+Return list of HTML fragments matching the specified CSS selector - from a Web page by its URL. 
+
+### Example
+```csharp
+
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+
+public static void Main(string[] args)
+{
+	string appKey = "XXXXX";   // put here your app key
+	string appSID = "XXXXX";   // put here your app SID
+	string BasePath = "https://api.aspose.cloud/v1.1";
+	
+	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm"; // put here a HTML page URL
+	
+	string outPath = @"d:\Out";
+	Uri uri = new Uri(sourceUrl);
+	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_css_fragments.txt");
+	
+	string selector = "p[class]";           // String | CSS selector string.
+	string outFormat = "plain";                // String | Output format. Possible values: 'plain' and 'json'.
+	 
+	try
+	{
+	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+		var response = docApi.GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, selector, outFormat);
+			
+		if(response != null && response is FileStream)
+		{
+			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+			{
+				response.CopyTo(fstr);
+				fstr.Flush();
+				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+			}
+		}
+	}
+	catch(Exception ex)
+	{
+		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+	}	
+
+}
+```
+ 
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sourceUrl** | **String**| The source document URL. |
+ **selector**  | **String**| CSS selector string. |
+ **outFormat** | **String**| Output format. Possible values: &#39;plain&#39; and &#39;json&#39;. |
+
+
+### Return type
+
+[**Stream**](FileStream.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/plain
+ - **Accept**: multipart/form-data
+
+
+
+#########################################################################
  
  
 <a name="GetDocumentImages"></a>

@@ -14,29 +14,22 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
     /// Aspose.HTML Cloud for .NET SDK - examples.
     /// =========================================
     /// Example that demonstrates how to extract the HTML fragments by XPath query 
-    /// from the HTML document in the cloud storage.
+    /// from the HTML page from Web by its URL.
     /// </summary>
-    public class ExtractHtmlFragmentsByXPath : ISdkRunner
+    public class ExtractHtmlFragmentsByCSSSelectorByUrl : ISdkRunner
     {
         public void Run()
         {
-            var name = "testpage3_embcss.html";
-            var xPath = "//ol/li";
-            // Upload source file to cloud storage (default is AmazonS3)
-            var srcPath = Path.Combine(CommonSettings.DataFolder, name);
-            if (File.Exists(srcPath))
-            {
-                SdkBaseRunner.UploadToStorage(name, CommonSettings.DataFolder);
-            }
-            else
-                throw new Exception(string.Format("Error: file {0} not found.", srcPath));
+            var url = "http://www.sukidog.com/jpierre/strings/basics.htm";
+            var name = "basics.htm";
+            var selector = "p";
 
             IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.
-            Stream stream = docApi.GetDocumentFragmentByXPath(name, xPath, "json", null, null);
+            Stream stream = docApi.GetDocumentFragmentByCSSSelectorByUrl(url, selector, "plain");
             if (stream != null && typeof(FileStream) == stream.GetType())
             {
-                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_fragments.json";
+                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_css_fragments.txt";
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {

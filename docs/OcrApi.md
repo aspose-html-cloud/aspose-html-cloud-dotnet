@@ -27,14 +27,15 @@ public static void Main(string[] args)
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
 	
-	string name = "testpage4_embcss.html";
+	string name = "0211_116.3B.jpg"; // source image name; put here your file name
+	                                 // source file should be uploaded first to the storage by {folder}/{filename} path using Aspose.Storage Cloud API
 	string ocrEngineLang = "en"; 
 	
 	string outPath = @"d:\Out";
 	string outFile = Path.Combine(outPath, name);
 	
-	string folder = null;     // root folder
-	string storage = null;    // default storage
+	string folder = null;     // root folder by default;  put folder path here
+	string storage = null;    // default storage; put storage name here
 
 	try
 	{
@@ -101,15 +102,17 @@ public static void Main(string[] args)
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
 	
-	string name = "testpage4_embcss.html";
+	string name = "0211_116.3B.jpg"; // source image name; put here your file name
+	                                 // source file should be uploaded first to the storage by {folder}/{filename} path using Aspose.Storage Cloud API
+									 
 	string srcLang = "en";    // String | Source language.
 	string resLang = "fr";    // String | Result language.
 	
 	string outPath = @"d:\Out";
 	string outFile = Path.Combine(outPath, name);
 	
-	string folder = null;     // root folder
-	string storage = null;    // default storage
+	string folder = null;     // root folder by default;  put folder path here
+	string storage = null;    // default storage; put storage name here
 
 	try
 	{

@@ -57,6 +57,8 @@
     <Compile Include="SDK\HtmlConvert\ConvertHTMLByUrl.cs" />
     <Compile Include="SDK\HtmlConvert\ConvertHTMLByNameToStorage.cs" />
     <Compile Include="SDK\HtmlConvert\ConvertHTMLLocalToStorage.cs" />
+    <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByCSSSelector.cs" />
+    <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByCSSSelectorByUrl.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByXPath.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByXPathByUrl.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAll.cs" />
