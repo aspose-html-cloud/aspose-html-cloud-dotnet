@@ -19,6 +19,7 @@ Key Features
 - English to Chinese
 - Chinese to English
 * Extraction of HTML fragments using XPath queries
+* Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
 * Recognition of text content of an image using the OCR service and its import into HTML document.
 * Recognition of text content of an image, import into HTML document with further translation to other languages.
@@ -60,8 +61,9 @@ Resources
 -------------------
 
 - **Website:** [www.aspose.com](http://www.aspose.com)
-- **Product Home:** [Aspose.HTML for Cloud](https://products.aspose.cloud/html/cloud)
-- **Documentation:** [Aspose.HTML for Cloud Documentation](https://docs.aspose.cloud/display/htmlcloud/Home)
+- **Product Home:** [Aspose.HTML Cloud](https://products.aspose.cloud/html/cloud)
+- **Documentation:** [Aspose.HTML Cloud REST API Documentation](https://docs.aspose.cloud/display/htmlcloud/Home)
+- **SDK_Documentation** [Aspose.HTML Cloud SDK for .Net Documentation](https://github.com/aspose-html-cloud/aspose-html-cloud-dotnet)
 - **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.com/c/html)
 - **Blog:** [Aspose.HTML for Cloud Blog](http://www.aspose.com/blogs/aspose-products/aspose-html-product-family.html)
 

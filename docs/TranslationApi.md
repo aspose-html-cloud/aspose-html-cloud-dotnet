@@ -66,8 +66,8 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Document name. |
- **srcLang** | **String**| Source language. |
- **resLang** | **String**| Result language. |
+ **srcLang** | **String**| Source language. Allowed values are: "en" (alias "eng", "english"), "de" (alias "deu", "deutsch", "german"), "fr" (alias "fra", "french"), "ru" (alias "rus", "russian"), "zh", alias ("chinese").|
+ **resLang** | **String**| Result language. Allowed values are: "en" (alias "eng", "english"), "de" (alias "deu", "deutsch", "german"), "fr" (alias "fra", "french"), "ru" (alias "rus", "russian"), "zh", alias ("chinese").|
  **storage** | **String**| The document storage. | [optional]
  **folder** | **String**| The document folder. | [optional]
 
@@ -143,8 +143,8 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sourceUrl** | **String**| Source document URL. |
- **srcLang** | **String**| Source language. |
- **resLang** | **String**| Result language. |
+ **srcLang** | **String**| Source language.  Allowed values are: "en" (alias "eng", "english"), "de" (alias "deu", "deutsch", "german"), "fr" (alias "fra", "french"), "ru" (alias "rus", "russian"), "zh", alias ("chinese").|
+ **resLang** | **String**| Result language.  Allowed values are: "en" (alias "eng", "english"), "de" (alias "deu", "deutsch", "german"), "fr" (alias "fra", "french"), "ru" (alias "rus", "russian"), "zh", alias ("chinese").|
 
 ### Return type
 
