@@ -66,7 +66,7 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| The source image name. |
- **ocrEngineLang** | **String**| The OCR engine language. |
+ **ocrEngineLang** | **String**| The OCR engine language. Allowed value is "en". |
  **storage** | **String**| The source image folder | [optional]
  **folder** | **String**| The source image folder. | [optional]
 
@@ -143,8 +143,8 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| The source image name. |
- **srcLang** | **String**| Source language (also is considered as OCR engine language). |
- **resLang** | **String**| Result language. |
+ **srcLang** | **String**| Source language (also is considered as OCR engine language). Allowed value is "en".|
+ **resLang** | **String**| Result language. Allowed values are:  "de", "fr", "ru", "zh". |
  **storage** | **String**| The source image folder | [optional]
  **folder** | **String**| The source image folder. | [optional]
 
