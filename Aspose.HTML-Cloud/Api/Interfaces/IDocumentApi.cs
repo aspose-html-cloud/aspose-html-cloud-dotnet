@@ -32,14 +32,15 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
     /// </summary>
     public interface IDocumentApi
     {
-        /// <summary>
-        /// Return the HTML document by the name from default or specified storage. 
-        /// </summary>
-        /// <param name="name">The document name.</param>
-        /// <param name="storage">The document folder</param>
-        /// <param name="folder">The document folder.</param>
-        /// <returns>System.IO.Stream | Stream containing the requested document</returns>
-        Stream GetDocument(string name, string storage, string folder);
+        // AR 28.09.2018 - removed since wrapped API endpoint has been excluded
+        ///// <summary>
+        ///// Return the HTML document by the name from default or specified storage. 
+        ///// </summary>
+        ///// <param name="name">The document name.</param>
+        ///// <param name="storage">The document folder</param>
+        ///// <param name="folder">The document folder.</param>
+        ///// <returns>System.IO.Stream | Stream containing the requested document</returns>
+        //Stream GetDocument(string name, string storage, string folder);
 
         /// <summary>
         /// Return list of HTML fragments matching the specified XPath query.  

@@ -26,17 +26,32 @@
 namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 {
     using System.IO;
+    using Newtonsoft.Json;
     using Aspose.Storage.Cloud.Sdk.Api;
     //using Aspose.Storage.Cloud.Sdk;
     using Aspose.Html.Cloud.Sdk.Api;
     using Aspose.Html.Cloud.Sdk.Client;
-    using Newtonsoft.Json;
+    using Aspose.Storage.Cloud.Sdk.Model;
+    using Aspose.Storage.Cloud.Sdk.Model.Requests;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Base class for all tests
     /// </summary>
     public abstract class BaseTestContext
     {
+        private class Keys
+        {
+            [JsonProperty(PropertyName = "AppSid")]
+            public string AppSid { get; set; }
+            [JsonProperty(PropertyName = "AppKey")]
+            public string AppKey { get; set; }
+            [JsonProperty(PropertyName = "basePath")]
+            public string BaseProductUri { get; set; }
+            //[JsonProperty(PropertyName = "authPath")]
+            //public string AuthServerPath { get; set; }
+        }
+
         protected const string DefBaseProductUri = @"http://aspose-qa.aspose.cloud";
         //protected const string BaseProductUri = @"http://sikorsky-js3.dynabic.com:9083";
 
@@ -67,10 +82,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
             this.SummarizationApi = new SummarizationApi(
                 configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
+            this.TemplateMergeApi = new TemplateMergeApi(
+                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
 
             Aspose.Storage.Cloud.Sdk.Configuration storageConf = new Storage.Cloud.Sdk.Configuration()
             {
-                ApiBaseUrl = configuration.ApiBaseUrl, // + "/v1.1",
+                ApiBaseUrl = configuration.ApiBaseUrl + "/v1.1",
                 AppKey = configuration.AppKey,
                 AppSid = configuration.AppSid
             };
@@ -124,6 +141,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         protected TranslationApi TranslationApi { get; set; }
         protected OcrApi OcrApi { get; set; }
         protected SummarizationApi SummarizationApi { get; set; }
+        protected TemplateMergeApi TemplateMergeApi { get; set; }
 
         /// <summary>
         /// AppSid
@@ -157,16 +175,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             return Path.Combine("TestData", string.IsNullOrEmpty(subfolder) ? string.Empty : subfolder);
         }
 
-        private class Keys
+        protected void uploadFileToStorage(string dataFolder, string name, string folder)
         {
-            [JsonProperty(PropertyName = "AppSid")]
-            public string AppSid { get; set; }
-            [JsonProperty(PropertyName = "AppKey")]
-            public string AppKey { get; set; }
-            [JsonProperty(PropertyName = "basePath")]
-            public string BaseProductUri { get; set; }
-            //[JsonProperty(PropertyName = "authPath")]
-            //public string AuthServerPath { get; set; }
+            string srcPath = Path.Combine(dataFolder, name);
+            string path = string.Format("{0}/{1}", folder, name);
+            using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
+            {
+                PutCreateRequest reqCr = new PutCreateRequest(path, fstr);
+                this.StorageApi.PutCreate(reqCr);
+                GetIsExistRequest reqExist = new GetIsExistRequest(path);
+                FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
+                Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+            }
         }
+
     }
 }
