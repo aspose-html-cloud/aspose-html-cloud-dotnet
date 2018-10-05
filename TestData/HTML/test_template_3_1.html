@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>{{Title}}</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<div>
+			<h3>Person info:</h3>
+			<ol data_merge="{{#foreach Person}}">
+				<li>
+				   <p>{{Name}} {{Surname}} lives on {{Address.Number}}, {{Address.Street}} in {{Address.City}} city</p>
+				   <h4>Children:</h4>
+				   <ul data_merge="{{#foreach Children.Child}}">
+						<li>{{Name}} : {{Age}} years</li>
+				   </ul>
+				</li>
+			</ol>
+			
+		</div>
+	</body>
+</html>

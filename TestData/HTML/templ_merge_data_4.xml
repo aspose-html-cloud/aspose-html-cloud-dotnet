@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Data>
+	<Person>
+		<Name>John</Name>
+		<Surname>Smith</Surname>
+		<Address>
+			<Number>200</Number>
+			<Street>Austin rd.</Street>
+			<City>Dallas</City>
+		</Address>
+		<Phone1>345-345-34-55</Phone1>
+		<Phone2>345-555-09-09</Phone2>
+		<Children>
+			<Child>
+				<Name>Tom</Name><Age>12</Age>
+			</Child>
+			<Child>
+				<Name>Mary</Name><Age>10</Age>
+			</Child>
+			<Child>
+				<Name>Dolly</Name><Age>9</Age>
+			</Child>
+		</Children>
+	</Person>
+	<Person>
+		<Name>Jack</Name>
+		<Surname>Fox</Surname>
+		<Address>
+			<Number>25</Number>
+			<Street>Broadway</Street>
+			<City>New York</City>
+		</Address>
+		<Phone1>081-544-12-15</Phone1>
+		<Children>
+			<Child>
+				<Name>Roger</Name><Age>13</Age>
+			</Child>
+			<Child>
+				<Name>Sarah</Name><Age>10</Age>
+			</Child>
+		</Children>
+	</Person>
+	<Person>
+		<Name>Sherlock</Name>
+		<Surname>Holmes</Surname>
+		<Address>
+			<Number>65</Number>
+			<Street>Baker str.</Street>
+			<City>London</City>
+		</Address>
+		<Phone1>012-5344-334</Phone1>
+		<Children>
+			<Child>
+				<Name>Mike</Name><Age>9</Age>
+			</Child>
+		</Children>
+	</Person>
+</Data>

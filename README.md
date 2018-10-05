@@ -6,6 +6,7 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 # Key Features
 * Conversion of HTML document into various formats; PDF, XPS document formats and JPEG, PNG, BMP, TIFF raster graphics formats are supported
 * Conversion of MHTML document into the same formats that are supported for HTML
+* Merging HTML/XHTML templates with external data source; XML is supported as source data format
 * Translation of HTML document between various human languages; the following language pairs are currently supported:
 - English to German
 - English to French
@@ -14,6 +15,7 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 - Russian to English
 - English to Chinese
 * Extraction of HTML fragments using XPath queries
+* Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
 * Recognition of text content of an image using the OCR service and its import into HTML document.
 * Recognition of text content of an image, import into HTML document with further translation to other languages.
@@ -141,6 +143,8 @@ Class | Method | HTTP request | Description
 *DocumentApi* |[**GetDocumentFragmentByCSSSelectorByUrl**](docs/DocumentApi.md#GetDocumentFragmentByCSSSelectorByUrl) | **GET** /html/fragments/css/{outFormat} | Return list of HTML fragments matching the specified CSS selector - from a Web page by its URL. 
 *DocumentApi* | [**GetDocumentImages**](docs/DocumentApi.md#GetDocumentImages) | **GET** /html/{name}/images/all | Return all HTML document images packaged as a ZIP archive.
 *DocumentApi* | [**GetDocumentImagesByUrl**](docs/DocumentApi.md#GetDocumentImagesByUrl) | **GET** /html/images/all | Return all HTML document images packaged as a ZIP archive - from a Web page by its URL.
+*TemplateMergeApi* | [**GetMergeHtmlTemplate**](docs/TemplateMergeApi.md#GetMergeHtmlTemplate) | **GET** /html/{templateName}/merge | Populate HTML document template with data located as a file in the storage.
+*TemplateMergeApi* | [**PutMergeHtmlTemplate**](docs/TemplateMergeApi.md#PutMergeHtmlTemplate) | **PUT** /html/{templateName}/merge | Populate HTML document template with data from the stream. Result document will be saved to storage.
 *TranslationApi* | [**GetTranslateDocument**](docs/TranslationApi.md#GetTranslateDocument) | **GET** /html/{name}/translate/{srcLang}/{resLang} | Translate the HTML document specified by the name from default or specified storage.
 *TranslationApi* | [**GetTranslateDocumentByUrl**](docs/TranslationApi.md#GetTranslateDocumentByUrl) | **GET** /html/translate/{srcLang}/{resLang} | Translate the HTML document specified by its URL.
 *OcrApi* | [**GetRecognizeAndImportToHtml**](docs/OcrApi.md#GetRecognizeAndImportToHtml) | **GET** /html/{name}/ocr/import | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.

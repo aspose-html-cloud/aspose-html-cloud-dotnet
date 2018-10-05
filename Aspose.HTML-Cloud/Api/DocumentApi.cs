@@ -49,36 +49,37 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
         }
 
-        /// <summary>
-        /// Return the HTML document by the name from default or specified storage. 
-        /// </summary>
-        /// <param name="name">The document name.</param>
-        /// <param name="storage">The document folder</param>
-        /// <param name="folder">The document folder.</param>
-        /// <returns>System.IO.Stream | Stream containing the requested document</returns>
-        public Stream GetDocument (string name, string storage, string folder)
-        {
-            var methodName = "GetDocument";
-            // verify the required parameter 'name' is set
-            if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetDocument");
+        // AR 28.09.2018 - removed since wrapped API endpoint has been excluded
+        ///// <summary>
+        ///// Return the HTML document by the name from default or specified storage. 
+        ///// </summary>
+        ///// <param name="name">The document name.</param>
+        ///// <param name="storage">The document folder</param>
+        ///// <param name="folder">The document folder.</param>
+        ///// <returns>System.IO.Stream | Stream containing the requested document</returns>
+        //public Stream GetDocument (string name, string storage, string folder)
+        //{
+        //    var methodName = "GetDocument";
+        //    // verify the required parameter 'name' is set
+        //    if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetDocument");
             
     
-            var path = "/html/{name}";
-            path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+        //    var path = "/html/{name}";
+        //    path = path.Replace("{format}", "json");
+        //    path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
     
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
+        //    var queryParams = new Dictionary<String, String>();
+        //    var headerParams = new Dictionary<String, String>();
      
-            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
-            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+        //    if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+        //    if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
                                         
-            // authentication setting, if any
-            String[] authSettings = new String[] {  };
+        //    // authentication setting, if any
+        //    String[] authSettings = new String[] {  };
 
-            var response = CallGetApi(path, queryParams, methodName);
-            return response;
-        }
+        //    var response = CallGetApi(path, queryParams, methodName);
+        //    return response;
+        //}
 
         /// <summary>
         /// Return list of HTML fragments matching the specified CSS selector.  

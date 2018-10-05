@@ -63,9 +63,9 @@
     <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByXPathByUrl.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAll.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAllByUrl.cs" />
-    <Compile Include="SDK\HtmlDocument\GetDocument.cs" />
     <Compile Include="SDK\HtmlOcr\RecognizeAndImportToHTML.cs" />
     <Compile Include="SDK\HtmlOcr\RecognizeAndTranslateToHTML.cs" />
+    <Compile Include="SDK\HtmlTemplateMerge\MergeHtmlTemplateWithData.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLByUrl.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLFromStorage.cs" />
     <Compile Include="SDK\ISdkRunner.cs" />

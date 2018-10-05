@@ -56,12 +56,14 @@
     <Compile Include="Api\Interfaces\IDocumentApi.cs" />
     <Compile Include="Api\Interfaces\IOcrApi.cs" />
     <Compile Include="Api\Interfaces\ISummarizationApi.cs" />
+    <Compile Include="Api\Interfaces\ITemplateMergeApi.cs" />
     <Compile Include="Api\Interfaces\ITranslationApi.cs" />
     <Compile Include="Api\Model\AsposeResponse.cs" />
     <Compile Include="Api\Model\Requests\ConversionRequest.cs" />
     <Compile Include="Api\Model\Requests\TranslationRequest.cs" />
     <Compile Include="Api\OcrApi.cs" />
     <Compile Include="Api\SummarizationApi.cs" />
+    <Compile Include="Api\TemplateMergeApi.cs" />
     <Compile Include="Api\TranslationApi.cs" />
     <Compile Include="Client\ApiClient.cs" />
     <Compile Include="Client\ApiClientUtils.cs" />
@@ -80,11 +82,11 @@
     <Compile Include="Com\Aspose\Html\Api\TranslationApi.cs" />
     <Compile Include="Com\Aspose\Html\Client\ApiException.cs" />
     <Compile Include="Com\Aspose\Html\Client\Configuration.cs" />
+    <Compile Include="Com\Aspose\Html\NativeClient\ApiClient.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\ApiClientUtils.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\Authentication\IAuthenticator.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\ApiClient.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\NativeRestResponse.cs" />
     <Compile Include="Com\Aspose\Html\NativeClient\Authentication\OAuth2.cs" />
+    <Compile Include="Com\Aspose\Html\NativeClient\NativeRestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

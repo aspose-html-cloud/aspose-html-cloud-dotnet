@@ -10,6 +10,7 @@ Key Features
 
 * Conversion of HTML document into various formats; PDF, XPS document formats and JPEG, PNG, BMP, TIFF raster graphics formats are supported
 * Conversion of ePUB or MHTML document into the same formats that are supported for HTML
+* Merging HTML/XHTML templates with external data source; XML is supported as source data format
 * Translation of HTML document between various human languages; the following language pairs are currently supported:
 - English to German
 - English to French

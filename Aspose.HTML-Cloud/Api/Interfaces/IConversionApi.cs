@@ -155,7 +155,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="folder">Source document folder</param>
         /// <param name="storage">Source and resulting document storage</param>
-        /// <returns></returns>
+        /// <returns>AsposeResponse | Response status.</returns>
         AsposeResponse PutConvertDocumentToImage(string name, 
             string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, int? resolution = null, string folder = null, string storage = null);
@@ -174,7 +174,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom image margin.</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="storage">Resulting image storage</param>
-        /// <returns></returns>
+        /// <returns>AsposeResponse | Response status.</returns>
         AsposeResponse PutConvertDocumentToImage(Stream inStream,
             string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null);
@@ -192,7 +192,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="folder">Source document folder</param>
         /// <param name="storage">Source and resulting document storage</param>
-        /// <returns></returns>
+        /// <returns>AsposeResponse | Response status.</returns>
         AsposeResponse PutConvertDocumentToPdf(string name,
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null);
@@ -209,7 +209,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="topMargin">Top document page margin.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">Resulting document storage</param>
-        /// <returns></returns>
+        /// <returns>AsposeResponse | Response status.</returns>
         AsposeResponse PutConvertDocumentToPdf(Stream inStream,
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string storage = null);
@@ -227,7 +227,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="folder">Source document folder</param>
         /// <param name="storage">Source and resulting document storage</param>
-        /// <returns></returns>
+        /// <returns>AsposeResponse | Response status.</returns>
         AsposeResponse PutConvertDocumentToXps(string name,
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null);
@@ -244,7 +244,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="topMargin">Top document page margin.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">Resulting document storage</param>
-        /// <returns></returns>
+        /// <returns>AsposeResponse | Response status.</returns>
         AsposeResponse PutConvertDocumentToXps(Stream inStream,
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string storage = null);
