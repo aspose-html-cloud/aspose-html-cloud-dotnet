@@ -24,6 +24,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.IO;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
@@ -52,8 +53,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The document folder.</param>
         /// <returns>System.IO.Stream | Stream containing the requested fragments</returns>
         /// 
-        Stream GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder);
-
+        AsposeStreamResponse GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder);
 
         /// <summary>
         /// Return list of HTML fragments matching the specified CSS selector.  
@@ -63,8 +63,8 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>System.IO.Stream | Stream containing the requested fragments</returns>
-        Stream GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder);
+        /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
+        AsposeStreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder);
 
         /// <summary>
         /// Return all HTML document images packaged as a ZIP archive. 
@@ -72,32 +72,38 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="name">The document name.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>System.IO.Stream | Stream containing the ZIP archive of all images.</returns>
-        Stream GetDocumentImages(string name, string storage, string folder);
+        /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the ZIP archive of all images.</returns>
+        AsposeStreamResponse GetDocumentImages(string name, string storage, string folder);
 
         /// <summary>
         /// Return list of HTML fragments matching the specified XPath query by Web page URL.
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="xPath">XPath query string.</param>
-        /// <returns></returns>
-        Stream GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat);
+        /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
+        AsposeStreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat);
 
         /// <summary>
         /// Return list of HTML fragments matching the specified CSS selector by Web page URL.
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="selector">CSS selector string.</param>
-        /// <returns></returns>
-        Stream GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat);
+        /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
+        AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat);
 
         /// <summary>
         /// Return all HTML document images packaged as a ZIP archive by Web page URL.
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <returns></returns>
-        Stream GetDocumentImagesByUrl(string sourceUrl);
+        AsposeStreamResponse GetDocumentImagesByUrl(string sourceUrl);
 
+        /// <summary>
+        /// Download HTML page with linked resources from Web by its URL and return it as a ZIP archive.
+        /// </summary>
+        /// <param name="sourceUrl">Source page URL</param>
+        /// <returns></returns>
+        AsposeStreamResponse GetDocumentByUrl(string sourceUrl);
     }
 
 }

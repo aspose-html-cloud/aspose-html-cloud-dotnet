@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 
@@ -29,12 +30,12 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
             //string srcUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
 
             TranslationApi transApi = new TranslationApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-            Stream stream = transApi.GetTranslateDocumentByUrl(srcUrl, SrcLang, ResLang);
+            AsposeStreamResponse response = transApi.GetTranslateDocumentByUrl(srcUrl, SrcLang, ResLang);
+            Stream stream = response.ContentStream;
 
-            string strName = null;
             if (stream != null && stream.GetType() == typeof(FileStream))
             {
-                string name = ((FileStream)stream).Name;
+                string name = response.FileName;
                 string outPath = Path.Combine(CommonSettings.OutDirectory, Path.GetFileName(name));
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {

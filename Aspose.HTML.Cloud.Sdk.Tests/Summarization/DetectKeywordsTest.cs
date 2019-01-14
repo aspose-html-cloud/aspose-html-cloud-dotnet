@@ -29,10 +29,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Summarization
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
 
-            var stream = SummarizationApi.GetDetectHtmlKeywords(name, folder, null);
-            Assert.IsNotNull(stream);
-            Assert.IsTrue(stream.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+            var response = SummarizationApi.GetDetectHtmlKeywords(name, folder, null);
+            checkGetMethodResponse(response, "Keywords");
         }
 
     }

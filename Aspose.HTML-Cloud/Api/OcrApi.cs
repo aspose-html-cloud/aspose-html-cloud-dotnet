@@ -33,6 +33,7 @@ using System.Net.Http;
 using System.Web;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api
 {
@@ -61,7 +62,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
         /// <returns>System.IO.Stream |  Stream of resulting document. </returns>
-        public Stream GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
+        public AsposeStreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
         {
             var methodName = "GetRecognizeAndImportToHtml";
             // verify the required parameter 'name' is set
@@ -94,7 +95,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
         /// <returns>System.IO.Stream |  Stream of resulting document.</returns>
-        public Stream GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
+        public AsposeStreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             var methodName = "GetRecognizeAndTranslateToHtml";
             // verify the required parameter 'name' is set

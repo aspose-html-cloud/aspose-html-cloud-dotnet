@@ -10,7 +10,7 @@ Method | HTTP request | Description
 <a name="GetDetectHtmlKeywords"></a>
 
 # **GetDetectHtmlKeywords**
-> Stream GetDetectHtmlKeywords(name, storage, folder)
+> AsposeStreamResponse GetDetectHtmlKeywords(name, storage, folder)
 
 
 ### Example
@@ -36,8 +36,11 @@ public static void Main(string[] args)
 	    ISummarizationApi summApi = new SummarizationApi(appKey, appSID, BasePath);
 		var response = summApi.GetDetectHtmlKeywords(name, storage, folder);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+		
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -65,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -80,7 +83,7 @@ No authorization required
 <a name="GetDetectHtmlKeywordsByUrl"></a>
 
 # **GetDetectHtmlKeywordsByUrl**
-> Stream GetDetectHtmlKeywordsByUrl(sourceUrl)
+> AsposeStreamResponse GetDetectHtmlKeywordsByUrl(sourceUrl)
 
 
 ### Example
@@ -107,8 +110,11 @@ public static void Main(string[] args)
 	    ISummarizationApi summApi = new SummarizationApi(appKey, appSID, BasePath);
 		var response = summApi.GetDetectHtmlKeywordsByUrl(sourceUrl);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+		
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -134,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 

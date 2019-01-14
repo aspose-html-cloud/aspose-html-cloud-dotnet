@@ -48,7 +48,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The source document folder.</param>
         /// <param name="storage">The source document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
-        Stream GetConvertDocumentToImage(
+        AsposeStreamResponse GetConvertDocumentToImage(
             string name, string outFormat,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, int? resolution = null, 
@@ -67,7 +67,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom image margin.</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
-        Stream GetConvertDocumentToImageByUrl(
+        AsposeStreamResponse GetConvertDocumentToImageByUrl(
             string sourceUrl, string outFormat,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, int? resolution = null);
@@ -85,7 +85,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The source document folder.</param>
         /// <param name="storage">The source document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
-        Stream GetConvertDocumentToPdf(
+        AsposeStreamResponse GetConvertDocumentToPdf(
              string name,
              int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
              int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null);
@@ -101,7 +101,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="topMargin">Top image document page.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
-        Stream GetConvertDocumentToPdfByUrl(
+        AsposeStreamResponse GetConvertDocumentToPdfByUrl(
             string sourceUrl,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null);
@@ -119,7 +119,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
-        Stream GetConvertDocumentToXps(
+        AsposeStreamResponse GetConvertDocumentToXps(
              string name,
              int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
              int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null);
@@ -135,7 +135,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="topMargin">Top document page margin.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
-        Stream GetConvertDocumentToXpsByUrl(
+        AsposeStreamResponse GetConvertDocumentToXpsByUrl(
             string sourceUrl,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null);
@@ -249,6 +249,26 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string storage = null);
 
+        AsposeStreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = null, string folder = null, string storage = null);
+
+        AsposeStreamResponse GetConvertDocumentToMHTML(string name, 
+            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
+            string folder = null, string storage = null);
+
+        AsposeResponse PutConvertDocumentToMarkdown(string name, string outPath,
+            bool? useGit = default(bool), string folder = null, string storage = null);
+
+        AsposeResponse PutConvertDocumentToMarkdown(Stream inStream, string outPath, bool? useGit = null);
+
+        AsposeResponse PutConvertDocumentToMHTML(string name, string outPath,
+                    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null,
+            string folder = null, string storage = null);
+
+        AsposeResponse PutConvertDocumentToMHTML(Stream inStream, string outPath,
+                    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null);
 
     }
+
+
+
 }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ITranslationApi.cs">
+// <copyright company="Aspose" file="ResourceHandlingOptions.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -21,38 +21,51 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 // </summary>
-// --------------------------------------------------------------------------------------------------------------------
+// ------------------
 
-using System.IO;
-using Aspose.Html.Cloud.Sdk.Api.Model;
-
-namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
+namespace Aspose.Html.Cloud.Sdk.Api.Model
 {
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// This enum represents resource handling options.
     /// </summary>
-    public interface ITranslationApi
+    public enum ResourceHandling
     {
-        /// <summary>
-        /// Translate the HTML document specified by the name from default or specified storage. 
-        /// </summary>
-        /// <param name="name">Document name.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
-        /// <param name="storage">The document storage.</param>
-        /// <param name="folder">The document folder.</param>
-        /// <returns>Stream | Stream of resulting document.</returns>
-        AsposeStreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null);
 
         /// <summary>
-        /// Translate the HTML document specified by its URL. 
+        /// Resource will be saved as file.
         /// </summary>
-        /// <param name="sourceUrl">Source document URL.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
-        /// <returns>Stream | Stream of resulting document.</returns>
-        AsposeStreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang);
-       
+        Save = 0,
+
+        /// <summary>
+        /// Resource will be emdedded into owner
+        /// </summary>
+        Embed = 1,
+ 
+        /// <summary>
+        /// Resource will be discarded.
+        /// </summary>
+        Discard = 2
+    }
+
+    /// <summary>
+    /// This enum represents restriction applied to URLs of processed resources.
+    /// </summary>
+    public enum UrlRestriction
+    {
+        /// <summary>
+        /// Only resources located in the root and sub folders are processed.
+        /// </summary>
+        RootAndSubFolders = 0,
+
+        /// <summary>
+        /// Only resources located in the same host are processed.
+        /// </summary>
+        SameHost = 1,
+
+        /// <summary>
+        /// All resources are processed.
+        /// </summary>
+        None = 2
     }
 
 }

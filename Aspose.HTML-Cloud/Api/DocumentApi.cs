@@ -29,6 +29,7 @@ using System.IO;
 using System.Collections.Generic;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 
 namespace Aspose.Html.Cloud.Sdk.Api
@@ -49,6 +50,17 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HtmlDocumentApi"/> class.
+        /// </summary>
+        /// <param name="apiKey">The api key.</param>
+        /// <param name="apiSid">The api sid.</param>
+        /// <param name="basePath">The base path.</param>
+        public DocumentApi(String apiKey, String apiSid, String basePath, TimeSpan timeout)
+            : base(apiKey, apiSid, basePath, timeout)
+        {
+        }
+
         // AR 28.09.2018 - removed since wrapped API endpoint has been excluded
         ///// <summary>
         ///// Return the HTML document by the name from default or specified storage. 
@@ -62,18 +74,18 @@ namespace Aspose.Html.Cloud.Sdk.Api
         //    var methodName = "GetDocument";
         //    // verify the required parameter 'name' is set
         //    if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetDocument");
-            
-    
+
+
         //    var path = "/html/{name}";
         //    path = path.Replace("{format}", "json");
         //    path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
-    
+
         //    var queryParams = new Dictionary<String, String>();
         //    var headerParams = new Dictionary<String, String>();
-     
+
         //    if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
         //    if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
-                                        
+
         //    // authentication setting, if any
         //    String[] authSettings = new String[] {  };
 
@@ -90,7 +102,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
         /// <returns>System.IO.Stream | Stream containing the requested fragments</returns>
-        public Stream GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder)
+        public AsposeStreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder)
         {
             var methodName = "GetDocumentFragmentByCSSSelector";
             // verify the required parameter 'name' is set
@@ -128,7 +140,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="selector">CSS selector string.</param>
         /// <returns></returns>
-        public Stream GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat)
+        public AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat)
         {
             var methodName = "GetDocumentFragmentByXPathByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -165,7 +177,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder">The document folder.</param>
         /// <returns>System.IO.Stream | Stream containing the requested fragments</returns>
         /// 
-        public Stream GetDocumentFragmentByXPath (string name, string xPath, string outFormat, string storage, string folder)
+        public AsposeStreamResponse GetDocumentFragmentByXPath (string name, string xPath, string outFormat, string storage, string folder)
         {
             var methodName = "GetDocumentFragmentByXPath";
             // verify the required parameter 'name' is set
@@ -203,7 +215,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="xPath">XPath query string.</param>
         /// <returns></returns>
-        public Stream GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
+        public AsposeStreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
         {
             var methodName = "GetDocumentFragmentByXPathByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -238,7 +250,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
         /// <returns>System.IO.Stream | Stream containing the ZIP archive of all images.</returns>
-        public Stream GetDocumentImages (string name, string storage, string folder)
+        public AsposeStreamResponse GetDocumentImages (string name, string storage, string folder)
         {
             var methodName = "GetDocumentImages";
             // verify the required parameter 'name' is set
@@ -266,7 +278,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <returns></returns>
-        public Stream GetDocumentImagesByUrl(string sourceUrl)
+        public AsposeStreamResponse GetDocumentImagesByUrl(string sourceUrl)
         {
             var methodName = "GetDocumentImagesByUrl";
             // verify the required parameter 'name' is set
@@ -282,6 +294,33 @@ namespace Aspose.Html.Cloud.Sdk.Api
             String[] authSettings = new String[] { };
 
             var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceUrl"></param>
+        /// <returns></returns>
+        public AsposeStreamResponse GetDocumentByUrl(string sourceUrl)
+        {
+            var methodName = "GetDocumentByUrl";
+            // verify the required parameter 'name' is set
+            if (sourceUrl == null) throw new ApiException(400, $"Missing required parameter 'sourceUrl' when calling {methodName}");
+            var path = "/html/download";
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            queryParams.Add("sourceUrl", ApiClientUtils.ParameterToString(sourceUrl)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var defTimeout = this.ApiClient.Timeout;
+            this.ApiClient.Timeout = new TimeSpan(1, 0, 0); // long timeout for the site download API
+
+            var response = CallGetApi(path, queryParams, methodName);
+            this.ApiClient.Timeout = defTimeout;
             return response;
         }
     }

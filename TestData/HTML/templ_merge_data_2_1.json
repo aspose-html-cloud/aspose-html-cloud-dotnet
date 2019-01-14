@@ -1,0 +1,36 @@
+{
+	'title':'Test...Test...Test',
+	'person':[
+		{
+			'name':'John',
+			'surname':'Smith',
+			'address': {
+				'number':'200',
+				'street':'Austin rd.',
+				'city':'Dallas'
+			},
+			'phone1':'345-345-34-55',
+			'phone2':'345-555-09-09'
+		},
+		{
+			'name':'Jack',
+			'surname':'Fox',
+			'address': {
+				'number':'25',
+				'street':'Broadway',
+				'city':'New York'
+			},
+			'phone1':'081-544-12-15'
+		},
+		{
+			'name':'Sherlock',
+			'surname':'Holmes',
+			'address': {
+				'number':'65',
+				'street':'Baker str.',
+				'city':'London'
+			},
+			'phone1':'012-5344-334'		
+		}
+	]
+}

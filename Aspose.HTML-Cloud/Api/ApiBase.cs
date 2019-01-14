@@ -54,6 +54,19 @@ namespace Aspose.Html.Cloud.Sdk.Api
             this.ApiClient = new ApiClient(apiKey, apiSid, basePath);
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="apiSid"></param>
+        /// <param name="basePath"></param>
+        /// <param name="timeout"></param>
+        public ApiBase(String apiKey, String apiSid, String basePath, TimeSpan timeout)
+            : this(apiKey, apiSid, basePath)
+        {
+            this.ApiClient.Timeout = timeout;
+        }
+
          /// <summary>
         /// Gets or sets the API client
         /// </summary>
@@ -87,7 +100,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="queryParams"></param>
         /// <param name="methodName"></param>
         /// <returns></returns>
-        protected Stream CallGetApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
+        protected AsposeStreamResponse CallGetApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
         {
             HttpResponseMessage resp = ApiClient.CallGet(path, queryParams);
       
@@ -99,24 +112,44 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 throw new ApiException((int)resp.StatusCode,
                    string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
 
-            string outDir = String.IsNullOrEmpty(Configuration.TempFolderPath)
-                     ? Path.GetTempPath()
-                     : Configuration.TempFolderPath;
+            //string outDir = String.IsNullOrEmpty(Configuration.TempFolderPath)
+            //         ? Path.GetTempPath()
+            //         : Configuration.TempFolderPath;
+            //string outPath = Path.Combine(outDir, fileName);
+            //Stream outStream = File.OpenWrite(outPath);
+            // TO DO: 1) change returning type to MemoryStream
+            //        2) next versions: return type: extended AsposeResponse with stream content
             var fileName = (resp.Content.Headers.ContentDisposition != null)
                 ? resp.Content.Headers.ContentDisposition.FileName : "result.txt";
-            string outPath = Path.Combine(outDir, fileName);
-            Stream outStream = File.OpenWrite(outPath);
+            Stream outStream = new MemoryStream();
 
             Task task = resp.Content.ReadAsStreamAsync()
                 .ContinueWith((tsk) => {
                     var contentStream = tsk.Result;
                     contentStream.CopyTo(outStream);
                     outStream.Flush();
+                    outStream.Position = 0;
                 });
             task.Wait();
-            return outStream;
+            AsposeStreamResponse response = new AsposeStreamResponse()
+            {
+                Status = resp.StatusCode.ToString(),
+                Code = (int)resp.StatusCode,
+                ReasonPhrase = resp.ReasonPhrase
+            };
+            response.ContentStream = outStream;
+            response.FileName = fileName;
+            return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="queryParams"></param>
+        /// <param name="bodyStream"></param>
+        /// <param name="methodName"></param>
+        /// <returns></returns>
         protected AsposeResponse CallPutApi(string path, Dictionary<string, string> queryParams, Stream bodyStream, string methodName = "<unknown>")
         {
             HttpResponseMessage resp = ApiClient.CallPut(path, queryParams, bodyStream);

@@ -21,14 +21,15 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
         public void Run()
         {
             var url = "http://www.sukidog.com/jpierre/strings/basics.htm";
-            var name = "basics.htm";
             var selector = "p";
 
             IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.
-            Stream stream = docApi.GetDocumentFragmentByCSSSelectorByUrl(url, selector, "plain");
-            if (stream != null && typeof(FileStream) == stream.GetType())
+            var response = docApi.GetDocumentFragmentByCSSSelectorByUrl(url, selector, "plain");
+            if (response != null && response.ContentStream != null)
             {
+                Stream stream = response.ContentStream;
+                var name = response.FileName;
                 string outFile = $"{Path.GetFileNameWithoutExtension(name)}_css_fragments.txt";
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))

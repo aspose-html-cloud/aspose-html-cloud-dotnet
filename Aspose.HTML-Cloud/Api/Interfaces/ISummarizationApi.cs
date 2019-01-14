@@ -24,6 +24,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.IO;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
@@ -39,14 +40,14 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder"></param>
         /// <param name="storage"></param>
         /// <returns></returns>
-        Stream GetDetectHtmlKeywords(string name, string folder = null, string storage = null);
+        AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null);
 
         /// <summary>
         /// Detect the keywords in the HTML document specified by its URL.
         /// </summary>
         /// <param name="sourceUrl"></param>
         /// <returns></returns>
-        Stream GetDetectHtmlKeywordsByUrl(string sourceUrl);
+        AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl);
 
     }
 }

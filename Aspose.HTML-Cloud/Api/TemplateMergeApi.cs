@@ -33,6 +33,7 @@ using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Model.Requests;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api
 {
@@ -56,12 +57,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Populate HTML document template with data located as a file in the storage.
         /// </summary>
         /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
-        /// <param name="dataPath">Data source file path in the storage. Supported data format: XML.</param>
-        /// <param name="options">Template merge options: reserved for further implementation.</param>
+        /// <param name="dataPath">Data source file path in the storage. Supported data formats: XML, JSON.</param>
+        /// <param name="options">Template merge options.</param>
         /// <param name="folder">The template document folder.</param>
         /// <param name="storage">The template document and data source storage.</param>
         /// <returns>System.IO.Stream | Stream containing the generated document.</returns>
-        public Stream GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
+        public AsposeStreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
         {
             var methodName = "GetMergeHtmlTemplate";
             // verify the required parameter 'name' is set
@@ -91,9 +92,9 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Populate HTML document template with data from the stream. Result document will be saved to storage.
         /// </summary>
         /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
-        /// <param name="inStream">Data source stream. Supported data format: XML.</param>
+        /// <param name="inStream">Data source stream. Supported data formats: XML, JSON.</param>
         /// <param name="outPath">Result document path in the storage.</param>
-        /// <param name="options">Template merge options: reserved for further implementation.</param>
+        /// <param name="options">Template merge options.</param>
         /// <param name="folder">The template document folder.</param>
         /// <param name="storage">Optional. The template document and data source storage.</param>
         /// <returns>AsposeResponse | Response status.</returns>

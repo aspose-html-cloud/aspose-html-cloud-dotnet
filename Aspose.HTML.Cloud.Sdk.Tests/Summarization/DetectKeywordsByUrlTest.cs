@@ -14,10 +14,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Summarization
         {
             var sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_02.htm"; ;
 
-            var stream = SummarizationApi.GetDetectHtmlKeywordsByUrl(sourceUrl);
-            Assert.IsNotNull(stream);
-            Assert.IsTrue(stream.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+            var response = SummarizationApi.GetDetectHtmlKeywordsByUrl(sourceUrl);
+            checkGetMethodResponse(response, "Keywords");
         }
     }
 }

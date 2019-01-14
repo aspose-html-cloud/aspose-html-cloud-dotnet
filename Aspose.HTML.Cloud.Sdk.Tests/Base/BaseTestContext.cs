@@ -23,13 +23,16 @@
 // // </summary>
 // // --------------------------------------------------------------------------------------------------------------------
 
+
 namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 {
+    using System;
     using System.IO;
     using Newtonsoft.Json;
     using Aspose.Storage.Cloud.Sdk.Api;
     //using Aspose.Storage.Cloud.Sdk;
     using Aspose.Html.Cloud.Sdk.Api;
+    using Aspose.Html.Cloud.Sdk.Api.Model;
     using Aspose.Html.Cloud.Sdk.Client;
     using Aspose.Storage.Cloud.Sdk.Model;
     using Aspose.Storage.Cloud.Sdk.Model.Requests;
@@ -187,6 +190,54 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
                 Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             }
+        }
+
+        protected static string saveResultStreamToOutDir(Stream stream, string fileName, string subDir = "")
+        {
+            string outDir = Path.Combine(DirectoryHelper.GetRootSdkFolder(), BaseTestOutPath);
+            if (!Directory.Exists(outDir))
+                Directory.CreateDirectory(outDir);
+            if(!string.IsNullOrEmpty(subDir))
+            {
+                outDir = Path.Combine(outDir, subDir);
+                if (!Directory.Exists(outDir))
+                    Directory.CreateDirectory(outDir);
+            }
+            string outPath = Path.Combine(outDir, fileName);
+            using (Stream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+            {
+                stream.Position = 0;
+                stream.CopyTo(fstr);
+                fstr.Flush();
+            }
+            return outPath;
+        }
+
+        protected static string getFileNameWithTimestamp(string fileName, string suffix="")
+        {
+            var time = $"at_{DateTime.Now.ToString("yyyyMMdd-hhmmss")}";
+            var resultName = $"{Path.GetFileNameWithoutExtension(fileName)}_{time}{suffix}{Path.GetExtension(fileName)}";
+            return resultName;
+        }
+
+        protected void checkGetMethodResponse(AsposeStreamResponse response, string outSubdir, string suffix = "")
+        {
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.Code == 200);
+            Assert.IsNotNull(response.ContentStream);
+            var fileName = getFileNameWithTimestamp(response.FileName, suffix);
+            var outPath = saveResultStreamToOutDir(response.ContentStream, fileName, outSubdir);
+            Assert.IsTrue(File.Exists(outPath));
+        }
+
+        protected void checkGetMethodResponseOkOrNoresult(AsposeStreamResponse response, string outSubdir, string suffix = "")
+        {
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.Code == 200 || response.Code == 204);
+            Assert.IsNotNull(response.ContentStream);
+            var fileName = getFileNameWithTimestamp(response.FileName, suffix);
+            var outPath = saveResultStreamToOutDir(response.ContentStream, fileName, outSubdir);
+            Assert.IsTrue(File.Exists(outPath));
         }
 
     }
