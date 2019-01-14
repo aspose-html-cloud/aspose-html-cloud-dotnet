@@ -24,6 +24,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.IO;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
@@ -40,7 +41,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
         /// <returns>System.IO.Stream |  Stream of resulting document. </returns>
-        Stream GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null);
+        AsposeStreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null);
 
         /// <summary>
         /// Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
@@ -51,6 +52,6 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
         /// <returns>System.IO.Stream |  Stream of resulting document.</returns>
-        Stream GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null);
+        AsposeStreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null);
     }
 }

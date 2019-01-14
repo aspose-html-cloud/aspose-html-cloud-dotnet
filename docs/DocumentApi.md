@@ -5,20 +5,20 @@ All URIs are relative to *https://api.aspose.cloud/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetDocument**](DocumentApi.md#GetDocument) | **GET** /html/{name} | Return the HTML document by the name from default or specified storage.
 [**GetDocumentFragmentByXPath**](DocumentApi.md#GetDocumentFragmentByXPath) | **GET** /html/{name}/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query. 
 [**GetDocumentFragmentByXPathByUrl**](DocumentApi.md#GetDocumentFragmentByXPathByUrl) | **GET** /html/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query - from a Web page by its URL.
 [**GetDocumentFragmentByCSSSelector**](DocumentApi.md#GetDocumentFragmentByCSSSelector) | **GET** /html/{name}/fragments/css/{outFormat} | Return list of HTML fragments matching the specified CSS selector. 
 [**GetDocumentFragmentByCSSSelectorByUrl**](DocumentApi.md#GetDocumentFragmentByCSSSelectorByUrl) | **GET** /html/fragments/css/{outFormat} | Return list of HTML fragments matching the specified CSS selector - from a Web page by its URL.
 [**GetDocumentImages**](DocumentApi.md#GetDocumentImages) | **GET** /html/{name}/images/all | Return all HTML document images packaged as a ZIP archive.
 [**GetDocumentImagesByUrl**](DocumentApi.md#GetDocumentImagesByUrl) | **GET** /html/images/all | Return all HTML document images packaged as a ZIP archive - from a Web page by its URL.
+[**GetDocumentByUrl**](DocumentApi.md#GetDocumentByUrl) | **GET** /html/download | Download the HTML page from Web by its URL with linked resources as a ZIP archive.
 
 
-<a name="GetDocument"></a>
-# **GetDocument**
-> Stream GetDocument(name, storage, folder)
+<a name="GetDocumentByUrl"></a>
+# **GetDocumentByUrl**
+> AsposeStreamResponse GetDocumentByUrl(name, storage, folder)
 
-Return the HTML document by the name from default or specified storage.
+Download the HTML page from Web by its URL with linked resources as a ZIP archive.
 
 ### Example
 ```csharp
@@ -34,27 +34,25 @@ public static void Main(string[] args)
 	string appSID = "XXXXX";   // put here your app SID
 	string BasePath = "https://api.aspose.cloud/v1.1";
 	
-	string name = "testpage4_embcss.html"; 
-			// source image name; put here your file name
-	        // source file should be uploaded first to the storage by {folder}/{filename} path using Aspose.Storage Cloud API
+
+	string sourceUrl = "https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";   // web page URL
 	
 	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, name);
-	
-	string folder = null;     // root folder by default;  put folder path here
-	string storage = null;    // default storage; put storage name here
 
 	try
 	{
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
-		var response = docApi.GetDocument(name, storage, folder);
+		var response = docApi.GetDocumentByUrl(sourceUrl);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
-				response.CopyTo(fstr);
+				stream.CopyTo(fstr);
 				fstr.Flush();
 				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
 			}
@@ -71,13 +69,11 @@ public static void Main(string[] args)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| The document name. |
- **storage** | **String**| The document folder | [optional]
- **folder** | **String**| The document folder. | [optional]
+**sourceUrl** | **String**| The source web page URL to download. |
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -86,11 +82,11 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data, application/zip
+ - **Accept**: application/zip
 
 <a name="GetDocumentFragmentByXPath"></a>
 # **GetDocumentFragmentByXPath**
-> Stream GetDocumentFragmentByXPath(name, xPath, outFormat, storage, folder)
+> AsposeStreamResponse GetDocumentFragmentByXPath(name, xPath, outFormat, storage, folder)
 
 Return list of HTML fragments matching the specified XPath query. 
 
@@ -123,8 +119,11 @@ public static void Main(string[] args)
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByXPath(name, xPath, outFormat, storage, folder);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -154,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -167,7 +166,7 @@ No authorization required
  
 <a name="GetDocumentFragmentByXPathByUrl"></a>
 # **GetDocumentFragmentByXPathByUrl**
-> Stream GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat)
+> AsposeStreamResponse GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat)
 
 Return list of HTML fragments matching the specified XPath query - from a Web page by its URL. 
 
@@ -199,8 +198,11 @@ public static void Main(string[] args)
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -229,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -243,7 +245,7 @@ No authorization required
 
 <a name="GetDocumentFragmentByCSSSelector"></a>
 # **GetDocumentFragmentByCSSSelector**
-> Stream GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder)
+> AsposeStreamResponse GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder)
 
 Return list of HTML fragments matching the specified CSS selector. 
 
@@ -276,8 +278,11 @@ public static void Main(string[] args)
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -306,7 +311,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -323,7 +328,7 @@ No authorization required
  
 <a name="GetDocumentFragmentByCSSSelectorByUrl"></a>
 # **GetDocumentFragmentByCSSSelectorByUrl**
-> Stream GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, xPath, outFormat)
+> AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, xPath, outFormat)
 
 Return list of HTML fragments matching the specified CSS selector - from a Web page by its URL. 
 
@@ -355,8 +360,11 @@ public static void Main(string[] args)
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, selector, outFormat);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -385,7 +393,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -403,7 +411,7 @@ No authorization required
  
 <a name="GetDocumentImages"></a>
 # **GetDocumentImages**
-> Stream GetDocumentImages(name, folder, storage)
+> AsposeStreamResponse GetDocumentImages(name, folder, storage)
 
 Return all HTML document images packaged as a ZIP archive.
 
@@ -434,8 +442,11 @@ public static void Main(string[] args)
 	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByXPath(name, storage, folder);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -462,7 +473,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -535,7 +546,7 @@ Name | Type | Description  | Notes
  
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 

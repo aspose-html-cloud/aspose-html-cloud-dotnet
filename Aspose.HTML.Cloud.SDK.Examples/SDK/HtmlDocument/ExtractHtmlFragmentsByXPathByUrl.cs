@@ -26,9 +26,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
 
             IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.
-            Stream stream = docApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
-            if (stream != null && typeof(FileStream) == stream.GetType())
+            var response = docApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
+            if (response != null && response.ContentStream != null)
             {
+                Stream stream = response.ContentStream;
                 string outFile = $"{Path.GetFileNameWithoutExtension(name)}_fragments.txt";
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))

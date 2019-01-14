@@ -14,10 +14,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
         {
             string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_02.htm";
 
-            Stream stream = TranslationApi.GetTranslateDocumentByUrl(sourceUrl, "en", "fr");
-            Assert.IsNotNull(stream);
-            Assert.IsTrue(stream.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+            var response = TranslationApi.GetTranslateDocumentByUrl(sourceUrl, "en", "fr");
+            checkGetMethodResponse(response, "Translate", "_url_en_fr");
         }
 
         //[TestMethod]

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ISummarizationApi.cs">
+// <copyright company="Aspose" file="StreamContentResponse.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -21,33 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 // </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
+// ------------------
+using System;
 using System.IO;
-using Aspose.Html.Cloud.Sdk.Api.Model;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
+namespace Aspose.Html.Cloud.Sdk.Api.Model
 {
-    /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
-    /// </summary>
-    public interface ISummarizationApi
+    public class StreamContentResponse : AsposeResponse
     {
-        /// <summary>
-        /// Detect the keywords in the HTML document specified by the name from default or specified storage. 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
-        AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null);
+        public Stream Content { get; internal set; }
 
-        /// <summary>
-        /// Detect the keywords in the HTML document specified by its URL.
-        /// </summary>
-        /// <param name="sourceUrl"></param>
-        /// <returns></returns>
-        AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl);
-
+        public string Name { get; internal set; }
     }
 }

@@ -25,9 +25,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
 
             IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
             // call SDK method that gets a zip archive with all HTML document images
-            Stream stream = docApi.GetDocumentImagesByUrl(url);
-            if (stream != null && typeof(FileStream) == stream.GetType())
+            var response = docApi.GetDocumentImagesByUrl(url);
+            if (response != null && response.ContentStream != null)
             {
+                Stream stream = response.ContentStream;
                 string outFile = $"{Path.GetFileNameWithoutExtension(name)}_images.zip";
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))

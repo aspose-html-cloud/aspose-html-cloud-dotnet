@@ -59,8 +59,11 @@
     <Compile Include="Api\Interfaces\ITemplateMergeApi.cs" />
     <Compile Include="Api\Interfaces\ITranslationApi.cs" />
     <Compile Include="Api\Model\AsposeResponse.cs" />
+    <Compile Include="Api\Model\AsposeStreamResponse.cs" />
     <Compile Include="Api\Model\Requests\ConversionRequest.cs" />
     <Compile Include="Api\Model\Requests\TranslationRequest.cs" />
+    <Compile Include="Api\Model\ResourceHandlingOptions.cs" />
+    <Compile Include="Api\Model\StreamContentResponse.cs" />
     <Compile Include="Api\OcrApi.cs" />
     <Compile Include="Api\SummarizationApi.cs" />
     <Compile Include="Api\TemplateMergeApi.cs" />

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="GetTranslateDocument"></a>
 # **GetTranslateDocument**
-> Stream GetTranslateDocument(name, srcLang, resLang, storage, folder)
+> AsposeStreamResponse GetTranslateDocument(name, srcLang, resLang, storage, folder)
 
 Translate the HTML document specified by the name from default or specified storage.
 
@@ -43,8 +43,11 @@ public static void Main(string[] args)
 	    ITranslationApi transApi = new TranslationApi(appKey, appSID, BasePath);
 		var response = transApi.GetTranslateDocument(name, srcLang, resLang, storage, folder);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -73,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -86,7 +89,7 @@ No authorization required
 
 <a name="translationGetTranslateDocumentByUrl"></a>
 # **GetTranslateDocumentByUrl**
-> Stream GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang)
+> AsposeStreamResponse GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang)
 
 Translate the HTML document specified by its URL.
 
@@ -120,8 +123,11 @@ public static void Main(string[] args)
 	    ITranslationApi transApi = new TranslationApi(appKey, appSID, BasePath);
 		var response = docApi.GetTranslateDocument(sourceUrl, srcLang, resLang);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -148,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](Stream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 

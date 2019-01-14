@@ -13,6 +13,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge
             var templateName = "test_template_3_2.html"; 
             var dataFileName = "templ_merge_data_3.xml";
             var folder = "/14/HTML";
+            var options = "{'cs_names':false, 'rm_tabhdr':false}";
 
             string filePath = Path.Combine(CommonSettings.DataFolder, templateName);
             // template should be uploaded to storage before
@@ -36,7 +37,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge
             // call SDK method that gets an HTML template and a data file from the storage 
             // and returns generated HTML document as stream.
             string dataPath = $"{folder}/{dataFileName}";
-            Stream stream = mergeApi.GetMergeHtmlTemplate(templateName, dataPath, folder);
+            var response = mergeApi.GetMergeHtmlTemplate(templateName, dataPath, options, folder);
+            Stream stream = response.ContentStream;
             if (stream != null && typeof(FileStream) == stream.GetType())
             {
                 string outFile = $"{Path.GetFileNameWithoutExtension(templateName)}_merged.{Path.GetExtension(templateName)}";

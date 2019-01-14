@@ -42,11 +42,12 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
                 if(uploaded)
                 {
                     TranslationApi transApi = new TranslationApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-                    Stream stream = transApi.GetTranslateDocument(name, SrcLang, ResLang, folder, storage);
+                    var response = transApi.GetTranslateDocument(name, SrcLang, ResLang, folder, storage);
 
-                    if (stream != null && stream.GetType() == typeof(FileStream))
+                    if (response != null && response.ContentStream != null)
                     {
-                        string outName = ((FileStream)stream).Name;
+                        Stream stream = response.ContentStream;
+                        string outName = response.FileName;
                         string outPath = Path.Combine(CommonSettings.OutDirectory, Path.GetFileName(outName));
                         using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                         {
@@ -55,8 +56,6 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
                             Console.WriteLine(string.Format("File '{0}' downloaded to: {1}", Path.GetFileName(outName), outPath));
                         }
                     }
-                    stream.Close();
-                    stream.Dispose();
                 }
             }
             else

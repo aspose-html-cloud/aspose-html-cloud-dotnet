@@ -23,6 +23,9 @@ namespace Aspose.HTML.Cloud.Examples
 
             // Uncomment the one you want to try out
 
+            // == Example == populate HTML template with data 
+            //runner = new MergeHtmlTemplateWithData();
+
             // == Example == extract HTML fragments by XPath query
             //runner = new ExtractHtmlFragmentsByXPath();
 

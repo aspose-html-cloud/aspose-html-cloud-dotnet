@@ -28,11 +28,12 @@ namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr
             string storage = null;
 
             OcrApi ocrApi = new OcrApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-            Stream stream = ocrApi.GetRecognizeAndImportToHtml(srcName, "en", folder, storage);
+            var response = ocrApi.GetRecognizeAndImportToHtml(srcName, "en", folder, storage);
 
-            if (stream != null && stream.GetType() == typeof(FileStream))
+            if (response != null && response.ContentStream != null)
             {
-                string name = ((FileStream)stream).Name;
+                Stream stream = response.ContentStream;
+                string name = response.FileName;
                 string outPath = Path.Combine(CommonSettings.OutDirectory, Path.GetFileName(name));
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {
@@ -41,8 +42,6 @@ namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr
                     Console.WriteLine(string.Format("File '{0}' downloaded to: {1}", Path.GetFileName(name), outPath));
                 }
             }
-            stream.Close();
-            stream.Dispose();
         }
     }
 }

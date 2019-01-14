@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 <a name="GetConvertDocumentToImage"></a>
 # **GetConvertDocumentToImage**
-> Stream GetConvertDocumentToImage(name, outFormat, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
+> AsposeStreamResponse GetConvertDocumentToImage(name, outFormat, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
 
 Convert the HTML document from the storage by its name to the specified image format.
 
@@ -64,8 +64,11 @@ public static void Main(string[] args)
 			leftMargin, rightMargin, topMargin, bottomMargin,
 			resolution, folder, storage);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -100,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -114,7 +117,7 @@ No authorization required
  
 <a name="GetConvertDocumentToImageByUrl"></a>
 # **GetConvertDocumentToImageByUrl**
-> Stream GetConvertDocumentToImageByUrl(sourceUrl, outFormat, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution)
+> AsposeStreamResponse GetConvertDocumentToImageByUrl(sourceUrl, outFormat, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution)
 
 Convert the HTML page from the web by its URL to the specified image format.
 
@@ -154,8 +157,11 @@ public static void Main(string[] args)
 			sourceUrl, format, width, height,
 			leftMargin, rightMargin, topMargin, bottomMargin, resolution);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+		
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -188,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -202,7 +208,7 @@ No authorization required
  
 <a name="GetConvertDocumentToPdf"></a>
 # **GetConvertDocumentToPdf**
-> Stream GetConvertDocumentToPdf(name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage)
+> AsposeStreamResponse GetConvertDocumentToPdf(name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage)
 
 Convert the HTML document from the storage by its name to PDF.
 
@@ -244,8 +250,11 @@ public static void Main(string[] args)
 			leftMargin, rightMargin, topMargin, bottomMargin,
 			folder, storage);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+		
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -278,7 +287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -291,7 +300,7 @@ No authorization required
 
 <a name="GetConvertDocumentToPdfByUrl"></a>
 # **GetConvertDocumentToPdfByUrl**
-> Stream GetConvertDocumentToPdfByUrl(sourceUrl, width, height, leftMargin, rightMargin, topMargin, bottomMargin)
+> AsposeStreamResponse GetConvertDocumentToPdfByUrl(sourceUrl, width, height, leftMargin, rightMargin, topMargin, bottomMargin)
 
 Convert the HTML page from the web by its URL to PDF.
 
@@ -331,8 +340,11 @@ public static void Main(string[] args)
 			leftMargin, rightMargin, topMargin, bottomMargin,
 			xResolution, yResolution);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+		
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -363,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -376,7 +388,7 @@ No authorization required
 
 <a name="GetConvertDocumentToXps"></a>
 # **GetConvertDocumentToXps**
-> Stream GetConvertDocumentToXps(name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage)
+> AsposeStreamResponse GetConvertDocumentToXps(name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage)
 
 Convert the HTML document from the storage by its name to XPS.
 
@@ -417,8 +429,11 @@ public static void Main(string[] args)
 			leftMargin, rightMargin, topMargin, bottomMargin,
 			folder, storage);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+		
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -451,7 +466,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -464,7 +479,7 @@ No authorization required
 
 <a name="GetConvertDocumentToXpsByUrl"></a>
 # **GetConvertDocumentToXpsByUrl**
-> Stream GetConvertDocumentToXpsByUrl(sourceUrl, width, height, leftMargin, rightMargin, topMargin, bottomMargin)
+> AsposeStreamResponse GetConvertDocumentToXpsByUrl(sourceUrl, width, height, leftMargin, rightMargin, topMargin, bottomMargin)
 
 Convert the HTML page from the web by its URL to XPS.
 
@@ -503,8 +518,11 @@ public static void Main(string[] args)
 			leftMargin, rightMargin, topMargin, bottomMargin,
 			xResolution, yResolution);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+		
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -535,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -550,7 +568,7 @@ No authorization required
  
 <a name="PutConvertDocumentToImage"></a>
 # **PutConvertDocumentToImage**
-> Stream PutConvertDocumentToImage(name, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
+> AsposeResponse PutConvertDocumentToImage(name, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
 
 Convert the HTML document from the storage by its name to the specified image format and save to the storage.
 
@@ -633,7 +651,7 @@ No authorization required
   
 <a name="PutConvertDocumentToImage_1"></a>
 # **PutConvertDocumentToImage**
-> Stream PutConvertDocumentToImage(inStream, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage)
+> AsposeResponse PutConvertDocumentToImage(inStream, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage)
 
 Convert the HTML document from the request stream to the specified image format and save to the storage.
 
@@ -721,7 +739,7 @@ No authorization required
  
 <a name="PutConvertDocumentToPdf"></a>
 # **PutConvertDocumentToPdf**
-> Stream PutConvertDocumentToPdf(name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
+> AsposeResponse PutConvertDocumentToPdf(name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
 
 Convert the HTML document from the storage by its name to PDF and save to the storage.
 
@@ -800,7 +818,7 @@ No authorization required
  
 <a name="PutConvertDocumentToPdf_1"></a>
 # **PutConvertDocumentToPdf**
-> Stream PutConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage)
+> AsposeResponse PutConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage)
 
 Convert the HTML document from the request stream to PDF and save to the storage.
 
@@ -884,7 +902,7 @@ No authorization required
  
 <a name="PutConvertDocumentToXps"></a>
 # **PutConvertDocumentToXps**
-> Stream PutConvertDocumentToXps(name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
+> AsposeResponse PutConvertDocumentToXps(name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage)
 
 Convert the HTML document from the storage by its name to XPS and save to the storage.
 
@@ -964,7 +982,7 @@ No authorization required
  
 <a name="PutConvertDocumentToXps_1"></a>
 # **PutConvertDocumentToXps**
-> Stream PutConvertDocumentToXps(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage)
+> AsposeResponse PutConvertDocumentToXps(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage)
 
 Convert the HTML document from the request stream to PDF and save to the storage.
 

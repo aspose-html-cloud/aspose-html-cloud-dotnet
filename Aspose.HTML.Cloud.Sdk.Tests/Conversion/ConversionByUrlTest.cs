@@ -15,9 +15,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string sourceUrl = @"https://stallman.org/articles/anonymous-payments-thru-phones.html";
 
             var response = this.ConversionApi.GetConvertDocumentToPdfByUrl(sourceUrl, 800, 1200);
-            Assert.IsNotNull(response);
-            Assert.IsTrue(response.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)response).Name));
+            checkGetMethodResponse(response, "Conversion");
         }
 
         [TestMethod]
@@ -26,9 +24,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string sourceUrl = @"https://stallman.org/articles/anonymous-payments-thru-phones.html";
 
             var response = this.ConversionApi.GetConvertDocumentToXpsByUrl(sourceUrl, 800, 1200);
-            Assert.IsNotNull(response);
-            Assert.IsTrue(response.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)response).Name));
+            checkGetMethodResponse(response, "Conversion");
         }
 
         [TestMethod]
@@ -38,9 +34,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
 
             var response = this.ConversionApi.GetConvertDocumentToImageByUrl(
                 sourceUrl, "jpeg", 800, 1200);
-            Assert.IsNotNull(response);
-            Assert.IsTrue(response.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)response).Name));
+            checkGetMethodResponse(response, "Conversion");
         }
     }
 }

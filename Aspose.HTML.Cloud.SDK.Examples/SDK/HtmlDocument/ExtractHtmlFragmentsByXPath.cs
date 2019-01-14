@@ -33,10 +33,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
 
             IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.
-            Stream stream = docApi.GetDocumentFragmentByXPath(name, xPath, "json", null, null);
-            if (stream != null && typeof(FileStream) == stream.GetType())
+            var response = docApi.GetDocumentFragmentByXPath(name, xPath, "json", null, null);
+            if (response != null && response.ContentStream != null)
             {
-                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_fragments.json";
+                Stream stream = response.ContentStream;
+                string outFile = $"{Path.GetFileNameWithoutExtension(response.FileName)}_fragments.json";
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {

@@ -32,6 +32,7 @@ using System.Net.Http;
 using System.Web;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api
 {
@@ -53,7 +54,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder"></param>
         /// <param name="storage"></param>
         /// <returns></returns>
-        public Stream GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
+        public AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
         {
             var methodName = "GetDetectHtmlKeywords";
             // verify the required parameter 'name' is set
@@ -80,7 +81,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="sourceUrl"></param>
         /// <returns></returns>
-        public Stream GetDetectHtmlKeywordsByUrl(string sourceUrl)
+        public AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl)
         {
             var methodName = "GetDetectHtmlKeywordsByUrl";
 

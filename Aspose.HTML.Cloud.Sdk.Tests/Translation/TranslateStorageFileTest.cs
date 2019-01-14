@@ -29,11 +29,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
                 Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             }
 
-            Stream stream = TranslationApi.GetTranslateDocument(
+            var response = TranslationApi.GetTranslateDocument(
                 name, "en", "fr", folder, null);
-            Assert.IsNotNull(stream);
-            Assert.IsTrue(stream.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)stream).Name));
+            checkGetMethodResponse(response, "Translate", "_en_fr");
         }
 
         //[TestMethod]

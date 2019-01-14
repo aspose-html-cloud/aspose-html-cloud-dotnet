@@ -35,6 +35,7 @@ using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Model.Requests;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
+
 namespace Aspose.Html.Cloud.Sdk.Api
 {
     /// <summary>
@@ -52,6 +53,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
             s_mimeTypes.Add("bmp", new Tuple<string, string>("image/bmp", "bmp"));
             s_mimeTypes.Add("png", new Tuple<string, string>("image/png", "png"));
             s_mimeTypes.Add("tiff", new Tuple<string, string>("image/tiff", "tif"));
+            s_mimeTypes.Add("md", new Tuple<string, string>("", "md"));
+            s_mimeTypes.Add("mhtml", new Tuple<string, string>("", "mht"));
         }
 
         private string GetMimeType(string format)
@@ -422,7 +425,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
-        public Stream GetConvertDocumentToImage(string name, string outFormat, 
+        public AsposeStreamResponse GetConvertDocumentToImage(string name, string outFormat, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
             int? topMargin = default(int?), int? bottomMargin = default(int?), int? resolution = default(int?), 
             string folder = null, string storage = null)
@@ -470,7 +473,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="bottomMargin">Bottom image margin.</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
-        public Stream GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, 
+        public AsposeStreamResponse GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
             int? topMargin = default(int?), int? bottomMargin = default(int?), int? resolution = default(int?))
         {
@@ -517,7 +520,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
-        public Stream GetConvertDocumentToPdf(string name, 
+        public AsposeStreamResponse GetConvertDocumentToPdf(string name, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
             int? topMargin = default(int?), int? bottomMargin = default(int?), 
             string folder = null, string storage = null)
@@ -559,7 +562,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="topMargin">Top image document page.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
-        public Stream GetConvertDocumentToPdfByUrl(string sourceUrl, 
+        public AsposeStreamResponse GetConvertDocumentToPdfByUrl(string sourceUrl, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
             int? topMargin = default(int?), int? bottomMargin = default(int?))
         {
@@ -601,7 +604,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
         /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
-        public Stream GetConvertDocumentToXps(string name, 
+        public AsposeStreamResponse GetConvertDocumentToXps(string name, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
             int? topMargin = default(int?), int? bottomMargin = default(int?), string folder = null, string storage = null)
         {
@@ -642,7 +645,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="topMargin">Top document page margin.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
-        public Stream GetConvertDocumentToXpsByUrl(string sourceUrl, 
+        public AsposeStreamResponse GetConvertDocumentToXpsByUrl(string sourceUrl, 
             int? width = default(int?), int? height = default(int?), int? leftMargin = default(int?), int? rightMargin = default(int?), 
             int? topMargin = default(int?), int? bottomMargin = default(int?))
         {
@@ -947,6 +950,149 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
+            var response = CallPutApi(path, queryParams, inStream, methodName);
+            return response;
+        }
+
+        public AsposeStreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = default(bool), string folder = null, string storage = null)
+        {
+            var methodName = "GetConvertDocumentToMarkdown";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+
+            var path = "/html/{name}/convert/md";
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            if (useGit != null) queryParams.Add("useGit", ApiClientUtils.ParameterToString(useGit)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
+
+        public AsposeStreamResponse GetConvertDocumentToMHTML(string name, 
+            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
+            string folder = null, string storage = null)
+        {
+            var methodName = "GetConvertDocumentToMHTML";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+
+            var path = "/html/{name}/convert/mhtml";
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
+            if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
+            if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
+            if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
+
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+            var response = CallGetApi(path, queryParams, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToMarkdown(string name, string outPath, bool? useGit = false, string folder = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToMarkdown";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+
+            var path = "/html/{name}/convert/md";
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            if (useGit != null) queryParams.Add("useGit", ApiClientUtils.ParameterToString(useGit)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallPutApi(path, queryParams, null, methodName);
+            return response;
+            throw new NotImplementedException();
+        }
+
+        public AsposeResponse PutConvertDocumentToMarkdown(Stream inStream, string outPath, bool? useGit = false)
+        {
+            var methodName = "PutConvertDocumentToMarkdown";
+            // verify the required parameter 'name' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/convert/md";
+            //path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            if (useGit != null) queryParams.Add("useGit", ApiClientUtils.ParameterToString(useGit)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallPutApi(path, queryParams, inStream, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToMHTML(string name, string outPath,
+            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
+            string folder = null, string storage = null)
+        {
+            var methodName = "PutConvertDocumentToMHTML";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+
+            var path = "/html/{name}/convert/mhtml";
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
+            if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
+            if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
+            if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
+            var response = CallPutApi(path, queryParams, null, methodName);
+            return response;
+        }
+
+        public AsposeResponse PutConvertDocumentToMHTML(Stream inStream, string outPath,
+            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null)
+        {
+            var methodName = "PutConvertDocumentToMHTML";
+            // verify the required parameter 'name' is set
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+            var path = "/html/convert/mhtml";
+
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+
+            if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
+            if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
+            if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
+            if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
+            // authentication setting, if any
+            String[] authSettings = new String[] { };
+
             var response = CallPutApi(path, queryParams, inStream, methodName);
             return response;
         }

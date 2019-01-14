@@ -47,6 +47,11 @@ namespace Aspose.Html.Cloud.Sdk.Api.Model
         public string Status { get; set; }
 
         /// <summary>
+        /// Response reason phrase - short status description
+        /// </summary>
+        public string ReasonPhrase { get; set; }
+
+        /// <summary>
         /// Get the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>

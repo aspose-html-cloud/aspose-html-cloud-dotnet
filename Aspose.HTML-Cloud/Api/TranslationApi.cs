@@ -32,6 +32,7 @@ using System.Net.Http;
 using System.Web;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api
 {
@@ -60,7 +61,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
         /// <returns>Stream | Stream of resulting document.</returns>
-        public Stream GetTranslateDocument (string name, string srcLang, string resLang, string folder = null, string storage = null)
+        public AsposeStreamResponse GetTranslateDocument (string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             var methodName = "GetTranslateDocument";
             // verify the required parameter 'name' is set
@@ -100,7 +101,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="resLang">Result language.</param>
         /// <returns>Stream | Stream of resulting document.</returns> 
         //[Obsolete]
-        public Stream GetTranslateDocumentByUrl (string sourceUrl, string srcLang, string resLang)
+        public AsposeStreamResponse GetTranslateDocumentByUrl (string sourceUrl, string srcLang, string resLang)
         {
             var methodName = "GetTranslateDocumentByUrl";
             // verify the required parameter 'sourceUrl' is set

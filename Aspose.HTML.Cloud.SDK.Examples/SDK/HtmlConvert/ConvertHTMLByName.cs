@@ -3,6 +3,7 @@ using System.IO;
 using Aspose.Storage.Cloud.Sdk.Model;
 using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.HTML.Cloud.Examples.SDK;
 
@@ -50,7 +51,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 
             IConversionApi convApi = new ConversionApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
 
-            Stream response = null;
+            AsposeStreamResponse response = null;
             // call SDK methods that convert HTML document to supported out format
             switch (Format)
             {
@@ -77,13 +78,14 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     throw new ArgumentException($"Unsupported output format: {Format}");
             }
 
-            if (response != null && typeof(FileStream) == response.GetType())
+            if (response != null && response.ContentStream != null)
             {
+                Stream outStream = response.ContentStream;
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {
-                    response.Position = 0;
-                    response.CopyTo(fstr);
+                    outStream.Position = 0;
+                    outStream.CopyTo(fstr);
                     fstr.Flush();
                     Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
                 }

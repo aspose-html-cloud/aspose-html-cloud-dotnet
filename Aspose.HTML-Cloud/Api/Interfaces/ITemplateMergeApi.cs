@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ITranslationApi.cs">
+// <copyright company="Aspose" file="ITemplateMergeApi.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -43,7 +43,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The template document folder.</param>
         /// <param name="storage">The template document and data source storage.</param>
         /// <returns>System.IO.Stream | Stream containing the generated document.</returns>
-        Stream GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null);
+        AsposeStreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null);
 
         /// <summary>
         /// Populate HTML document template with data from the stream. Result document will be saved to storage.

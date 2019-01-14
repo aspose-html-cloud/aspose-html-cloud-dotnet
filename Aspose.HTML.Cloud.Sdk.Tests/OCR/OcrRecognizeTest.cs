@@ -27,10 +27,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse respEx = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(respEx.FileExist.IsExist.HasValue && respEx.FileExist.IsExist.Value);
             //}
-            var result = OcrApi.GetRecognizeAndImportToHtml(name, "en", folder);
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)result).Name));
+            var response = OcrApi.GetRecognizeAndImportToHtml(name, "en", folder);
+            checkGetMethodResponse(response, "Ocr", "_recognize");
         }
 
         [TestMethod]
@@ -48,10 +46,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
-            var result = OcrApi.GetRecognizeAndImportToHtml(name, "en", folder);
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.GetType() == typeof(FileStream));
-            Assert.IsTrue(File.Exists(((FileStream)result).Name));
+            var response = OcrApi.GetRecognizeAndImportToHtml(name, "en", folder);
+            checkGetMethodResponse(response, "Ocr", "_recognize");
         }
 
 
@@ -70,10 +66,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
-            var result = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result is FileStream);
-            Assert.IsTrue(File.Exists(((FileStream)result).Name));
+            var response = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
+            checkGetMethodResponse(response, "Ocr", "_en_de");
         }
 
         [TestMethod]
@@ -91,10 +85,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
-            var result = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result is FileStream);
-            Assert.IsTrue(File.Exists(((FileStream)result).Name));
+            var response = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
+            checkGetMethodResponse(response, "Ocr", "_en_de");
         }
 
     }

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="GetRecognizeAndImportToHtml"></a>
 # **GetRecognizeAndImportToHtml**
-> Stream GetRecognizeAndImportToHtml(name, ocrEngineLang, storage, folder)
+> AsposeStreamResponse GetRecognizeAndImportToHtml(name, ocrEngineLang, storage, folder)
 
 Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
 
@@ -42,8 +42,11 @@ public static void Main(string[] args)
 	    IOcrApi ocrApi = new OcrApi(appKey, appSID, BasePath);
 		var response = ocrApi.GetRecognizeAndImportToHtml(name, ocrEngineLang, storage, folder);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -72,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
@@ -85,7 +88,7 @@ No authorization required
  
  <a name="GetRecognizeAndTranslateToHtml"></a>
 # **GetRecognizeAndTranslateToHtml**
-> Stream GetRecognizeAndTranslateToHtml(name, srcLang, resLang, storage, folder)
+> AsposeStreamResponse GetRecognizeAndTranslateToHtml(name, srcLang, resLang, storage, folder)
 
 Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
 
@@ -119,8 +122,11 @@ public static void Main(string[] args)
 	    IOcrApi ocrApi = new OcrApi(appKey, appSID, BasePath);
 		var response = ocrApi.GetRecognizeAndTranslateToHtml(name, srcLang, resLang, storage, folder);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
@@ -150,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Stream**](FileStream.md)
+[**AsposeStreamResponse**](AsposeStreamResponse.md)
 
 ### Authorization
 
