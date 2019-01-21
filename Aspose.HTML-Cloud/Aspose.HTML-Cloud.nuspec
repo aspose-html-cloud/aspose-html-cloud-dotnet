@@ -6,13 +6,14 @@
     <version>18.12.0</version>
     <authors>asposecloud</authors>
     <owners>asposemarketplace</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+	<license type="expression">MIT</license>
     <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
     <releaseNotes>
       Release of Aspose.HTML Cloud for .NET SDK (v.18.12)
     </releaseNotes>
     <copyright>Aspose 2002-2018. All Rights Reserved.</copyright>
-    <tags>aspose.html html translate translation conversion pdf xps image xpath ocr css</tags>
+    <tags>aspose.html html translate translation conversion pdf xps image xpath ocr css md mhtml template</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="9.0.1" />
     </dependencies>
