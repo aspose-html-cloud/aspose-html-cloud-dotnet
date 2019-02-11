@@ -36,5 +36,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
                 sourceUrl, "jpeg", 800, 1200);
             checkGetMethodResponse(response, "Conversion");
         }
+
+
+        [TestMethod]
+        public void Test_GetHtmlConvert_MHTML_UrlToStream()
+        {
+            string sourceUrl = @"https://stallman.org/articles/anonymous-payments-thru-phones.html";
+
+            var response = this.ConversionApi.GetConvertDocumentToMHTMLByUrl(sourceUrl);
+            checkGetMethodResponse(response, "Conversion");
+        }
     }
 }
