@@ -28,7 +28,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             FileUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
             //FileUrl = @"https://docs.gitlab.com/ee/README.html";
             string name = "page_01.htm";
-            string ext = (Format == "tiff") ? "tif" : ((Format == "jpeg") ? "jpg" : Format);
+            string ext = (Format == "tiff") ? "tif" 
+                : ((Format == "jpeg") ? "jpg" 
+                : ((Format == "mhtml") ? "mht" : Format));
             string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted.{ext}";
             string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
 
@@ -41,13 +43,16 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     response = convApi.GetConvertDocumentToPdfByUrl(FileUrl, 1200, 800);
                     break;
                 case "xps":
-                    response = convApi.GetConvertDocumentToXps(FileUrl, 1200, 800);
+                    response = convApi.GetConvertDocumentToXpsByUrl(FileUrl, 1200, 800);
                     break;
                 case "jpeg":
                 case "bmp":
                 case "png":
                 case "tiff":
-                    response = convApi.GetConvertDocumentToImage(Format, FileUrl, 800, 1200);
+                    response = convApi.GetConvertDocumentToImageByUrl(Format, FileUrl, 800, 1200);
+                    break;
+                case "mhtml":
+                    response = convApi.GetConvertDocumentToMHTMLByUrl(FileUrl);
                     break;
                 default:
                     throw new ArgumentException($"Unsupported output format: {Format}");

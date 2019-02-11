@@ -47,7 +47,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="folder">The source document folder.</param>
         /// <param name="storage">The source document storage.</param>
-        /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
+        /// <returns>AsposeStreamResponse | Stream of the resulting image.</returns>
         AsposeStreamResponse GetConvertDocumentToImage(
             string name, string outFormat,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -66,7 +66,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="topMargin">Top image margin.</param>
         /// <param name="bottomMargin">Bottom image margin.</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
-        /// <returns>System.IO.Stream | Stream of the resulting image.</returns>
+        /// <returns>AsposeStreamResponse | Stream of the resulting image.</returns>
         AsposeStreamResponse GetConvertDocumentToImageByUrl(
             string sourceUrl, string outFormat,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -84,7 +84,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="folder">The source document folder.</param>
         /// <param name="storage">The source document storage.</param>
-        /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
+        /// <returns>AsposeStreamResponse | Stream of the resulting PDF document.</returns>
         AsposeStreamResponse GetConvertDocumentToPdf(
              string name,
              int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -100,7 +100,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="rightMargin">Right document page margin.</param>
         /// <param name="topMargin">Top image document page.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
-        /// <returns>System.IO.Stream | Stream of the resulting PDF document.</returns>
+        /// <returns>AsposeStreamResponse | Stream of the resulting PDF document.</returns>
         AsposeStreamResponse GetConvertDocumentToPdfByUrl(
             string sourceUrl,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -118,7 +118,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
-        /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
+        /// <returns>AsposeStreamResponse | Stream of the resulting XPS document.</returns>
         AsposeStreamResponse GetConvertDocumentToXps(
              string name,
              int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -134,7 +134,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="rightMargin">Right document page margin.</param>
         /// <param name="topMargin">Top document page margin.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
-        /// <returns>System.IO.Stream | Stream of the resulting XPS document.</returns>
+        /// <returns>AsposeStreamResponse | Stream of the resulting XPS document.</returns>
         AsposeStreamResponse GetConvertDocumentToXpsByUrl(
             string sourceUrl,
             int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
@@ -249,24 +249,57 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string storage = null);
 
+        /// <summary>
+        /// Convert the HTML document to Markdown.
+        /// </summary>
+        /// <param name="name">The source file name</param>
+        /// <param name="useGit">Use Git flavor of Markdown.</param>
+        /// <param name="folder">Source document folder</param>
+        /// <param name="storage">Source document storage</param>
+        /// <returns>AsposeStreamResponse | Stream of the resulting Markdown document.</returns>
         AsposeStreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = null, string folder = null, string storage = null);
 
-        AsposeStreamResponse GetConvertDocumentToMHTML(string name, 
-            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
-            string folder = null, string storage = null);
-
+        /// <summary>
+        /// Convert the HTML document to Markdown and save to storage
+        /// </summary>
+        /// <param name="name">The source file name</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
+        /// <param name="useGit">Use Git flavor of Markdown.</param>
+        /// <param name="folder">Source document folder</param>
+        /// <param name="storage">Source and resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
         AsposeResponse PutConvertDocumentToMarkdown(string name, string outPath,
             bool? useGit = default(bool), string folder = null, string storage = null);
 
-        AsposeResponse PutConvertDocumentToMarkdown(Stream inStream, string outPath, bool? useGit = null);
+        /// <summary>
+        ///  Convert the HTML document stream to Markdown and save to storage.
+        /// </summary>
+        /// <param name="inStream">Source document stream.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
+        /// <param name="useGit">Use Git flavor of Markdown</param>
+        /// <param name="storage">Source and resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        AsposeResponse PutConvertDocumentToMarkdown(Stream inStream, string outPath, bool? useGit = default(bool), string storage = null);
 
-        AsposeResponse PutConvertDocumentToMHTML(string name, string outPath,
-                    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null,
-            string folder = null, string storage = null);
+        /// <summary>
+        /// Convert the HTML document to MHTML by URL.
+        /// </summary>
+        /// <param name="sourceUrl"></param>
+        /// <returns>AsposeStreamResponse | Stream of the resulting MHTML document.</returns>
+        AsposeStreamResponse GetConvertDocumentToMHTMLByUrl(string sourceUrl);
 
-        AsposeResponse PutConvertDocumentToMHTML(Stream inStream, string outPath,
-                    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null);
+        #region excluded API wrappers
+        //AsposeStreamResponse GetConvertDocumentToMHTML(string name,
+        //    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null,
+        //    string folder = null, string storage = null);
 
+        //AsposeResponse PutConvertDocumentToMHTML(string name, string outPath,
+        //            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null,
+        //    string folder = null, string storage = null);
+
+        //AsposeResponse PutConvertDocumentToMHTML(Stream inStream, string outPath,
+        //            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null);
+        #endregion
     }
 
 

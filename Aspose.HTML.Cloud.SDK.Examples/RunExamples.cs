@@ -45,6 +45,9 @@ namespace Aspose.HTML.Cloud.Examples
             // == Example == convert HTML document from URL to JPEG
             //runner = new ConvertHTMLByUrl("jpeg");
 
+            // == Example == convert HTML document from URL to MHTML
+            //runner = new ConvertHTMLByUrl("mhtml");
+
             // == Example == convert HTML document from storage to PDF
             //runner = new ConvertHTMLByName("pdf");
 
@@ -53,6 +56,9 @@ namespace Aspose.HTML.Cloud.Examples
 
             // == Example == convert HTML document from storage to JPEG
             //runner = new ConvertHTMLByName("jpeg");
+
+            // == Example == convert HTML document from storage to Markdown
+            //runner = new ConvertHTMLByName("md");
 
             // == Example == convert HTML document from storage to PDF and save result to storage
             //runner = new ConvertHTMLByNameToStorage("pdf");

@@ -75,6 +75,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                         leftMargin, rightMargin, topMargin, bottomMargin,
                         resolution, folder, storage);
                     break;
+                case "md":
+                    response = convApi.PutConvertDocumentToMarkdown(name, outPath, false);
+                    break;
                 default:
                     throw new ArgumentException($"Unsupported output format: {Format}");
             }

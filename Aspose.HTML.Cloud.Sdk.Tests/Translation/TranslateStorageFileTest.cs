@@ -19,15 +19,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
             string folder = "HtmlTestTranslate";
             string storagePath = $"{folder}/{name}";
 
-            string srcPath = Path.Combine(dataFolder, name);
-            using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            {
-                PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
-                this.StorageApi.PutCreate(reqCr);
-                GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
-                FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-                Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
-            }
+            //string srcPath = Path.Combine(dataFolder, name);
+            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
+            //{
+            //    PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
+            //    this.StorageApi.PutCreate(reqCr);
+            //    GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
+            //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
+            //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+            //}
 
             var response = TranslationApi.GetTranslateDocument(
                 name, "en", "fr", folder, null);

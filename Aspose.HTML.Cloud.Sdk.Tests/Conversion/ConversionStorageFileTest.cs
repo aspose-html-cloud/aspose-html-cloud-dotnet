@@ -45,16 +45,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         }
 
         [TestMethod]
-        public void Test_GetHtmlConvert_MHTML_StorageToStream()
-        {
-            string name = "testpage1.html";
-            string folder = "14/HTML";
-
-            var response = this.ConversionApi.GetConvertDocumentToMHTML(name, 3, ResourceHandling.Embed, UrlRestriction.SameHost, ResourceHandling.Save, folder);
-            checkGetMethodResponse(response, "Conversion");
-        }
-
-        [TestMethod]
         public void Test_GetHtmlConvert_Markdown_StorageToStorage()
         {
             string name = "testpage1.html";
@@ -62,18 +52,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string outPath = $"Testout/{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd-hhmmss")}.md";
 
             var response = this.ConversionApi.PutConvertDocumentToMarkdown(name, outPath, false, folder);
-            Assert.IsNotNull(response);
-            Assert.AreEqual(200, response.Code);
-        }
-
-        [TestMethod]
-        public void Test_GetHtmlConvert_MHTML_StorageToStorage()
-        {
-            string name = "testpage1.html";
-            string folder = "14/HTML";
-            string outPath = $"Testout/{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd-hhmmss")}.mht";
-
-            var response = this.ConversionApi.PutConvertDocumentToMHTML(name, outPath, 3, ResourceHandling.Embed, UrlRestriction.SameHost, ResourceHandling.Save, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
         }

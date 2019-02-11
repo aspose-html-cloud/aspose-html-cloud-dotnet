@@ -954,6 +954,14 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
+        /// <summary>
+        /// Convert the HTML document to Markdown.
+        /// </summary>
+        /// <param name="name">The source file name</param>
+        /// <param name="useGit">Use Git flavor of Markdown.</param>
+        /// <param name="folder">Source document folder</param>
+        /// <param name="storage">Source document storage</param>
+        /// <returns>AsposeStreamResponse | Stream of the resulting Markdown document.</returns>
         public AsposeStreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = default(bool), string folder = null, string storage = null)
         {
             var methodName = "GetConvertDocumentToMarkdown";
@@ -976,27 +984,22 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToMHTML(string name, 
-            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
-            string folder = null, string storage = null)
+        /// <summary>
+        /// Convert the HTML document to MHTML by URL.
+        /// </summary>
+        /// <param name="sourceUrl"></param>
+        /// <returns>AsposeStreamResponse | Stream of the resulting MHTML document.</returns>
+        public AsposeStreamResponse GetConvertDocumentToMHTMLByUrl(string sourceUrl)
         {
-            var methodName = "GetConvertDocumentToMHTML";
+            var methodName = "GetConvertDocumentToMHTMLByUrl";
             // verify the required parameter 'name' is set
-            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+            if (sourceUrl == null) throw new ApiException(400, $"Missing required parameter 'sourceUrl' when calling {methodName}");
 
-            var path = "/html/{name}/convert/mhtml";
-            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
-
+            var path = "/html/convert/mhtml";
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
 
-            if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
-            if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
-            if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
-            if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
-
-            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
-            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            if (sourceUrl != null) queryParams.Add("sourceUrl", ApiClientUtils.ParameterToString(sourceUrl)); // query parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -1004,6 +1007,15 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
+        /// <summary>
+        /// Convert the HTML document to Markdown and save to storage
+        /// </summary>
+        /// <param name="name">The source file name</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
+        /// <param name="useGit">Use Git flavor of Markdown.</param>
+        /// <param name="folder">Source document folder</param>
+        /// <param name="storage">Source and resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
         public AsposeResponse PutConvertDocumentToMarkdown(string name, string outPath, bool? useGit = false, string folder = null, string storage = null)
         {
             var methodName = "PutConvertDocumentToMarkdown";
@@ -1027,7 +1039,15 @@ namespace Aspose.Html.Cloud.Sdk.Api
             throw new NotImplementedException();
         }
 
-        public AsposeResponse PutConvertDocumentToMarkdown(Stream inStream, string outPath, bool? useGit = false)
+        /// <summary>
+        ///  Convert the HTML document stream to Markdown and save to storage.
+        /// </summary>
+        /// <param name="inStream">Source document stream.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
+        /// <param name="useGit">Use Git flavor of Markdown</param>
+        /// <param name="storage">Source and resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        public AsposeResponse PutConvertDocumentToMarkdown(Stream inStream, string outPath, bool? useGit = false, string storage = null)
         {
             var methodName = "PutConvertDocumentToMarkdown";
             // verify the required parameter 'name' is set
@@ -1040,6 +1060,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
             var headerParams = new Dictionary<String, String>();
 
             if (useGit != null) queryParams.Add("useGit", ApiClientUtils.ParameterToString(useGit)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -1048,53 +1069,82 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
-        public AsposeResponse PutConvertDocumentToMHTML(string name, string outPath,
-            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
-            string folder = null, string storage = null)
-        {
-            var methodName = "PutConvertDocumentToMHTML";
-            // verify the required parameter 'name' is set
-            if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
+        #region excluded API wrappers
+        //public AsposeStreamResponse GetConvertDocumentToMHTML(string name, 
+        //    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
+        //    string folder = null, string storage = null)
+        //{
+        //    var methodName = "GetConvertDocumentToMHTML";
+        //    // verify the required parameter 'name' is set
+        //    if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
 
-            var path = "/html/{name}/convert/mhtml";
-            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+        //    var path = "/html/{name}/convert/mhtml";
+        //    path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
 
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
+        //    var queryParams = new Dictionary<String, String>();
+        //    var headerParams = new Dictionary<String, String>();
 
-            if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
-            if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
-            if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
-            if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
+        //    if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
+        //    if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
+        //    if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
+        //    if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
 
-            // authentication setting, if any
-            String[] authSettings = new String[] { };
+        //    if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+        //    if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            var response = CallPutApi(path, queryParams, null, methodName);
-            return response;
-        }
+        //    // authentication setting, if any
+        //    String[] authSettings = new String[] { };
+        //    var response = CallGetApi(path, queryParams, methodName);
+        //    return response;
+        //}
+        //public AsposeResponse PutConvertDocumentToMHTML(string name, string outPath,
+        //    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null, 
+        //    string folder = null, string storage = null)
+        //{
+        //    var methodName = "PutConvertDocumentToMHTML";
+        //    // verify the required parameter 'name' is set
+        //    if (name == null) throw new ApiException(400, $"Missing required parameter 'name' when calling {methodName}");
 
-        public AsposeResponse PutConvertDocumentToMHTML(Stream inStream, string outPath,
-            int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null)
-        {
-            var methodName = "PutConvertDocumentToMHTML";
-            // verify the required parameter 'name' is set
-            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+        //    var path = "/html/{name}/convert/mhtml";
+        //    path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
 
-            var path = "/html/convert/mhtml";
+        //    var queryParams = new Dictionary<String, String>();
+        //    var headerParams = new Dictionary<String, String>();
 
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
+        //    if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
+        //    if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
+        //    if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
+        //    if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
 
-            if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
-            if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
-            if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
-            if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
-            // authentication setting, if any
-            String[] authSettings = new String[] { };
+        //    // authentication setting, if any
+        //    String[] authSettings = new String[] { };
 
-            var response = CallPutApi(path, queryParams, inStream, methodName);
-            return response;
-        }
+        //    var response = CallPutApi(path, queryParams, null, methodName);
+        //    return response;
+        //}
+
+        //public AsposeResponse PutConvertDocumentToMHTML(Stream inStream, string outPath,
+        //    int? maxDepth = null, ResourceHandling? javaScript = null, UrlRestriction? urlRestrict = null, ResourceHandling? defaults = null)
+        //{
+        //    var methodName = "PutConvertDocumentToMHTML";
+        //    // verify the required parameter 'name' is set
+        //    if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+
+        //    var path = "/html/convert/mhtml";
+
+        //    var queryParams = new Dictionary<String, String>();
+        //    var headerParams = new Dictionary<String, String>();
+
+        //    if (maxDepth != null) queryParams.Add("maxDepth", ApiClientUtils.ParameterToString(maxDepth)); // query parameter
+        //    if (javaScript != null) queryParams.Add("javaScript", ApiClientUtils.ParameterToString(javaScript)); // query parameter
+        //    if (urlRestrict != null) queryParams.Add("urlRestrict", ApiClientUtils.ParameterToString(urlRestrict)); // query parameter
+        //    if (defaults != null) queryParams.Add("defaults", ApiClientUtils.ParameterToString(defaults)); // query parameter
+        //    // authentication setting, if any
+        //    String[] authSettings = new String[] { };
+
+        //    var response = CallPutApi(path, queryParams, inStream, methodName);
+        //    return response;
+        //}
+        #endregion
     }
 }

@@ -298,9 +298,9 @@ namespace Aspose.Html.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// 
+        /// Download HTML page with linked resources from Web by its URL and return it as a ZIP archive.
         /// </summary>
-        /// <param name="sourceUrl"></param>
+        /// <param name="sourceUrl">Source page URL</param>
         /// <returns></returns>
         public AsposeStreamResponse GetDocumentByUrl(string sourceUrl)
         {
