@@ -71,7 +71,9 @@
     <Compile Include="Client\ApiClient.cs" />
     <Compile Include="Client\ApiClientUtils.cs" />
     <Compile Include="Client\ApiException.cs" />
+    <Compile Include="Client\Authentication\AuthBase.cs" />
     <Compile Include="Client\Authentication\IAuthenticator.cs" />
+    <Compile Include="Client\Authentication\JwtAuth.cs" />
     <Compile Include="Client\Authentication\OAuth2.cs" />
     <Compile Include="Client\Configuration.cs" />
     <Compile Include="Com\Aspose\Html\Api\ApiBase.cs" />

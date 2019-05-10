@@ -38,14 +38,8 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
     /// <summary>
     /// 
     /// </summary>
-    class OAuth2 : IAuthenticator
+    class OAuth2 : AuthBase, IAuthenticator
     {
-        public enum AuthFlow
-        {
-            ObtainAccessTokenPending,
-            RefreshAccessTokenPending,
-            Obtained
-        }
 
         class OAuthData
         {
@@ -87,20 +81,17 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                     result.ClientId = dict["client_id"].ToString();
                     result.RefreshTokenLifeTimeInMinutes =
                         Convert.ToInt32(dict["clientRefreshTokenLifeTimeInMinutes"]);
-                    result.IssuedOn = DateTime.Now;
+                    result.IssuedOn = DateTime.UtcNow;
                 }
 
                 return result;
             }
         }
 
-        private string m_ClientId;
-        private string m_ClientSecret;
-        private AuthFlow m_authFlow;
-
         private OAuthData m_authData = null;
 
         public OAuth2(string clientId, string clientSecret, string baseUrl)
+            : base(AuthType.OAuth2)
         {
             m_ClientId = clientId;
             m_ClientSecret = clientSecret;
@@ -110,62 +101,64 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
         public bool Authenticate(HttpRequestMessage request)
         {
-            if(m_authFlow != AuthFlow.Obtained)
-            {
-                var host = GetHost(request.RequestUri.AbsoluteUri);
-                var authUriString = $"{host}/oauth2/token";
-                HttpClient authClient = new HttpClient();
-                HttpRequestMessage authReq = new HttpRequestMessage()
-                {
-                    RequestUri = new Uri(authUriString),
-                    Method = HttpMethod.Post
-                };
-                authReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                authReq.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-                List<KeyValuePair<string, string>> authReqContent;
-                switch (m_authFlow)
-                {
-                    case AuthFlow.ObtainAccessTokenPending:
-                        authReqContent = new List<KeyValuePair<string, string>>
-                        {
-                            new KeyValuePair<string, string>("grant_type", "client_credentials"),
-                            new KeyValuePair<string, string>("client_id", m_ClientId),
-                            new KeyValuePair<string, string>("client_secret", m_ClientSecret)
-                        };
- 
-                        break;
-                    case AuthFlow.RefreshAccessTokenPending:
+            #region REM
+            //if (m_authFlow != AuthFlow.Obtained)
+            //{
+            //    var host = GetHost(request.RequestUri.AbsoluteUri);
+            //    var authUriString = $"{host}/oauth2/token";
+            //    HttpClient authClient = new HttpClient();
+            //    HttpRequestMessage authReq = new HttpRequestMessage()
+            //    {
+            //        RequestUri = new Uri(authUriString),
+            //        Method = HttpMethod.Post
+            //    };
+            //    authReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //    authReq.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+            //    List<KeyValuePair<string, string>> authReqContent;
+            //    switch (m_authFlow)
+            //    {
+            //        case AuthFlow.ObtainAccessTokenPending:
+            //            authReqContent = new List<KeyValuePair<string, string>>
+            //            {
+            //                new KeyValuePair<string, string>("grant_type", "client_credentials"),
+            //                new KeyValuePair<string, string>("client_id", m_ClientId),
+            //                new KeyValuePair<string, string>("client_secret", m_ClientSecret)
+            //            };
 
-                        if(m_authData == null)
-                            throw new Exception($"Wrong OAuth2 flow");
+            //            break;
+            //        case AuthFlow.RefreshAccessTokenPending:
 
-                        authReqContent = new List<KeyValuePair<string, string>>
-                        {
-                            new KeyValuePair<string, string>("grant_type", "refresh_token"),
-                            new KeyValuePair<string, string>("refresh_token", m_authData.RefreshToken)
-                        };
-                        break;
-                    default:
-                        throw new Exception($"Wrong OAuth2 flow");
-                }
-                authReq.Content = new FormUrlEncodedContent(authReqContent);
+            //            if(m_authData == null)
+            //                throw new Exception($"Wrong OAuth2 flow");
 
-                var authResponse = authClient.SendAsync(authReq).Result;
-                if(authResponse.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    var content = authResponse.Content.ReadAsStringAsync().Result;
-                    m_authData = OAuthData.Deserialize(content);
-                    m_authFlow = AuthFlow.Obtained;
-                }
-            }
+            //            authReqContent = new List<KeyValuePair<string, string>>
+            //            {
+            //                new KeyValuePair<string, string>("grant_type", "refresh_token"),
+            //                new KeyValuePair<string, string>("refresh_token", m_authData.RefreshToken)
+            //            };
+            //            break;
+            //        default:
+            //            throw new Exception($"Wrong OAuth2 flow");
+            //    }
+            //    authReq.Content = new FormUrlEncodedContent(authReqContent);
 
-            if(m_authData != null)
+            //    var authResponse = authClient.SendAsync(authReq).Result;
+            //    if(authResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            //    {
+            //        var content = authResponse.Content.ReadAsStringAsync().Result;
+            //        m_authData = OAuthData.Deserialize(content);
+            //        m_authFlow = AuthFlow.Obtained;
+            //    }
+            //}
+            #endregion
+            bool res = AuthenticateImpl(request);
+            if (m_authData != null)
             {
                 if(m_authData.HasError)
                     throw new Exception($"OAuth 2.0: Authentication error: {m_authData.Error}", new Exception(m_authData.ErrorDescription));
                 request.Headers.Add("Authorization", AuthorizationHeaderValue);
             }
-            return true;
+            return res;
         }
 
         private string AuthorizationHeaderValue
@@ -181,14 +174,50 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             }
         }
 
-        private string GetHost(string url)
-        {
-            return new Uri(url).GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped);
-        }
-
         public void RetryAuthentication()
         {
             m_authFlow = AuthFlow.RefreshAccessTokenPending;
+        }
+
+        protected override List<KeyValuePair<string, string>> BuildAuthRequestContent()
+        {
+            List<KeyValuePair<string, string>> authReqContent = null;
+            switch (m_authFlow)
+            {
+                case AuthFlow.ObtainAccessTokenPending:
+                    authReqContent = new List<KeyValuePair<string, string>>
+                        {
+                            new KeyValuePair<string, string>("grant_type", "client_credentials"),
+                            new KeyValuePair<string, string>("client_id", m_ClientId),
+                            new KeyValuePair<string, string>("client_secret", m_ClientSecret)
+                        };
+
+                    break;
+                case AuthFlow.RefreshAccessTokenPending:
+
+                    if (m_authData == null)
+                        throw new Exception($"Wrong OAuth2 flow");
+
+                    authReqContent = new List<KeyValuePair<string, string>>
+                        {
+                            new KeyValuePair<string, string>("grant_type", "refresh_token"),
+                            new KeyValuePair<string, string>("refresh_token", m_authData.RefreshToken)
+                        };
+                    break;
+                default:
+                    throw new Exception($"Wrong OAuth2 flow");
+            }
+            return authReqContent;
+        }
+
+        protected override string GetAuthUriString(string host)
+        {
+            return $"{host}/oauth2/token";
+        }
+
+        protected override void AuthDataDeserializeImpl(string content)
+        {
+            m_authData = OAuthData.Deserialize(content);
         }
 
     }

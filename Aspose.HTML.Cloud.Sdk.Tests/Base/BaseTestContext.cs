@@ -45,14 +45,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     {
         private class Keys
         {
-            [JsonProperty(PropertyName = "AppSid")]
+            [JsonProperty(PropertyName = "AppSid", Required = Required.Always)]
             public string AppSid { get; set; }
-            [JsonProperty(PropertyName = "AppKey")]
+            [JsonProperty(PropertyName = "AppKey", Required = Required.Always)]
             public string AppKey { get; set; }
-            [JsonProperty(PropertyName = "basePath")]
+            [JsonProperty(PropertyName = "basePath", Required = Required.Always)]
             public string BaseProductUri { get; set; }
-            //[JsonProperty(PropertyName = "authPath")]
-            //public string AuthServerPath { get; set; }
+            [JsonProperty(PropertyName = "authPath")]
+            public string AuthServerPath { get; set; }
         }
 
         protected const string DefBaseProductUri = @"http://aspose-qa.aspose.cloud";
