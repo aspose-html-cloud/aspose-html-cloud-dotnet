@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="TemplateMergeApi.cs">
+// <copyright company="Aspose" file="TemplateMergeApiImpl.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -22,53 +22,33 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 using System;
-using System.Text;
 using System.IO;
+using System.Text;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
 using Aspose.Html.Cloud.Sdk.Client;
-using Aspose.Html.Cloud.Sdk.Api.Model;
-using Aspose.Html.Cloud.Sdk.Api.Model.Requests;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 
-namespace Aspose.Html.Cloud.Sdk.Api
+namespace Aspose.Html.Cloud.Sdk.Api.Internal
 {
-    /// <summary>
-    /// Represents a collection of functions to interact with the HTML conversion API endpoints
-    /// </summary>
-    public class TemplateMergeApi : ApiBase, ITemplateMergeApi
+    internal class TemplateMergeApiImpl : ApiImplBase, ITemplateMergeApi
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="apiKey"></param>
-        /// <param name="apiSid"></param>
-        /// <param name="basePath"></param>
-        public TemplateMergeApi(String apiKey, String apiSid, String basePath)
-            : base(apiKey, apiSid, basePath)
+        internal TemplateMergeApiImpl(ApiClient apiClient) : base(apiClient)
         {
         }
 
-        /// <summary>
-        /// Populate HTML document template with data located as a file in the storage.
-        /// </summary>
-        /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
-        /// <param name="dataPath">Data source file path in the storage. Supported data formats: XML, JSON.</param>
-        /// <param name="options">Template merge options.</param>
-        /// <param name="folder">The template document folder.</param>
-        /// <param name="storage">The template document and data source storage.</param>
-        /// <returns>System.IO.Stream | Stream containing the generated document.</returns>
         public AsposeStreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
         {
             var methodName = "GetMergeHtmlTemplate";
             // verify the required parameter 'name' is set
-            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when calling {methodName}");
+            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when {methodName} is called.");
             // verify the required parameter 'outFormat' is set
-            if (dataPath == null) throw new ApiException(400, $"Missing required parameter 'dataPath' when calling {methodName}");
+            if (dataPath == null) throw new ApiException(400, $"Missing required parameter 'dataPath' when {methodName} is called.");
 
             var path = "/html/{templateName}/merge";
             //path = path.Replace("{format}", "json");
@@ -84,29 +64,24 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
-            var response = CallGetApi(path, queryParams, methodName);
+            AsposeStreamResponse response = CallGetApi(path, queryParams, methodName);
             return response;
         }
 
-        /// <summary>
-        /// Populate HTML document template with data from the stream. Result document will be saved to storage.
-        /// </summary>
-        /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
-        /// <param name="inStream">Data source stream. Supported data formats: XML, JSON.</param>
-        /// <param name="outPath">Result document path in the storage.</param>
-        /// <param name="options">Template merge options.</param>
-        /// <param name="folder">The template document folder.</param>
-        /// <param name="storage">Optional. The template document and data source storage.</param>
-        /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PutMergeHtmlTemplate(string templateName, Stream inStream, string outPath, string options = null, string folder = null, string storage = null)
+        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataType, string outPath, string options = null, string folder = null, string storage = null)
         {
-            var methodName = "PutMergeHtmlTemplate";
+            var methodName = "PostMergeHtmlTemplate";
             // verify the required parameter 'templateName' is set
-            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when calling {methodName}");
+            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when {methodName} is called.");
+            // verify the required parameter 'dataType' is set
+            if (dataType == null) throw new ApiException(400, $"Missing required parameter 'dataType' when {methodName} is called.");
             // verify the required parameter 'outPath' is set
-            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when {methodName} is called.");
             // verify the required parameter 'inStream' is set
-            if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
+            if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when {methodName} is called.");
+
+            if (!(dataType.ToLower() == "json" || dataType.ToLower() == "xml"))
+                throw new ApiException(400, $"'dataType' parameter: Unsupported data type when {methodName} is called.");
 
             var path = "/html/{templateName}/merge";
             //path = path.Replace("{format}", "json");
@@ -121,10 +96,13 @@ namespace Aspose.Html.Cloud.Sdk.Api
             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
+
+            headerParams.Add("Content-Type", "multipart/form-data");
+            headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
-            var response = CallPutApi(path, queryParams, inStream, methodName);
+            var response = CallPostApi(path, queryParams, headerParams, inStream, methodName);
             return response;
         }
     }

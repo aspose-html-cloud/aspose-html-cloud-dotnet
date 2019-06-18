@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ITranslationApi.cs">
+// <copyright company="Aspose" file="IStorageApi.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -28,31 +28,7 @@ using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
-    /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
-    /// </summary>
-    public interface ITranslationApi
+    public interface IStorageApi
     {
-        /// <summary>
-        /// Translates the HTML document specified by the name from default or specified storage. 
-        /// </summary>
-        /// <param name="name">Document name.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
-        /// <param name="folder">The document folder.</param>
-        /// <param name="storage">The document storage.</param>
-        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        AsposeStreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null);
-
-        /// <summary>
-        /// Translates the HTML document specified by its URL. 
-        /// </summary>
-        /// <param name="sourceUrl">Source document URL.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
-        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        AsposeStreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang);
-       
     }
-
 }

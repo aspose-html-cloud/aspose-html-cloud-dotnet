@@ -50,24 +50,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiBase.cs" />
-    <Compile Include="Api\ConversionApi.cs" />
-    <Compile Include="Api\DocumentApi.cs" />
+    <Compile Include="Api\HtmlApi.cs" />
+    <Compile Include="Api\Interfaces\IStorageApi.cs" />
+    <Compile Include="Api\Interfaces\IStorageFileApi.cs" />
+    <Compile Include="Api\Interfaces\IStorageFolderApi.cs" />
+    <Compile Include="Api\Internal\ApiImplBase.cs" />
+    <Compile Include="Api\Internal\ConversionApiImpl.cs" />
+    <Compile Include="Api\Internal\DocumentApiImpl.cs" />
     <Compile Include="Api\Interfaces\IConversionApi.cs" />
     <Compile Include="Api\Interfaces\IDocumentApi.cs" />
     <Compile Include="Api\Interfaces\IOcrApi.cs" />
     <Compile Include="Api\Interfaces\ISummarizationApi.cs" />
     <Compile Include="Api\Interfaces\ITemplateMergeApi.cs" />
     <Compile Include="Api\Interfaces\ITranslationApi.cs" />
+    <Compile Include="Api\Internal\OcrApiImpl.cs" />
+    <Compile Include="Api\Internal\SummarizationApiImpl.cs" />
+    <Compile Include="Api\Internal\TemplateMergeApiImpl.cs" />
+    <Compile Include="Api\Internal\TranslationApiImpl.cs" />
     <Compile Include="Api\Model\AsposeResponse.cs" />
     <Compile Include="Api\Model\AsposeStreamResponse.cs" />
     <Compile Include="Api\Model\Requests\ConversionRequest.cs" />
     <Compile Include="Api\Model\Requests\TranslationRequest.cs" />
     <Compile Include="Api\Model\ResourceHandlingOptions.cs" />
     <Compile Include="Api\Model\StreamContentResponse.cs" />
-    <Compile Include="Api\OcrApi.cs" />
-    <Compile Include="Api\SummarizationApi.cs" />
-    <Compile Include="Api\TemplateMergeApi.cs" />
-    <Compile Include="Api\TranslationApi.cs" />
+    <Compile Include="Api\StorageApi.cs" />
+    <Compile Include="Api\Utils\MimeHelper.cs" />
     <Compile Include="Client\ApiClient.cs" />
     <Compile Include="Client\ApiClientUtils.cs" />
     <Compile Include="Client\ApiException.cs" />
@@ -76,22 +83,6 @@
     <Compile Include="Client\Authentication\JwtAuth.cs" />
     <Compile Include="Client\Authentication\OAuth2.cs" />
     <Compile Include="Client\Configuration.cs" />
-    <Compile Include="Com\Aspose\Html\Api\ApiBase.cs" />
-    <Compile Include="Com\Aspose\Html\Api\ConversionApi.cs" />
-    <Compile Include="Com\Aspose\Html\Api\DocumentApi.cs" />
-    <Compile Include="Com\Aspose\Html\Api\Interfaces\IConversionApi.cs" />
-    <Compile Include="Com\Aspose\Html\Api\Interfaces\IDocumentApi.cs" />
-    <Compile Include="Com\Aspose\Html\Api\Interfaces\IOcrApi.cs" />
-    <Compile Include="Com\Aspose\Html\Api\Interfaces\ITranslationApi.cs" />
-    <Compile Include="Com\Aspose\Html\Api\OcrApi.cs" />
-    <Compile Include="Com\Aspose\Html\Api\TranslationApi.cs" />
-    <Compile Include="Com\Aspose\Html\Client\ApiException.cs" />
-    <Compile Include="Com\Aspose\Html\Client\Configuration.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\ApiClient.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\ApiClientUtils.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\Authentication\IAuthenticator.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\Authentication\OAuth2.cs" />
-    <Compile Include="Com\Aspose\Html\NativeClient\NativeRestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

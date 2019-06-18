@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="SummarizationApi.cs">
+// <copyright company="Aspose" file="OcrApiImpl.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -22,46 +22,33 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 using System;
 using System.IO;
-using System.Text;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Web;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 
-namespace Aspose.Html.Cloud.Sdk.Api
+namespace Aspose.Html.Cloud.Sdk.Api.Internal
 {
-    public class SummarizationApi : ApiBase, ISummarizationApi
+    internal class OcrApiImpl : ApiImplBase, IOcrApi
     {
-
-        #region .ctor
-        public SummarizationApi(String apiKey, String apiSid, String basePath)
-            : base(apiKey, apiSid, basePath)
+        #region Constructor
+        internal OcrApiImpl(ApiClient apiClient): base(apiClient)
         { }
-
         #endregion
 
-
-        /// <summary>
-        /// Detect the keywords in the HTML document specified by the name from default or specified storage. 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
-        public AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
+        #region IOcrApi interface implementation
+        public AsposeStreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
         {
-            var methodName = "GetDetectHtmlKeywords";
+            var methodName = "GetRecognizeAndImportToHtml";
             // verify the required parameter 'name' is set
-            if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetDetectHtmlKeywords");
+            if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetRecognizeAndImportToHtml");
 
-            var path = "/html/{name}/summ/keywords";
+            var path = "/html/{name}/ocr/import";
             path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+
+            if (string.IsNullOrEmpty(engineLang)) engineLang = "en";
 
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
@@ -76,29 +63,35 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return response;
         }
 
-        /// <summary>
-        /// Detect the keywords in the HTML document specified by its URL.
-        /// </summary>
-        /// <param name="sourceUrl"></param>
-        /// <returns></returns>
-        public AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl)
+        public AsposeStreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
-            var methodName = "GetDetectHtmlKeywordsByUrl";
+            var methodName = "GetRecognizeAndTranslateToHtml";
+            // verify the required parameter 'name' is set
+            if (name == null) throw new ApiException(400, "Missing required parameter 'name' when calling GetRecognizeAndTranslateToHtml");
+            // verify the required parameter 'srcLang' is set
+            if (srcLang == null) throw new ApiException(400, "Missing required parameter 'srcLang' when calling GetRecognizeAndTranslateToHtml");
 
-            // verify the required parameter 'sourceUrl' is set
-            if (sourceUrl == null) throw new ApiException(400, "Missing required parameter 'sourceUrl' when calling GetTranslateDocumentByUrl");
+            // verify the required parameter 'resLang' is set
+            if (resLang == null) throw new ApiException(400, "Missing required parameter 'resLang' when calling GetRecognizeAndTranslateToHtml");
 
-            var path = "/html/summ/keywords";
+            var path = "/html/{name}/ocr/translate/{srcLang}/{resLang}";
+            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
+            path = path.Replace("{" + "srcLang" + "}", ApiClientUtils.ParameterToString(srcLang));
+            path = path.Replace("{" + "resLang" + "}", ApiClientUtils.ParameterToString(resLang));
 
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
 
-            if (sourceUrl != null) queryParams.Add("sourceUrl", ApiClientUtils.ParameterToString(sourceUrl)); // query parameter
+            if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
+            if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
+
             // authentication setting, if any
             String[] authSettings = new String[] { };
 
             var response = CallGetApi(path, queryParams, methodName);
             return response;
         }
+
+        #endregion
     }
 }

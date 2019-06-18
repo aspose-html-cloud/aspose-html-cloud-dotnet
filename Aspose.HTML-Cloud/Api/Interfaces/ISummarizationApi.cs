@@ -34,19 +34,19 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
     public interface ISummarizationApi
     {
         /// <summary>
-        /// Detect the keywords in the HTML document specified by the name from default or specified storage. 
+        /// Detects the keywords in the HTML document specified by the name from default or specified storage. 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
+        /// <param name="name">Document name.</param>
+        /// <param name="folder">The document folder.</param>
+        /// <param name="storage">The document storage.</param>
+        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
         AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null);
 
         /// <summary>
-        /// Detect the keywords in the HTML document specified by its URL.
+        /// Detects the keywords in the HTML document specified by its URL.
         /// </summary>
-        /// <param name="sourceUrl"></param>
-        /// <returns></returns>
+        /// <param name="sourceUrl">Source document URL</param>
+        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
         AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl);
 
     }
