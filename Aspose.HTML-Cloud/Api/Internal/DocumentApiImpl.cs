@@ -74,7 +74,6 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
 
             var path = "/html/{name}/fragments/css/{outFormat}";
-            path = path.Replace("{format}", "json");
             path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
             path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
 

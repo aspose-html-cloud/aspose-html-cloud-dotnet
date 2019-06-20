@@ -29,13 +29,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     using System;
     using System.IO;
     using Newtonsoft.Json;
-    using Aspose.Storage.Cloud.Sdk.Api;
-    //using Aspose.Storage.Cloud.Sdk;
     using Aspose.Html.Cloud.Sdk.Api;
     using Aspose.Html.Cloud.Sdk.Api.Model;
     using Aspose.Html.Cloud.Sdk.Client;
-    using Aspose.Storage.Cloud.Sdk.Model;
-    using Aspose.Storage.Cloud.Sdk.Model.Requests;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -49,14 +45,21 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             public string AppSid { get; set; }
             [JsonProperty(PropertyName = "AppKey", Required = Required.Always)]
             public string AppKey { get; set; }
+
             [JsonProperty(PropertyName = "basePath", Required = Required.Always)]
             public string BaseProductUri { get; set; }
+
             [JsonProperty(PropertyName = "authPath")]
-            public string AuthServerPath { get; set; }
+            public string AuthServerUri { get; set; }
+
+            [JsonProperty(PropertyName = "apiVersion")]
+            public string ApiVersion { get; set; }
         }
 
-        protected const string DefBaseProductUri = @"http://aspose-qa.aspose.cloud";
+        protected const string DefBaseProductUri = @"http://aspose.aspose.cloud";
         //protected const string BaseProductUri = @"http://sikorsky-js3.dynabic.com:9083";
+
+        protected const string DefAuthServerUri = @"http://aspose.aspose.cloud";
 
         private Keys keys;
 
@@ -74,27 +77,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 throw new FileNotFoundException("servercreds.json doesn't contain AppKey and AppSid");
             }
 
-            var configuration = new Configuration { ApiBaseUrl = this.keys.BaseProductUri, AppKey = this.keys.AppKey, AppSid = this.keys.AppSid };
-            this.ConversionApi = new ConversionApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.DocumentApi = new DocumentApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.TranslationApi = new TranslationApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.OcrApi = new OcrApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.SummarizationApi = new SummarizationApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.TemplateMergeApi = new TemplateMergeApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
+            var config = new Configuration {
+                ApiBaseUrl = this.keys.BaseProductUri,
+                AuthUrl = this.keys.AuthServerUri ?? DefAuthServerUri,
+                ApiVersion = this.keys.ApiVersion ?? Configuration.DefaultApiVersion,
+                AppSid = this.keys.AppSid };
 
-            Aspose.Storage.Cloud.Sdk.Configuration storageConf = new Storage.Cloud.Sdk.Configuration()
-            {
-                ApiBaseUrl = configuration.ApiBaseUrl + "/v1.1",
-                AppKey = configuration.AppKey,
-                AppSid = configuration.AppSid
-            };
-            this.StorageApi = new StorageApi(storageConf);
+            this.HtmlApi = new HtmlApi(
+                config.AppSid, config.AppKey, config.ApiBaseUrl + $"/v{config.ApiVersion}", config.AuthUrl);
+
+            this.StorageApi = new StorageApi(this.HtmlApi);
         }
 
         /// <summary>
@@ -139,12 +131,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         /// <summary>
         /// Html API
         /// </summary>
-        protected ConversionApi ConversionApi { get; set; }
-        protected DocumentApi DocumentApi { get; set; }
-        protected TranslationApi TranslationApi { get; set; }
-        protected OcrApi OcrApi { get; set; }
-        protected SummarizationApi SummarizationApi { get; set; }
-        protected TemplateMergeApi TemplateMergeApi { get; set; }
+        protected HtmlApi HtmlApi { get; set; }
 
         /// <summary>
         /// AppSid
@@ -184,11 +171,11 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             string path = string.Format("{0}/{1}", folder, name);
             using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                PutCreateRequest reqCr = new PutCreateRequest(path, fstr);
-                this.StorageApi.PutCreate(reqCr);
-                GetIsExistRequest reqExist = new GetIsExistRequest(path);
-                FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-                Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+                //PutCreateRequest reqCr = new PutCreateRequest(path, fstr);
+                //this.StorageApi.PutCreate(reqCr);
+                //GetIsExistRequest reqExist = new GetIsExistRequest(path);
+                //FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
+                //Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             }
         }
 

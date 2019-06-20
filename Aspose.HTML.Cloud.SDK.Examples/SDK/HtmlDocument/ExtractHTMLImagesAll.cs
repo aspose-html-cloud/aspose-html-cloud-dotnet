@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Api;
+
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -28,7 +28,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             else
                 throw new Exception(string.Format("Error: file {0} not found.", filePath));
 
-            IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IDocumentApi docApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call SDK method that gets a zip archive with all HTML document images
             var response = docApi.GetDocumentImages(name, null, folder);
             if (response != null && response.ContentStream != null)

@@ -28,7 +28,11 @@ using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IStorageApi
     {
+        
     }
 }

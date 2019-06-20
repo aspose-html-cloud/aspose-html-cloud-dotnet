@@ -34,6 +34,7 @@ using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Model.Requests;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Utils;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Internal
 {
@@ -286,7 +287,10 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (resolution != null) queryParams.Add("resolution", ApiClientUtils.ParameterToString(resolution)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            headerParams.Add("Content-Type", "multipart/form-data");
+            var contentType = MimeHelper.GetMimeType(dataType);
+            if (contentType == null)
+                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+            headerParams.Add("Content-Type", contentType);
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -309,7 +313,10 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (useGit != null) queryParams.Add("useGit", ApiClientUtils.ParameterToString(useGit)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            headerParams.Add("Content-Type", "multipart/form-data");
+            var contentType = MimeHelper.GetMimeType(dataType);
+            if (contentType == null)
+                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+            headerParams.Add("Content-Type", contentType);
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -341,7 +348,10 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            headerParams.Add("Content-Type", Utils.MimeHelper.);
+            var contentType = MimeHelper.GetMimeType(dataType);
+            if(contentType == null)
+                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+            headerParams.Add("Content-Type", contentType);
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -349,7 +359,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string dataType, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
         {
             var methodName = "PostConvertDocumentToXps";
             if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
@@ -370,7 +380,10 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            headerParams.Add("Content-Type", "multipart/form-data");
+            var contentType = MimeHelper.GetMimeType(dataType);
+            if (contentType == null)
+                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+            headerParams.Add("Content-Type", contentType);
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };

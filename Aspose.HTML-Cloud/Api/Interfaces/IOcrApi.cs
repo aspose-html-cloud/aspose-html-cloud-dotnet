@@ -31,7 +31,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
     /// <summary>
     /// Represents a collection of functions to interact with the OCR to HTML API endpoints
     /// </summary>
-    interface IOcrApi
+    public interface IOcrApi
     {
         /// <summary>
         /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document.

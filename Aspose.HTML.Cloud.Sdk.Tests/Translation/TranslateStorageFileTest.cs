@@ -2,8 +2,6 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
 {
@@ -29,7 +27,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
 
-            var response = TranslationApi.GetTranslateDocument(
+            var response = HtmlApi.GetTranslateDocument(
                 name, "en", "fr", folder, null);
             checkGetMethodResponse(response, "Translate", "_en_fr");
         }

@@ -3,8 +3,6 @@ using System.IO;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
 {
@@ -64,7 +62,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             //uploadFileToStorage(dataFolder, templateName, folder);
             //uploadFileToStorage(dataFolder, dataFile, folder);
 
-            var response = this.TemplateMergeApi.GetMergeHtmlTemplate(
+            var response = HtmlApi.GetMergeHtmlTemplate(
                 templateName, dataPath, options, folder);
             checkGetMethodResponse(response, "TemplateMerge");
         }
@@ -81,13 +79,13 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             //uploadFileToStorage(dataFolder, templateName, folder);
             //uploadFileToStorage(dataFolder, dataFile, folder);
 
-            var response = this.TemplateMergeApi.GetMergeHtmlTemplate(
+            var response = HtmlApi.GetMergeHtmlTemplate(
                 templateName, dataPath, options, folder);
             checkGetMethodResponse(response, "TemplateMerge");
         }
 
         [TestMethod]
-        public void Test_MergeTemplate_Put_1()
+        public void Test_MergeTemplate_Post_1()
         {
             string templateName = templates[1];
             string folder = "14/HTML";
@@ -100,15 +98,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             //uploadFileToStorage(dataFolder, templateName, folder);
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.TemplateMergeApi.PutMergeHtmlTemplate(
-                    templateName, datastr, outPath, options, folder);
+                var dataType = Path.GetExtension(dataFile).Replace(".", "");
+                var response = this.HtmlApi.PostMergeHtmlTemplate(
+                    templateName, datastr, dataType, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
         }
 
         [TestMethod]
-        public void Test_MergeTemplate_Put_2()
+        public void Test_MergeTemplate_Post_2()
         {
             string templateName = templates[4];
             string folder = "14/HTML";
@@ -121,15 +120,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             //uploadFileToStorage(dataFolder, templateName, folder);
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.TemplateMergeApi.PutMergeHtmlTemplate(
-                    templateName, datastr, outPath, options, folder);
+                var dataType = Path.GetExtension(dataFile).Replace(".", "");
+                var response = this.HtmlApi.PostMergeHtmlTemplate(
+                    templateName, datastr, dataType, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
         }
 
         [TestMethod]
-        public void Test_MergeTemplate_Put_3()
+        public void Test_MergeTemplate_Post_3()
         {
             string templateName = templates[4];
             string folder = "14/HTML";
@@ -142,8 +142,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             //uploadFileToStorage(dataFolder, templateName, folder);
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.TemplateMergeApi.PutMergeHtmlTemplate(
-                    templateName, datastr, outPath, options, folder);
+                var dataType = Path.GetExtension(dataFile).Replace(".", "");
+                var response = this.HtmlApi.PostMergeHtmlTemplate(
+                    templateName, datastr, dataType, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }

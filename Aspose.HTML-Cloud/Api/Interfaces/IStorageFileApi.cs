@@ -29,7 +29,21 @@ using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IStorageFileApi
     {
+        AsposeStreamResponse DownloadFile(string path, string storage = null, string versionId = null);
+
+        AsposeResponse UploadFile(Stream stream, string path, string storage = null);
+
+        AsposeResponse UploadFile(string localPath, string path, string storage = null);
+
+        AsposeResponse DeleteFile(string path, string storage = null, string versionId = null);
+
+        AsposeResponse CopyFile(string srcPath, string destPath, string srcStorage = null, string destStorage = null, string versionId = null);
+
+        AsposeResponse MoveFile(string srcPath, string destPath, string srcStorage = null, string destStorage = null, string versionId = null);
     }
 }

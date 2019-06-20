@@ -3,8 +3,7 @@ using System.IO;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
+
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
 {
@@ -20,7 +19,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string name = "testpage1.html";
             string folder = null;
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
-            var response = this.ConversionApi.PutConvertDocumentToPdf(name, outPath, null, null, null, null, null, null, folder);
+            var response = this.HtmlApi.PutConvertDocumentToPdf(name, outPath, null, null, null, null, null, null, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
 
@@ -34,14 +33,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         }
 
         [TestMethod]
-        public void Test_PutHtmlConvert_Pdf_LocalFileToStorage()
+        public void Test_PostHtmlConvert_Pdf_LocalFileToStorage()
         {
             string name = "testpage1.html";
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
             string srcPath = Path.Combine(dataFolder, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.ConversionApi.PutConvertDocumentToPdf(stream, outPath);
+                var response = this.HtmlApi.PostConvertDocumentToPdf(stream, "html", outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
@@ -58,7 +57,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string name = "testpage1.html";
             string folder = null;
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.xps");
-            var response = this.ConversionApi.PutConvertDocumentToXps(name, outPath, null, null, null, null, null, null, folder);
+            var response = this.HtmlApi.PutConvertDocumentToXps(name, outPath, null, null, null, null, null, null, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
 
@@ -76,7 +75,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string srcPath = Path.Combine(dataFolder, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.ConversionApi.PutConvertDocumentToXps(stream, outPath);
+                var response = this.HtmlApi.PostConvertDocumentToXps(stream, "html", outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
@@ -93,7 +92,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string name = "testpage1.html";
             string folder = null;
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.jpg");
-            var response = this.ConversionApi.PutConvertDocumentToImage(name, "jpeg", outPath, null, null, null, null, null, null, 96, folder);
+            var response = this.HtmlApi.PutConvertDocumentToImage(name, "jpeg", outPath, null, null, null, null, null, null, 96, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
 
@@ -104,14 +103,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         }
 
         [TestMethod]
-        public void Test_PutHtmlConvert_Jpeg_LocalFileToStorage()
+        public void Test_PostHtmlConvert_Jpeg_LocalFileToStorage()
         {
             string name = "testpage1.html";
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.jpg");
             string srcPath = Path.Combine(dataFolder, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.ConversionApi.PutConvertDocumentToImage(stream, "jpeg", outPath);
+                var response = this.HtmlApi.PostConvertDocumentToImage(stream, "html", "jpeg", outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }

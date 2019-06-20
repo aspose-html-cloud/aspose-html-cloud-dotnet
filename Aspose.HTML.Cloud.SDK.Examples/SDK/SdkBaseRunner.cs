@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Aspose.Storage.Cloud.Sdk;
-using Aspose.Storage.Cloud.Sdk.Api;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Model;
+using Aspose.Html.Cloud.Sdk.Client;
+
 
 namespace Aspose.HTML.Cloud.Examples.SDK
 {
@@ -18,11 +19,13 @@ namespace Aspose.HTML.Cloud.Examples.SDK
         public static bool UploadToStorage(string storagePath, string srcDir = null)
         {
             var name = Path.GetFileName(storagePath);
-            Configuration storageConf = new Storage.Cloud.Sdk.Configuration()
+            Configuration storageConf = new Configuration()
             {
                 ApiBaseUrl = CommonSettings.BasePath,
                 AppKey = CommonSettings.AppKey,
-                AppSid = CommonSettings.AppSID
+                AppSid = CommonSettings.AppSID,
+                AuthUrl = CommonSettings.AuthPath,
+                ApiVersion = "3.0"
             };
             StorageApi storageApi = new StorageApi(storageConf);
             // Upload source file to aspose cloud storage
@@ -31,12 +34,12 @@ namespace Aspose.HTML.Cloud.Examples.SDK
             {
                 using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
                 {
-                    var reqCr = new PutCreateRequest(storagePath, fstr);
-                    var respCr = storageApi.PutCreate(reqCr);
-                    var reqExist = new GetIsExistRequest(storagePath);
-                    var respExist = storageApi.GetIsExist(reqExist);
-
-                    return (respExist.FileExist.IsExist.HasValue && respExist.FileExist.IsExist.Value);
+                    var response = storageApi.UploadFile(fstr, storagePath);
+                    if(response.Code == 200)
+                    {
+                        //storageApi.
+                    }
+                    return true;
                 }
             }
             else

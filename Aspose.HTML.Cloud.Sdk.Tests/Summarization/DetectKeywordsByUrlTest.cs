@@ -2,7 +2,6 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Summarization
 {
@@ -14,7 +13,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Summarization
         {
             var sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_02.htm"; ;
 
-            var response = SummarizationApi.GetDetectHtmlKeywordsByUrl(sourceUrl);
+            var response = HtmlApi.GetDetectHtmlKeywordsByUrl(sourceUrl);
             checkGetMethodResponse(response, "Keywords");
         }
     }

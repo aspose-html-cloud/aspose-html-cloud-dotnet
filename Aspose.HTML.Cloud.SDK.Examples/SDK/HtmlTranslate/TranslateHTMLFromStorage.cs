@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Api;
-using Aspose.Storage.Cloud.Sdk.Model;
+
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -41,7 +40,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
 
                 if(uploaded)
                 {
-                    TranslationApi transApi = new TranslationApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+                    ITranslationApi transApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
                     var response = transApi.GetTranslateDocument(name, SrcLang, ResLang, folder, storage);
 
                     if (response != null && response.ContentStream != null)

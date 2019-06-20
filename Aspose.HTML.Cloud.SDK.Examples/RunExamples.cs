@@ -30,7 +30,7 @@ namespace Aspose.HTML.Cloud.Examples
             //runner = new ExtractHtmlFragmentsByXPath();
 
             // == Example == extract HTML fragments by XPath query
-            //runner = new ExtractHtmlFragmentsByXPath();
+            runner = new ExtractHtmlFragmentsByXPath();
 
             // == Example == extract all images from HTML document as an archive
             //runner = new ExtractHTMLImagesAll();
@@ -77,7 +77,7 @@ namespace Aspose.HTML.Cloud.Examples
             //runner = new RecognizeAndImportToHTML();
 
             // == Example == Recognize text content from image, create HTML and translate the text content
-            runner = new RecognizeAndTranslateToHTML("en", "fr");
+            //runner = new RecognizeAndTranslateToHTML("en", "fr");
 
             //Console.WriteLine("\nPress any key to continue....");
             //Console.ReadKey();

@@ -30,6 +30,9 @@ using System.Threading.Tasks;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AsposeStreamResponse : AsposeResponse
     {
         /// <summary>

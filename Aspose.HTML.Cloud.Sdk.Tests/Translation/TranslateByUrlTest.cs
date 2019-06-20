@@ -2,7 +2,6 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
 {
@@ -14,7 +13,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
         {
             string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_02.htm";
 
-            var response = TranslationApi.GetTranslateDocumentByUrl(sourceUrl, "en", "fr");
+            var response = HtmlApi.GetTranslateDocumentByUrl(sourceUrl, "en", "fr");
             checkGetMethodResponse(response, "Translate", "_url_en_fr");
         }
 

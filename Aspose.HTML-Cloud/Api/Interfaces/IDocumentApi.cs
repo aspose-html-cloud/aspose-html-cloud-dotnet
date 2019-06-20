@@ -61,7 +61,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// </summary>
         /// <param name="name">The document name.</param>
         /// <param name="selector">CSS selector string.</param>
-        /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
+        /// <param name="outFormat">Result format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
         /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
@@ -81,6 +81,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="xPath">XPath query string.</param>
+        /// <param name="outFormat">Result format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
         AsposeStreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat);
 
@@ -89,6 +90,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="selector">CSS selector string.</param>
+        /// <param name="outFormat">Result format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
         AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat);
 

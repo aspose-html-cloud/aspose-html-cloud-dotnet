@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.HTML.Cloud.Examples.SDK;
 
 namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr
@@ -29,7 +30,7 @@ namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr
             string folder = "HtmlTestDoc";
             string storage = null;
 
-            OcrApi ocrApi = new OcrApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IOcrApi ocrApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             var response = ocrApi.GetRecognizeAndTranslateToHtml(srcName, SrcLang, ResLang, folder, storage);
 
             if (response != null && response.ContentStream != null)

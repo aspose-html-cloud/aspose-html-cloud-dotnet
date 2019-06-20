@@ -4,8 +4,6 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
 
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Document
 {
@@ -46,7 +44,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
 
-            var response = DocumentApi.GetDocumentFragmentByXPath(name, xpath, "plain", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByXPath(name, xpath, "plain", null, folder);
             checkGetMethodResponse(response, "Document", "_xpath_p");
         }
 
@@ -69,7 +67,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             //    Assert.IsTrue(respExist.FileExist.IsExist.HasValue && respExist.FileExist.IsExist.Value);
             //}
 
-            var response = DocumentApi.GetDocumentFragmentByXPath(name, xpath, "json", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByXPath(name, xpath, "json", null, folder);
             checkGetMethodResponseOkOrNoresult(response, "Document", "_xpath_ol_li");
         }
 
@@ -91,7 +89,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
 
-            var response = DocumentApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
             checkGetMethodResponseOkOrNoresult(response, "Document", "_css_p");
         }
 
@@ -113,7 +111,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
 
-            var response = DocumentApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
             checkGetMethodResponseOkOrNoresult(response, "Document", "_css_ol_li");
         }
 
@@ -123,7 +121,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[0];
             var xpath = ".//div[@class=\"container\"]";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_xpath_div_class");
         }
 
@@ -133,7 +131,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[3];
             var xpath = ".//p";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_xpath_p");
         }
 
@@ -143,7 +141,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[0];
             var csssel = "div.container";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_css_div_class");
         }
 
@@ -153,7 +151,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[3];
             var csssel = "p";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_xpath_p");
         }
 
@@ -174,7 +172,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
 
-            var response = DocumentApi.GetDocumentImages(name, null, folder);
+            var response = HtmlApi.GetDocumentImages(name, null, folder);
             checkGetMethodResponse(response, "Document", "_images");
         }
 
@@ -183,7 +181,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         {
             var url = testUrls[2];
 
-            var response = DocumentApi.GetDocumentImagesByUrl(url);
+            var response = HtmlApi.GetDocumentImagesByUrl(url);
             checkGetMethodResponse(response, "Document", "_url_images");
         }
     }

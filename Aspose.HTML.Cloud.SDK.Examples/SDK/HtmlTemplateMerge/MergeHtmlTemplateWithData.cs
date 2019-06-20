@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -33,7 +32,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge
             else
                 throw new Exception(string.Format("Error: file {0} not found.", filePath));
 
-            ITemplateMergeApi mergeApi = new TemplateMergeApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            ITemplateMergeApi mergeApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call SDK method that gets an HTML template and a data file from the storage 
             // and returns generated HTML document as stream.
             string dataPath = $"{folder}/{dataFileName}";

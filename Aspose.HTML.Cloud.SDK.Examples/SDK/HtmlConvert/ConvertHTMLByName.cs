@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
@@ -49,7 +47,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));
 
-            IConversionApi convApi = new ConversionApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey,  CommonSettings.BasePath, CommonSettings.AuthPath);
 
             AsposeStreamResponse response = null;
             // call SDK methods that convert HTML document to supported out format

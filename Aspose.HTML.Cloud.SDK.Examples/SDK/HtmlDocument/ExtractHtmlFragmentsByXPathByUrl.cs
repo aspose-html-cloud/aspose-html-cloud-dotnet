@@ -1,9 +1,5 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk;
-using Aspose.Storage.Cloud.Sdk.Api;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
@@ -24,7 +20,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             var name = "basics.htm";
             var xpath = ".//p";
 
-            IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IDocumentApi docApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.
             var response = docApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
             if (response != null && response.ContentStream != null)

@@ -37,7 +37,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
     /// <summary>
     /// 
     /// </summary>
-    public class JwtAuth : AuthBase, IAuthenticator
+    internal class JwtAuth : AuthBase, IAuthenticator
     {
         class JwtData
         {

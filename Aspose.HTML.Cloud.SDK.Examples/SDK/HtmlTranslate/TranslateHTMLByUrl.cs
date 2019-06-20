@@ -29,7 +29,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
             string srcUrl = "https://stallman.org/sayings.html";
             //string srcUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
 
-            TranslationApi transApi = new TranslationApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            ITranslationApi transApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             AsposeStreamResponse response = transApi.GetTranslateDocumentByUrl(srcUrl, SrcLang, ResLang);
             Stream stream = response.ContentStream;
 

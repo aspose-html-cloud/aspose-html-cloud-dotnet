@@ -1,9 +1,5 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk;
-using Aspose.Storage.Cloud.Sdk.Api;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
@@ -23,7 +19,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             var url = "http://www.sukidog.com/jpierre/strings/basics.htm";
             var name = "basics.htm";
 
-            IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IDocumentApi docApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call SDK method that gets a zip archive with all HTML document images
             var response = docApi.GetDocumentImagesByUrl(url);
             if (response != null && response.ContentStream != null)

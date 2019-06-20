@@ -13,7 +13,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Utils
     {
         #region Static members
 
-        private static Dictionary<string, Tuple<string, string>> s_mimeTypes = new Dictionary<string, Tuple<string, string>>();
+        private static readonly Dictionary<string, Tuple<string, string>> s_mimeTypes = new Dictionary<string, Tuple<string, string>>();
 
         static MimeHelper()
         {
@@ -34,6 +34,12 @@ namespace Aspose.Html.Cloud.Sdk.Api.Utils
             s_mimeTypes.Add("xml", new Tuple<string, string>("application/xml", "xml"));
             s_mimeTypes.Add("json", new Tuple<string, string>("application/json", "json"));
         }
+
+        /// <summary>
+        /// Returns MIME type corresponding to specified data format
+        /// </summary>
+        /// <param name="format">Data format</param>
+        /// <returns>MIME type or null for unknown format</returns>
         public static string GetMimeType(string format)
         {
             if (s_mimeTypes.ContainsKey(format.ToLowerInvariant()))
@@ -42,6 +48,11 @@ namespace Aspose.Html.Cloud.Sdk.Api.Utils
                 return null;
         }
 
+        /// <summary>
+        /// Returns file extension corresponding to specified data format 
+        /// </summary>
+        /// <param name="format">Data format</param>
+        /// <returns>Extension or null for unknown format</returns>
         public static string GetExtension(string format)
         {
             if (s_mimeTypes.ContainsKey(format.ToLowerInvariant()))

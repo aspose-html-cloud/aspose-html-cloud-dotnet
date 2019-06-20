@@ -1,10 +1,5 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk;
-using Aspose.Storage.Cloud.Sdk.Api;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
-
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -31,7 +26,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));
 
-            IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IDocumentApi docApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.
             var response = docApi.GetDocumentFragmentByXPath(name, xPath, "json", null, null);
             if (response != null && response.ContentStream != null)

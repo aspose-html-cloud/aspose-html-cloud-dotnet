@@ -2,8 +2,6 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 
 
@@ -20,7 +18,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string name = "testpage1.html";
             string folder = "14/HTML";
 
-            var response = this.ConversionApi.GetConvertDocumentToPdf(name, 800, 1200, null, null, null, null, folder);
+            var response = this.HtmlApi.GetConvertDocumentToPdf(name, 800, 1200, null, null, null, null, folder);
             checkGetMethodResponse(response, "Conversion");
         }
 
@@ -30,7 +28,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string name = "testpage1.html";
             string folder = "14/HTML";
 
-            var response = this.ConversionApi.GetConvertDocumentToImage(name, "jpeg", 800, 1200, null, null, null, null, null, null, folder);
+            var response = this.HtmlApi.GetConvertDocumentToImage(name, "jpeg", 800, 1200, null, null, null, null, null, null, folder);
             checkGetMethodResponse(response, "Conversion");
         }
 
@@ -40,7 +38,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string name = "testpage1.html";
             string folder = "14/HTML";
 
-            var response = this.ConversionApi.GetConvertDocumentToMarkdown(name, false, folder);
+            var response = this.HtmlApi.GetConvertDocumentToMarkdown(name, false, folder);
             checkGetMethodResponse(response, "Conversion");
         }
 
@@ -51,7 +49,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string folder = "14/HTML";
             string outPath = $"Testout/{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd-hhmmss")}.md";
 
-            var response = this.ConversionApi.PutConvertDocumentToMarkdown(name, outPath, false, folder);
+            var response = this.HtmlApi.PutConvertDocumentToMarkdown(name, outPath, false, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
         }

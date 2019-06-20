@@ -14,10 +14,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK
         private static string _appSID = null;
         private static string _appKey = null;
         private static string _basePath = null;
-        private static string _version = "v1.1";
+        private static string _authPath = null;
+        private static string _version = "v3.0";
 
  
-        public static string DefaultBaseUrl = "http://localhost:8081";
+        public static string DefaultBaseUrl = "http://api-qa.aspose.cloud";
 
         static CommonSettings()
         {
@@ -64,7 +65,22 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                     string val = ConfigurationManager.AppSettings["baseUrl"];
                     if (string.IsNullOrEmpty(val))
                         val = DefaultBaseUrl;
-                    _basePath = string.Format("{0}/{1}", val, _version);
+                    _basePath = val;
+                }
+                return _basePath;
+            }
+        }
+
+        public static string AuthPath
+        {
+            get
+            {
+                if (_basePath == null)
+                {
+                    string val = ConfigurationManager.AppSettings["authUrl"];
+                    if (string.IsNullOrEmpty(val))
+                        val = ConfigurationManager.AppSettings["baseUrl"] ?? DefaultBaseUrl;
+                    _authPath = val;
                 }
                 return _basePath;
             }
@@ -122,7 +138,6 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                     path = ConfigurationManager.AppSettings["DataPath"];
                     if (string.IsNullOrEmpty(path))
                         path = CommonSettings.DefaultDataFolder;
-                        //throw new Exception("DataPath entry isn't specified in the App.config");
                     if (!Directory.Exists(path))
                     {
                         throw new Exception("DataPath directory does not exist.");

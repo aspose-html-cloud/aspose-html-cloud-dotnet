@@ -2,8 +2,7 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
+
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Summarization
 {
@@ -29,7 +28,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Summarization
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
 
-            var response = SummarizationApi.GetDetectHtmlKeywords(name, folder, null);
+            var response = HtmlApi.GetDetectHtmlKeywords(name, folder, null);
             checkGetMethodResponse(response, "Keywords");
         }
 

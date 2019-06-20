@@ -31,5 +31,14 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
     public interface IStorageFolderApi
     {
+        AsposeResponse GetFolderList(string path, string storage = null);
+
+        AsposeResponse CreateFolder(string path, string storage = null);
+
+        AsposeResponse DeleteFolder(string path, string storage = null, bool recursive = false);
+
+        AsposeResponse CopyFolder(string srcPath, string destPath, string srcStorage = null, string destStorage = null);
+
+        AsposeResponse MoveFolder(string srcPath, string destPath, string srcStorage = null, string destStorage = null);
     }
 }

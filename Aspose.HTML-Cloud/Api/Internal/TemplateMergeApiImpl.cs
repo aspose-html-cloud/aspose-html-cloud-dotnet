@@ -33,6 +33,7 @@ using System.Web;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.Html.Cloud.Sdk.Api.Model;
+using Aspose.Html.Cloud.Sdk.Api.Utils;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Internal
 {
@@ -46,9 +47,9 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         {
             var methodName = "GetMergeHtmlTemplate";
             // verify the required parameter 'name' is set
-            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when {methodName} is called.");
+            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when calling {methodName}");
             // verify the required parameter 'outFormat' is set
-            if (dataPath == null) throw new ApiException(400, $"Missing required parameter 'dataPath' when {methodName} is called.");
+            if (dataPath == null) throw new ApiException(400, $"Missing required parameter 'dataPath' when calling {methodName}");
 
             var path = "/html/{templateName}/merge";
             //path = path.Replace("{format}", "json");
@@ -72,19 +73,18 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         {
             var methodName = "PostMergeHtmlTemplate";
             // verify the required parameter 'templateName' is set
-            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when {methodName} is called.");
+            if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when calling {methodName}");
             // verify the required parameter 'dataType' is set
-            if (dataType == null) throw new ApiException(400, $"Missing required parameter 'dataType' when {methodName} is called.");
+            if (dataType == null) throw new ApiException(400, $"Missing required parameter 'dataType' when calling {methodName}");
             // verify the required parameter 'outPath' is set
-            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when {methodName} is called.");
+            if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
             // verify the required parameter 'inStream' is set
-            if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when {methodName} is called.");
+            if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
 
             if (!(dataType.ToLower() == "json" || dataType.ToLower() == "xml"))
-                throw new ApiException(400, $"'dataType' parameter: Unsupported data type when {methodName} is called.");
+                throw new ApiException(400, $"'dataType' parameter: Unsupported data type when calling {methodName}");
 
             var path = "/html/{templateName}/merge";
-            //path = path.Replace("{format}", "json");
             path = path.Replace("{" + "templateName" + "}", ApiClientUtils.ParameterToString(templateName));
 
             var queryParams = new Dictionary<String, String>();
@@ -96,10 +96,10 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-
-            headerParams.Add("Content-Type", "multipart/form-data");
+            var contentType = MimeHelper.GetMimeType(dataType);
+            headerParams.Add("Content-Type", contentType);
             headerParams.Add("Content-Length", inStream.Length.ToString());
-            // authentication setting, if any
+            // authentication setting, if contentType
             String[] authSettings = new String[] { };
 
             var response = CallPostApi(path, queryParams, headerParams, inStream, methodName);

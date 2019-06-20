@@ -2,8 +2,6 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
 {
@@ -27,7 +25,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse respEx = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(respEx.FileExist.IsExist.HasValue && respEx.FileExist.IsExist.Value);
             //}
-            var response = OcrApi.GetRecognizeAndImportToHtml(name, "en", folder);
+            var response = HtmlApi.GetRecognizeAndImportToHtml(name, "en", folder);
             checkGetMethodResponse(response, "Ocr", "_recognize");
         }
 
@@ -46,7 +44,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
-            var response = OcrApi.GetRecognizeAndImportToHtml(name, "en", folder);
+            var response = HtmlApi.GetRecognizeAndImportToHtml(name, "en", folder);
             checkGetMethodResponse(response, "Ocr", "_recognize");
         }
 
@@ -66,7 +64,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
-            var response = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
+            var response = HtmlApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
             checkGetMethodResponse(response, "Ocr", "_en_de");
         }
 
@@ -85,7 +83,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.OCR
             //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
             //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
             //}
-            var response = OcrApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
+            var response = HtmlApi.GetRecognizeAndTranslateToHtml(name, "en", "de", folder);
             checkGetMethodResponse(response, "Ocr", "_en_de");
         }
 

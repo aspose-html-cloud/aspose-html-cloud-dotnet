@@ -60,7 +60,8 @@ namespace Aspose.Html.Cloud.Sdk.Client
         /// <param name="appKey">Application key</param>
         /// <param name="basePath">REST API service path</param>
         /// <param name="auth"></param>
-        public ApiClient(string appSid, string appKey, string basePath = "http://api.aspose.cloud/v1.1",
+        public ApiClient(string appSid, string appKey, 
+            string basePath = "http://api.aspose.cloud/v3.0",
             IAuthenticator auth = null)
         {
             AppKey = appKey;
@@ -82,8 +83,8 @@ namespace Aspose.Html.Cloud.Sdk.Client
         /// <param name="authPath"></param>
         /// <param name="auth"></param>
         public ApiClient(string appSid, string appKey, 
-            string basePath = "http://api.aspose.cloud/v1.1",
-            string authPath = "http://api.aspose.cloud/v1.1",
+            string basePath = "http://api.aspose.cloud/v3.0",
+            string authPath = "http://api.aspose.cloud/v3.0",
             IAuthenticator auth = null)
         {
             AppKey = appKey;
@@ -131,13 +132,22 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 RequestUri = new Uri(requestUrl),
                 Method = HttpMethod.Put
             };
+
             if(headerParams != null)
             {
-
+                //request.Headers.
             }
             if(bodyStream != null)
             {
-                request.Content = new StreamContent(bodyStream);
+                var content = new StreamContent(bodyStream);
+                if (headerParams != null)
+                {
+                    if (headerParams.ContainsKey("Content-Type"))
+                        content.Headers.ContentType = new MediaTypeHeaderValue(headerParams["Content-Type"]);
+                    if (headerParams.ContainsKey("Content-Length"))
+                        content.Headers.ContentLength = long.Parse(headerParams["Content-Length"]);
+                }
+                request.Content = content;
             }
             return authorizeAndCallRequest(request);
         }
@@ -153,25 +163,17 @@ namespace Aspose.Html.Cloud.Sdk.Client
 
             if (bodyStream != null)
             {
-                bool isMultipartContent = true;
-                if (isMultipartContent)
+                var multipartContent = new MultipartFormDataContent();
+                var fileContent = new StreamContent(bodyStream);
+                if (headerParams != null)
                 {
-                    var multipartContent = new MultipartFormDataContent();
-                    var fileContent = new StreamContent(bodyStream);
-                    if (headerParams != null)
-                    {
-                        if (headerParams.ContainsKey("Content-Type"))
-                            fileContent.Headers.ContentType = new MediaTypeHeaderValue(headerParams["Content-Type"]);
-                        if (headerParams.ContainsKey("Content-Length"))
-                            fileContent.Headers.ContentLength = long.Parse(headerParams["Content-Length"]);
-                    }
-                    request.Content = fileContent;
+                    if (headerParams.ContainsKey("Content-Type"))
+                        fileContent.Headers.ContentType = new MediaTypeHeaderValue(headerParams["Content-Type"]);
+                    if (headerParams.ContainsKey("Content-Length"))
+                        fileContent.Headers.ContentLength = long.Parse(headerParams["Content-Length"]);
                 }
-                else
-                {
-
-                }
-
+                multipartContent.Add(fileContent);
+                request.Content = multipartContent;
             }
             if (headerParams != null)
             {
@@ -179,26 +181,6 @@ namespace Aspose.Html.Cloud.Sdk.Client
             }
             return authorizeAndCallRequest(request);
         }
-
-        //public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters)
-        //{
-        //    string requestUrl = formatQuery(methodPath, parameters);
-        //    return CallPutWithRequestContent(requestUrl);
-        //}
-
-        //public HttpResponseMessage CallPutWithRequestContent(string methodPath, HttpContent content, IDictionary<string, string> parameters)
-        //{
-        //    string requestUrl = formatQuery(methodPath, parameters);
-        //    return CallPutWithRequestContent(requestUrl, content);
-        //}
-
-        //public HttpResponseMessage CallPutWithRequestContent(string requestUrl, HttpContent content = null)
-        //{
-        //    HttpClient client = new HttpClient();
-        //    string signedUrl = SignUrl(requestUrl);
-        //    HttpResponseMessage response = client.PutAsync(signedUrl, content).Result;
-        //    return response;
-        //}
 
         private string formatQuery(string methodPath, IDictionary<string, string> parameters)
         {

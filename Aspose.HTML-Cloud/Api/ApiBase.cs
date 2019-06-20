@@ -28,8 +28,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
-//using Com.Aspose.Html.Client;
-//using Com.Aspose.Html.NativeClient;
 
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Model;
@@ -42,55 +40,78 @@ namespace Aspose.Html.Cloud.Sdk.Api
     public abstract class ApiBase
     {
         /// <summary>
-        /// Constructor
+        /// Constructor. Initalizes a new instance ApiBase class with specified user credentials (application SID and application key),
+        /// and REST API service URL; by default, authentication service URL is the same.        
         /// </summary>
         /// <param name="appSid">Application SID (client ID)</param>
         /// <param name="appKey">Application key (client secret)</param>
         /// <param name="basePath">REST API service URL</param>
-        internal ApiBase(String appSid, String appKey, String basePath)
+        protected internal ApiBase(String appSid, String appKey, String basePath)
         {
             this.ApiClient = new ApiClient(appSid, appKey, basePath, basePath);
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor. Initalizes a new instance of ApiBase class with specified user credentials (application SID and application key),
+        /// REST API service URL and authentication service URL.
         /// </summary>
         /// <param name="appSid">Application SID (client ID)</param>
         /// <param name="appKey">Application key (client secret)</param>
         /// <param name="basePath">REST API service URL</param>
         /// <param name="authPath">Authorization service URL</param>
-        internal ApiBase(String appSid, String appKey, String basePath, String authPath)
+        protected internal ApiBase(String appSid, String appKey, String basePath, String authPath)
         {
             this.ApiClient = new ApiClient(appSid, appKey, basePath, authPath);
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor. Initalizes a new instance of ApiBase class with specified user credentials (application SID and application key),
+        /// REST API service URL and service connection timeout; by default, authentication service URL is the same.
         /// </summary>
         /// <param name="appSid">Application SID (client ID)</param>
         /// <param name="appKey">Application key (client secret)</param>
         /// <param name="basePath">REST API service URL</param>
         /// <param name="timeout">Service connection timeout</param>
-        internal ApiBase(String appSid, String appKey, String basePath, TimeSpan timeout)
+        protected internal ApiBase(String appSid, String appKey, String basePath, TimeSpan timeout)
             : this(appSid, appKey, basePath)
         {
             this.ApiClient.Timeout = timeout;
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor. Initalizes a new instance of HtmlApi class with specified user credentials (application SID and application key),
+        /// REST API service URL, authentication service URL and service connection timeout.
         /// </summary>
         /// <param name="appSid">Application SID (client ID)</param>
         /// <param name="appKey">Application key (client secret)</param>
         /// <param name="basePath">REST API service URL</param>
         /// <param name="authPath">Authorization service URL</param>
         /// <param name="timeout">Service connection timeout</param>
-        internal ApiBase(String appSid, String appKey, String basePath, String authPath, TimeSpan timeout)
+        protected internal ApiBase(String appSid, String appKey, String basePath, String authPath, TimeSpan timeout)
             : this(appSid, appKey, basePath, authPath)
         {
             this.ApiClient.Timeout = timeout;
         }
 
+        /// <summary>
+        /// Constructor. Initalizes a new instance of ApiBase class with Configuration object.
+        /// </summary>
+        /// <param name="config"></param>
+        protected internal ApiBase(Configuration config)
+        {
+            this.ApiClient = new ApiClient(
+                config.AppSid, config.AppKey, config.ApiBaseUrl, config.AuthUrl);
+        }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of ApiBase class inheriting ApiClient object
+        /// of existing ApiBase instance, so authorization data become common for both.
+        /// </summary>
+        /// <param name="apiInstance"></param>
+        protected internal ApiBase(ApiBase apiInstance)
+        {
+            this.ApiClient = apiInstance.ApiClient;
+        }
 
         /// <summary>
         /// Gets or sets the API client

@@ -34,7 +34,7 @@ using Newtonsoft.Json;
 
 namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 {
-    public abstract class AuthBase
+    internal abstract class AuthBase
     {
         public enum AuthFlow
         {
