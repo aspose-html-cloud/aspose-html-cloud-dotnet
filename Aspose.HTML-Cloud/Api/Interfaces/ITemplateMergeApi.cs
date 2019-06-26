@@ -42,8 +42,8 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="options">Template merge options: reserved for further implementation.</param>
         /// <param name="folder">The template document folder.</param>
         /// <param name="storage">The template document and data source storage.</param>
-        /// <returns>AsposeStreamResponse | Stream containing the generated document.</returns>
-        AsposeStreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null);
+        /// <returns>StreamResponse | Stream containing the generated document.</returns>
+        StreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null);
 
         /// <summary>
         /// Populates HTML document template with data from the stream. Result document will be saved to storage.

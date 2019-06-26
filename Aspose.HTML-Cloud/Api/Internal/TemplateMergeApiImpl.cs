@@ -43,7 +43,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         {
         }
 
-        public AsposeStreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
+        public StreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
         {
             var methodName = "GetMergeHtmlTemplate";
             // verify the required parameter 'name' is set
@@ -65,7 +65,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
-            AsposeStreamResponse response = CallGetApi(path, queryParams, methodName);
+            StreamResponse response = CallGetApi(path, queryParams, methodName);
             return response;
         }
 

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="AsposeStreamResponse.cs">
-//   Copyright (c) 2017 Aspose.HTML for Cloud
+// <copyright company="Aspose" file="DiskUsage.cs">
+//   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,28 +21,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 // </summary>
-// --------------------------------------------------------------------------------------------------------------------using System;
-using System.IO;
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Model
 {
     /// <summary>
-    /// 
+    /// Class representing the cloud storage disc usage. 
     /// </summary>
-    public class AsposeStreamResponse : AsposeResponse
+    public class DiscUsage
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string FileName { get; set; }
+        [JsonProperty(PropertyName = "UsedSize")]
+        long UsedSize { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Stream ContentStream { get; set; }
+        [JsonProperty(PropertyName = "TotalSize")]
+        long TotalSize { get; set; }
     }
 }

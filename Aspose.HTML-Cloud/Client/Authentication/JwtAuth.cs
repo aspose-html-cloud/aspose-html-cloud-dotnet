@@ -126,7 +126,8 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             {
                 if (m_authData.HasError)
                     throw new Exception($"JWT: Authentication error: {m_authData.Error}", new Exception(m_authData.ErrorDescription));
-                request.Headers.Add("Authorization", AuthorizationHeaderValue);
+                else
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", m_authData.AccessToken);
             }
             return res;
         }
@@ -170,6 +171,11 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                     throw new Exception($"Wrong JWT flow");
             }
             return authReqContent;
+        }
+
+        protected override bool IsAccessTokenExpired()
+        {
+            return m_authData.IsAccessTokenExpired;
         }
 
         private string AuthorizationHeaderValue

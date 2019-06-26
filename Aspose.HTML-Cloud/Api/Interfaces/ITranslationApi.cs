@@ -42,7 +42,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
         /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        AsposeStreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null);
+        StreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null);
 
         /// <summary>
         /// Translates the HTML document specified by its URL. 
@@ -51,7 +51,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="srcLang">Source language.</param>
         /// <param name="resLang">Result language.</param>
         /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        AsposeStreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang);
+        StreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang);
        
     }
 

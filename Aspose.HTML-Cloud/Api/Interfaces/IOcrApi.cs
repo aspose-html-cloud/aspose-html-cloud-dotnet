@@ -40,8 +40,8 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="engineLang">String | Optional. OCR engine language. </param>
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>AsposeStreamResponse |  Stream of resulting document. </returns>
-        AsposeStreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null);
+        /// <returns>StreamResponse |  Stream of resulting document. </returns>
+        StreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null);
 
         /// <summary>
         /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document translated to the specified language.
@@ -51,7 +51,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="resLang">String | Result language.</param>
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>AsposeStreamResponse |  Stream of resulting document.</returns>
-        AsposeStreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null);
+        /// <returns>StreamResponse |  Stream of resulting document.</returns>
+        StreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null);
     }
 }

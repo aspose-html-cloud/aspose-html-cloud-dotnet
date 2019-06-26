@@ -39,7 +39,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         #endregion
 
         #region IOcrApi interface implementation
-        public AsposeStreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
+        public StreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
         {
             var methodName = "GetRecognizeAndImportToHtml";
             // verify the required parameter 'name' is set
@@ -63,7 +63,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
+        public StreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             var methodName = "GetRecognizeAndTranslateToHtml";
             // verify the required parameter 'name' is set

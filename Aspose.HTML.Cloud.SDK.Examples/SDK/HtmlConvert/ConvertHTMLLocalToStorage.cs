@@ -25,11 +25,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
         public void Run()
         {
             string name = "testpage4_embcss.html";
-            string path = Path.Combine(CommonSettings.DataFolder, name);
+            string path = Path.Combine(CommonSettings.LocalDataFolder, name);
             if (!File.Exists(path))
                 throw new FileNotFoundException("File not found in the Data folder", name);
 
-            string folder = "/Testout/Conversion";
+            string folder = "/Html/Testout/Conversion";
             string storage = null;
 
             int width = 800;
@@ -46,7 +46,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 
             using (Stream srcStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                IConversionApi convApi = new HtmlApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+                IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
                 AsposeResponse response = null;
                 string dataType = Path.GetExtension(name).Replace(".", "");
                 // call SDK methods that convert HTML document to supported out format
@@ -65,6 +65,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     case "bmp":
                     case "png":
                     case "tiff":
+                    case "gif":
                         response = convApi.PostConvertDocumentToImage(
                             srcStream, Format, dataType, outPath, width, height,
                             leftMargin, rightMargin, topMargin, bottomMargin,
@@ -74,9 +75,13 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                         throw new ArgumentException($"Unsupported output format: {Format}");
                 }
 
-                if (response != null)
+                if (response != null && response.Code == 200)
                 {
-                    Console.WriteLine(string.Format("\nResult file uploaded to: {0}", outPath));
+                    IStorageApi stApi = new StorageApi((ApiBase)convApi);
+                    if (stApi.FileOrFolderExists(outPath))
+                    {
+                        Console.WriteLine(string.Format("\nResult file uploaded to: {0}", outPath));
+                    }
                 }
             }
         }

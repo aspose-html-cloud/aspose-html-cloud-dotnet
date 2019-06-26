@@ -98,10 +98,10 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                     Method = HttpMethod.Post
                 };
                 authReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                authReq.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 
                 List<KeyValuePair<string, string>> authReqContent = BuildAuthRequestContent();
                 authReq.Content = new FormUrlEncodedContent(authReqContent);
+                authReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
                 var authResponse = authClient.SendAsync(authReq).Result;
                 if (authResponse.StatusCode == System.Net.HttpStatusCode.OK)
@@ -109,6 +109,19 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                     var content = authResponse.Content.ReadAsStringAsync().Result;
                     AuthDataDeserializeImpl(content);
                     m_authFlow = AuthFlow.Obtained;
+                }
+                else
+                {
+                    m_authFlow = AuthFlow.ObtainAccessTokenPending;
+                    return false;
+                }
+            }
+            else
+            {
+                if(IsAccessTokenExpired())
+                {
+                    m_authFlow = AuthFlow.ObtainAccessTokenPending;
+                    return false;
                 }
             }
             return true;
@@ -119,6 +132,8 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         protected abstract List<KeyValuePair<string, string>> BuildAuthRequestContent();
 
         protected abstract void AuthDataDeserializeImpl(string content);
+
+        protected abstract bool IsAccessTokenExpired();
 
     }
 }

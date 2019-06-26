@@ -24,6 +24,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.IO;
+using System.Collections.Generic;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
@@ -33,6 +34,35 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
     /// </summary>
     public interface IStorageApi
     {
-        
+        /// <summary>
+        /// Check if specified storage exists
+        /// </summary>
+        /// <param name="storage">Storage name.</param>
+        /// <returns></returns>
+        bool StorageExists(string storage);
+
+        /// <summary>
+        /// Check if specified file or folder exists
+        /// </summary>
+        /// <param name="path">Object path, e.g. /folder1/folder2/file.ext or /folder</param>
+        /// <param name="storage">Storage name.</param>
+        /// <param name="versionId">File version ID (ignored for folders)</param>
+        /// <returns></returns>
+        bool FileOrFolderExists(string path, string storage = null, string versionId = null);
+
+        /// <summary>
+        /// Returns the disc usage.
+        /// </summary>
+        /// <param name="storage">Storage name.</param>
+        /// <returns></returns>
+        DiscUsage GetDiscUsage(string storage = null);
+
+        /// <summary>
+        /// Returns list of specified file versions.
+        /// </summary>
+        /// <param name="path">File path, e.g. /folder/file.ext </param>
+        /// <param name="storage">Storage name.</param>
+        /// <returns></returns>
+        List<StorageItemVersion> GetStorageItemVersions(string path, string storage = null);
     }
 }

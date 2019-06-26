@@ -20,10 +20,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             string name = "testpage5.html.zip";   // storage file name
             string folder = "HtmlTemp"; // storage folder name
 
-            string filePath = Path.Combine(CommonSettings.DataFolder, name);
+            string filePath = Path.Combine(CommonSettings.LocalDataFolder, name);
             if (File.Exists(filePath))
             {
-                SdkBaseRunner.UploadToStorage(name, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(name, CommonSettings.LocalDataFolder);
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", filePath));

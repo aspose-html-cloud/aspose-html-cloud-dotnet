@@ -54,7 +54,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="folder">The document folder.</param>
         /// <returns>AsposeStreamResponse | Stream containing the requested fragments</returns>
         /// 
-        AsposeStreamResponse GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder);
+        StreamResponse GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder);
 
         /// <summary>
         /// Returns list of HTML fragments in the document matching the specified CSS selector.  
@@ -65,7 +65,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
         /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
-        AsposeStreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder);
+        StreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder);
 
         /// <summary>
         /// Returns all images from the HTML document packaged as a ZIP archive. 
@@ -74,7 +74,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
         /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the ZIP archive of all images.</returns>
-        AsposeStreamResponse GetDocumentImages(string name, string storage, string folder);
+        StreamResponse GetDocumentImages(string name, string storage, string folder);
 
         /// <summary>
         /// Returns list of HTML fragments in the Web page by its URL matching the specified XPath query.
@@ -83,7 +83,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="xPath">XPath query string.</param>
         /// <param name="outFormat">Result format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
-        AsposeStreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat);
+        StreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat);
 
         /// <summary>
         /// Returns list of HTML fragments  in the Web page by its URL matching the specified CSS selector.
@@ -92,21 +92,21 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="selector">CSS selector string.</param>
         /// <param name="outFormat">Result format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
-        AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat);
+        StreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat);
 
         /// <summary>
         /// Returns all HTML document images packaged as a ZIP archive by Web page URL.
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <returns></returns>
-        AsposeStreamResponse GetDocumentImagesByUrl(string sourceUrl);
+        StreamResponse GetDocumentImagesByUrl(string sourceUrl);
 
         /// <summary>
         /// Downloads HTML page with linked resources from Web by its URL and returns it as a ZIP archive.
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <returns></returns>
-        AsposeStreamResponse GetDocumentByUrl(string sourceUrl);
+        StreamResponse GetDocumentByUrl(string sourceUrl);
     }
 
 }

@@ -25,20 +25,56 @@
 
 
 using System.IO;
+using System.Collections.Generic;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
     public interface IStorageFolderApi
     {
-        AsposeResponse GetFolderList(string path, string storage = null);
+        /// <summary>
+        /// Get all files and folders within a specified folder.
+        /// </summary>
+        /// <param name="path">Folder path, e.g. /folder1/folder2</param>
+        /// <param name="storage">Storage name.</param>
+        /// <returns>StorageItemListResponse | List of items in the folder.</returns>
+        List<StorageItem> GetFolderContentList(string path, string storage = null);
 
+        /// <summary>
+        /// Create folder.
+        /// </summary>
+        /// <param name="path">Folder path, e.g. /folder1/folder2 </param>
+        /// <param name="storage">Storage name.</param>
+        /// <returns>AsposeResponse | Operation status.</returns>
         AsposeResponse CreateFolder(string path, string storage = null);
 
+        /// <summary>
+        /// Delete folder.
+        /// </summary>
+        /// <param name="path">Folder path, e.g. /folder1/folder2 </param>
+        /// <param name="storage">Storage name.</param>
+        /// <param name="recursive">Enable to delete files and subfolders, if folder is not empty.</param>
+        /// <returns>AsposeResponse | Operation status.</returns>
         AsposeResponse DeleteFolder(string path, string storage = null, bool recursive = false);
 
+        /// <summary>
+        /// Copy folder with files and subfolders.
+        /// </summary>
+        /// <param name="srcPath">Source folder path, e.g. /src </param>
+        /// <param name="destPath">Destination folder path, e.g. /dst </param>
+        /// <param name="srcStorage">Source storage name.</param>
+        /// <param name="destStorage">Destination storage name.</param>
+        /// <returns>AsposeResponse | Operation status.</returns>
         AsposeResponse CopyFolder(string srcPath, string destPath, string srcStorage = null, string destStorage = null);
 
+        /// <summary>
+        /// Move folder with files and subfolders.
+        /// </summary>
+        /// <param name="srcPath">Source folder path, e.g. /src </param>
+        /// <param name="destPath">Destination folder path, e.g. /dst </param>
+        /// <param name="srcStorage">Source storage name.</param>
+        /// <param name="destStorage">Destination storage name.</param>
+        /// <returns>AsposeResponse | Operation status.</returns>
         AsposeResponse MoveFolder(string srcPath, string destPath, string srcStorage = null, string destStorage = null);
     }
 }

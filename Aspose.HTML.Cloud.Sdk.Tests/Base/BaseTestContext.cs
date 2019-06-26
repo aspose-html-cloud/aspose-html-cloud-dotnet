@@ -30,6 +30,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     using System.IO;
     using Newtonsoft.Json;
     using Aspose.Html.Cloud.Sdk.Api;
+    using Aspose.Html.Cloud.Sdk.Api.Interfaces;
     using Aspose.Html.Cloud.Sdk.Api.Model;
     using Aspose.Html.Cloud.Sdk.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,6 +44,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         {
             [JsonProperty(PropertyName = "AppSid", Required = Required.Always)]
             public string AppSid { get; set; }
+
+
             [JsonProperty(PropertyName = "AppKey", Required = Required.Always)]
             public string AppKey { get; set; }
 
@@ -168,14 +171,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         protected void uploadFileToStorage(string dataFolder, string name, string folder)
         {
             string srcPath = Path.Combine(dataFolder, name);
-            string path = string.Format("{0}/{1}", folder, name);
+            string path = Path.Combine(folder, name).Replace('\\', '/');
             using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                //PutCreateRequest reqCr = new PutCreateRequest(path, fstr);
-                //this.StorageApi.PutCreate(reqCr);
-                //GetIsExistRequest reqExist = new GetIsExistRequest(path);
-                //FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-                //Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+                var response = StorageApi.UploadFile(fstr, path);
+                Assert.IsTrue(response != null);
+                Assert.IsTrue(response.Code == 200);
+                bool exists = StorageApi.FileOrFolderExists(path);
+                Assert.IsTrue(exists);
             }
         }
 
@@ -207,7 +210,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             return resultName;
         }
 
-        protected void checkGetMethodResponse(AsposeStreamResponse response, string outSubdir, string suffix = "")
+        protected void checkGetMethodResponse(StreamResponse response, string outSubdir, string suffix = "")
         {
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Code == 200);
@@ -217,7 +220,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             Assert.IsTrue(File.Exists(outPath));
         }
 
-        protected void checkGetMethodResponseOkOrNoresult(AsposeStreamResponse response, string outSubdir, string suffix = "")
+        protected void checkGetMethodResponseOkOrNoresult(StreamResponse response, string outSubdir, string suffix = "")
         {
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Code == 200 || response.Code == 204);

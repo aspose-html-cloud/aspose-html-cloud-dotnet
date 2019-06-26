@@ -39,15 +39,15 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="name">Document name.</param>
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
-        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null);
+        /// <returns>StreamResponse | Stream of resulting document.</returns>
+        StreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null);
 
         /// <summary>
         /// Detects the keywords in the HTML document specified by its URL.
         /// </summary>
         /// <param name="sourceUrl">Source document URL</param>
-        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl);
+        /// <returns>StreamResponse | Stream of resulting document.</returns>
+        StreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl);
 
     }
 }

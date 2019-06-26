@@ -19,10 +19,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             var name = "testpage3_embcss.html";
             var selector = "ol > li";
             // Upload source file to cloud storage (default is AmazonS3)
-            var srcPath = Path.Combine(CommonSettings.DataFolder, name);
+            var srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
             if (File.Exists(srcPath))
             {
-                SdkBaseRunner.UploadToStorage(name, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(name, CommonSettings.LocalDataFolder);
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));

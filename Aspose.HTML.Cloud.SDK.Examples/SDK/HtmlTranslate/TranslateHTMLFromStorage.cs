@@ -30,13 +30,13 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
             string folder = null;
             string storage = null;
 
-            string srcPath = Path.Combine(CommonSettings.DataFolder, name);
+            string srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
             if (File.Exists(srcPath))
             {
                 var storagePath = !string.IsNullOrEmpty(folder)
                     ? string.Format("{0}/{1}", folder, name) : name;
 
-                bool uploaded = SdkBaseRunner.UploadToStorage(storagePath, CommonSettings.DataFolder);
+                bool uploaded = SdkBaseRunner.UploadToStorage(storagePath, CommonSettings.LocalDataFolder);
 
                 if(uploaded)
                 {

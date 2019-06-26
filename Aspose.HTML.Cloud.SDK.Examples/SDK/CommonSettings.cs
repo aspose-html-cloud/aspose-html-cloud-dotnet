@@ -15,21 +15,30 @@ namespace Aspose.HTML.Cloud.Examples.SDK
         private static string _appKey = null;
         private static string _basePath = null;
         private static string _authPath = null;
-        private static string _version = "v3.0";
+        private static string _apiVersion = null;
 
  
-        public static string DefaultBaseUrl = "http://api-qa.aspose.cloud";
+        public static string DefaultBaseUrl = "http://api.aspose.cloud";
 
         static CommonSettings()
         {
 
         }
 
-        private static string DefaultDataFolder
+        private static string DefaultLocalDataFolder
         {
             get
             {
                 return DirectoryHelper.GetPath("TestData", "HTML");
+
+            }
+        }
+
+        private static string DefaultDataFolder
+        {
+            get
+            {
+                return "/HTML/SdkTestData/";
             }
         }
 
@@ -54,7 +63,24 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                 return res;
             }
         }
+
+        private static string DefaultApiVersion = "3.0";
             
+
+        public static string ApiVersion
+        {
+            get
+            {
+                if (_apiVersion == null)
+                {
+                    string val = ConfigurationManager.AppSettings["apiVersion"];
+                    if (string.IsNullOrEmpty(val))
+                        val = DefaultApiVersion;
+                    _basePath = val;
+                }
+                return _apiVersion;
+            }
+        }
 
         public static string BasePath
         {
@@ -128,7 +154,30 @@ namespace Aspose.HTML.Cloud.Examples.SDK
             }
         }
 
-        public static string DataFolder
+        public static string LocalDataFolder
+        {
+            get
+            {
+                string path = null;
+                try
+                {
+                    path = ConfigurationManager.AppSettings["LocalDataPath"];
+                    if (string.IsNullOrEmpty(path))
+                        path = CommonSettings.DefaultLocalDataFolder;
+                    if (!Directory.Exists(path))
+                    {
+                        throw new Exception($"LocalDataPath = {path}: directory does not exist.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+                return path;
+            }
+        }
+
+        public static string StorageDataFolder
         {
             get
             {
@@ -138,10 +187,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                     path = ConfigurationManager.AppSettings["DataPath"];
                     if (string.IsNullOrEmpty(path))
                         path = CommonSettings.DefaultDataFolder;
-                    if (!Directory.Exists(path))
-                    {
-                        throw new Exception("DataPath directory does not exist.");
-                    }
+                    //if (!Directory.Exists(path))
+                    //{
+                    //    throw new Exception($"DataPath = {path}: directory does not exist.");
+                    //}
                 }
                 catch (Exception ex)
                 {

@@ -35,7 +35,7 @@ h2.outlined {
 }
 
 .box_font40_i {
-	text-decoration: italic;
+	font-variant: italic;
 	font-size: 40px
 }
 

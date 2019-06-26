@@ -46,7 +46,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         #endregion
 
         #region ISummarizationApi interface implementation
-        public AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
+        public StreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
         {
             var methodName = "GetDetectHtmlKeywords";
             // verify the required parameter 'name' is set
@@ -68,7 +68,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl)
+        public StreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl)
         {
             var methodName = "GetDetectHtmlKeywordsByUrl";
 

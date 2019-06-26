@@ -26,6 +26,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,6 +76,15 @@ namespace Aspose.Html.Cloud.Sdk.Client
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             return path;
+        }
+
+        static Regex re = new Regex(@"^v(\d{1,})\.(\d{1,})$");
+        internal static bool UrlContainsVersion(string url)
+        {
+            Uri uri = new Uri(url);
+            var s = uri.Segments.Last<string>();
+            bool res = re.Match(s).Success;
+            return res;
         }
     }
 }

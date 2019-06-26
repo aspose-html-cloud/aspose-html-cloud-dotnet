@@ -32,10 +32,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                 : ((Format == "jpeg") ? "jpg" 
                 : ((Format == "mhtml") ? "mht" : Format));
             string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted.{ext}";
-            string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
 
-            IConversionApi convApi = new ConversionApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
-            AsposeStreamResponse response = null;
+            IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
+            StreamResponse response = null;
             // call SDK methods that convert HTML document to supported out format
             switch (Format)
             {
@@ -49,7 +48,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                 case "bmp":
                 case "png":
                 case "tiff":
-                    response = convApi.GetConvertDocumentToImageByUrl(Format, FileUrl, 800, 1200);
+                case "gif":
+                    response = convApi.GetConvertDocumentToImageByUrl(FileUrl, Format, 800, 1200);
                     break;
                 case "mhtml":
                     response = convApi.GetConvertDocumentToMHTMLByUrl(FileUrl);
@@ -60,6 +60,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 
             if (response != null && response.ContentStream != null)
             {
+                string respFileName = response.FileName;
+                string outPath = Path.Combine(CommonSettings.OutDirectory, respFileName ?? outFile);
+
                 Stream stream = response.ContentStream;
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {

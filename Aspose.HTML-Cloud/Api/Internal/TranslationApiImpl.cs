@@ -48,7 +48,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         #endregion
 
         #region ITranslationApi interface implementation
-        public AsposeStreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null)
+        public StreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             var methodName = "GetTranslateDocument";
             // verify the required parameter 'name' is set
@@ -80,7 +80,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang)
+        public StreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang)
         {
             var methodName = "GetTranslateDocumentByUrl";
             // verify the required parameter 'sourceUrl' is set

@@ -217,7 +217,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <returns></returns>
-        public AsposeStreamResponse GetDocumentByUrl(string sourceUrl)
+        public StreamResponse GetDocumentByUrl(string sourceUrl)
         {
             return DocumentApiImpl.GetDocumentByUrl(sourceUrl);
         }
@@ -230,8 +230,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
-        public AsposeStreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder)
+        /// <returns>StreamResponse | Response object containing MemoryStream with the requested fragments</returns>
+        public StreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder)
         {
             return DocumentApiImpl.GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder);
         }
@@ -242,8 +242,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="selector">CSS selector string.</param>
         /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
-        /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the requested fragments</returns>
-        public AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat)
+        /// <returns>StreamResponse | Response object containing MemoryStream with the requested fragments</returns>
+        public StreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat)
         {
             return DocumentApiImpl.GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, selector, outFormat);
         }
@@ -256,8 +256,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; and &#39;json&#39;.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>AsposeStreamResponse | Stream containing the requested fragments</returns>
-        public AsposeStreamResponse GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder)
+        /// <returns>StreamResponse | Stream containing the requested fragments</returns>
+        public StreamResponse GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder)
         {
             return DocumentApiImpl.GetDocumentFragmentByXPath(name, xPath, outFormat, storage, folder);
         }
@@ -268,8 +268,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="sourceUrl">Source page URL</param>
         /// <param name="xPath">XPath query string.</param>
         /// <param name="outFormat">Output format. Possible values: &#39;plain&#39; ancontainingd &#39;json&#39;.</param>
-        /// <returns>AsposeStreamResponse | Response object  MemoryStream with the requested fragments</returns>
-        public AsposeStreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
+        /// <returns>StreamResponse | Response object  MemoryStream with the requested fragments</returns>
+        public StreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
         {
             return DocumentApiImpl.GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat);
         }
@@ -280,8 +280,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="name">The document name.</param>
         /// <param name="storage">The document storage.</param>
         /// <param name="folder">The document folder.</param>
-        /// <returns>AsposeStreamResponse | Response object containing MemoryStream with the ZIP archive of all images.</returns>
-        public AsposeStreamResponse GetDocumentImages(string name, string storage, string folder)
+        /// <returns>StreamResponse | Response object containing MemoryStream with the ZIP archive of all images.</returns>
+        public StreamResponse GetDocumentImages(string name, string storage, string folder)
         {
             return DocumentApiImpl.GetDocumentImages(name, storage, folder);
         }
@@ -291,7 +291,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="sourceUrl">Source page URL</param>
         /// <returns></returns>
-        public AsposeStreamResponse GetDocumentImagesByUrl(string sourceUrl)
+        public StreamResponse GetDocumentImagesByUrl(string sourceUrl)
         {
             return DocumentApiImpl.GetDocumentImagesByUrl(sourceUrl);
         }
@@ -313,8 +313,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="folder">The source document folder.</param>
         /// <param name="storage">The source document storage.</param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting image.</returns>
-        public AsposeStreamResponse GetConvertDocumentToImage(string name, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string folder = null, string storage = null)
+        /// <returns>StreamResponse | Stream of the resulting image.</returns>
+        public StreamResponse GetConvertDocumentToImage(string name, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string folder = null, string storage = null)
         {
             return ConversionApiImpl.GetConvertDocumentToImage(name, outFormat, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage);
         }
@@ -331,8 +331,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="topMargin">Top image margin.</param>
         /// <param name="bottomMargin">Bottom image margin.</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting image.</returns>
-        public AsposeStreamResponse GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null)
+        /// <returns>StreamResponse | Stream of the resulting image.</returns>
+        public StreamResponse GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null)
         {
             return ConversionApiImpl.GetConvertDocumentToImageByUrl(sourceUrl, outFormat, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution);
         }
@@ -344,8 +344,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="useGit">Use Git flavor of Markdown.</param>
         /// <param name="folder">Source document folder</param>
         /// <param name="storage">Source document storage</param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting Markdown document.</returns>
-        public AsposeStreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = null, string folder = null, string storage = null)
+        /// <returns>StreamResponse | Stream of the resulting Markdown document.</returns>
+        public StreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = null, string folder = null, string storage = null)
         {
             return ConversionApiImpl.GetConvertDocumentToMarkdown(name, useGit, folder, storage);
         }
@@ -354,8 +354,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML page (located in the Web by its URL) to MHTML and returns resulting file in the response content. 
         /// </summary>
         /// <param name="sourceUrl"></param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting MHTML document.</returns>
-        public AsposeStreamResponse GetConvertDocumentToMHTMLByUrl(string sourceUrl)
+        /// <returns>StreamResponse | Stream of the resulting MHTML document.</returns>
+        public StreamResponse GetConvertDocumentToMHTMLByUrl(string sourceUrl)
         {
             return ConversionApiImpl.GetConvertDocumentToMHTMLByUrl(sourceUrl);
         }
@@ -372,8 +372,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="folder">The source document folder.</param>
         /// <param name="storage">The source document storage.</param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting PDF document.</returns>
-        public AsposeStreamResponse GetConvertDocumentToPdf(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
+        /// <returns>StreamResponse | Stream of the resulting PDF document.</returns>
+        public StreamResponse GetConvertDocumentToPdf(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
         {
             return ConversionApiImpl.GetConvertDocumentToPdf(name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
         }
@@ -388,8 +388,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="rightMargin">Right document page margin.</param>
         /// <param name="topMargin">Top image document page.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting PDF document.</returns>
-        public AsposeStreamResponse GetConvertDocumentToPdfByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
+        /// <returns>StreamResponse | Stream of the resulting PDF document.</returns>
+        public StreamResponse GetConvertDocumentToPdfByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
         {
             return ConversionApiImpl.GetConvertDocumentToPdfByUrl(sourceUrl, width, height, leftMargin, rightMargin, topMargin, bottomMargin);
         }
@@ -406,8 +406,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting XPS document.</returns>
-        public AsposeStreamResponse GetConvertDocumentToXps(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
+        /// <returns>StreamResponse | Stream of the resulting XPS document.</returns>
+        public StreamResponse GetConvertDocumentToXps(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
         {
             return ConversionApiImpl.GetConvertDocumentToXps(name, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
         }
@@ -422,8 +422,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="rightMargin">Right document page margin.</param>
         /// <param name="topMargin">Top document page margin.</param>
         /// <param name="bottomMargin">Bottom document page margin.</param>
-        /// <returns>AsposeStreamResponse | Stream of the resulting XPS document.</returns>
-        public AsposeStreamResponse GetConvertDocumentToXpsByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
+        /// <returns>StreamResponse | Stream of the resulting XPS document.</returns>
+        public StreamResponse GetConvertDocumentToXpsByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
         {
             return ConversionApiImpl.GetConvertDocumentToXpsByUrl(sourceUrl, width, height, leftMargin, rightMargin, topMargin, bottomMargin);
         }
@@ -586,7 +586,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder"></param>
         /// <param name="storage"></param>
         /// <returns></returns>
-        public AsposeStreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
+        public StreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
         {
             return OcrApiImpl.GetRecognizeAndImportToHtml(name, engineLang, folder, storage);
         }
@@ -600,7 +600,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder"></param>
         /// <param name="storage"></param>
         /// <returns></returns>
-        public AsposeStreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
+        public StreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             return OcrApiImpl.GetRecognizeAndTranslateToHtml(name, srcLang, resLang, folder, storage);
         }
@@ -617,7 +617,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder"></param>
         /// <param name="storage"></param>
         /// <returns></returns>
-        public AsposeStreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null)
+        public StreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             return TranslationApiImpl.GetTranslateDocument(name, srcLang, resLang, folder, storage);
         }
@@ -629,7 +629,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="srcLang"></param>
         /// <param name="resLang"></param>
         /// <returns></returns>
-        public AsposeStreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang)
+        public StreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang)
         {
             return TranslationApiImpl.GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang);
         }
@@ -647,7 +647,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder"></param>
         /// <param name="storage"></param>
         /// <returns></returns>
-        public AsposeStreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
+        public StreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
         {
             return TemplateMergeImpl.GetMergeHtmlTemplate(templateName, dataPath, options, folder, storage);
         }
@@ -679,7 +679,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="folder"></param>
         /// <param name="storage"></param>
         /// <returns></returns>
-        public AsposeStreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
+        public StreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
         {
             return SummarizationApiImpl.GetDetectHtmlKeywords(name, folder, storage);
         }
@@ -689,7 +689,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="sourceUrl"></param>
         /// <returns></returns>
-        public AsposeStreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl)
+        public StreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl)
         {
             return SummarizationApiImpl.GetDetectHtmlKeywordsByUrl(sourceUrl);
         }

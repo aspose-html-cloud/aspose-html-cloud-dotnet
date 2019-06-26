@@ -47,7 +47,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         #endregion
 
         #region IConversionApi interface implementation 
-        public AsposeStreamResponse GetConvertDocumentToImage(string name, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string folder = null, string storage = null)
+        public StreamResponse GetConvertDocumentToImage(string name, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string folder = null, string storage = null)
         {
             var methodName = "GetConvertDocumentToImage";
             // verify the required parameter 'name' is set
@@ -55,11 +55,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             // verify the required parameter 'outFormat' is set
             if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
 
-            var path = "/html/{name}/convert/image/{outFormat}";
-            //path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
-            path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
-
+            var path = $"/html/{ApiClientUtils.ParameterToString(name)}/convert/image/{ApiClientUtils.ParameterToString(outFormat)}";
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
 
@@ -79,7 +75,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null)
+        public StreamResponse GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null)
         {
             var methodName = "GetConvertDocumentToImageByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -111,7 +107,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = null, string folder = null, string storage = null)
+        public StreamResponse GetConvertDocumentToMarkdown(string name, bool? useGit = null, string folder = null, string storage = null)
         {
             var methodName = "GetConvertDocumentToMarkdown";
             // verify the required parameter 'name' is set
@@ -133,7 +129,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToMHTMLByUrl(string sourceUrl)
+        public StreamResponse GetConvertDocumentToMHTMLByUrl(string sourceUrl)
         {
             var methodName = "GetConvertDocumentToMHTMLByUrl";
             // verify the required parameter 'name' is set
@@ -151,7 +147,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToPdf(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
+        public StreamResponse GetConvertDocumentToPdf(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
         {
             var methodName = "GetConvertDocumentToPdf";
             // verify the required parameter 'name' is set
@@ -179,7 +175,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToPdfByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
+        public StreamResponse GetConvertDocumentToPdfByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
         {
             var methodName = "GetConvertDocumentToPdfByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -205,7 +201,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToXps(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
+        public StreamResponse GetConvertDocumentToXps(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
         {
             var methodName = "GetConvertDocumentToXps";
             // verify the required parameter 'name' is set
@@ -232,7 +228,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetConvertDocumentToXpsByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
+        public StreamResponse GetConvertDocumentToXpsByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
         {
             var methodName = "GetConvertDocumentToXpsByUrl";
             // verify the required parameter 'sourceUrl' is set

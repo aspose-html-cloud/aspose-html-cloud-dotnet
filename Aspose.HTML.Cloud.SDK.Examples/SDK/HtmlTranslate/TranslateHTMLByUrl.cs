@@ -30,7 +30,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
             //string srcUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
 
             ITranslationApi transApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
-            AsposeStreamResponse response = transApi.GetTranslateDocumentByUrl(srcUrl, SrcLang, ResLang);
+            StreamResponse response = transApi.GetTranslateDocumentByUrl(srcUrl, SrcLang, ResLang);
             Stream stream = response.ContentStream;
 
             if (stream != null && stream.GetType() == typeof(FileStream))

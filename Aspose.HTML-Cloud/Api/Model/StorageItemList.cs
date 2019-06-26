@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Model
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class AsposeStorageItemListResponse : AsposeResponse
+    internal class StorageItemList
     {
-        List<StorageItem> Items { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public List<StorageItem> ItemList { get; set; }
     }
 }

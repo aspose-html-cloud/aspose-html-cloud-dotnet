@@ -94,7 +94,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             //Debug = debug;
             Timeout = new TimeSpan(0, 5, 0);
 
-            Authenticator = auth ?? new JwtAuth(appSid, appKey, basePath);
+            Authenticator = auth ?? new JwtAuth(appSid, appKey, authPath);
         }
 
         public HttpResponseMessage CallGet(string methodPath, IDictionary<string, string> parameters)
@@ -179,6 +179,17 @@ namespace Aspose.Html.Cloud.Sdk.Client
             {
 
             }
+            return authorizeAndCallRequest(request);
+        }
+
+        public HttpResponseMessage CallDelete(string methodPath, IDictionary<string, string> parameters)
+        {
+            string requestUrl = formatQuery(methodPath, parameters);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(requestUrl),
+                Method = HttpMethod.Delete
+            };
             return authorizeAndCallRequest(request);
         }
 

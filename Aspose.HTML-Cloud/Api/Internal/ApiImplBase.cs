@@ -60,7 +60,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         /// <param name="queryParams"></param>
         /// <param name="methodName"></param>
         /// <returns></returns>
-        protected AsposeStreamResponse CallGetApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
+        protected StreamResponse CallGetApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
         {
             HttpResponseMessage resp = ApiClient.CallGet(path, queryParams);
 
@@ -72,13 +72,13 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
                 throw new ApiException((int)resp.StatusCode,
                    string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
 
-            if (resp.Content.Headers.ContentDisposition == null
-                || resp.Content.Headers.ContentDisposition.FileName == null)
-                throw new ApiException(500, string.Format("Error calling {0}: Content-Disposition header does not contain result file name", methodName), null);
-
-            var fileName = resp.Content.Headers.ContentDisposition.FileName;
+            var fileName = "";
+            if (resp.Content.Headers.ContentDisposition != null
+                && resp.Content.Headers.ContentDisposition.FileName != null)
+            {
+                fileName = resp.Content.Headers.ContentDisposition.FileName;
+            }
             Stream outStream = new MemoryStream();
-
             Task task = resp.Content.ReadAsStreamAsync()
                 .ContinueWith((tsk) => {
                     var contentStream = tsk.Result;
@@ -87,7 +87,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
                     outStream.Position = 0;
                 });
             task.Wait();
-            AsposeStreamResponse response = new AsposeStreamResponse()
+            StreamResponse response = new StreamResponse()
             {
                 Status = resp.StatusCode.ToString(),
                 Code = (int)resp.StatusCode,
@@ -98,7 +98,39 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
+        //protected StringResponse CallGetApiStringResponse(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
+        //{
 
+        //}
+
+        //protected StringResponse CallGetApiStringResponse(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
+        //{
+        //    HttpResponseMessage resp = ApiClient.CallGet(path, queryParams);
+
+        //    if (((int)resp.StatusCode) >= 400)
+        //        throw new ApiException((int)resp.StatusCode,
+        //            string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
+        //            methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
+        //    else if (((int)resp.StatusCode) == 0)
+        //        throw new ApiException((int)resp.StatusCode,
+        //           string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+
+        //    //if (resp.Content.Headers.ContentDisposition == null
+        //    //    || resp.Content.Headers.ContentDisposition.FileName == null)
+        //    //    throw new ApiException(500, string.Format("Error calling {0}: Content-Disposition header does not contain result file name", methodName), null);
+
+        //    //var fileName = resp.Content.Headers.ContentDisposition.FileName;
+
+        //    StringResponse response = new StringResponse()
+        //    {
+        //        Status = resp.StatusCode.ToString(),
+        //        Code = (int)resp.StatusCode,
+        //        ReasonPhrase = resp.ReasonPhrase,
+        //        Content = resp.Content.ReadAsStringAsync().Result,
+        //        Name = ""
+        //    };
+        //    return response;
+        //}
 
         protected AsposeResponse CallPutApi(string path, Dictionary<string, string> queryParams, Dictionary<string, string> headerParams, Stream bodyStream, string methodName = "<unknown>")
         {
@@ -120,10 +152,28 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-
         protected AsposeResponse CallPostApi(string path, Dictionary<string, string> queryParams, Dictionary<string, string> headerParams, Stream bodyStream, string methodName = "<unknown>")
         {
             HttpResponseMessage resp = ApiClient.CallPost(path, queryParams, headerParams, bodyStream);
+            if (((int)resp.StatusCode) >= 400)
+                throw new ApiException((int)resp.StatusCode,
+                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
+                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
+            else if (((int)resp.StatusCode) == 0)
+                throw new ApiException((int)resp.StatusCode,
+                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+
+            var response = new AsposeResponse()
+            {
+                Code = (int)resp.StatusCode,
+                Status = resp.StatusCode.ToString()
+            };
+            return response;
+        }
+
+        protected AsposeResponse CallDeleteApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
+        {
+            HttpResponseMessage resp = ApiClient.CallDelete(path, queryParams);
             if (((int)resp.StatusCode) >= 400)
                 throw new ApiException((int)resp.StatusCode,
                     string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",

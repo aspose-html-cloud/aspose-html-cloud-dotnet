@@ -220,5 +220,9 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             m_authData = OAuthData.Deserialize(content);
         }
 
+        protected override bool IsAccessTokenExpired()
+        {
+            return m_authData.IsAccessTokenExpired;
+        }
     }
 }

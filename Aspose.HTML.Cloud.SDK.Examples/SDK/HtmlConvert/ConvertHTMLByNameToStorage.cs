@@ -28,8 +28,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
         public void Run()
         {
             var name = "testpage4_embcss.html";
-            var srcPath = Path.Combine(CommonSettings.DataFolder, name);
-            string folder = " HtmlTestFolder";
+            var srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
+            string folder = "/Html/Testout/Conversion";
             string storage = null;
             string storagePath = (folder == null) ? name : Path.Combine(folder, name).Replace('\\', '/');
 
@@ -47,12 +47,12 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 
             if (File.Exists(srcPath))
             {
-                SdkBaseRunner.UploadToStorage(storagePath, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(storagePath, srcPath);
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));
 
-            IConversionApi convApi = new ConversionApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             AsposeResponse response = null;
             // call SDK methods that convert HTML document to supported out format
             switch (Format)
@@ -70,6 +70,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                 case "bmp":
                 case "png":
                 case "tiff":
+                case "gif":
                     response = convApi.PutConvertDocumentToImage(
                         name, Format, outPath, width, height,
                         leftMargin, rightMargin, topMargin, bottomMargin,
@@ -82,7 +83,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     throw new ArgumentException($"Unsupported output format: {Format}");
             }
 
-            if (response != null)
+            if (response != null && response.Code == 200)
             {
                 Console.WriteLine(string.Format("\nResult file uploaded to: {0}", outPath));
             }

@@ -39,6 +39,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
     /// </summary>
     public abstract class ApiBase
     {
+        const string DefaultApiVersion = "3.0";
+
         /// <summary>
         /// Constructor. Initalizes a new instance ApiBase class with specified user credentials (application SID and application key),
         /// and REST API service URL; by default, authentication service URL is the same.        
@@ -47,8 +49,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="appKey">Application key (client secret)</param>
         /// <param name="basePath">REST API service URL</param>
         protected internal ApiBase(String appSid, String appKey, String basePath)
+            : this(appSid, appKey, basePath, basePath)
         {
-            this.ApiClient = new ApiClient(appSid, appKey, basePath, basePath);
         }
 
         /// <summary>
@@ -61,6 +63,11 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="authPath">Authorization service URL</param>
         protected internal ApiBase(String appSid, String appKey, String basePath, String authPath)
         {
+            if (!ApiClientUtils.UrlContainsVersion(basePath))
+            {
+                var baseUrl = $"{basePath}/v{DefaultApiVersion}";
+                basePath = baseUrl;
+            }
             this.ApiClient = new ApiClient(appSid, appKey, basePath, authPath);
         }
 
@@ -99,6 +106,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="config"></param>
         protected internal ApiBase(Configuration config)
         {
+            if (!ApiClientUtils.UrlContainsVersion(config.ApiBaseUrl))
+            {
+                var baseUrl = config.ApiBaseUrl + "/v" + config.ApiVersion;
+                config.ApiBaseUrl = baseUrl;
+            }
+
             this.ApiClient = new ApiClient(
                 config.AppSid, config.AppKey, config.ApiBaseUrl, config.AuthUrl);
         }

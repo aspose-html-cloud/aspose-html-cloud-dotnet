@@ -39,7 +39,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         { }
 
         #region IDocumentApi interface implementation
-        public AsposeStreamResponse GetDocumentByUrl(string sourceUrl)
+        public StreamResponse GetDocumentByUrl(string sourceUrl)
         {
             var methodName = "GetDocumentByUrl";
              // verify the required parameter 'name' is set
@@ -61,7 +61,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder)
+        public StreamResponse GetDocumentFragmentByCSSSelector(string name, string selector, string outFormat, string storage, string folder)
         {
             var methodName = "GetDocumentFragmentByCSSSelector";
             // verify the required parameter 'name' is set
@@ -91,7 +91,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat)
+        public StreamResponse GetDocumentFragmentByCSSSelectorByUrl(string sourceUrl, string selector, string outFormat)
         {
             var methodName = "GetDocumentFragmentByCSSSelectorByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -118,7 +118,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder)
+        public StreamResponse GetDocumentFragmentByXPath(string name, string xPath, string outFormat, string storage, string folder)
         {
             var methodName = "GetDocumentFragmentByXPath";
             // verify the required parameter 'name' is set
@@ -150,7 +150,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
+        public StreamResponse GetDocumentFragmentByXPathByUrl(string sourceUrl, string xPath, string outFormat)
         {
             var methodName = "GetDocumentFragmentByXPathByUrl";
             // verify the required parameter 'sourceUrl' is set
@@ -177,7 +177,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetDocumentImages(string name, string storage, string folder)
+        public StreamResponse GetDocumentImages(string name, string storage, string folder)
         {
             var methodName = "GetDocumentImages";
             // verify the required parameter 'name' is set
@@ -200,7 +200,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeStreamResponse GetDocumentImagesByUrl(string sourceUrl)
+        public StreamResponse GetDocumentImagesByUrl(string sourceUrl)
         {
             var methodName = "GetDocumentImagesByUrl";
             // verify the required parameter 'name' is set
