@@ -31,7 +31,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             };
             IDocumentApi api = new HtmlApi(conf);
             var response = api.GetDocumentByUrl(sourceUrl);
-            if(response.Code == 200)
+            if(response.Status == "OK")
             {
                 var destPath = Path.Combine(destDir, response.FileName);
                 using(FileStream fstr = new FileStream(destPath, FileMode.Create, FileAccess.Write))

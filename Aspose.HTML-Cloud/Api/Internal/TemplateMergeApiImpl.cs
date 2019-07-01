@@ -69,20 +69,15 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataType, string outPath, string options = null, string folder = null, string storage = null)
+        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataFileName, string outPath, string options = null, string folder = null, string storage = null)
         {
             var methodName = "PostMergeHtmlTemplate";
             // verify the required parameter 'templateName' is set
             if (templateName == null) throw new ApiException(400, $"Missing required parameter 'templateName' when calling {methodName}");
-            // verify the required parameter 'dataType' is set
-            if (dataType == null) throw new ApiException(400, $"Missing required parameter 'dataType' when calling {methodName}");
-            // verify the required parameter 'outPath' is set
+             // verify the required parameter 'outPath' is set
             if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
             // verify the required parameter 'inStream' is set
             if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
-
-            if (!(dataType.ToLower() == "json" || dataType.ToLower() == "xml"))
-                throw new ApiException(400, $"'dataType' parameter: Unsupported data type when calling {methodName}");
 
             var path = "/html/{templateName}/merge";
             path = path.Replace("{" + "templateName" + "}", ApiClientUtils.ParameterToString(templateName));
@@ -96,14 +91,36 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            var contentType = MimeHelper.GetMimeType(dataType);
-            headerParams.Add("Content-Type", contentType);
+            if (!string.IsNullOrEmpty(dataFileName))
+            {
+                var dataType = MimeHelper.GetFormatByExtension(Path.GetExtension(dataFileName).Replace(".", ""));
+                if (!(dataType.ToLower() == "json" || dataType.ToLower() == "xml"))
+                    throw new ApiException(400, $"'dataType' parameter: Unsupported data type when calling {methodName}");
+
+                queryParams.Add(PAR_FILENAME_I, dataFileName);
+                var contentType = MimeHelper.GetMimeType(dataType);
+                if (contentType == null)
+                    throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+
+                headerParams.Add("Content-Type", contentType);
+            }
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if contentType
             String[] authSettings = new String[] { };
 
             var response = CallPostApi(path, queryParams, headerParams, inStream, methodName);
             return response;
+        }
+
+        public AsposeResponse PostMergeHtmlTemplate(string templateName, string localDataFilePath, string outPath, string options = null, string folder = null, string storage = null)
+        {
+            if (File.Exists(localDataFilePath))
+                throw new FileNotFoundException($"Source file {localDataFilePath} not found.");
+            using (Stream fstr = new FileStream(localDataFilePath, FileMode.Open, FileAccess.Read))
+            {
+                var dataFileName = Path.GetFileName(localDataFilePath);
+                return PostMergeHtmlTemplate(templateName, fstr, dataFileName, outPath, options, folder, storage);
+            }
         }
     }
 }

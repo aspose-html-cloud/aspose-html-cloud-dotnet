@@ -432,7 +432,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML document stream to the specified image format and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="dataType">Source document type.</param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outFormat">Output image format</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
         /// <param name="width">Resulting image width. </param>
@@ -444,30 +444,30 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="storage">Resulting image storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostConvertDocumentToImage(Stream inStream, string dataType, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToImage(Stream inStream, string fileName, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToImage(inStream, dataType, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+            return ConversionApiImpl.PostConvertDocumentToImage(inStream, fileName, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
         }
 
         /// <summary>
         ///  Converts the HTML document stream to Markdown and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="dataType">Source document type. </param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
         /// <param name="useGit">Use Git flavor of Markdown</param>
         /// <param name="storage">Source and resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string dataType, string outPath, bool? useGit = false, string storage = null)
+        public AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string fileName, string outPath, bool? useGit = false, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToMarkdown(inStream, dataType, outPath, useGit, storage);
+            return ConversionApiImpl.PostConvertDocumentToMarkdown(inStream, fileName, outPath, useGit, storage);
         }
 
         /// <summary>
         /// Converts the HTML document stream to PDF and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="dataType">Source document type.</param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
         /// <param name="width">Resulting document page width. </param>
         /// <param name="height">Resulting document page height. </param>
@@ -477,28 +477,98 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostConvertDocumentToPdf(Stream inStream, string dataType, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToPdf(Stream inStream, string fileName, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToPdf(inStream, dataType, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            return ConversionApiImpl.PostConvertDocumentToPdf(inStream, fileName, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
         }
 
         /// <summary>
-        /// 
+        /// Converts the HTML document stream to XPS and uploads resulting file to the storage.
         /// </summary>
-        /// <param name="inStream"></param>
-        /// <param name="dataType"></param>
-        /// <param name="outPath"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="leftMargin"></param>
-        /// <param name="rightMargin"></param>
-        /// <param name="topMargin"></param>
-        /// <param name="bottomMargin"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
-        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string dataType, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        /// <param name="inStream">Source document stream.</param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top document page margin.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="storage">Resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string fileName, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToXps(inStream, dataType, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            return ConversionApiImpl.PostConvertDocumentToXps(inStream, fileName, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        }
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to specified output format and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath"></param>
+        /// <param name="outFormat">Output image format</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
+        /// <param name="width">Resulting image width. </param>
+        /// <param name="height">Resulting image height. </param>
+        /// <param name="leftMargin">Left image margin.</param>
+        /// <param name="rightMargin">Right image margin.</param>
+        /// <param name="topMargin">Top image margin.</param>
+        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="resolution">Image resolution; 96 ppi by default.</param>
+        /// <param name="storage">Resulting image storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        public AsposeResponse PostConvertDocumentToImage(string localFilePath, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        {
+            return ConversionApiImpl.PostConvertDocumentToImage(localFilePath, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage); 
+        }
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to PDF and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath">The local file system path to source document.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top document page margin.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="storage">Resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        /// <returns></returns>
+        public AsposeResponse PostConvertDocumentToPdf(string localFilePath, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            return ConversionApiImpl.PostConvertDocumentToPdf(localFilePath, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage); 
+        }
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to XPS and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath">The local file system path to source document.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top document page margin.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="storage">Resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        public AsposeResponse PostConvertDocumentToXps(string localFilePath, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            return ConversionApiImpl.PostConvertDocumentToXps(localFilePath, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        }
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to PDF and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath">The local file system path to source document.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
+        /// <param name="useGit">Use Git flavor of Markdown</param>
+        /// <param name="storage">Source and resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        public AsposeResponse PostConvertDocumentToMarkdown(string localFilePath, string outPath, bool? useGit = false, string storage = null)
+        {
+            return ConversionApiImpl.PostConvertDocumentToMarkdown(localFilePath, outPath, useGit, storage);
         }
 
         /// <summary>
@@ -579,27 +649,27 @@ namespace Aspose.Html.Cloud.Sdk.Api
         #region IOcrApi interface implementation
 
         /// <summary>
-        /// 
+        /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="engineLang"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
+        /// <param name="name">String | Document name.</param>
+        /// <param name="engineLang">String | Optional. OCR engine language. </param>
+        /// <param name="folder">String | Optional. The document folder.</param>
+        /// <param name="storage">String | Optional. The document storage.</param>
+        /// <returns>StreamResponse |  Stream of resulting document. </returns>
         public StreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
         {
             return OcrApiImpl.GetRecognizeAndImportToHtml(name, engineLang, folder, storage);
         }
 
         /// <summary>
-        /// 
+        /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document translated to the specified language.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="srcLang"></param>
-        /// <param name="resLang"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
+        /// <param name="name">String | Document name.</param>
+        /// <param name="srcLang">String | Source language (considered as OCR engine language too).</param>
+        /// <param name="resLang">String | Result language.</param>
+        /// <param name="folder">String | Optional. The document folder.</param>
+        /// <param name="storage">String | Optional. The document storage.</param>
+        /// <returns>StreamResponse |  Stream of resulting document.</returns>
         public StreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             return OcrApiImpl.GetRecognizeAndTranslateToHtml(name, srcLang, resLang, folder, storage);
@@ -609,26 +679,26 @@ namespace Aspose.Html.Cloud.Sdk.Api
         #region ITranslationApi interface implementation
 
         /// <summary>
-        /// 
+        /// Translates the HTML document specified by the name from default or specified storage. 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="srcLang"></param>
-        /// <param name="resLang"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
+        /// <param name="name">Document name.</param>
+        /// <param name="srcLang">Source language.</param>
+        /// <param name="resLang">Result language.</param>
+        /// <param name="folder">The document folder.</param>
+        /// <param name="storage">The document storage.</param>
+        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
         public StreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null)
         {
             return TranslationApiImpl.GetTranslateDocument(name, srcLang, resLang, folder, storage);
         }
 
         /// <summary>
-        /// 
+        /// Translates the HTML document specified by its URL. 
         /// </summary>
-        /// <param name="sourceUrl"></param>
-        /// <param name="srcLang"></param>
-        /// <param name="resLang"></param>
-        /// <returns></returns>
+        /// <param name="sourceUrl">Source document URL.</param>
+        /// <param name="srcLang">Source language.</param>
+        /// <param name="resLang">Result language.</param>
+        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
         public StreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang)
         {
             return TranslationApiImpl.GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang);
@@ -639,33 +709,48 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
         #region ITemplateMergeApi interface implementation
         /// <summary>
-        /// 
+        /// Populates HTML document template with data located as a file in the storage.
         /// </summary>
-        /// <param name="templateName"></param>
-        /// <param name="dataPath"></param>
-        /// <param name="options"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
+        /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
+        /// <param name="dataPath">Data source file path in the storage. Supported data format: XML.</param>
+        /// <param name="options">Template merge options: reserved for further implementation.</param>
+        /// <param name="folder">The template document folder.</param>
+        /// <param name="storage">The template document and data source storage.</param>
+        /// <returns>StreamResponse | Stream containing the generated document.</returns>
         public StreamResponse GetMergeHtmlTemplate(string templateName, string dataPath, string options = null, string folder = null, string storage = null)
         {
             return TemplateMergeImpl.GetMergeHtmlTemplate(templateName, dataPath, options, folder, storage);
         }
 
         /// <summary>
-        /// 
+        /// Populates HTML document template with data from the stream. Result document will be saved to storage.
         /// </summary>
-        /// <param name="templateName"></param>
-        /// <param name="inStream"></param>
-        /// <param name="dataType"></param>
-        /// <param name="outPath"></param>
-        /// <param name="options"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
-        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataType, string outPath, string options = null, string folder = null, string storage = null)
+        /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
+        /// <param name="inStream">Data source stream. Supported data format: XML.</param>
+        /// <param name="dataFileName">Source data file name (optional; if you don't know the file name, leave it blank)</param>
+        /// <param name="outPath">Result document path in the storage.</param>
+        /// <param name="options">Template merge options: reserved for further implementation.</param>
+        /// <param name="folder">The template document folder.</param>
+        /// <param name="storage">Optional. The template document and data source storage.</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataFileName, string outPath, string options = null, string folder = null, string storage = null)
         {
-            return TemplateMergeImpl.PostMergeHtmlTemplate(templateName, inStream, dataType, outPath, options, folder, storage);
+            return TemplateMergeImpl.PostMergeHtmlTemplate(templateName, inStream, dataFileName, outPath, options, folder, storage);
+        }
+
+        /// <summary>
+        /// Populates HTML document template with data from the local file system. Result document will be saved to storage.
+        /// </summary>
+        /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
+        /// <param name="localDataFilePath">The local file system path to data file.</param>
+        /// <param name="outPath">Result document path in the storage.</param>
+        /// <param name="options">Template merge options: reserved for further implementation.</param>
+        /// <param name="folder">The template document folder.</param>
+        /// <param name="storage">Optional. The template document and data source storage.</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        public AsposeResponse PostMergeHtmlTemplate(string templateName, string localDataFilePath, string outPath, string options = null, string folder = null, string storage = null)
+        {
+            return TemplateMergeImpl.PostMergeHtmlTemplate(templateName, localDataFilePath, outPath, options, folder, storage);
         }
 
         #endregion
@@ -693,6 +778,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
             return SummarizationApiImpl.GetDetectHtmlKeywordsByUrl(sourceUrl);
         }
+
         #endregion
     }
 }

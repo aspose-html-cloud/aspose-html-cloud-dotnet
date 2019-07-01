@@ -83,7 +83,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     throw new ArgumentException($"Unsupported output format: {Format}");
             }
 
-            if (response != null && response.Code == 200)
+            if (response != null && response.Status == "OK")
             {
                 Console.WriteLine(string.Format("\nResult file uploaded to: {0}", outPath));
             }

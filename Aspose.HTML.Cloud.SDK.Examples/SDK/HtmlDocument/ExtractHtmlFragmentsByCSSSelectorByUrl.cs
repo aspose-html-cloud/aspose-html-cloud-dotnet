@@ -16,7 +16,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
     {
         public void Run()
         {
+            // setup HTML document URL
             var url = "http://www.sukidog.com/jpierre/strings/basics.htm";
+            // setup CSS selector to select fragments
             var selector = "p";
 
             IDocumentApi docApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
@@ -24,16 +26,20 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             var response = docApi.GetDocumentFragmentByCSSSelectorByUrl(url, selector, "plain");
             if (response != null && response.ContentStream != null)
             {
-                Stream stream = response.ContentStream;
-                var name = response.FileName;
-                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_css_fragments.txt";
-                string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
-                using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+                if (response.Status == "NoContent")
+                    Console.WriteLine("Operation succeeded but result is empty");
+                else if (response.Status == "OK")
                 {
-                    stream.Position = 0;
-                    stream.CopyTo(fstr);
-                    fstr.Flush();
-                    Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
+                    Stream stream = response.ContentStream;
+                    string outFile = response.FileName;
+                    string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
+                    using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+                    {
+                        stream.Position = 0;
+                        stream.CopyTo(fstr);
+                        fstr.Flush();
+                        Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
+                    }
                 }
             }
         }

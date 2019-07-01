@@ -110,8 +110,8 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
         private JwtData m_authData = null;
 
-        public JwtAuth(string clientId, string clientSecret, string baseUrl)
-            : base(AuthType.Jwt)
+        public JwtAuth(string clientId, string clientSecret, string authUrl)
+            : base(AuthType.Jwt, authUrl)
         {
             m_ClientId = clientId;
             m_ClientSecret = clientSecret;

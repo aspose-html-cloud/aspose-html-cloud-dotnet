@@ -26,6 +26,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
 
         public void Run()
         {
+            // setup the source HTML document URL
             string srcUrl = "https://stallman.org/sayings.html";
             //string srcUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
 
@@ -33,7 +34,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
             StreamResponse response = transApi.GetTranslateDocumentByUrl(srcUrl, SrcLang, ResLang);
             Stream stream = response.ContentStream;
 
-            if (stream != null && stream.GetType() == typeof(FileStream))
+            if (stream != null && response.Status == "OK")
             {
                 string name = response.FileName;
                 string outPath = Path.Combine(CommonSettings.OutDirectory, Path.GetFileName(name));
@@ -46,7 +47,6 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
             }
             stream.Close();
             stream.Dispose();
-
         }
     }
 }

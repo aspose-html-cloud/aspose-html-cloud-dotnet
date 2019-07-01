@@ -54,6 +54,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         protected string m_ClientSecret;
         protected AuthFlow m_authFlow;
 
+        protected readonly string m_authPath;
         protected readonly AuthType m_AuthType;
 
         static AuthBase()
@@ -62,9 +63,10 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             DictAuthTypes.Add(AuthType.Jwt, "JWT");
         }
 
-        protected AuthBase(AuthType type)
+        protected AuthBase(AuthType type, string authPath)
         {
             m_AuthType = type;
+            m_authPath = authPath;
         }
 
         public static IAuthenticator GetAuthenticator(AuthType type, string clientId, string clientSecret, string baseUri)
@@ -89,7 +91,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         {
             if (m_authFlow != AuthFlow.Obtained)
             {
-                var host = GetHost(request.RequestUri.AbsoluteUri);
+                var host = m_authPath; //GetHost(request.RequestUri.AbsoluteUri);
                 var authUriString = GetAuthUriString(host);
                 HttpClient authClient = new HttpClient();
                 HttpRequestMessage authReq = new HttpRequestMessage()

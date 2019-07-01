@@ -47,6 +47,12 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             using (Stream srcStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
+                IStorageApi storageApi = new StorageApi((ApiBase)convApi);
+
+                if( !storageApi.FileOrFolderExists(folder, storage))
+                {
+                    ((IStorageFolderApi)storageApi).CreateFolder(folder, storage);
+                }
                 AsposeResponse response = null;
                 string dataType = Path.GetExtension(name).Replace(".", "");
                 // call SDK methods that convert HTML document to supported out format
@@ -55,11 +61,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     case "pdf":
                         outFile += ".pdf";
                         response = convApi.PostConvertDocumentToPdf(
-                            srcStream, dataType, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                            srcStream, name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "xps":
                         response = convApi.PostConvertDocumentToXps(
-                            srcStream, dataType, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                            srcStream, name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "jpeg":
                     case "bmp":
@@ -67,7 +73,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     case "tiff":
                     case "gif":
                         response = convApi.PostConvertDocumentToImage(
-                            srcStream, Format, dataType, outPath, width, height,
+                            srcStream, Format, name, outPath, width, height,
                             leftMargin, rightMargin, topMargin, bottomMargin,
                             resolution, storage);
                         break;
@@ -75,10 +81,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                         throw new ArgumentException($"Unsupported output format: {Format}");
                 }
 
-                if (response != null && response.Code == 200)
+                if (response != null && response.Status == "OK")
                 {
-                    IStorageApi stApi = new StorageApi((ApiBase)convApi);
-                    if (stApi.FileOrFolderExists(outPath))
+                    storageApi = new StorageApi((ApiBase)convApi);
+                    if (storageApi.FileOrFolderExists(outPath))
                     {
                         Console.WriteLine(string.Format("\nResult file uploaded to: {0}", outPath));
                     }

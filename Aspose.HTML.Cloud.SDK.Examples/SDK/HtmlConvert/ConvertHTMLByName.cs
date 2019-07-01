@@ -86,7 +86,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     throw new ArgumentException($"Unsupported output format: {Format}");
             }
 
-            if (response != null && response.ContentStream != null)
+            if (response != null && response.ContentStream != null && response.Status == "OK")
             {
                 var respFileName = response.FileName;
                 Stream outStream = response.ContentStream;

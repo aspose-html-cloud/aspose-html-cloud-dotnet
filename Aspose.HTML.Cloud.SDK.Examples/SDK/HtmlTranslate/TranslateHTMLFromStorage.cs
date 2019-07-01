@@ -26,24 +26,24 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate
 
         public void Run()
         {
+            // setup source HTML document name
             string name = "testpage1.html";
-            string folder = null;
+            // setup storage folder path
+            string folder = CommonSettings.StorageDataFolder;
+            // setup storage name (null for default storage)
             string storage = null;
 
             string srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
+            string storagePath = Path.Combine(folder, name).Replace('\\', '/');
             if (File.Exists(srcPath))
             {
-                var storagePath = !string.IsNullOrEmpty(folder)
-                    ? string.Format("{0}/{1}", folder, name) : name;
-
-                bool uploaded = SdkBaseRunner.UploadToStorage(storagePath, CommonSettings.LocalDataFolder);
-
+                bool uploaded = SdkBaseRunner.UploadToStorage(storagePath, srcPath);
                 if(uploaded)
                 {
                     ITranslationApi transApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
                     var response = transApi.GetTranslateDocument(name, SrcLang, ResLang, folder, storage);
 
-                    if (response != null && response.ContentStream != null)
+                    if (response != null && response.ContentStream != null && response.Status == "OK")
                     {
                         Stream stream = response.ContentStream;
                         string outName = response.FileName;

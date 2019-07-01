@@ -90,8 +90,8 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
         private OAuthData m_authData = null;
 
-        public OAuth2(string clientId, string clientSecret, string baseUrl)
-            : base(AuthType.OAuth2)
+        public OAuth2(string clientId, string clientSecret, string authUrl)
+            : base(AuthType.OAuth2, authUrl)
         {
             m_ClientId = clientId;
             m_ClientSecret = clientSecret;

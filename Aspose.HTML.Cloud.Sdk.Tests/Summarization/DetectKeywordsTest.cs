@@ -9,24 +9,22 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Summarization
     [TestClass]
     public class DetectKeywordsTest : BaseTestContext
     {
-        private readonly string dataFolder = DirectoryHelper.GetPath("TestData", "HTML");
+        [TestInitialize]
+        public void TestSetup()
+        {
+            string path = Path.Combine(StorageTestDataPath, "testpage1.html").Replace('\\', '/');
+            if (StorageApi.FileOrFolderExists(path))
+            {
+                string localPath = Path.Combine(LocalTestDataPath, "testpage1.html");
+                StorageApi.UploadFile(localPath, path);
+            }
+        }
 
         [TestMethod]
         public void Test_GetHtmlDetectKeywords_1()
         {
             string name = "testpage1.html";
             string folder = "HtmlTestTranslate";
-            string storagePath = $"{folder}/{name}";
-
-            string srcPath = Path.Combine(dataFolder, name);
-            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            //{
-            //    PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
-            //    this.StorageApi.PutCreate(reqCr);
-            //    GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
-            //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-            //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
-            //}
 
             var response = HtmlApi.GetDetectHtmlKeywords(name, folder, null);
             checkGetMethodResponse(response, "Keywords");

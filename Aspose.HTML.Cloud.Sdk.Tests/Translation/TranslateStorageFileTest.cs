@@ -8,24 +8,30 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Translation
     [TestClass]
     public class TranslateStorageFileTest : BaseTestContext
     {
+        private readonly string testoutStorageFolder =
+             Path.Combine(BaseTestContext.StorageTestoutFolder, "Translate").Replace('\\', '/');
+
         private readonly string dataFolder = DirectoryHelper.GetPath("TestData", "HTML");
+        [TestInitialize]
+        public void TestSetup()
+        {
+            if (!StorageApi.FileOrFolderExists(testoutStorageFolder))
+            {
+                StorageApi.CreateFolder(testoutStorageFolder);
+            }
+            string path = Path.Combine(StorageTestDataPath, "testpage1.html").Replace('\\', '/');
+            if (StorageApi.FileOrFolderExists(path))
+            {
+                string localPath = Path.Combine(LocalTestDataPath, "testpage1.html");
+                StorageApi.UploadFile(localPath, path);
+            }
+        }
 
         [TestMethod]
         public void Test_GetHtmlTranslate_en_fr_1()
         {
             string name = "testpage1.html";
-            string folder = "HtmlTestTranslate";
-            string storagePath = $"{folder}/{name}";
-
-            //string srcPath = Path.Combine(dataFolder, name);
-            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            //{
-            //    PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
-            //    this.StorageApi.PutCreate(reqCr);
-            //    GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
-            //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-            //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
-            //}
+            string folder = StorageTestDataPath;
 
             var response = HtmlApi.GetTranslateDocument(
                 name, "en", "fr", folder, null);

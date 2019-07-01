@@ -105,8 +105,10 @@ namespace Aspose.HTML.Cloud.Examples
 
             /// HTML API: Template Merge
             /// ---------------------------------------
-            /// 
+            // == Example == merge HTML template with data - both are in the storage
             Runners.Add("MergeHtmlTemplateWithData", new MergeHtmlTemplateWithData());
+            // == Example == merge HTML template in the storage with data in the local file system
+            Runners.Add("MergeHtmlTemplateWithLocalData", new MergeHtmlTemplateWithLocalData());
 
             /// HTML API: OCR
             /// ---------------------------------------
@@ -123,7 +125,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ConvertHTMLLocalToStorage.PDF";
+            string example = "MergeHtmlTemplateWithLocalData";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");

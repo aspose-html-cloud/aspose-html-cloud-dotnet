@@ -9,7 +9,10 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
     [TestClass]
     public class TemplateMergeTest : BaseTestContext
     {
-        private readonly string dataFolder = DirectoryHelper.GetPath("TestData", "HTML");
+        private readonly string dataFolder = LocalTestDataPath;
+        private readonly string testoutStorageFolder =
+            Path.Combine(BaseTestContext.StorageTestoutFolder, "TemplateMerge")
+            .Replace('\\', '/');
 
         private static List<string> templates;
 
@@ -26,7 +29,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
                 "test_template_3_1.html",
                 "test_template_3_2.html",
                 "test_template_4.html",
-                "test_template_4_1.html"
+                "test_template_4_1.html",
+                "test_template_4_2.html"
             };
 
             dataFiles = new List<string>()
@@ -45,22 +49,48 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
 
         }
 
-        //[TestInitialize]
-        //public void TestInit()
-        //{
-        //}
+        [TestInitialize]
+        public void TestSetUp()
+        {
+            if (!StorageApi.FileOrFolderExists(testoutStorageFolder))
+            {
+                StorageApi.CreateFolder(testoutStorageFolder);
+            }
+
+            foreach (var file in templates)
+            {
+                if(!string.IsNullOrEmpty(file))
+                {
+                    var storagePath = Path.Combine(StorageTestDataPath, file).Replace('\\', '/');
+                    if (!StorageApi.FileOrFolderExists(storagePath))
+                    {
+                        var localPath = Path.Combine(dataFolder, file);
+                        StorageApi.UploadFile(localPath, storagePath);
+                    }
+                }
+            }
+            foreach (var file in dataFiles)
+            {
+                if (!string.IsNullOrEmpty(file))
+                {
+                    var storagePath = Path.Combine(StorageTestDataPath, file).Replace('\\', '/');
+                    if (!StorageApi.FileOrFolderExists(storagePath))
+                    {
+                        var localPath = Path.Combine(dataFolder, file);
+                        StorageApi.UploadFile(localPath, storagePath);
+                    }
+                }
+            }
+        }
 
         [TestMethod]
         public void Test_MergeTemplate_Get_1()
         {
             string templateName = templates[1];
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
             string dataFile = dataFiles[1];
-            string dataPath = Path.Combine("/", folder, dataFile).Replace('\\', '/');
+            string dataPath = Path.Combine(folder, dataFile).Replace('\\', '/');
             string options = null;
-
-            //uploadFileToStorage(dataFolder, templateName, folder);
-            //uploadFileToStorage(dataFolder, dataFile, folder);
 
             var response = HtmlApi.GetMergeHtmlTemplate(
                 templateName, dataPath, options, folder);
@@ -71,13 +101,10 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
         public void Test_MergeTemplate_Get_2()
         {
             string templateName = templates[1];
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
             string dataFile = dataFiles[1];
-            string dataPath = Path.Combine("/", folder, dataFile).Replace('\\', '/');
+            string dataPath = Path.Combine(folder, dataFile).Replace('\\', '/');
             string options = "{'cs_names':false}";
-
-            //uploadFileToStorage(dataFolder, templateName, folder);
-            //uploadFileToStorage(dataFolder, dataFile, folder);
 
             var response = HtmlApi.GetMergeHtmlTemplate(
                 templateName, dataPath, options, folder);
@@ -88,19 +115,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
         public void Test_MergeTemplate_Post_1()
         {
             string templateName = templates[1];
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
             string dataFile = dataFiles[1];
             string dataPath = Path.Combine(dataFolder, dataFile);
             string options = null;
-            string outPath = Path.Combine("/", folder, 
-                $"{templateName}_merged_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}").Replace('\\', '/');
+            string outPath = Path.Combine(testoutStorageFolder, 
+                $"{templateName}_merged_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}")
+                .Replace('\\', '/');
 
             //uploadFileToStorage(dataFolder, templateName, folder);
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
-                var dataType = Path.GetExtension(dataFile).Replace(".", "");
                 var response = this.HtmlApi.PostMergeHtmlTemplate(
-                    templateName, datastr, dataType, outPath, options, folder);
+                    templateName, datastr, dataFile, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
@@ -110,19 +137,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
         public void Test_MergeTemplate_Post_2()
         {
             string templateName = templates[4];
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
             string dataFile = dataFiles[4];
             string dataPath = Path.Combine(dataFolder, dataFile);
             string options = null;
-            string outPath = Path.Combine("/", folder,
-                $"{templateName}_merged_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}").Replace('\\', '/');
+            string outPath = Path.Combine(testoutStorageFolder,
+                $"{templateName}_merged_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}")
+                .Replace('\\', '/');
 
             //uploadFileToStorage(dataFolder, templateName, folder);
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
-                var dataType = Path.GetExtension(dataFile).Replace(".", "");
                 var response = this.HtmlApi.PostMergeHtmlTemplate(
-                    templateName, datastr, dataType, outPath, options, folder);
+                    templateName, datastr, dataFile, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
@@ -132,19 +159,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
         public void Test_MergeTemplate_Post_3()
         {
             string templateName = templates[4];
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
             string dataFile = dataFiles[5];
             string dataPath = Path.Combine(dataFolder, dataFile);
             string options = null;
-            string outPath = Path.Combine("/", folder,
-                $"{templateName}_merged_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}").Replace('\\', '/');
+            string outPath = Path.Combine(testoutStorageFolder,
+                $"{templateName}_merged_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}")
+                .Replace('\\', '/');
 
             //uploadFileToStorage(dataFolder, templateName, folder);
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
-                var dataType = Path.GetExtension(dataFile).Replace(".", "");
                 var response = this.HtmlApi.PostMergeHtmlTemplate(
-                    templateName, datastr, dataType, outPath, options, folder);
+                    templateName, datastr, dataFile, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }

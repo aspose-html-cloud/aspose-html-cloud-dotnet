@@ -5,6 +5,12 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge
 {
+    /// <summary>
+    /// Aspose.HTML Cloud for .NET SDK - examples.
+    /// =========================================
+    /// Example that demonstrates how to populate HTML template with data from storage
+    /// and to get the result in the response stream.
+    /// </summary>
     public class MergeHtmlTemplateWithData : ISdkRunner
     {
         public void Run()

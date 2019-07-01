@@ -53,6 +53,8 @@ namespace Aspose.Html.Cloud.Sdk.Client
 
         private IAuthenticator Authenticator { get; set; }
 
+        protected const string PAR_FILENAME_I = "__filename__";
+
         /// <summary>
         /// 
         /// </summary>
@@ -90,6 +92,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             AppKey = appKey;
             AppSid = appSid;
             BasePath = basePath;
+            BaseAuthPath = authPath;
             //Version = version;
             //Debug = debug;
             Timeout = new TimeSpan(0, 5, 0);
@@ -152,7 +155,12 @@ namespace Aspose.Html.Cloud.Sdk.Client
             return authorizeAndCallRequest(request);
         }
 
-        public HttpResponseMessage CallPost(string methodPath, IDictionary<string, string> parameters, IDictionary<string, string> headerParams = null, Stream bodyStream = null)
+        public HttpResponseMessage CallPost(
+            string methodPath, 
+            IDictionary<string, string> parameters, 
+            IDictionary<string, string> headerParams = null, 
+            Stream bodyStream = null,
+            string bodyFileName = null)
         {
             string requestUrl = formatQuery(methodPath, parameters);
             HttpRequestMessage request = new HttpRequestMessage()
@@ -172,7 +180,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
                     if (headerParams.ContainsKey("Content-Length"))
                         fileContent.Headers.ContentLength = long.Parse(headerParams["Content-Length"]);
                 }
-                multipartContent.Add(fileContent);
+                multipartContent.Add(fileContent, "File", bodyFileName);
                 request.Content = multipartContent;
             }
             if (headerParams != null)
@@ -203,7 +211,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 //    sb.Append("/");
                 sb.Append(methodPath);
                 int idx = 0;
-                foreach (var key in parameters.Keys)
+                foreach (var key in parameters.Keys.Where(k => k != PAR_FILENAME_I))
                 {
                     string val = parameters[key];
                     sb.Append(string.Format("{0}{1}={2}", (idx++ == 0) ? "?" : "&", key, val));

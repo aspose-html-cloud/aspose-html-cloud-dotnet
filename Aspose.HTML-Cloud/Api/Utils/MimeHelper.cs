@@ -15,6 +15,8 @@ namespace Aspose.Html.Cloud.Sdk.Api.Utils
 
         private static readonly Dictionary<string, Tuple<string, string>> s_mimeTypes = new Dictionary<string, Tuple<string, string>>();
 
+        private static readonly Dictionary<string, string> m_extToTypeMap = new Dictionary<string, string>();
+
         static MimeHelper()
         {
             s_mimeTypes.Add("pdf", new Tuple<string, string>("application/pdf", "pdf"));
@@ -22,6 +24,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Utils
             s_mimeTypes.Add("jpeg", new Tuple<string, string>("image/jpeg", "jpg"));
             s_mimeTypes.Add("bmp", new Tuple<string, string>("image/bmp", "bmp"));
             s_mimeTypes.Add("png", new Tuple<string, string>("image/png", "png"));
+            s_mimeTypes.Add("gif", new Tuple<string, string>("image/gif", "gif"));
             s_mimeTypes.Add("tiff", new Tuple<string, string>("image/tiff", "tif"));
             s_mimeTypes.Add("md", new Tuple<string, string>("text/markdown", "md"));
             s_mimeTypes.Add("mhtml", new Tuple<string, string>("multipart/related", "mht"));
@@ -33,6 +36,27 @@ namespace Aspose.Html.Cloud.Sdk.Api.Utils
 
             s_mimeTypes.Add("xml", new Tuple<string, string>("application/xml", "xml"));
             s_mimeTypes.Add("json", new Tuple<string, string>("application/json", "json"));
+
+
+            m_extToTypeMap.Add("pdf", "pdf");
+            m_extToTypeMap.Add("xps", "xps");
+            m_extToTypeMap.Add("jpeg", "jpeg");
+            m_extToTypeMap.Add("jpg", "jpeg");
+            m_extToTypeMap.Add("tiff", "tiff");
+            m_extToTypeMap.Add("tif", "tiff");
+            m_extToTypeMap.Add("gif", "gif");
+
+            m_extToTypeMap.Add("html", "html");
+            m_extToTypeMap.Add("htm", "html");
+            m_extToTypeMap.Add("mht", "mhtml");
+            m_extToTypeMap.Add("mhtml", "mhtml");
+
+            m_extToTypeMap.Add("zip", "zip");
+            m_extToTypeMap.Add("json", "json");
+            m_extToTypeMap.Add("xml", "xml");
+            m_extToTypeMap.Add("epub", "epub");
+            m_extToTypeMap.Add("md", "md");
+            m_extToTypeMap.Add("svg", "svg");
         }
 
         /// <summary>
@@ -59,6 +83,19 @@ namespace Aspose.Html.Cloud.Sdk.Api.Utils
                 return s_mimeTypes[format.ToLowerInvariant()].Item2;
             else
                 return null;
+        }
+
+        /// <summary>
+        /// Returns file format by its extension.
+        /// </summary>
+        /// <param name="extension">File format or null for unknown extension.</param>
+        /// <returns></returns>
+        public static string GetFormatByExtension(string extension)
+        {
+            if (m_extToTypeMap.ContainsKey(extension.ToLowerInvariant()))
+                return m_extToTypeMap[extension.ToLowerInvariant()];
+
+            return null;
         }
 
         #endregion

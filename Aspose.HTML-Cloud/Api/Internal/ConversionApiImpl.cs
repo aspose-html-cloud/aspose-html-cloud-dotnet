@@ -254,13 +254,13 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeResponse PostConvertDocumentToImage(Stream inStream, string dataType, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToImage(Stream inStream, string fileName, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
         {
             var methodName = "PostConvertDocumentToImage";
 
             if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
-            // verify the required parameter 'dataType' is set
-            if (dataType == null) throw new ApiException(400, $"Missing required parameter 'dataType' when calling {methodName}");
+            // verify the required parameter 'fileName' is set
+            //if (fileName == null) throw new ApiException(400, $"Missing required parameter 'fileName' when calling {methodName}");
             // verify the required parameter 'outFormat' is set
             if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
             // verify the required parameter 'outPath' is set
@@ -283,10 +283,16 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (resolution != null) queryParams.Add("resolution", ApiClientUtils.ParameterToString(resolution)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            var contentType = MimeHelper.GetMimeType(dataType);
-            if (contentType == null)
-                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
-            headerParams.Add("Content-Type", contentType);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var dataType = MimeHelper.GetFormatByExtension(Path.GetExtension(fileName).Replace(".", ""));
+                queryParams.Add(PAR_FILENAME_I, fileName);
+
+                var contentType = MimeHelper.GetMimeType(dataType);
+                if (contentType == null)
+                    throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+                headerParams.Add("Content-Type", contentType);
+            }
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -294,11 +300,23 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string dataType, string outPath, bool? useGit = false, string storage = null)
+        public AsposeResponse PostConvertDocumentToImage(string localFilePath, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        {
+            if (File.Exists(localFilePath))
+                throw new FileNotFoundException($"Source file {localFilePath} not found.");
+            using(Stream fstr = new FileStream(localFilePath, FileMode.Open, FileAccess.Read))
+            {
+                var fileName = Path.GetFileName(localFilePath);
+                return PostConvertDocumentToImage(fstr, fileName, outFormat, outPath,
+                    width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+            }
+        }
+
+        public AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string fileName, string outPath, bool? useGit = false, string storage = null)
         {
             var methodName = "PostConvertDocumentToMarkdown";
-            // verify the required parameter 'dataType' is set
-            if (dataType == null) throw new ApiException(400, $"Missing required parameter 'dataType' when calling {methodName}");
+            // verify the required parameter 'fileName' is set
+            //if (fileName == null) throw new ApiException(400, $"Missing required parameter 'fileName' when calling {methodName}");
             // verify the required parameter 'name' is set
             if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
 
@@ -309,10 +327,16 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (useGit != null) queryParams.Add("useGit", ApiClientUtils.ParameterToString(useGit)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            var contentType = MimeHelper.GetMimeType(dataType);
-            if (contentType == null)
-                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
-            headerParams.Add("Content-Type", contentType);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var dataType = MimeHelper.GetFormatByExtension(Path.GetExtension(fileName).Replace(".", ""));
+                queryParams.Add(PAR_FILENAME_I, fileName);
+
+                var contentType = MimeHelper.GetMimeType(dataType);
+                if (contentType == null)
+                    throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+                headerParams.Add("Content-Type", contentType);
+            }
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -320,13 +344,22 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             var response = CallPostApi(path, queryParams, headerParams, inStream, methodName);
             return response;
         }
-        
-        public AsposeResponse PostConvertDocumentToPdf(Stream inStream, string dataType, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+
+        public AsposeResponse PostConvertDocumentToMarkdown(string localFilePath, string outPath, bool? useGit = false, string storage = null)
+        {
+            if (File.Exists(localFilePath))
+                throw new FileNotFoundException($"Source file {localFilePath} not found.");
+            using (Stream fstr = new FileStream(localFilePath, FileMode.Open, FileAccess.Read))
+            {
+                var fileName = Path.GetFileName(localFilePath);
+                return PostConvertDocumentToMarkdown(fstr, fileName, outPath, useGit, storage);
+            }
+        }
+
+        public AsposeResponse PostConvertDocumentToPdf(Stream inStream, string fileName, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
         {
             var methodName = "PostConvertDocumentToPdf";
             if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
-            // verify the required parameter 'dataType' is set
-            if (dataType == null) throw new ApiException(400, $"Missing required parameter 'dataType' when calling {methodName}");
             // verify the required parameter 'outPath' is set
             if (outPath == null) throw new ApiException(400, $"Missing required parameter 'outPath' when calling {methodName}");
 
@@ -344,10 +377,16 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            var contentType = MimeHelper.GetMimeType(dataType);
-            if(contentType == null)
-                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
-            headerParams.Add("Content-Type", contentType);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var dataType = MimeHelper.GetFormatByExtension(Path.GetExtension(fileName).Replace(".", ""));
+                queryParams.Add(PAR_FILENAME_I, fileName);
+
+                var contentType = MimeHelper.GetMimeType(dataType);
+                if (contentType == null)
+                    throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+                headerParams.Add("Content-Type", contentType);
+            }
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
@@ -355,7 +394,19 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string dataType, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToPdf(string localFilePath, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            if (File.Exists(localFilePath))
+                throw new FileNotFoundException($"Source file {localFilePath} not found.");
+            using (Stream fstr = new FileStream(localFilePath, FileMode.Open, FileAccess.Read))
+            {
+                var fileName = Path.GetFileName(localFilePath);
+                return PostConvertDocumentToPdf(fstr, fileName, outPath, width, height,
+                    leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            }
+        }
+
+        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string fileName, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
         {
             var methodName = "PostConvertDocumentToXps";
             if (inStream == null) throw new ApiException(400, $"Missing required parameter 'inStream' when calling {methodName}");
@@ -376,15 +427,33 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (bottomMargin != null) queryParams.Add("bottomMargin", ApiClientUtils.ParameterToString(bottomMargin)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
 
-            var contentType = MimeHelper.GetMimeType(dataType);
-            if (contentType == null)
-                throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
-            headerParams.Add("Content-Type", contentType);
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var dataType = MimeHelper.GetFormatByExtension(Path.GetExtension(fileName).Replace(".", ""));
+                queryParams.Add(PAR_FILENAME_I, fileName);
+
+                var contentType = MimeHelper.GetMimeType(dataType);
+                if (contentType == null)
+                    throw new ApiException(400, $"'dataType' parameter: Unsupported data type provided when calling {methodName}");
+                headerParams.Add("Content-Type", contentType);
+            }
             headerParams.Add("Content-Length", inStream.Length.ToString());
             // authentication setting, if any
             String[] authSettings = new String[] { };
             var response = CallPostApi(path, queryParams, headerParams, inStream, methodName);
             return response;
+        }
+
+        public AsposeResponse PostConvertDocumentToXps(string localFilePath, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            if (File.Exists(localFilePath))
+                throw new FileNotFoundException($"Source file {localFilePath} not found.");
+            using (Stream fstr = new FileStream(localFilePath, FileMode.Open, FileAccess.Read))
+            {
+                var fileName = Path.GetFileName(localFilePath);
+                return PostConvertDocumentToXps(fstr, fileName, outPath, width, height,
+                    leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            }
         }
 
         public AsposeResponse PutConvertDocumentToImage(string name, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string folder = null, string storage = null)
@@ -436,6 +505,8 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
 
+            queryParams.Add("outPath", ApiClientUtils.ParameterToString(outPath)); // required query parameter
+
             if (useGit != null) queryParams.Add("useGit", ApiClientUtils.ParameterToString(useGit)); // query parameter
             if (folder != null) queryParams.Add("folder", ApiClientUtils.ParameterToString(folder)); // query parameter
             if (storage != null) queryParams.Add("storage", ApiClientUtils.ParameterToString(storage)); // query parameter
@@ -444,7 +515,6 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
 
             var response = CallPutApi(path, queryParams, null, null, methodName);
             return response;
-            throw new NotImplementedException();
         }
 
         public AsposeResponse PutConvertDocumentToPdf(string name, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)

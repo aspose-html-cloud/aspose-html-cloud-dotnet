@@ -45,7 +45,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             [JsonProperty(PropertyName = "AppSid", Required = Required.Always)]
             public string AppSid { get; set; }
 
-
             [JsonProperty(PropertyName = "AppKey", Required = Required.Always)]
             public string AppKey { get; set; }
 
@@ -84,6 +83,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 ApiBaseUrl = this.keys.BaseProductUri,
                 AuthUrl = this.keys.AuthServerUri ?? DefAuthServerUri,
                 ApiVersion = this.keys.ApiVersion ?? Configuration.DefaultApiVersion,
+                AppKey = this.keys.AppKey,
                 AppSid = this.keys.AppSid };
 
             this.HtmlApi = new HtmlApi(
@@ -93,19 +93,32 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         }
 
         /// <summary>
-        /// Base path to test data        
+        /// Base path to test data - local      
         /// </summary>
-        protected static string BaseTestDataPath
+        /// 
+        protected static string LocalTestDataPath
         {
             get
             {
-                //return "Temp/SdkTests/TestData";
-                return "TestData";
+                var root = DirectoryHelper.GetRootSdkFolder();
+                return Path.Combine(root, "TestData", "HTML");
             }
         }
 
         /// <summary>
-        /// Base path to output data
+        /// Base path to test data - storage      
+        /// </summary>
+        protected static string StorageTestDataPath
+        {
+            get
+            {
+                //return "Temp/SdkTests/TestData";
+                return "/Html/TestData";
+            }
+        }
+
+        /// <summary>
+        /// Base path to output data - local
         /// </summary>
         protected static string BaseTestOutPath
         {
@@ -114,6 +127,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 return "TestOut";
             }
         }
+
+        /// <summary>
+        /// Base storage path to output data - storage
+        /// </summary>
+        protected static string StorageTestoutFolder
+        {
+            get
+            {
+                return "/Html/TestOut";
+            }
+        }
+
+
 
         /// <summary>
         /// Returns common folder with source test files

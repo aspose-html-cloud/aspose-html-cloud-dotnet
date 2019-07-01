@@ -97,7 +97,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// Converts the HTML document stream to the specified image format and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="dataType">Source document type.</param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outFormat">Output image format</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
         /// <param name="width">Resulting image width. </param>
@@ -109,7 +109,26 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="storage">Resulting image storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        AsposeResponse PostConvertDocumentToImage(Stream inStream, string dataType,
+        AsposeResponse PostConvertDocumentToImage(Stream inStream, string fileName,
+            string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
+            int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null);
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to specified output format and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath"></param>
+        /// <param name="outFormat">Output image format</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
+        /// <param name="width">Resulting image width. </param>
+        /// <param name="height">Resulting image height. </param>
+        /// <param name="leftMargin">Left image margin.</param>
+        /// <param name="rightMargin">Right image margin.</param>
+        /// <param name="topMargin">Top image margin.</param>
+        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="resolution">Image resolution; 96 ppi by default.</param>
+        /// <param name="storage">Resulting image storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        AsposeResponse PostConvertDocumentToImage(string localFilePath,
             string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null);
 
@@ -173,7 +192,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// Converts the HTML document stream to PDF and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="dataType">Source document type.</param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
         /// <param name="width">Resulting document page width. </param>
         /// <param name="height">Resulting document page height. </param>
@@ -183,7 +202,25 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        AsposeResponse PostConvertDocumentToPdf(Stream inStream, string dataType,
+        AsposeResponse PostConvertDocumentToPdf(Stream inStream, string fileName,
+            string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
+            int? topMargin = null, int? bottomMargin = null, string storage = null);
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to PDF and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath">The local file system path to source document.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top document page margin.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="storage">Resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        /// <returns></returns>
+        AsposeResponse PostConvertDocumentToPdf(string localFilePath,
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string storage = null);
 
@@ -247,7 +284,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// Converts the HTML document stream to XPS and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="dataType">Source document type.</param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
         /// <param name="width">Resulting document page width. </param>
         /// <param name="height">Resulting document page height. </param>
@@ -257,7 +294,24 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        AsposeResponse PostConvertDocumentToXps(Stream inStream, string dataType,
+        AsposeResponse PostConvertDocumentToXps(Stream inStream, string fileName,
+            string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
+            int? topMargin = null, int? bottomMargin = null, string storage = null);
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to XPS and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath">The local file system path to source document.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
+        /// <param name="width">Resulting document page width. </param>
+        /// <param name="height">Resulting document page height. </param>
+        /// <param name="leftMargin">Left document page margin.</param>
+        /// <param name="rightMargin">Right document page margin.</param>
+        /// <param name="topMargin">Top document page margin.</param>
+        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="storage">Resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        AsposeResponse PostConvertDocumentToXps(string localFilePath,
             string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null,
             int? topMargin = null, int? bottomMargin = null, string storage = null);
 
@@ -291,12 +345,22 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         ///  Converts the HTML document stream to Markdown and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="dataType">Source document type. </param>
+        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
         /// <param name="useGit">Use Git flavor of Markdown</param>
         /// <param name="storage">Source and resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string dataType, string outPath, bool? useGit = default(bool), string storage = null);
+        AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string fileName, string outPath, bool? useGit = default(bool), string storage = null);
+
+        /// <summary>
+        /// Converts the HTML document (located in the local file system) to PDF and uploads resulting file to the storage.
+        /// </summary>
+        /// <param name="localFilePath">The local file system path to source document.</param>
+        /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
+        /// <param name="useGit">Use Git flavor of Markdown</param>
+        /// <param name="storage">Source and resulting document storage</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        AsposeResponse PostConvertDocumentToMarkdown(string localFilePath, string outPath, bool? useGit = default(bool), string storage = null);
 
         #endregion // Conversion to Markdown
 

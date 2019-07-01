@@ -10,15 +10,27 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
     [TestClass]
     public class ConversionStorageFileTest : BaseTestContext
     {
-        private readonly string dataFolder = DirectoryHelper.GetPath(BaseTestDataPath, "HTML");
+        private readonly string dataFolder = BaseTestContext.LocalTestDataPath;
+
+        [TestInitialize]
+        public void TestSetup()
+        {
+            string path = Path.Combine(StorageTestDataPath, "testpage1.html").Replace('\\', '/');
+            if(StorageApi.FileOrFolderExists(path))
+            {
+                string localPath = Path.Combine(LocalTestDataPath, "testpage1.html");
+                StorageApi.UploadFile(localPath, path);
+            }
+        }
 
         [TestMethod]
         public void Test_GetHtmlConvert_Pdf_StorageToStream()
         {
             string name = "testpage1.html";
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
+            string storage = null;
 
-            var response = this.HtmlApi.GetConvertDocumentToPdf(name, 800, 1200, null, null, null, null, folder);
+            var response = this.HtmlApi.GetConvertDocumentToPdf(name, 800, 1200, null, null, null, null, folder, storage);
             checkGetMethodResponse(response, "Conversion");
         }
 
@@ -26,9 +38,10 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         public void Test_GetHtmlConvert_Jpeg_StorageToStream()
         {
             string name = "testpage1.html";
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
+            string storage = null;
 
-            var response = this.HtmlApi.GetConvertDocumentToImage(name, "jpeg", 800, 1200, null, null, null, null, null, null, folder);
+            var response = this.HtmlApi.GetConvertDocumentToImage(name, "jpeg", 800, 1200, null, null, null, null, null, folder, storage);
             checkGetMethodResponse(response, "Conversion");
         }
 
@@ -36,23 +49,13 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         public void Test_GetHtmlConvert_Markdown_StorageToStream()
         {
             string name = "testpage1.html";
-            string folder = "14/HTML";
+            string folder = StorageTestDataPath;
+            string storage = null;
 
-            var response = this.HtmlApi.GetConvertDocumentToMarkdown(name, false, folder);
+            var response = this.HtmlApi.GetConvertDocumentToMarkdown(name, false, folder, storage);
             checkGetMethodResponse(response, "Conversion");
         }
 
-        [TestMethod]
-        public void Test_GetHtmlConvert_Markdown_StorageToStorage()
-        {
-            string name = "testpage1.html";
-            string folder = "14/HTML";
-            string outPath = $"Testout/{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd-hhmmss")}.md";
-
-            var response = this.HtmlApi.PutConvertDocumentToMarkdown(name, outPath, false, folder);
-            Assert.IsNotNull(response);
-            Assert.AreEqual(200, response.Code);
-        }
 
     }
 }

@@ -50,12 +50,25 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
         /// </summary>
         /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
         /// <param name="inStream">Data source stream. Supported data format: XML.</param>
-        /// <param name="dataType">Source stream data type. Supported values are 'xml' and 'json'</param>
+        /// <param name="dataFileName">Source data file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">Result document path in the storage.</param>
         /// <param name="options">Template merge options: reserved for further implementation.</param>
         /// <param name="folder">The template document folder.</param>
         /// <param name="storage">Optional. The template document and data source storage.</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataType, string outPath, string options = null, string folder = null, string storage = null);
+        AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataFileName, string outPath, string options = null, string folder = null, string storage = null);
+
+
+        /// <summary>
+        /// Populates HTML document template with data from the local file system. Result document will be saved to storage.
+        /// </summary>
+        /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
+        /// <param name="localDataFilePath">The local file system path to data file.</param>
+        /// <param name="outPath">Result document path in the storage.</param>
+        /// <param name="options">Template merge options: reserved for further implementation.</param>
+        /// <param name="folder">The template document folder.</param>
+        /// <param name="storage">Optional. The template document and data source storage.</param>
+        /// <returns>AsposeResponse | Response status.</returns>
+        AsposeResponse PostMergeHtmlTemplate(string templateName, string localDataFilePath, string outPath, string options = null, string folder = null, string storage = null);
     }
 }
