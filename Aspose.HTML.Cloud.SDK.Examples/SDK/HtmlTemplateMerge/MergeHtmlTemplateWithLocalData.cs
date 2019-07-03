@@ -53,7 +53,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge
                 inStream.Position = 0;
 
                 ITemplateMergeApi api = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
-                var response = api.PostMergeHtmlTemplate(templateName, inStream, dataFileName, outPath, null, folder);
+                var response = api.PostMergeHtmlTemplate(templateName, inStream, outPath, options, folder);
                 if(response != null && response.Status == "OK")
                 {
                     Console.WriteLine($"TemplateMerge: Result file uploaded to {outPath}");

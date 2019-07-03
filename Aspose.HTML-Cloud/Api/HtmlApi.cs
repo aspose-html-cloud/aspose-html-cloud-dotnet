@@ -432,7 +432,6 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML document stream to the specified image format and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outFormat">Output image format</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
         /// <param name="width">Resulting image width. </param>
@@ -444,30 +443,28 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="storage">Resulting image storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostConvertDocumentToImage(Stream inStream, string fileName, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToImage(Stream inStream, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToImage(inStream, fileName, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+            return ConversionApiImpl.PostConvertDocumentToImage(inStream, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
         }
 
         /// <summary>
         ///  Converts the HTML document stream to Markdown and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.md</param>
         /// <param name="useGit">Use Git flavor of Markdown</param>
         /// <param name="storage">Source and resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string fileName, string outPath, bool? useGit = false, string storage = null)
+        public AsposeResponse PostConvertDocumentToMarkdown(Stream inStream, string outPath, bool? useGit = false, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToMarkdown(inStream, fileName, outPath, useGit, storage);
+            return ConversionApiImpl.PostConvertDocumentToMarkdown(inStream, outPath, useGit, storage);
         }
 
         /// <summary>
         /// Converts the HTML document stream to PDF and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
         /// <param name="width">Resulting document page width. </param>
         /// <param name="height">Resulting document page height. </param>
@@ -477,16 +474,15 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostConvertDocumentToPdf(Stream inStream, string fileName, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToPdf(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToPdf(inStream, fileName, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            return ConversionApiImpl.PostConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
         }
 
         /// <summary>
         /// Converts the HTML document stream to XPS and uploads resulting file to the storage.
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
-        /// <param name="fileName">Source document file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
         /// <param name="width">Resulting document page width. </param>
         /// <param name="height">Resulting document page height. </param>
@@ -496,9 +492,9 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="bottomMargin">Bottom document page margin.</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string fileName, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        public AsposeResponse PostConvertDocumentToXps(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
         {
-            return ConversionApiImpl.PostConvertDocumentToXps(inStream, fileName, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            return ConversionApiImpl.PostConvertDocumentToXps(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
         }
 
         /// <summary>
@@ -727,15 +723,14 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="templateName">Template document name. Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}.</param>
         /// <param name="inStream">Data source stream. Supported data format: XML.</param>
-        /// <param name="dataFileName">Source data file name (optional; if you don't know the file name, leave it blank)</param>
         /// <param name="outPath">Result document path in the storage.</param>
         /// <param name="options">Template merge options: reserved for further implementation.</param>
         /// <param name="folder">The template document folder.</param>
         /// <param name="storage">Optional. The template document and data source storage.</param>
         /// <returns>AsposeResponse | Response status.</returns>
-        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataFileName, string outPath, string options = null, string folder = null, string storage = null)
+        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string outPath, string options = null, string folder = null, string storage = null)
         {
-            return TemplateMergeImpl.PostMergeHtmlTemplate(templateName, inStream, dataFileName, outPath, options, folder, storage);
+            return TemplateMergeImpl.PostMergeHtmlTemplate(templateName, inStream, outPath, options, folder, storage);
         }
 
         /// <summary>

@@ -61,11 +61,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     case "pdf":
                         outFile += ".pdf";
                         response = convApi.PostConvertDocumentToPdf(
-                            srcStream, name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                            srcStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "xps":
                         response = convApi.PostConvertDocumentToXps(
-                            srcStream, name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                            srcStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "jpeg":
                     case "bmp":
@@ -73,7 +73,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     case "tiff":
                     case "gif":
                         response = convApi.PostConvertDocumentToImage(
-                            srcStream, Format, name, outPath, width, height,
+                            srcStream, Format, outPath, width, height,
                             leftMargin, rightMargin, topMargin, bottomMargin,
                             resolution, storage);
                         break;

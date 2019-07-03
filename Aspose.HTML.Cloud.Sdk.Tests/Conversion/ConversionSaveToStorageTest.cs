@@ -50,11 +50,22 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string srcPath = Path.Combine(LocalTestDataPath, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.HtmlApi.PostConvertDocumentToPdf(stream, name, outPath);
+                var response = this.HtmlApi.PostConvertDocumentToPdf(stream, outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
             Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
+        }
+
+        [TestMethod]
+        public void Test_PostHtmlConvert_Pdf_LocalFileToStorage_1()
+        {
+            string name = "testpage1.html";
+            string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
+            string srcPath = Path.Combine(LocalTestDataPath, name);
+            var response = this.HtmlApi.PostConvertDocumentToPdf(srcPath, outPath);
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.Code);
         }
 
         [TestMethod]
@@ -77,7 +88,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             string srcPath = Path.Combine(LocalTestDataPath, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.HtmlApi.PostConvertDocumentToXps(stream, name, outPath);
+                var response = this.HtmlApi.PostConvertDocumentToXps(stream, outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
@@ -99,16 +110,27 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         [TestMethod]
         public void Test_PostHtmlConvert_Jpeg_LocalFileToStorage()
         {
-            string name = "testpage1.html";
+            string name = "testpage2.html";
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.jpg");
             string srcPath = Path.Combine(LocalTestDataPath, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.HtmlApi.PostConvertDocumentToImage(stream, name, "jpeg", outPath);
+                var response = this.HtmlApi.PostConvertDocumentToImage(stream, "jpeg", outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
             Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
+        }
+
+        [TestMethod]
+        public void Test_PostHtmlConvert_Jpeg_LocalFileToStorage_1()
+        {
+            string name = "testpage1.html";
+            string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.jpg");
+            string srcPath = Path.Combine(LocalTestDataPath, name);
+            var response = this.HtmlApi.PostConvertDocumentToImage(srcPath, "jpeg", outPath);
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.Code);
         }
 
         [TestMethod]

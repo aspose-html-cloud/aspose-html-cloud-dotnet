@@ -69,7 +69,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
-        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string dataFileName, string outPath, string options = null, string folder = null, string storage = null)
+        protected AsposeResponse PostMergeHtmlTemplate_Impl(string templateName, Stream inStream, string dataFileName, string outPath, string options = null, string folder = null, string storage = null)
         {
             var methodName = "PostMergeHtmlTemplate";
             // verify the required parameter 'templateName' is set
@@ -112,14 +112,19 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             return response;
         }
 
+        public AsposeResponse PostMergeHtmlTemplate(string templateName, Stream inStream, string outPath, string options = null, string folder = null, string storage = null)
+        {
+            return PostMergeHtmlTemplate_Impl(templateName, inStream, null, outPath, options, folder, storage);
+        }
+
         public AsposeResponse PostMergeHtmlTemplate(string templateName, string localDataFilePath, string outPath, string options = null, string folder = null, string storage = null)
         {
-            if (File.Exists(localDataFilePath))
+            if (!File.Exists(localDataFilePath))
                 throw new FileNotFoundException($"Source file {localDataFilePath} not found.");
             using (Stream fstr = new FileStream(localDataFilePath, FileMode.Open, FileAccess.Read))
             {
                 var dataFileName = Path.GetFileName(localDataFilePath);
-                return PostMergeHtmlTemplate(templateName, fstr, dataFileName, outPath, options, folder, storage);
+                return PostMergeHtmlTemplate_Impl(templateName, fstr, dataFileName, outPath, options, folder, storage);
             }
         }
     }

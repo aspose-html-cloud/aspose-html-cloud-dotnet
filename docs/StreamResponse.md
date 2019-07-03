@@ -1,4 +1,4 @@
-#AsposeStreamResponse
+#StreamResponse
 
 SDK stream response class. 
 
@@ -12,7 +12,6 @@ SDK methods should use this class as a return type if it's necessary to return t
 
 AsposeResponse 
 
-
 ### Namespace 
 
 Aspose.Html.Cloud.Sdk.Api.Model
@@ -23,3 +22,4 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **FileName** | **String**| The file name to save the content stream. |
 **ContentStream** | **Stream**| The response content stream. |
+**ContentStreamAsString** | **String**| The response content representation as a string. |

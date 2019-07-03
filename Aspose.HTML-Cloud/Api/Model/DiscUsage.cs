@@ -37,9 +37,15 @@ namespace Aspose.Html.Cloud.Sdk.Api.Model
     /// </summary>
     public class DiscUsage
     {
+        /// <summary>
+        /// Disc space used by storage
+        /// </summary>
         [JsonProperty(PropertyName = "UsedSize")]
         long UsedSize { get; set; }
 
+        /// <summary>
+        /// Total disc space assigned to storage
+        /// </summary>
         [JsonProperty(PropertyName = "TotalSize")]
         long TotalSize { get; set; }
     }

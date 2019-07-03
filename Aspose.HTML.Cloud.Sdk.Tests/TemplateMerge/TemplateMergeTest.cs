@@ -127,10 +127,28 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
                 var response = this.HtmlApi.PostMergeHtmlTemplate(
-                    templateName, datastr, dataFile, outPath, options, folder);
+                    templateName, datastr, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
+        }
+
+        [TestMethod]
+        public void Test_MergeTemplate_Post_1_1()
+        {
+            string templateName = templates[1];
+            string folder = StorageTestDataPath;
+            string dataFile = dataFiles[1];
+            string dataPath = Path.Combine(dataFolder, dataFile);
+            string options = null;
+            string outPath = Path.Combine(testoutStorageFolder,
+                $"{templateName}_merged_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}")
+                .Replace('\\', '/');
+
+            var response = this.HtmlApi.PostMergeHtmlTemplate(
+                templateName, dataPath, outPath, options, folder);
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.Code);
         }
 
         [TestMethod]
@@ -149,7 +167,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
                 var response = this.HtmlApi.PostMergeHtmlTemplate(
-                    templateName, datastr, dataFile, outPath, options, folder);
+                    templateName, datastr, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
@@ -171,7 +189,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TemplateMerge
             using (var datastr = new FileStream(dataPath, FileMode.Open, FileAccess.Read))
             {
                 var response = this.HtmlApi.PostMergeHtmlTemplate(
-                    templateName, datastr, dataFile, outPath, options, folder);
+                    templateName, datastr, outPath, options, folder);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }

@@ -37,17 +37,17 @@ namespace Aspose.Html.Cloud.Sdk.Api.Model
     public class StreamResponse : AsposeResponse
     {
         /// <summary>
-        /// 
+        /// File name associated with response content. 
         /// </summary>
         public string FileName { get; set; }
 
         /// <summary>
-        /// 
+        /// Response content stream.
         /// </summary>
         public Stream ContentStream { get; set; }
 
         /// <summary>
-        /// 
+        /// Response content presentation as a string.
         /// </summary>
         public string ContentAsString
         {

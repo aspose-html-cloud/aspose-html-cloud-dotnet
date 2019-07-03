@@ -73,7 +73,6 @@
     <Compile Include="Api\Internal\TranslationApiImpl.cs" />
     <Compile Include="Api\Model\AsposeResponse.cs" />
     <Compile Include="Api\Model\StorageItemList.cs" />
-    <Compile Include="Api\Model\StorageItemListResponse.cs" />
     <Compile Include="Api\Model\StorageItemVersionList.cs" />
     <Compile Include="Api\Model\StreamResponse.cs" />
     <Compile Include="Api\Model\DiscUsage.cs" />
@@ -82,7 +81,6 @@
     <Compile Include="Api\Model\ResourceHandlingOptions.cs" />
     <Compile Include="Api\Model\StorageItem.cs" />
     <Compile Include="Api\Model\StorageItemVersion.cs" />
-    <Compile Include="Api\Model\StreamContentResponse.cs" />
     <Compile Include="Api\StorageApi.cs" />
     <Compile Include="Api\Utils\MimeHelper.cs" />
     <Compile Include="Client\ApiClient.cs" />
