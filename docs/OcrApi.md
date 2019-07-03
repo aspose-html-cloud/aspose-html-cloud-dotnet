@@ -1,15 +1,15 @@
-# OcrApi
+# IOcrApi
 
-All URIs are relative to *https://api.aspose.cloud/v1.1*
+All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*OcrApi* | [**GetRecognizeAndImportToHtml**](docs/OcrApi.md#GetRecognizeAndImportToHtml) | **GET** /html/{name}/ocr/import | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
-*OcrApi* | [**GetRecognizeAndTranslateToHtml**](docs/OcrApi.md#GetRecognizeAndTranslateToHtml) | **GET** /html/ocr/translate/{srcLang}/{resLang} | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
+[**GetRecognizeAndImportToHtml**](docs/OcrApi.md#GetRecognizeAndImportToHtml) | **GET** /html/{name}/ocr/import | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
+[**GetRecognizeAndTranslateToHtml**](docs/OcrApi.md#GetRecognizeAndTranslateToHtml) | **GET** /html/ocr/translate/{srcLang}/{resLang} | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
 
 <a name="GetRecognizeAndImportToHtml"></a>
 # **GetRecognizeAndImportToHtml**
-> AsposeStreamResponse GetRecognizeAndImportToHtml(name, ocrEngineLang, storage, folder)
+> StreamResponse GetRecognizeAndImportToHtml(name, ocrEngineLang, storage, folder)
 
 Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
 
@@ -25,7 +25,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string name = "0211_116.3B.jpg"; // source image name; put here your file name
 	                                 // source file should be uploaded first to the storage by {folder}/{filename} path using Aspose.Storage Cloud API
@@ -39,7 +39,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    IOcrApi ocrApi = new OcrApi(appKey, appSID, BasePath);
+	    IOcrApi ocrApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = ocrApi.GetRecognizeAndImportToHtml(name, ocrEngineLang, storage, folder);
 			
 		if(response != null && response.ContentStream != null)
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -84,11 +84,11 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data, application/zip
+ - **Accept**: text/html, application/zip
  
  <a name="GetRecognizeAndTranslateToHtml"></a>
 # **GetRecognizeAndTranslateToHtml**
-> AsposeStreamResponse GetRecognizeAndTranslateToHtml(name, srcLang, resLang, storage, folder)
+> StreamResponse GetRecognizeAndTranslateToHtml(name, srcLang, resLang, storage, folder)
 
 Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
 
@@ -103,7 +103,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud"
 	
 	string name = "0211_116.3B.jpg"; // source image name; put here your file name
 	                                 // source file should be uploaded first to the storage by {folder}/{filename} path using Aspose.Storage Cloud API
@@ -119,7 +119,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    IOcrApi ocrApi = new OcrApi(appKey, appSID, BasePath);
+	    IOcrApi ocrApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = ocrApi.GetRecognizeAndTranslateToHtml(name, srcLang, resLang, storage, folder);
 			
 		if(response != null && response.ContentStream != null)
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/zip
+ - **Accept**: text/html, application/zip
  
  
  

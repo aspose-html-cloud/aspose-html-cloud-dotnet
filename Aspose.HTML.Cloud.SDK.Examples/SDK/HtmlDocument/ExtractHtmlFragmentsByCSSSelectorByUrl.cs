@@ -1,9 +1,5 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk;
-using Aspose.Storage.Cloud.Sdk.Api;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
@@ -20,24 +16,30 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
     {
         public void Run()
         {
+            // setup HTML document URL
             var url = "http://www.sukidog.com/jpierre/strings/basics.htm";
+            // setup CSS selector to select fragments
             var selector = "p";
 
-            IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IDocumentApi docApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call the SDK method that returns a query result in the response stream.
             var response = docApi.GetDocumentFragmentByCSSSelectorByUrl(url, selector, "plain");
             if (response != null && response.ContentStream != null)
             {
-                Stream stream = response.ContentStream;
-                var name = response.FileName;
-                string outFile = $"{Path.GetFileNameWithoutExtension(name)}_css_fragments.txt";
-                string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
-                using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+                if (response.Status == "NoContent")
+                    Console.WriteLine("Operation succeeded but result is empty");
+                else if (response.Status == "OK")
                 {
-                    stream.Position = 0;
-                    stream.CopyTo(fstr);
-                    fstr.Flush();
-                    Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
+                    Stream stream = response.ContentStream;
+                    string outFile = response.FileName;
+                    string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
+                    using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+                    {
+                        stream.Position = 0;
+                        stream.CopyTo(fstr);
+                        fstr.Flush();
+                        Console.WriteLine(string.Format("\nResult file downloaded to: {0}", outPath));
+                    }
                 }
             }
         }

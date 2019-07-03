@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Aspose.Storage.Cloud.Sdk;
-using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.HTML.Cloud.Examples.SDK;
@@ -23,11 +21,24 @@ namespace Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr
     {
         public void Run()
         {
+            // setup source image name
             string srcName = "ocr_test_1.png";
-            string folder = "HtmlTestDoc";
+            // setup storage folder path
+            string folder = CommonSettings.StorageDataFolder;
+            // setup storage name
             string storage = null;
 
-            OcrApi ocrApi = new OcrApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IOcrApi ocrApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
+            string filePath = Path.Combine(CommonSettings.LocalDataFolder, srcName);
+            string storageFilePath = Path.Combine(folder, srcName).Replace('\\', '/');
+
+            if (File.Exists(filePath))
+            {
+                SdkBaseRunner.UploadToStorage(storageFilePath, filePath);
+            }
+            else
+                throw new Exception(string.Format("Error: file {0} not found.", filePath));
+
             var response = ocrApi.GetRecognizeAndImportToHtml(srcName, "en", folder, storage);
 
             if (response != null && response.ContentStream != null)

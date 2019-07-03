@@ -26,6 +26,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,33 +38,6 @@ namespace Aspose.Html.Cloud.Sdk.Client
 {
     public static class ApiClientUtils
     {
-        private static Dictionary<string, string> s_mimeTypes = new Dictionary<string, string>();
-
-        /// <summary>
-        /// Static constructor
-        /// </summary>
-        static ApiClientUtils()
-        {
-            s_mimeTypes.Add("pdf", "application/pdf");
-            s_mimeTypes.Add("xps", "application/vnd.ms-xpsdocument");
-            s_mimeTypes.Add("jpeg", "image/jpeg");
-            s_mimeTypes.Add("bmp", "image/bmp");
-            s_mimeTypes.Add("png", "image/png");
-            s_mimeTypes.Add("tiff", "image/tiff");
-            //
-            s_mimeTypes.Add("zip", "application/zip");
-            s_mimeTypes.Add("json", "application/json");
-        }
-
-
-        public static string GetMimeType(string format)
-        {
-            if (s_mimeTypes.ContainsKey(format.ToLowerInvariant()))
-                return s_mimeTypes[format.ToLowerInvariant()];
-            else
-                return null;
-        }
-
         /// <summary>
         /// If parameter is DateTime, output in a formatted string (default ISO 8601), customizable with Configuration.DateTime.
         /// If parameter is a list of string, join the list with ",".
@@ -85,7 +59,11 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 return Convert.ToString(obj);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="basePath"></param>
+        /// <returns></returns>
         public static string GetTempDirectory(string basePath = null)
         {
             if(basePath == null)
@@ -98,6 +76,15 @@ namespace Aspose.Html.Cloud.Sdk.Client
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             return path;
+        }
+
+        static Regex re = new Regex(@"^v(\d{1,})\.(\d{1,})$");
+        internal static bool UrlContainsVersion(string url)
+        {
+            Uri uri = new Uri(url);
+            var s = uri.Segments.Last<string>();
+            bool res = re.Match(s).Success;
+            return res;
         }
     }
 }

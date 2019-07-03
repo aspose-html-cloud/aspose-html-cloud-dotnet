@@ -3,123 +3,150 @@ using System.IO;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
+
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
 {
     [TestClass]
     public class ConversionSaveToStorageTest : BaseTestContext
     {
-        private readonly string dataFolder = DirectoryHelper.GetPath("TestData", "HTML");
-        private readonly string testoutStorageFolder = "/Testout/Conversion";
+        private readonly string testoutStorageFolder = 
+            Path.Combine(BaseTestContext.StorageTestoutFolder, "Conversion").Replace('\\', '/');
+        
+        [TestInitialize]
+        public void TestSetup()
+        {
+            if(!StorageApi.FileOrFolderExists(testoutStorageFolder))
+            {
+                StorageApi.CreateFolder(testoutStorageFolder);
+            }
+            string path = Path.Combine(StorageTestDataPath, "testpage1.html").Replace('\\', '/');
+            if (StorageApi.FileOrFolderExists(path))
+            {
+                string localPath = Path.Combine(LocalTestDataPath, "testpage1.html");
+                StorageApi.UploadFile(localPath, path);
+            }
+        }
 
         [TestMethod]
         public void Test_PutHtmlConvert_Pdf_StorageDocToStorage()
         {
             string name = "testpage1.html";
-            string folder = null;
+            string folder = StorageTestDataPath;
+            string storage = null;
+
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
-            var response = this.ConversionApi.PutConvertDocumentToPdf(name, outPath, null, null, null, null, null, null, folder);
+            var response = this.HtmlApi.PutConvertDocumentToPdf(name, outPath, null, null, null, null, null, null, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
-
-            // AR: StorageApi still unusable; this part of code will always produce NullReferenceException, temporary commented 
-            // TODO: it looks like we'd implement Storage access separatately
-            // 
-            //var existReq = new GetIsExistRequest(outPath);
-            //var stRes = this.StorageApi.GetIsExist(existReq);
-            //Assert.AreEqual(200, stRes.Code);
-            //Assert.IsTrue(stRes.FileExist.IsExist.HasValue && (bool)(stRes.FileExist.IsExist.Value));
-        }
+            Assert.IsTrue(this.StorageApi.FileOrFolderExists(outPath, storage));
+         }
 
         [TestMethod]
-        public void Test_PutHtmlConvert_Pdf_LocalFileToStorage()
+        public void Test_PostHtmlConvert_Pdf_LocalFileToStorage()
         {
             string name = "testpage1.html";
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
-            string srcPath = Path.Combine(dataFolder, name);
+            string srcPath = Path.Combine(LocalTestDataPath, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.ConversionApi.PutConvertDocumentToPdf(stream, outPath);
+                var response = this.HtmlApi.PostConvertDocumentToPdf(stream, outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
+            Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
+        }
 
-            //var existReq = new GetIsExistRequest(outPath);
-            //var stRes = this.StorageApi.GetIsExist(existReq);
-            //Assert.AreEqual(200, stRes.Code);
-            //Assert.IsTrue(stRes.FileExist.IsExist.HasValue && (bool)(stRes.FileExist.IsExist.Value));
+        [TestMethod]
+        public void Test_PostHtmlConvert_Pdf_LocalFileToStorage_1()
+        {
+            string name = "testpage1.html";
+            string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
+            string srcPath = Path.Combine(LocalTestDataPath, name);
+            var response = this.HtmlApi.PostConvertDocumentToPdf(srcPath, outPath);
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.Code);
         }
 
         [TestMethod]
         public void Test_PutHtmlConvert_Xps_StorageDocToStorage()
         {
             string name = "testpage1.html";
-            string folder = null;
+            string folder = StorageTestDataPath;
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.xps");
-            var response = this.ConversionApi.PutConvertDocumentToXps(name, outPath, null, null, null, null, null, null, folder);
+            var response = this.HtmlApi.PutConvertDocumentToXps(name, outPath, null, null, null, null, null, null, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
-
-            //var existReq = new GetIsExistRequest(outPath);
-            //var stRes = this.StorageApi.GetIsExist(existReq);
-            //Assert.AreEqual(200, stRes.Code);
-            //Assert.IsTrue(stRes.FileExist.IsExist.HasValue && (bool)(stRes.FileExist.IsExist.Value));
+            Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
         }
 
         [TestMethod]
-        public void Test_PutHtmlConvert_Xps_LocalFileToStorage()
+        public void Test_PostHtmlConvert_Xps_LocalFileToStorage()
         {
             string name = "testpage1.html";
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.xps");
-            string srcPath = Path.Combine(dataFolder, name);
+            string srcPath = Path.Combine(LocalTestDataPath, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.ConversionApi.PutConvertDocumentToXps(stream, outPath);
+                var response = this.HtmlApi.PostConvertDocumentToXps(stream, outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
-
-            //var existReq = new GetIsExistRequest(outPath);
-            //var stRes = this.StorageApi.GetIsExist(existReq);
-            //Assert.AreEqual(200, stRes.Code);
-            //Assert.IsTrue(stRes.FileExist.IsExist.HasValue && (bool)(stRes.FileExist.IsExist.Value));
+            Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
         }
 
         [TestMethod]
         public void Test_PutHtmlConvert_Jpeg_StorageDocToStorage()
         {
             string name = "testpage1.html";
-            string folder = null;
+            string folder = StorageTestDataPath;
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.jpg");
-            var response = this.ConversionApi.PutConvertDocumentToImage(name, "jpeg", outPath, null, null, null, null, null, null, 96, folder);
+            var response = this.HtmlApi.PutConvertDocumentToImage(name, "jpeg", outPath, null, null, null, null, null, null, 96, folder);
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
-
-            //var existReq = new GetIsExistRequest(outPath);
-            //var stRes = this.StorageApi.GetIsExist(existReq);
-            //Assert.AreEqual(200, stRes.Code);
-            //Assert.IsTrue(stRes.FileExist.IsExist.HasValue && (bool)(stRes.FileExist.IsExist.Value));
+            Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
         }
 
         [TestMethod]
-        public void Test_PutHtmlConvert_Jpeg_LocalFileToStorage()
+        public void Test_PostHtmlConvert_Jpeg_LocalFileToStorage()
         {
-            string name = "testpage1.html";
+            string name = "testpage2.html";
             string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.jpg");
-            string srcPath = Path.Combine(dataFolder, name);
+            string srcPath = Path.Combine(LocalTestDataPath, name);
             using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                var response = this.ConversionApi.PutConvertDocumentToImage(stream, "jpeg", outPath);
+                var response = this.HtmlApi.PostConvertDocumentToImage(stream, "jpeg", outPath);
                 Assert.IsNotNull(response);
                 Assert.AreEqual(200, response.Code);
             }
+            Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
+        }
 
-            //var existReq = new GetIsExistRequest(outPath);
-            //var stRes = this.StorageApi.GetIsExist(existReq);
-            //Assert.AreEqual(200, stRes.Code);
-            //Assert.IsTrue(stRes.FileExist.IsExist.HasValue && (bool)(stRes.FileExist.IsExist.Value));
+        [TestMethod]
+        public void Test_PostHtmlConvert_Jpeg_LocalFileToStorage_1()
+        {
+            string name = "testpage1.html";
+            string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.jpg");
+            string srcPath = Path.Combine(LocalTestDataPath, name);
+            var response = this.HtmlApi.PostConvertDocumentToImage(srcPath, "jpeg", outPath);
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.Code);
+        }
+
+        [TestMethod]
+        public void Test_PutHtmlConvert_Markdown_StorageToStorage()
+        {
+            string name = "testpage1.html";
+            string folder = StorageTestDataPath;
+            string storage = null;
+
+            string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd-hhmmss")}.md";
+            string outPath = Path.Combine(testoutStorageFolder, outFile).Replace('\\', '/');
+
+            var response = this.HtmlApi.PutConvertDocumentToMarkdown(name, outPath, false, folder, storage);
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.Code);
+            Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
         }
 
 

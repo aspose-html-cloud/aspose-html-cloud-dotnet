@@ -1,6 +1,6 @@
-# DocumentApi
+# IDocumentApi
 
-All URIs are relative to *https://api.aspose.cloud/v1.1*
+All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 
 Method | HTTP request | Description
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 <a name="GetDocumentByUrl"></a>
 # **GetDocumentByUrl**
-> AsposeStreamResponse GetDocumentByUrl(name, storage, folder)
+> StreamResponse GetDocumentByUrl(name, storage, folder)
 
 Download the HTML page from Web by its URL with linked resources as a ZIP archive.
 
@@ -32,8 +32,8 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
-	
+	string BasePath = "https://api.aspose.cloud"; // API version is 3.0
+	string AuthPath = "https://api.aspose.cloud";
 
 	string sourceUrl = "https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";   // web page URL
 	
@@ -41,7 +41,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath, AuthPath);
 		var response = docApi.GetDocumentByUrl(sourceUrl);
 			
 		if(response != null && response.ContentStream != null)
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ No authorization required
 
 <a name="GetDocumentFragmentByXPath"></a>
 # **GetDocumentFragmentByXPath**
-> AsposeStreamResponse GetDocumentFragmentByXPath(name, xPath, outFormat, storage, folder)
+> StreamResponse GetDocumentFragmentByXPath(name, xPath, outFormat, storage, folder)
 
 Return list of HTML fragments matching the specified XPath query. 
 
@@ -102,7 +102,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string name = "testpage4_embcss.html";
 	String xPath = ".//p/@class";              // String | XPath query string.
@@ -116,7 +116,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByXPath(name, xPath, outFormat, storage, folder);
 			
 		if(response != null && response.ContentStream != null)
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -162,11 +162,11 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data
+ - **Accept**: text/plain, application/json
  
 <a name="GetDocumentFragmentByXPathByUrl"></a>
 # **GetDocumentFragmentByXPathByUrl**
-> AsposeStreamResponse GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat)
+> StreamResponse GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat)
 
 Return list of HTML fragments matching the specified XPath query - from a Web page by its URL. 
 
@@ -182,7 +182,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm"; // put here a HTML page URL
 	
@@ -195,7 +195,7 @@ public static void Main(string[] args)
 	 
 	try
 	{
-	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByXPathByUrl(sourceUrl, xPath, outFormat);
 			
 		if(response != null && response.ContentStream != null)
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -239,13 +239,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: multipart/form-data
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
 
 
 <a name="GetDocumentFragmentByCSSSelector"></a>
 # **GetDocumentFragmentByCSSSelector**
-> AsposeStreamResponse GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder)
+> StreamResponse GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder)
 
 Return list of HTML fragments matching the specified CSS selector. 
 
@@ -261,7 +261,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string name = "testpage4_embcss.html";
 	String selector = "p[class]";       // String | CSS selector string.
@@ -275,7 +275,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByCSSSelector(name, selector, outFormat, storage, folder);
 			
 		if(response != null && response.ContentStream != null)
@@ -311,7 +311,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -320,7 +320,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data
+ - **Accept**: text/plain, application/json
 
 
 #########################################################################
@@ -328,7 +328,7 @@ No authorization required
  
 <a name="GetDocumentFragmentByCSSSelectorByUrl"></a>
 # **GetDocumentFragmentByCSSSelectorByUrl**
-> AsposeStreamResponse GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, xPath, outFormat)
+> StreamResponse GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, xPath, outFormat)
 
 Return list of HTML fragments matching the specified CSS selector - from a Web page by its URL. 
 
@@ -344,7 +344,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm"; // put here a HTML page URL
 	
@@ -357,7 +357,7 @@ public static void Main(string[] args)
 	 
 	try
 	{
-	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByCSSSelectorByUrl(sourceUrl, selector, outFormat);
 			
 		if(response != null && response.ContentStream != null)
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -401,8 +401,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: multipart/form-data
+ - **Content-Type**: application/json
+ - **Accept**: text/plain, application/json
 
 
 
@@ -411,8 +411,7 @@ No authorization required
  
 <a name="GetDocumentImages"></a>
 # **GetDocumentImages**
-> AsposeStreamResponse GetDocumentImages(name, folder, storage)
-
+> StreamResponse GetDocumentImages(name, folder, storage)
 Return all HTML document images packaged as a ZIP archive.
 
 ### Example
@@ -427,7 +426,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string name = "testpage5.html.zip";
 
@@ -439,7 +438,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentFragmentByXPath(name, storage, folder);
 			
 		if(response != null && response.ContentStream != null)
@@ -473,7 +472,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -487,7 +486,7 @@ No authorization required
  
 <a name="GetDocumentImagesByUrl"></a>
 # **GetDocumentImagesByUrl**
-> Stream GetDocumentImagesByUrl(sourceUrl)
+> StreamResponse GetDocumentImagesByUrl(sourceUrl)
 
 Return all HTML document images packaged as a ZIP archive.
 
@@ -504,7 +503,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm"; // put here a HTML page URL
 	
@@ -514,7 +513,7 @@ public static void Main(string[] args)
 	
 	try
 	{
-	    IDocumentApi docApi = new DocumentApi(appKey, appSID, BasePath);
+	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentImagesByUrl(sourceUrl);
 			
 		if(response != null && response is FileStream)
@@ -546,7 +545,7 @@ Name | Type | Description  | Notes
  
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 

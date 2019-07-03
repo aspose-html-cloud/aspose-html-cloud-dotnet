@@ -29,13 +29,10 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     using System;
     using System.IO;
     using Newtonsoft.Json;
-    using Aspose.Storage.Cloud.Sdk.Api;
-    //using Aspose.Storage.Cloud.Sdk;
     using Aspose.Html.Cloud.Sdk.Api;
+    using Aspose.Html.Cloud.Sdk.Api.Interfaces;
     using Aspose.Html.Cloud.Sdk.Api.Model;
     using Aspose.Html.Cloud.Sdk.Client;
-    using Aspose.Storage.Cloud.Sdk.Model;
-    using Aspose.Storage.Cloud.Sdk.Model.Requests;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -45,18 +42,26 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     {
         private class Keys
         {
-            [JsonProperty(PropertyName = "AppSid")]
+            [JsonProperty(PropertyName = "AppSid", Required = Required.Always)]
             public string AppSid { get; set; }
-            [JsonProperty(PropertyName = "AppKey")]
+
+            [JsonProperty(PropertyName = "AppKey", Required = Required.Always)]
             public string AppKey { get; set; }
-            [JsonProperty(PropertyName = "basePath")]
+
+            [JsonProperty(PropertyName = "basePath", Required = Required.Always)]
             public string BaseProductUri { get; set; }
-            //[JsonProperty(PropertyName = "authPath")]
-            //public string AuthServerPath { get; set; }
+
+            [JsonProperty(PropertyName = "authPath")]
+            public string AuthServerUri { get; set; }
+
+            [JsonProperty(PropertyName = "apiVersion")]
+            public string ApiVersion { get; set; }
         }
 
-        protected const string DefBaseProductUri = @"http://aspose-qa.aspose.cloud";
+        protected const string DefBaseProductUri = @"http://aspose.aspose.cloud";
         //protected const string BaseProductUri = @"http://sikorsky-js3.dynabic.com:9083";
+
+        protected const string DefAuthServerUri = @"http://aspose.aspose.cloud";
 
         private Keys keys;
 
@@ -74,43 +79,46 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 throw new FileNotFoundException("servercreds.json doesn't contain AppKey and AppSid");
             }
 
-            var configuration = new Configuration { ApiBaseUrl = this.keys.BaseProductUri, AppKey = this.keys.AppKey, AppSid = this.keys.AppSid };
-            this.ConversionApi = new ConversionApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.DocumentApi = new DocumentApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.TranslationApi = new TranslationApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.OcrApi = new OcrApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.SummarizationApi = new SummarizationApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
-            this.TemplateMergeApi = new TemplateMergeApi(
-                configuration.AppKey, configuration.AppSid, configuration.ApiBaseUrl + "/v1.1");
+            var config = new Configuration {
+                ApiBaseUrl = this.keys.BaseProductUri,
+                AuthUrl = this.keys.AuthServerUri ?? DefAuthServerUri,
+                ApiVersion = this.keys.ApiVersion ?? Configuration.DefaultApiVersion,
+                AppKey = this.keys.AppKey,
+                AppSid = this.keys.AppSid };
 
-            Aspose.Storage.Cloud.Sdk.Configuration storageConf = new Storage.Cloud.Sdk.Configuration()
-            {
-                ApiBaseUrl = configuration.ApiBaseUrl + "/v1.1",
-                AppKey = configuration.AppKey,
-                AppSid = configuration.AppSid
-            };
-            this.StorageApi = new StorageApi(storageConf);
+            this.HtmlApi = new HtmlApi(
+                config.AppSid, config.AppKey, config.ApiBaseUrl + $"/v{config.ApiVersion}", config.AuthUrl);
+
+            this.StorageApi = new StorageApi(this.HtmlApi);
         }
 
         /// <summary>
-        /// Base path to test data        
+        /// Base path to test data - local      
         /// </summary>
-        protected static string BaseTestDataPath
+        /// 
+        protected static string LocalTestDataPath
         {
             get
             {
-                //return "Temp/SdkTests/TestData";
-                return "TestData";
+                var root = DirectoryHelper.GetRootSdkFolder();
+                return Path.Combine(root, "TestData", "HTML");
             }
         }
 
         /// <summary>
-        /// Base path to output data
+        /// Base path to test data - storage      
+        /// </summary>
+        protected static string StorageTestDataPath
+        {
+            get
+            {
+                //return "Temp/SdkTests/TestData";
+                return "/Html/TestData";
+            }
+        }
+
+        /// <summary>
+        /// Base path to output data - local
         /// </summary>
         protected static string BaseTestOutPath
         {
@@ -119,6 +127,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 return "TestOut";
             }
         }
+
+        /// <summary>
+        /// Base storage path to output data - storage
+        /// </summary>
+        protected static string StorageTestoutFolder
+        {
+            get
+            {
+                return "/Html/TestOut";
+            }
+        }
+
+
 
         /// <summary>
         /// Returns common folder with source test files
@@ -139,12 +160,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         /// <summary>
         /// Html API
         /// </summary>
-        protected ConversionApi ConversionApi { get; set; }
-        protected DocumentApi DocumentApi { get; set; }
-        protected TranslationApi TranslationApi { get; set; }
-        protected OcrApi OcrApi { get; set; }
-        protected SummarizationApi SummarizationApi { get; set; }
-        protected TemplateMergeApi TemplateMergeApi { get; set; }
+        protected HtmlApi HtmlApi { get; set; }
 
         /// <summary>
         /// AppSid
@@ -181,14 +197,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         protected void uploadFileToStorage(string dataFolder, string name, string folder)
         {
             string srcPath = Path.Combine(dataFolder, name);
-            string path = string.Format("{0}/{1}", folder, name);
+            string path = Path.Combine(folder, name).Replace('\\', '/');
             using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
             {
-                PutCreateRequest reqCr = new PutCreateRequest(path, fstr);
-                this.StorageApi.PutCreate(reqCr);
-                GetIsExistRequest reqExist = new GetIsExistRequest(path);
-                FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-                Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
+                var response = StorageApi.UploadFile(fstr, path);
+                Assert.IsTrue(response != null);
+                Assert.IsTrue(response.Code == 200);
+                bool exists = StorageApi.FileOrFolderExists(path);
+                Assert.IsTrue(exists);
             }
         }
 
@@ -220,7 +236,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             return resultName;
         }
 
-        protected void checkGetMethodResponse(AsposeStreamResponse response, string outSubdir, string suffix = "")
+        protected void checkGetMethodResponse(StreamResponse response, string outSubdir, string suffix = "")
         {
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Code == 200);
@@ -230,7 +246,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             Assert.IsTrue(File.Exists(outPath));
         }
 
-        protected void checkGetMethodResponseOkOrNoresult(AsposeStreamResponse response, string outSubdir, string suffix = "")
+        protected void checkGetMethodResponseOkOrNoresult(StreamResponse response, string outSubdir, string suffix = "")
         {
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Code == 200 || response.Code == 204);

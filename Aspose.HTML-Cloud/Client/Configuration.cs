@@ -42,7 +42,9 @@ namespace Aspose.Html.Cloud.Sdk.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "18.5.0";
+        public const string Version = "19.5.0";
+
+        public const string DefaultApiVersion = "3.0";
   
         /// <summary>
         /// Gets or sets the username (HTTP basic authentication).
@@ -135,5 +137,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         public string ApiBaseUrl { get; set; }
         public string AppKey { get; set; }
         public string AppSid { get; set; }
+        public string AuthUrl { get; set; }
+        public string ApiVersion { get; set; }
     }
 }

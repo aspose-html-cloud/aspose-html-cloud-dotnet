@@ -32,33 +32,38 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Com.Aspose.Html.NativeClient.Authentication;
+//using Com.Aspose.Html.NativeClient.Authentication;
+using Aspose.Html.Cloud.Sdk.Client.Authentication;
 
 namespace Aspose.Html.Cloud.Sdk.Client
 {
     /// <summary>
     /// Quick workaround to encapsulate PUT calls - instead of RestSharp.Net2
     /// </summary>
-    public class ApiClient
+    internal class ApiClient
     {
         public string AppKey { get; protected set; }
         public string AppSid { get; protected set; }
         public string BasePath { get; set; }
         //public string Version { get; protected set; }
         //public bool Debug { get; protected set; }
+        public string BaseAuthPath { get; set; }
 
         public TimeSpan Timeout { get; set; }
 
         private IAuthenticator Authenticator { get; set; }
 
+        protected const string PAR_FILENAME_I = "__filename__";
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="appKey"></param>
-        /// <param name="appSid"></param>
-        /// <param name="basePath"></param>
+        /// <param name="appSid">Application SID</param>
+        /// <param name="appKey">Application key</param>
+        /// <param name="basePath">REST API service path</param>
         /// <param name="auth"></param>
-        public ApiClient(string appKey, string appSid, string basePath = "http://api.aspose.cloud/v1.1",
+        public ApiClient(string appSid, string appKey, 
+            string basePath = "http://api.aspose.cloud/v3.0",
             IAuthenticator auth = null)
         {
             AppKey = appKey;
@@ -68,7 +73,31 @@ namespace Aspose.Html.Cloud.Sdk.Client
             //Debug = debug;
             Timeout = new TimeSpan(0, 5, 0);
 
-            Authenticator = auth ?? new OAuth2(appSid, appKey, basePath);
+            Authenticator = auth ?? new JwtAuth(appSid, appKey, basePath);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appSid"></param>
+        /// <param name="appKey"></param>
+        /// <param name="basePath"></param>
+        /// <param name="authPath"></param>
+        /// <param name="auth"></param>
+        public ApiClient(string appSid, string appKey, 
+            string basePath = "http://api.aspose.cloud/v3.0",
+            string authPath = "http://api.aspose.cloud/v3.0",
+            IAuthenticator auth = null)
+        {
+            AppKey = appKey;
+            AppSid = appSid;
+            BasePath = basePath;
+            BaseAuthPath = authPath;
+            //Version = version;
+            //Debug = debug;
+            Timeout = new TimeSpan(0, 5, 0);
+
+            Authenticator = auth ?? new JwtAuth(appSid, appKey, authPath);
         }
 
         public HttpResponseMessage CallGet(string methodPath, IDictionary<string, string> parameters)
@@ -98,7 +127,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             return authorizeAndCallRequest(request);
         }
 
-        public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters, Stream bodyStream)
+        public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters, IDictionary<string, string> headerParams = null, Stream bodyStream = null)
         {
             string requestUrl = formatQuery(methodPath, parameters);
             HttpRequestMessage request = new HttpRequestMessage()
@@ -106,14 +135,32 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 RequestUri = new Uri(requestUrl),
                 Method = HttpMethod.Put
             };
+
+            if(headerParams != null)
+            {
+                //request.Headers.
+            }
             if(bodyStream != null)
             {
-                request.Content = new StreamContent(bodyStream);
+                var content = new StreamContent(bodyStream);
+                if (headerParams != null)
+                {
+                    if (headerParams.ContainsKey("Content-Type"))
+                        content.Headers.ContentType = new MediaTypeHeaderValue(headerParams["Content-Type"]);
+                    if (headerParams.ContainsKey("Content-Length"))
+                        content.Headers.ContentLength = long.Parse(headerParams["Content-Length"]);
+                }
+                request.Content = content;
             }
             return authorizeAndCallRequest(request);
         }
 
-        public HttpResponseMessage CallPost(string methodPath, IDictionary<string, string> parameters, string body = null)
+        public HttpResponseMessage CallPost(
+            string methodPath, 
+            IDictionary<string, string> parameters, 
+            IDictionary<string, string> headerParams = null, 
+            Stream bodyStream = null,
+            string bodyFileName = null)
         {
             string requestUrl = formatQuery(methodPath, parameters);
             HttpRequestMessage request = new HttpRequestMessage()
@@ -121,38 +168,42 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 RequestUri = new Uri(requestUrl),
                 Method = HttpMethod.Post
             };
-            if (body != null)
+
+            if (bodyStream != null)
             {
-                request.Content = new StringContent(body);
+                var multipartContent = new MultipartFormDataContent();
+                var fileContent = new StreamContent(bodyStream);
+                if (headerParams != null)
+                {
+                    if (headerParams.ContainsKey("Content-Type"))
+                        fileContent.Headers.ContentType = new MediaTypeHeaderValue(headerParams["Content-Type"]);
+                    if (headerParams.ContainsKey("Content-Length"))
+                        fileContent.Headers.ContentLength = long.Parse(headerParams["Content-Length"]);
+                }
+                multipartContent.Add(fileContent, "File", bodyFileName);
+                request.Content = multipartContent;
+            }
+            if (headerParams != null)
+            {
+
             }
             return authorizeAndCallRequest(request);
         }
 
-        //public HttpResponseMessage CallPut(string methodPath, IDictionary<string, string> parameters)
-        //{
-        //    string requestUrl = formatQuery(methodPath, parameters);
-        //    return CallPutWithRequestContent(requestUrl);
-        //}
-
-        //public HttpResponseMessage CallPutWithRequestContent(string methodPath, HttpContent content, IDictionary<string, string> parameters)
-        //{
-        //    string requestUrl = formatQuery(methodPath, parameters);
-        //    return CallPutWithRequestContent(requestUrl, content);
-        //}
-
-        //public HttpResponseMessage CallPutWithRequestContent(string requestUrl, HttpContent content = null)
-        //{
-        //    HttpClient client = new HttpClient();
-        //    string signedUrl = SignUrl(requestUrl);
-        //    HttpResponseMessage response = client.PutAsync(signedUrl, content).Result;
-        //    return response;
-        //}
+        public HttpResponseMessage CallDelete(string methodPath, IDictionary<string, string> parameters)
+        {
+            string requestUrl = formatQuery(methodPath, parameters);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(requestUrl),
+                Method = HttpMethod.Delete
+            };
+            return authorizeAndCallRequest(request);
+        }
 
         private string formatQuery(string methodPath, IDictionary<string, string> parameters)
         {
             StringBuilder sb = new StringBuilder();
-            string res = "";
-
             if (Uri.IsWellFormedUriString(BasePath, UriKind.Absolute))
             {
                 sb.Append(BasePath);
@@ -160,7 +211,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 //    sb.Append("/");
                 sb.Append(methodPath);
                 int idx = 0;
-                foreach (var key in parameters.Keys)
+                foreach (var key in parameters.Keys.Where(k => k != PAR_FILENAME_I))
                 {
                     string val = parameters[key];
                     sb.Append(string.Format("{0}{1}={2}", (idx++ == 0) ? "?" : "&", key, val));

@@ -1,6 +1,6 @@
-# TranslationApi
+# ITranslationApi
 
-All URIs are relative to *https://api.aspose.cloud/v1.1*
+All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="GetTranslateDocument"></a>
 # **GetTranslateDocument**
-> AsposeStreamResponse GetTranslateDocument(name, srcLang, resLang, storage, folder)
+> StreamResponse GetTranslateDocument(name, srcLang, resLang, storage, folder)
 
 Translate the HTML document specified by the name from default or specified storage.
 
@@ -26,7 +26,8 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
+	string authPath = "https://api.aspose.cloud";
 	
 	string name = "testpage4_embcss.html";
 	
@@ -40,7 +41,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    ITranslationApi transApi = new TranslationApi(appKey, appSID, BasePath);
+	    ITranslationApi transApi = new HtmlApi(appKey, appSID, BasePath, authPath);
 		var response = transApi.GetTranslateDocument(name, srcLang, resLang, storage, folder);
 			
 		if(response != null && response.ContentStream != null)
@@ -76,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -85,11 +86,11 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data
+ - **Accept**: text/html, aplication/zip
 
 <a name="translationGetTranslateDocumentByUrl"></a>
 # **GetTranslateDocumentByUrl**
-> AsposeStreamResponse GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang)
+> StreamResponse GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang)
 
 Translate the HTML document specified by its URL.
 
@@ -105,7 +106,7 @@ public static void Main(string[] args)
 {
 	string appKey = "XXXXX";   // put here your app key
 	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud/v1.1";
+	string BasePath = "https://api.aspose.cloud";
 	
 	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
 	
@@ -120,7 +121,7 @@ public static void Main(string[] args)
 
 	try
 	{
-	    ITranslationApi transApi = new TranslationApi(appKey, appSID, BasePath);
+	    ITranslationApi transApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetTranslateDocument(sourceUrl, srcLang, resLang);
 			
 		if(response != null && response.ContentStream != null)
@@ -154,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -163,6 +164,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data
+ - **Accept**: aplication/zip
 
 

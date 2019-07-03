@@ -31,27 +31,27 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
     /// <summary>
     /// Represents a collection of functions to interact with the OCR to HTML API endpoints
     /// </summary>
-    interface IOcrApi
+    public interface IOcrApi
     {
         /// <summary>
-        /// Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
+        /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document.
         /// </summary>
         /// <param name="name">String | Document name.</param>
         /// <param name="engineLang">String | Optional. OCR engine language. </param>
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>System.IO.Stream |  Stream of resulting document. </returns>
-        AsposeStreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null);
+        /// <returns>StreamResponse |  Stream of resulting document. </returns>
+        StreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null);
 
         /// <summary>
-        /// Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
+        /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document translated to the specified language.
         /// </summary>
         /// <param name="name">String | Document name.</param>
         /// <param name="srcLang">String | Source language (considered as OCR engine language too).</param>
         /// <param name="resLang">String | Result language.</param>
         /// <param name="folder">String | Optional. The document folder.</param>
         /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>System.IO.Stream |  Stream of resulting document.</returns>
-        AsposeStreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null);
+        /// <returns>StreamResponse |  Stream of resulting document.</returns>
+        StreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null);
     }
 }

@@ -1,15 +1,16 @@
-# TemplateMergeApi
+# ITemplateMergeApi
 
-All URIs are relative to *https://api.aspose.cloud/v1.1*
+All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*TemplateMergeApi* | [**GetMergeHtmlTemplate**](TemplateMergeApi.md#GetMergeHtmlTemplate) | **GET** /html/{templateName}/merge | Populate HTML document template with data located as a file in the storage.
-*TemplateMergeApi* | [**PutMergeHtmlTemplate**](TemplateMergeApi.md#PutMergeHtmlTemplate) | **PUT** /html/{templateName}/merge | Populate HTML document template with data from the stream. Result document will be saved to storage.
+[**GetMergeHtmlTemplate**](TemplateMergeApi.md#GetMergeHtmlTemplate) | **GET** /html/{templateName}/merge | Populate HTML document template with data located as a file in the storage.
+[**PostMergeHtmlTemplate**](TemplateMergeApi.md#PostMergeHtmlTemplate) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the stream. Result document will be saved to storage.
+[**PostMergeHtmlTemplate**](TemplateMergeApi.md#PostMergeHtmlTemplate_1) | **POST** /html/{templateName}/merge | Overloaded method. Populate HTML document template with data from the local file system. Result document will be saved to storage.
 
 <a name="GetMergeHtmlTemplate"></a>
 #**GetMergeHtmlTemplate**
-> AsposeStreamResponse GetMergeHtmlTemplate(templateName, dataPath, options, folder, storage)
+> StreamResponse GetMergeHtmlTemplate(templateName, dataPath, options, folder, storage)
 
 Populate HTML document template with data located as a file in the storage.
 
@@ -23,13 +24,13 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 string appKey = "XXXXX";   // put here your app key
 string appSID = "XXXXX";   // put here your app SID
-string BasePath = "https://api.aspose.cloud/v1.1";
+string BasePath = "https://api.aspose.cloud";
 
 string templateName = "test_template_1.html";                 // template file must be uploaded to storage by path /{folder}/{templateName}
 string dataPath = "TestFolder/Merge/templ_merge_data_1.xml";   // data file must be uploaded to storage by path /{dataPath}
 
 string options = "{'cs_names':false}";
-string folder = "TestFolder/Merge";    
+string folder = "TestFolder/Merge";  // setup folder where the HTML template is located in the storage 
 string storage = null;               // default storage
 
 string outPath = @"d:\Out";
@@ -40,7 +41,7 @@ public static void Main()
 {
 	try
 	{
-		ITemplateMergeApi mergeApi = new TemplateMergeApi(appKey, appSID, BasePath);
+		ITemplateMergeApi mergeApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = mergeApi.GetMergeHtmlTemplate(templateName, dataPath, options, folder, storage);
 		
 		if(response != null && response.ContentStream != null)
@@ -62,7 +63,6 @@ public static void Main()
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}
 }
-
 	
 ```
 
@@ -71,7 +71,7 @@ public static void Main()
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateName** | **String**| Template document name.  Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}. | 
- **dataPath** | **String**| Data source file path in the storage. Supported data format: XML. |
+ **dataPath** | **String**| Data source file path in the storage. Supported data formats: XML, JSON. |
  **options** | **String**| Template merge options: JSON list of name:value pairs. See below for details.| [optional]
  **folder** | **String**| The document folder. | [optional]
  **storage** | **String**| The document storage. | [optional]
@@ -84,7 +84,7 @@ Available options:
 
  ### Return type
 
-[**AsposeStreamResponse**](AsposeStreamResponse.md)
+[**StreamResponse**](StreamResponse.md)
 
 ### Authorization
 
@@ -93,14 +93,13 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: multipart/form-data
+ - **Accept**: text/html, application/zip
 
  
  
- 
-<a name="PutMergeHtmlTemplate"></a>
-#**PutMergeHtmlTemplate**
->Stream PutMergeHtmlTemplate(templateName, inStream, outPath, options, folder, storage)
+<a name="PostMergeHtmlTemplate"></a>
+#**PostMergeHtmlTemplate**
+> AsposeResponse PostMergeHtmlTemplate(templateName, inStream, outPath, options, folder, storage)
 
 Populate HTML document template with data from the stream. Result document will be saved to storage.
 
@@ -114,7 +113,7 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 string appKey = "XXXXX";   // put here your app key
 string appSID = "XXXXX";   // put here your app SID
-string BasePath = "https://api.aspose.cloud/v1.1";
+string BasePath = "https://api.aspose.cloud";
 
 string templateName = "test_template_1.html";                  // template file must be uploaded to storage by path /{folder}/{templateName}
 string dataPathLocal = @"d:\testdata\templ_merge_data_1.xml";  // data file is located in local file system
@@ -122,7 +121,7 @@ string dataPathLocal = @"d:\testdata\templ_merge_data_1.xml";  // data file is l
 string outPath = "/TestFolder/MergeResults/{templateName}_merged.html"; // storage path the result HTML document will be saved by
 
 string options = "{'rm_tabhdr':true}";
-string folder = "TestFolder/Merge";    
+string folder = "TestFolder/Merge";  // setup folder where the HTML template is located in the storage    
 string storage = null;               // default storage
 
 string outPathLocal = @"d:\Out";
@@ -133,13 +132,14 @@ public static void Main()
 	try
 	{
 		AsposeResponse response = null;
-		ITemplateMergeApi mergeApi = new TemplateMergeApi(appKey, appSID, BasePath);
+		ITemplateMergeApi mergeApi = new HtmlApi(appKey, appSID, BasePath);
 		using(Stream inStream = new FileStream(dataPathLocal, FileMode.Open, FileAccess.Read)
 		{
-			response = mergeApi.PutMergeHtmlTemplate(templateName, inStream, outPath, options, folder, storage);
+		    var dataFile = Path.GetFileName(dataPathLocal);
+			response = mergeApi.PostMergeHtmlTemplate(templateName, inStream, outPath, options, folder, storage);
 		}
 		
-		if(response!= null && response.Code == 200)
+		if(response!= null && response.Status == "OK")
 		{
 			// result file is in the storage
 		}
@@ -155,7 +155,81 @@ public static void Main()
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **templateName** | **String**| Template document name.  Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}. |
- **inStream** | **Stream**| Data source stream. Supported data format: XML. | 
+ **inStream** | **Stream**| Data source stream. Supported data formats: XML, JSON  | 
+ **outPath** | **String**| Result document path in the storage. |
+ **options** | **String**| Template merge options: JSON list of name:value pairs| [optional]
+ **folder** | **String**| The document folder. | [optional]
+ **storage** | **String**| The document storage. | [optional]
+ 
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+ 
+ 
+ <a name="PostMergeHtmlTemplate_1"></a>
+#**PostMergeHtmlTemplate**
+> AsposeResponse PostMergeHtmlTemplate(templateName, localDataFilePath, outPath, options, folder, storage)
+
+Overloaded method. Populate HTML document template with data from the local file system. Result document will be saved to storage.
+
+### Example
+```csharp
+
+using System;
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+
+string appKey = "XXXXX";   // put here your app key
+string appSID = "XXXXX";   // put here your app SID
+string BasePath = "https://api.aspose.cloud";
+
+string templateName = "test_template_1.html";                  // template file must be uploaded to storage by path /{folder}/{templateName}
+string dataPathLocal = @"d:\testdata\templ_merge_data_1.xml";  // data file is located in local file system
+
+string outPath = "/TestFolder/MergeResults/{templateName}_merged.html"; // storage path the result HTML document will be saved by
+
+string options = "{'rm_tabhdr':true}";
+string folder = "TestFolder/Merge";  // setup folder where the HTML template is located in the storage    
+string storage = null;               // default storage
+
+string outPathLocal = @"d:\Out";
+string outFile = Path.Combine(outPathLocal, $"{name}_merged.html");
+
+public static void Main()
+{
+	try
+	{
+		AsposeResponse response = null;
+		ITemplateMergeApi mergeApi = new HtmlApi(appKey, appSID, BasePath);
+		response = mergeApi.PostMergeHtmlTemplate(templateName, dataPathLocal, outPath, options, folder, storage);
+		
+		if(response!= null && response.Status == "OK")
+		{
+			// result file is in the storage
+		}
+	}
+	catch(Exception ex)
+	{
+		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+	}
+}
+
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateName** | **String**| Template document name.  Template document is HTML or zipped HTML. Template location is /{folder}/{templateName}. |
+ **localDataFilePath** | **String**| Data source file path in the local file system. Supported data formats: XML, JSON. | 
  **outPath** | **String**| Result document path in the storage. |
  **options** | **String**| Template merge options: JSON list of name:value pairs| [optional]
  **folder** | **String**| The document folder. | [optional]

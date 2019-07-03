@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
@@ -26,12 +24,18 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 
         public void Run()
         {
+            // setup HTML document name
             var name = "testpage4_embcss.html";
-            var srcPath = Path.Combine(CommonSettings.DataFolder, name);
-            string folder = " HtmlTestFolder";
+            // setup local document path
+            var srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
+            // setup storage folder where the source document should be present
+            string folder = CommonSettings.LocalDataFolder;
+            // setup storage name (null for default storage)
             string storage = null;
+
             string storagePath = (folder == null) ? name : Path.Combine(folder, name).Replace('\\', '/');
 
+            // setup resulting file parameters
             int width = 800;
             int height = 1200;
             int leftMargin = 15;
@@ -44,14 +48,14 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted.{ext}";
             if (File.Exists(srcPath))
             {
-                SdkBaseRunner.UploadToStorage(storagePath, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(storagePath, srcPath);
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));
 
-            IConversionApi convApi = new ConversionApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey,  CommonSettings.BasePath, CommonSettings.AuthPath);
 
-            AsposeStreamResponse response = null;
+            StreamResponse response = null;
             // call SDK methods that convert HTML document to supported out format
             switch (Format)
             {
@@ -69,6 +73,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                 case "bmp":
                 case "png":
                 case "tiff":
+                case "gif":
                     response = convApi.GetConvertDocumentToImage(
                         name, Format, width, height,
                         leftMargin, rightMargin, topMargin, bottomMargin,
@@ -81,10 +86,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                     throw new ArgumentException($"Unsupported output format: {Format}");
             }
 
-            if (response != null && response.ContentStream != null)
+            if (response != null && response.ContentStream != null && response.Status == "OK")
             {
+                var respFileName = response.FileName;
                 Stream outStream = response.ContentStream;
-                string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);
+                string outPath = Path.Combine(CommonSettings.OutDirectory, respFileName ?? outFile);
                 using (FileStream fstr = new FileStream(outPath, FileMode.Create, FileAccess.Write))
                 {
                     outStream.Position = 0;

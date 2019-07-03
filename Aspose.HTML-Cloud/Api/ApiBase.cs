@@ -22,16 +22,12 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-
 using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
-//using Com.Aspose.Html.Client;
-//using Com.Aspose.Html.NativeClient;
 
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Model;
@@ -43,34 +39,97 @@ namespace Aspose.Html.Cloud.Sdk.Api
     /// </summary>
     public abstract class ApiBase
     {
+        const string DefaultApiVersion = "3.0";
+
         /// <summary>
-        /// Constructor
+        /// Constructor. Initalizes a new instance ApiBase class with specified user credentials (application SID and application key),
+        /// and REST API service URL; by default, authentication service URL is the same.        
         /// </summary>
-        /// <param name="apiKey"></param>
-        /// <param name="apiSid"></param>
-        /// <param name="basePath"></param>
-        public ApiBase(String apiKey, String apiSid, String basePath)
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
+        protected internal ApiBase(String appSid, String appKey, String basePath)
+            : this(appSid, appKey, basePath, basePath)
         {
-            this.ApiClient = new ApiClient(apiKey, apiSid, basePath);
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor. Initalizes a new instance of ApiBase class with specified user credentials (application SID and application key),
+        /// REST API service URL and authentication service URL.
         /// </summary>
-        /// <param name="apiKey"></param>
-        /// <param name="apiSid"></param>
-        /// <param name="basePath"></param>
-        /// <param name="timeout"></param>
-        public ApiBase(String apiKey, String apiSid, String basePath, TimeSpan timeout)
-            : this(apiKey, apiSid, basePath)
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="authPath">Authorization service URL</param>
+        protected internal ApiBase(String appSid, String appKey, String basePath, String authPath)
+        {
+            if (!ApiClientUtils.UrlContainsVersion(basePath))
+            {
+                var baseUrl = $"{basePath}/v{DefaultApiVersion}";
+                basePath = baseUrl;
+            }
+            this.ApiClient = new ApiClient(appSid, appKey, basePath, authPath);
+        }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of ApiBase class with specified user credentials (application SID and application key),
+        /// REST API service URL and service connection timeout; by default, authentication service URL is the same.
+        /// </summary>
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="timeout">Service connection timeout</param>
+        protected internal ApiBase(String appSid, String appKey, String basePath, TimeSpan timeout)
+            : this(appSid, appKey, basePath)
         {
             this.ApiClient.Timeout = timeout;
         }
 
-         /// <summary>
+        /// <summary>
+        /// Constructor. Initalizes a new instance of HtmlApi class with specified user credentials (application SID and application key),
+        /// REST API service URL, authentication service URL and service connection timeout.
+        /// </summary>
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="authPath">Authorization service URL</param>
+        /// <param name="timeout">Service connection timeout</param>
+        protected internal ApiBase(String appSid, String appKey, String basePath, String authPath, TimeSpan timeout)
+            : this(appSid, appKey, basePath, authPath)
+        {
+            this.ApiClient.Timeout = timeout;
+        }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of ApiBase class with Configuration object.
+        /// </summary>
+        /// <param name="config"></param>
+        protected internal ApiBase(Configuration config)
+        {
+            if (!ApiClientUtils.UrlContainsVersion(config.ApiBaseUrl))
+            {
+                var baseUrl = config.ApiBaseUrl + "/v" + config.ApiVersion;
+                config.ApiBaseUrl = baseUrl;
+            }
+
+            this.ApiClient = new ApiClient(
+                config.AppSid, config.AppKey, config.ApiBaseUrl, config.AuthUrl);
+        }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of ApiBase class inheriting ApiClient object
+        /// of existing ApiBase instance, so authorization data become common for both.
+        /// </summary>
+        /// <param name="apiInstance"></param>
+        protected internal ApiBase(ApiBase apiInstance)
+        {
+            this.ApiClient = apiInstance.ApiClient;
+        }
+
+        /// <summary>
         /// Gets or sets the API client
         /// </summary>
-        public ApiClient ApiClient { get; set; }
+        internal ApiClient ApiClient { get; set; }
 
 
         /// <summary>
@@ -92,83 +151,6 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
             return this.ApiClient.BasePath;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="queryParams"></param>
-        /// <param name="methodName"></param>
-        /// <returns></returns>
-        protected AsposeStreamResponse CallGetApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
-        {
-            HttpResponseMessage resp = ApiClient.CallGet(path, queryParams);
-      
-            if (((int)resp.StatusCode) >= 400)
-                throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}", 
-                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
-            else if (((int)resp.StatusCode) == 0)
-                throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
-
-            //string outDir = String.IsNullOrEmpty(Configuration.TempFolderPath)
-            //         ? Path.GetTempPath()
-            //         : Configuration.TempFolderPath;
-            //string outPath = Path.Combine(outDir, fileName);
-            //Stream outStream = File.OpenWrite(outPath);
-            // TO DO: 1) change returning type to MemoryStream
-            //        2) next versions: return type: extended AsposeResponse with stream content
-            var fileName = (resp.Content.Headers.ContentDisposition != null)
-                ? resp.Content.Headers.ContentDisposition.FileName : "result.txt";
-            Stream outStream = new MemoryStream();
-
-            Task task = resp.Content.ReadAsStreamAsync()
-                .ContinueWith((tsk) => {
-                    var contentStream = tsk.Result;
-                    contentStream.CopyTo(outStream);
-                    outStream.Flush();
-                    outStream.Position = 0;
-                });
-            task.Wait();
-            AsposeStreamResponse response = new AsposeStreamResponse()
-            {
-                Status = resp.StatusCode.ToString(),
-                Code = (int)resp.StatusCode,
-                ReasonPhrase = resp.ReasonPhrase
-            };
-            response.ContentStream = outStream;
-            response.FileName = fileName;
-            return response;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="queryParams"></param>
-        /// <param name="bodyStream"></param>
-        /// <param name="methodName"></param>
-        /// <returns></returns>
-        protected AsposeResponse CallPutApi(string path, Dictionary<string, string> queryParams, Stream bodyStream, string methodName = "<unknown>")
-        {
-            HttpResponseMessage resp = ApiClient.CallPut(path, queryParams, bodyStream);
-            if (((int)resp.StatusCode) >= 400)
-                throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
-                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
-            else if (((int)resp.StatusCode) == 0)
-                throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
-
-            var response = new AsposeResponse()
-            {
-                Code = (int)resp.StatusCode,
-                Status = resp.StatusCode.ToString()
-            };
-            return response;
-        }
-
 
     }
 }

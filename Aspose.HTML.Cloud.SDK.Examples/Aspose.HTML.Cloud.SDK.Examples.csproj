@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Storage.Cloud.Sdk, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aspose.Storage-Cloud.18.3.0\lib\net20\Aspose.Storage.Cloud.Sdk.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -63,13 +60,29 @@
     <Compile Include="SDK\HtmlDocument\ExtractHtmlFragmentsByXPathByUrl.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAll.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAllByUrl.cs" />
+    <Compile Include="SDK\HtmlDocument\GetDocumentByUrl.cs" />
     <Compile Include="SDK\HtmlOcr\RecognizeAndImportToHTML.cs" />
     <Compile Include="SDK\HtmlOcr\RecognizeAndTranslateToHTML.cs" />
     <Compile Include="SDK\HtmlTemplateMerge\MergeHtmlTemplateWithData.cs" />
+    <Compile Include="SDK\HtmlTemplateMerge\MergeHtmlTemplateWithLocalData.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLByUrl.cs" />
     <Compile Include="SDK\HtmlTranslate\TranslateHTMLFromStorage.cs" />
     <Compile Include="SDK\ISdkRunner.cs" />
     <Compile Include="SDK\SdkBaseRunner.cs" />
+    <Compile Include="SDK\StorageFile\CopyFile.cs" />
+    <Compile Include="SDK\StorageFile\DeleteFile.cs" />
+    <Compile Include="SDK\StorageFile\DownloadFile.cs" />
+    <Compile Include="SDK\StorageFile\MoveFile.cs" />
+    <Compile Include="SDK\StorageFile\UploadFileAsStream.cs" />
+    <Compile Include="SDK\StorageFile\UploadFileByLocalPath.cs" />
+    <Compile Include="SDK\StorageFolder\CopyFolder.cs" />
+    <Compile Include="SDK\StorageFolder\CreateFolder.cs" />
+    <Compile Include="SDK\StorageFolder\DeleteFolder.cs" />
+    <Compile Include="SDK\StorageFolder\GetFolderContent.cs" />
+    <Compile Include="SDK\StorageFolder\MoveFolder.cs" />
+    <Compile Include="SDK\Storage\CheckIfFileExists.cs" />
+    <Compile Include="SDK\Storage\CheckIfFolderExists.cs" />
+    <Compile Include="SDK\Storage\GetFileVersionsList.cs" />
     <Compile Include="Utils\DirectoryHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +95,7 @@
       <Name>Aspose.HTML-Cloud</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

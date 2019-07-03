@@ -14,7 +14,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         {
             string sourceUrl = @"https://stallman.org/articles/anonymous-payments-thru-phones.html";
 
-            var response = this.ConversionApi.GetConvertDocumentToPdfByUrl(sourceUrl, 800, 1200);
+            var response = this.HtmlApi.GetConvertDocumentToPdfByUrl(sourceUrl, 800, 1200);
             checkGetMethodResponse(response, "Conversion");
         }
 
@@ -23,7 +23,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         {
             string sourceUrl = @"https://stallman.org/articles/anonymous-payments-thru-phones.html";
 
-            var response = this.ConversionApi.GetConvertDocumentToXpsByUrl(sourceUrl, 800, 1200);
+            var response = this.HtmlApi.GetConvertDocumentToXpsByUrl(sourceUrl, 800, 1200);
             checkGetMethodResponse(response, "Conversion");
         }
 
@@ -32,7 +32,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         {
             string sourceUrl = @"https://stallman.org/articles/anonymous-payments-thru-phones.html";
 
-            var response = this.ConversionApi.GetConvertDocumentToImageByUrl(
+            var response = this.HtmlApi.GetConvertDocumentToImageByUrl(
                 sourceUrl, "jpeg", 800, 1200);
             checkGetMethodResponse(response, "Conversion");
         }
@@ -43,7 +43,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         {
             string sourceUrl = @"https://stallman.org/articles/anonymous-payments-thru-phones.html";
 
-            var response = this.ConversionApi.GetConvertDocumentToMHTMLByUrl(sourceUrl);
+            var response = this.HtmlApi.GetConvertDocumentToMHTMLByUrl(sourceUrl);
             checkGetMethodResponse(response, "Conversion");
         }
     }

@@ -5,7 +5,7 @@ Base SDK response class.
 ### Summary
 
 Class that provides the basic set of SDK response properties. 
-SDK methods should this class as a return type - directly or inherited classes.
+SDK methods should use this class as a return type - directly or inherited classes.
 
 ### Namespace 
 

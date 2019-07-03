@@ -4,15 +4,13 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
 
-using Aspose.Storage.Cloud.Sdk.Model;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Document
 {
     [TestClass]
     public class DocumentFragmentsTest : BaseTestContext
     {
-        private readonly string dataFolder = DirectoryHelper.GetPath("TestData", "HTML");
+        private readonly string dataFolder = LocalTestDataPath;
 
         private List<string> testUrls;
         public DocumentFragmentsTest()
@@ -28,25 +26,32 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             };
         }
 
+        [TestInitialize]
+        public void TestSetUp()
+        {
+            string[] files = new string[]
+            {
+                "testpage1.html", "testpage5.html.zip"
+            };
+            foreach(string fname in files)
+            {
+                var storagePath = Path.Combine(StorageTestDataPath, fname).Replace('\\', '/');
+                if(!StorageApi.FileOrFolderExists(storagePath))
+                {
+                    var localPath = Path.Combine(dataFolder, fname);
+                    StorageApi.UploadFile(localPath, storagePath);
+                }              
+            }
+        }
+
         [TestMethod]
         public void Test_GetDocumentFragmentByXPath_1()
         {
             string name = "testpage5.html.zip";
             string xpath = ".//p";
-            string folder = "HtmlTestDoc";
-            string storagePath = $"{folder}/{name}";
+            string folder = StorageTestDataPath;
 
-            string srcPath = Path.Combine(dataFolder, name);
-            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            //{
-            //    PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
-            //    this.StorageApi.PutCreate(reqCr);
-            //    GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
-            //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-            //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
-            //}
-
-            var response = DocumentApi.GetDocumentFragmentByXPath(name, xpath, "plain", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByXPath(name, xpath, "plain", null, folder);
             checkGetMethodResponse(response, "Document", "_xpath_p");
         }
 
@@ -55,21 +60,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         {
             string name = "testpage1.html";
             string xpath = ".//ol/li";
-            string folder = "HtmlTestDoc";
-            string storagePath = $"{folder}/{name}";
+            string folder = StorageTestDataPath;
 
-            string srcPath = Path.Combine(dataFolder, name);
-
-            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            //{
-            //    var reqCr = new PutCreateRequest(storagePath, fstr);
-            //    var respCr = this.StorageApi.PutCreate(reqCr);
-            //    var reqExist = new GetIsExistRequest(storagePath);
-            //    var respExist = this.StorageApi.GetIsExist(reqExist);
-            //    Assert.IsTrue(respExist.FileExist.IsExist.HasValue && respExist.FileExist.IsExist.Value);
-            //}
-
-            var response = DocumentApi.GetDocumentFragmentByXPath(name, xpath, "json", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByXPath(name, xpath, "json", null, folder);
             checkGetMethodResponseOkOrNoresult(response, "Document", "_xpath_ol_li");
         }
 
@@ -78,20 +71,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         {
             string name = "testpage5.html.zip";
             string csssel = "p";
-            string folder = "HtmlTestDoc";
-            string storagePath = $"{folder}/{name}";
+            string folder = StorageTestDataPath;
 
-            string srcPath = Path.Combine(dataFolder, name);
-            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            //{
-            //    PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
-            //    this.StorageApi.PutCreate(reqCr);
-            //    GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
-            //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-            //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
-            //}
-
-            var response = DocumentApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
             checkGetMethodResponseOkOrNoresult(response, "Document", "_css_p");
         }
 
@@ -100,20 +82,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         {
             string name = "testpage1.html";
             string csssel = "ol>li";
-            string folder = "HtmlTestDoc";
-            string storagePath = $"{folder}/{name}";
+            string folder = StorageTestDataPath;
 
-            string srcPath = Path.Combine(dataFolder, name);
-            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            //{
-            //    PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
-            //    this.StorageApi.PutCreate(reqCr);
-            //    GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
-            //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-            //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
-            //}
-
-            var response = DocumentApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
+            var response = HtmlApi.GetDocumentFragmentByCSSSelector(name, csssel, "plain", null, folder);
             checkGetMethodResponseOkOrNoresult(response, "Document", "_css_ol_li");
         }
 
@@ -123,7 +94,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[0];
             var xpath = ".//div[@class=\"container\"]";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_xpath_div_class");
         }
 
@@ -133,7 +104,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[3];
             var xpath = ".//p";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, xpath, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_xpath_p");
         }
 
@@ -143,7 +114,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[0];
             var csssel = "div.container";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_css_div_class");
         }
 
@@ -153,7 +124,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
             var url = testUrls[3];
             var csssel = "p";
 
-            var response = DocumentApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(url, csssel, "plain");
             checkGetMethodResponseOkOrNoresult(response, "Document", "_url_xpath_p");
         }
 
@@ -161,20 +132,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         public void Test_GetDocumentImages()
         {
             string name = "testpage5.html.zip";
-            string folder = "HtmlTestDoc";
-            string storagePath = $"{folder}/{name}";
+            string folder = StorageTestDataPath;
 
-            //string srcPath = Path.Combine(dataFolder, name);
-            //using (Stream fstr = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
-            //{
-            //    PutCreateRequest reqCr = new PutCreateRequest(storagePath, fstr);
-            //    this.StorageApi.PutCreate(reqCr);
-            //    GetIsExistRequest reqExist = new GetIsExistRequest(storagePath);
-            //    FileExistResponse resp = this.StorageApi.GetIsExist(reqExist);
-            //    Assert.IsTrue(resp.FileExist.IsExist.HasValue && resp.FileExist.IsExist.Value);
-            //}
-
-            var response = DocumentApi.GetDocumentImages(name, null, folder);
+            var response = HtmlApi.GetDocumentImages(name, null, folder);
             checkGetMethodResponse(response, "Document", "_images");
         }
 
@@ -183,7 +143,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         {
             var url = testUrls[2];
 
-            var response = DocumentApi.GetDocumentImagesByUrl(url);
+            var response = HtmlApi.GetDocumentImagesByUrl(url);
             checkGetMethodResponse(response, "Document", "_url_images");
         }
     }

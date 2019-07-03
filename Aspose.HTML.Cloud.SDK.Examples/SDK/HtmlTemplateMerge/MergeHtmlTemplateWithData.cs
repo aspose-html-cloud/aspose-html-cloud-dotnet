@@ -1,45 +1,61 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge
 {
+    /// <summary>
+    /// Aspose.HTML Cloud for .NET SDK - examples.
+    /// =========================================
+    /// Example that demonstrates how to populate HTML template with data from storage
+    /// and to get the result in the response stream.
+    /// </summary>
     public class MergeHtmlTemplateWithData : ISdkRunner
     {
         public void Run()
         {
+            // setup local path the files are located by
+            var srcDir = CommonSettings.LocalDataFolder;
+            // setup HTML template file name
             var templateName = "test_template_3_2.html"; 
-            var dataFileName = "templ_merge_data_3.xml";
-            var folder = "/14/HTML";
+            // setup data to merge file name
+            var dataFileName = "templ_merge_data_2.xml";
+            // setup merge options
             var options = "{'cs_names':false, 'rm_tabhdr':false}";
+            // setup the storage folder where the files will be uploaded before
+            var folder = CommonSettings.StorageDataFolder;
+            var templatePath = "";
+            var dataPath = "";
 
-            string filePath = Path.Combine(CommonSettings.DataFolder, templateName);
+            string filePath = Path.Combine(srcDir, templateName);
+            string storagePath = Path.Combine(folder, templateName).Replace('\\', '/');
             // template should be uploaded to storage before
             if (File.Exists(filePath))
             {
-                SdkBaseRunner.UploadToStorage(templateName, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(storagePath, filePath);
+                templatePath = storagePath;
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", filePath));
 
-            filePath = Path.Combine(CommonSettings.DataFolder, dataFileName);
+            filePath = Path.Combine(srcDir, dataFileName);
+            storagePath = Path.Combine(folder, dataFileName).Replace('\\', '/');
             // data file should be uploaded to storage before
             if (File.Exists(filePath))
             {
-                SdkBaseRunner.UploadToStorage(dataFileName, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(storagePath, filePath);
+                dataPath = storagePath;
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", filePath));
 
-            ITemplateMergeApi mergeApi = new TemplateMergeApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            ITemplateMergeApi mergeApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call SDK method that gets an HTML template and a data file from the storage 
             // and returns generated HTML document as stream.
-            string dataPath = $"{folder}/{dataFileName}";
             var response = mergeApi.GetMergeHtmlTemplate(templateName, dataPath, options, folder);
             Stream stream = response.ContentStream;
-            if (stream != null && typeof(FileStream) == stream.GetType())
+            if (stream != null)
             {
                 string outFile = $"{Path.GetFileNameWithoutExtension(templateName)}_merged.{Path.GetExtension(templateName)}";
                 string outPath = Path.Combine(CommonSettings.OutDirectory, outFile);

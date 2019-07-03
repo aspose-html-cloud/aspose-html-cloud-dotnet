@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Aspose.Storage.Cloud.Sdk.Api;
+
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
@@ -18,20 +18,21 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
         public void Run()
         {
             string name = "testpage5.html.zip";   // storage file name
-            string folder = "HtmlTemp"; // storage folder name
+            string folder = "/Html/TestData";     // storage folder name
 
-            string filePath = Path.Combine(CommonSettings.DataFolder, name);
+            string filePath = Path.Combine(CommonSettings.LocalDataFolder, name);
+            string storageFilePath = Path.Combine(folder, name).Replace('\\', '/');
             if (File.Exists(filePath))
             {
-                SdkBaseRunner.UploadToStorage(name, CommonSettings.DataFolder);
+                SdkBaseRunner.UploadToStorage(storageFilePath, filePath);
             }
             else
                 throw new Exception(string.Format("Error: file {0} not found.", filePath));
 
-            IDocumentApi docApi = new DocumentApi(CommonSettings.AppKey, CommonSettings.AppSID, CommonSettings.BasePath);
+            IDocumentApi docApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
             // call SDK method that gets a zip archive with all HTML document images
             var response = docApi.GetDocumentImages(name, null, folder);
-            if (response != null && response.ContentStream != null)
+            if (response != null && response.ContentStream != null && response.Status == "OK")
             {
                 Stream stream = response.ContentStream;
                 string outFile = $"{Path.GetFileNameWithoutExtension(response.FileName)}_images.zip";

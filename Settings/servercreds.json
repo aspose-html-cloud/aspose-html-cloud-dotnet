@@ -1,5 +1,6 @@
 {
 "basePath":"https://api.aspose.cloud",
-"AppSID":"",
-"AppKey":""
+"authPath":"https://api.aspose.cloud",
+"AppSid":"",
+"AppKey":"",
 }
