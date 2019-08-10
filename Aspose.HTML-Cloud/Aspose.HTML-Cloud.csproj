@@ -52,6 +52,7 @@
     <Compile Include="Api\ApiBase.cs" />
     <Compile Include="Api\HtmlApi.cs" />
     <Compile Include="Api\Interfaces\IHtmlApi.cs" />
+    <Compile Include="Api\Interfaces\IImportApi.cs" />
     <Compile Include="Api\Interfaces\IStorageApi.cs" />
     <Compile Include="Api\Interfaces\IStorageFileApi.cs" />
     <Compile Include="Api\Interfaces\IStorageFolderApi.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Api\Interfaces\ISummarizationApi.cs" />
     <Compile Include="Api\Interfaces\ITemplateMergeApi.cs" />
     <Compile Include="Api\Interfaces\ITranslationApi.cs" />
+    <Compile Include="Api\Internal\ImportApiImpl.cs" />
     <Compile Include="Api\Internal\OcrApiImpl.cs" />
     <Compile Include="Api\Internal\StorageApiImpl.cs" />
     <Compile Include="Api\Internal\StorageFileApiImpl.cs" />

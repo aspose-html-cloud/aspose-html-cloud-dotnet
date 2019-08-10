@@ -20,7 +20,8 @@ Aspose.Html.Cloud.Sdk.Api
 Class implements following interfaces:
 
 [**IDocumentApi**](DocumentApi.md)
-[**IConvrsionApi**](ConversionApi.md)
+[**IConversionApi**](ConversionApi.md)
+[**IImportApi**](ImportApi.md)
 [**ITranslationApi**](TranslationApi.md)
 [**ITemplateMergeApi**](TemplateMergeApi.md)
 [**IOcrApi**] (OcrApi.md)
@@ -65,7 +66,7 @@ var api = new HtmlApi(config);
 
 > HtmlApi (instance)
 
-Initializes class instance with existing ApiBase-inherited class instance (explicit type cast may be needed). It can be usable to share authorization status between two or more API facade classes.
+Initializes class instance with existing ApiBase-inherited class instance (explicit type cast may be needed). It can be useful to share authorization status between two or more API facade classes.
 
 ####Example
 

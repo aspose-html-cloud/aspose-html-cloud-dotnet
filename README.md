@@ -5,15 +5,17 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 
 
 # Key Features
-* Conversion of HTML document into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, BMP, TIFF raster graphics formats are supported
+* Conversion of HTML document into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
 * Conversion of MHTML document into the same formats that are supported for HTML
 * Conversion of HTML document from Web by its URLto MHTML document format
+* Conversion (import) of Markdown file to HTML page
 * Merging HTML/XHTML templates with external data source; XML is supported as source data format
 * Translation of HTML document between various human languages; the following language pairs are currently supported:
 - English to German
 - English to French
 - English to Russian
 - German to English
+- French to English
 - Russian to English
 - English to Chinese
 * Downloading of HTML page from Web by its URL with its linked resources as single ZIP archive
@@ -26,10 +28,10 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 
 See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
 
-## What's new in the last version (19.5.0)
+## What's new in the last versions (19.5.0 and later)
 
 1) This SDK version uses Aspose.HTML Cloud REST API version 3.0 (implemented as a Docker container application). So the SDK has been updated according to API v3.0 and to use JWT authorization inside.
-2) All HTML REST API wrapper methods have been joined in the single [**HtmlApi**](docs/HtmlApi.md) class; it becomes a common facade for all HTML API groups. All HTML SDK methods are available using HtmlApi class instance or any of interfaces that it exposes (*IDocumentApi, IConversionApi, ITranslateApi, IOcrApi, ITemplateMergeApi, ISummarizationApi*)
+2) All HTML REST API wrapper methods have been joined in the single [**HtmlApi**](docs/HtmlApi.md) class; it becomes a common facade for all HTML API groups. All HTML SDK methods are available using HtmlApi class instance or any of interfaces that it exposes (*IDocumentApi, IConversionApi, IImportApi, ITranslateApi, IOcrApi, ITemplateMergeApi, ISummarizationApi*)
 3) A special group of SDK methods that provide a cloud storage access has been added. The storage access functionality is available using [**StorageApi**](docs/StorageApi.md) class instance or interfaces that it exposes (*IStorageApi, IStorageFileApi, IStorageFolderApi*). Thus, dependence on Aspose.Storage-Cloud SDK package has been removed.
 
 ## How to use the SDK?
@@ -47,11 +49,11 @@ To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspo
 
 From the command line:
 
-	nuget install Aspose.HTML-Cloud
+    nuget install Aspose.HTML-Cloud
 
 From Package Manager:
 
-	PM> Install-Package Aspose.HTML-Cloud
+    PM> Install-Package Aspose.HTML-Cloud
 
 From within Visual Studio:
 
@@ -85,7 +87,7 @@ namespace MyAppNamespace
         string APPKEY = "XXXXXXX"; // put here the app Key
         string APPSID = "XXXXXXX"; // put here the app SID
         string BASEPATH = "https://api.aspose.cloud";
-		string AUTHPATH = "https://api.aspose.cloud";
+        string AUTHPATH = "https://api.aspose.cloud";
 
         string sourceUrl = "https://www.le.ac.uk/oerresources/bdra/html/page_02.htm";
         // apply a source page URL
@@ -100,8 +102,8 @@ namespace MyAppNamespace
             ITranslationApi trApi = new HtmlApi(APPKEY, APPSID, BASEPATH, AUTHPATH);
             // translate the HTML document by its URL
             StreamResponse response = trApi.GetTranslateDocumentByUrl(sourceUrl, source_lang, result_lang);
-			if(response.Status == "OK" && response.ContentStream != null)
-			{
+            if(response.Status == "OK" && response.ContentStream != null)
+            {
                 // copy result to file 
                 using (FileStream fs = new FileStream("page_02_en_fr.htm", FileMode.Create, FileAccess.Write))
                 {
@@ -109,7 +111,7 @@ namespace MyAppNamespace
                     stream.CopyTo(fs);
                     fs.Flush();
                 }
-			}
+            }
         }
     }
 }
@@ -122,9 +124,8 @@ namespace MyAppNamespace
 ## Roadmap
 
 In the upcoming releases, we are set to implement a number of new features:
-* Support of conversion from HTML (and other supported input format) to GIF, from Markdown to HTML.
 * Improve quality of translation: new neural network translator models will be applied to increase translation quality and performance.
-* Add more language pairs to translate: French-to-English, English-to-Japanese, Japanese-to-English and some others.
+* Add more language pairs to translate: English-to-Japanese, Japanese-to-English and some others.
 
 Known issues that we are set to fix soon:
 * 
@@ -155,6 +156,10 @@ Class | Interface | Method | HTTP request | Description
 *HtmlApi* | *IConversionApi* | [**PutConvertDocumentToMarkdown**](docs/ConversionApi.md#PutConvertDocumentToMarkdown) | **PUT** /html/{name}/convert/md | Convert the HTML document from the storage by its name to Markdown and save it to storage.
 *HtmlApi* | *IConversionApi* | [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown) |  **POST** /html/convert/md | Convert the HTML document from the request stream to Markdown and save it to storage.
 *HtmlApi* | *IConversionApi* | [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown_1) |  **POST** /html/convert/md | Convert the HTML document from the local file system by its local path to Markdown and save it to storage.
+*HtmlApi* | *IImportApi* | [**GetImportMarkdownToHtml**](docs/ImportApi.md#GetImportMarkdownToHtml) | **GET** /html/{name}/import/md | Create an HTML document from Markdown file (located in the storage) and return it in the response stream.
+*HtmlApi* | *IImportApi* | [**PutImportMarkdownToHtml**](docs/ImportApi.md#PutImportMarkdownToHtml) | **PUT** /html/{name}/import/md | Create an HTML document from Markdown file (located in the storage) and save it to storage.
+*HtmlApi* | *IImportApi* | [**PostImportMarkdownToHtml**](docs/ImportApi.md#PostImportMarkdownToHtml) | **POST** /html/import/md | Create an HTML document from Markdown file as input stream and save it to storage.
+*HtmlApi* | *IImportApi* | [**PostImportMarkdownToHtml**](docs/ImportApi.md#PostImportMarkdownToHtml_1) | **POST** /html/import/md | Overloaded method. Create an HTML document from Markdown file (located in the local file system) and save it to storage.
 *HtmlApi* | *IDocumentApi* | [**GetDocumentByUrl**](docs/DocumentApi.md#GetDocumentByUrl) | **GET** /html/download | Download the HTML page from Web by its URL with linked resources as a ZIP archive. 
 *HtmlApi* | *IDocumentApi* | [**GetDocumentFragmentByXPath**](docs/DocumentApi.md#GetDocumentFragmentByXPath) | **GET** /html/{name}/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query. 
 *HtmlApi* | *IDocumentApi* | [**GetDocumentFragmentByXPathByUrl**](docs/DocumentApi.md#GetDocumentFragmentByXPathByUrl) | **GET** /html/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query - from a Web page by its URL. 

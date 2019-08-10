@@ -43,25 +43,25 @@ string outFile = Path.Combine(outPath, name);
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.DownloadFile(path, storage, versionId);
-		if(response != null && response.Status == "OK" && response.ContentStream != null)
-		{
-			// copy response stream to local file
-			using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
-			{
-				response.ContentStream.CopyTo(fstr);
-				fstr.Flush();
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.DownloadFile(path, storage, versionId);
+        if(response != null && response.Status == "OK" && response.ContentStream != null)
+        {
+            // copy response stream to local file
+            using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
+            {
+                response.ContentStream.CopyTo(fstr);
+                fstr.Flush();
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -117,23 +117,23 @@ string sourcePath = Path.Combine(sourceDir, name);
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
-		{
-			var response = api.UploadFile(fstr, path, storage);
-			if(response != null && response.Status == "OK")
-			{
-				Console.WriteLine($"File {name} uploaded to {path}");
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
+        {
+            var response = api.UploadFile(fstr, path, storage);
+            if(response != null && response.Status == "OK")
+            {
+                Console.WriteLine($"File {name} uploaded to {path}");
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -189,20 +189,20 @@ string sourcePath = Path.Combine(sourceDir, name);
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.UploadFile(sourcePath, path, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {name} uploaded to {path}");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.UploadFile(sourcePath, path, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {name} uploaded to {path}");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -256,20 +256,20 @@ string versionId = null;
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.DeleteFile(path, storage, versionId);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {path} deleted.");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.DeleteFile(path, storage, versionId);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {path} deleted.");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -324,21 +324,21 @@ string versionId = null;
 
 public static void Main()
 {
-	try
-	{
-		var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
-		var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.CopyFile(srcpath, destpath, storage, storage, versionId);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {srcpath} copied to {destpath}.");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
+        var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.CopyFile(srcpath, destpath, storage, storage, versionId);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {srcpath} copied to {destpath}.");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -395,21 +395,21 @@ string versionId = null;
 
 public static void Main()
 {
-	try
-	{
-		var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
-		var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.MoveFile(srcpath, destpath, storage, storage, versionId);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {srcpath} moved to {destpath}.");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
+        var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.MoveFile(srcpath, destpath, storage, storage, versionId);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {srcpath} moved to {destpath}.");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```

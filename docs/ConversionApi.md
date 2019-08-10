@@ -1,4 +1,4 @@
-# ConversionApi
+# IConversionApi
 
 All URIs are relative to *https://api.aspose.cloud/v3.0*
 
@@ -43,54 +43,54 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	string authPath = "https://api.aspose.cloud";
-	
-	string name = "testpage4_embcss.html";
-	string format = "jpeg";
-	
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.jpg");
-	
-	string folder = null;     // root folder
-	string storage = null;    // default storage
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    string authPath = "https://api.aspose.cloud";
+    
+    string name = "testpage4_embcss.html";
+    string format = "jpeg";
+    
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.jpg");
+    
+    string folder = null;     // root folder
+    string storage = null;    // default storage
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	int resolution = 96;
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
-		var response = convApi.GetConvertDocumentToImage(
-			name, format, width, height,
-			leftMargin, rightMargin, topMargin, bottomMargin,
-			resolution, folder, storage);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-			
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    int resolution = 96;
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
+        var response = convApi.GetConvertDocumentToImage(
+            name, format, width, height,
+            leftMargin, rightMargin, topMargin, bottomMargin,
+            resolution, folder, storage);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+            
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -140,50 +140,50 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	string authPath = "https://api.aspose.cloud";	
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    string authPath = "https://api.aspose.cloud";    
 
-	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
-	string format = "jpeg";
-	
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.jpg");
+    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
+    string format = "jpeg";
+    
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.jpg");
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	int resolution = 96;
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
-		var response = convApi.GetConvertDocumentToImageByUrl(
-			sourceUrl, format, width, height,
-			leftMargin, rightMargin, topMargin, bottomMargin, resolution);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-		
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    int resolution = 96;
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
+        var response = convApi.GetConvertDocumentToImageByUrl(
+            sourceUrl, format, width, height,
+            leftMargin, rightMargin, topMargin, bottomMargin, resolution);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+        
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -231,52 +231,52 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	string authPath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    string authPath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.pdf");
-	
-	string folder = null;    // root folder
-	string storage = null;   // default storage
+    string name = "testpage4_embcss.html";
+    
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.pdf");
+    
+    string folder = null;    // root folder
+    string storage = null;   // default storage
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
-		var response = convApi.GetConvertDocumentToPdf(
-			name, format, width, height,
-			leftMargin, rightMargin, topMargin, bottomMargin,
-			folder, storage);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-		
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
+        var response = convApi.GetConvertDocumentToPdf(
+            name, format, width, height,
+            leftMargin, rightMargin, topMargin, bottomMargin,
+            folder, storage);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+        
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -324,49 +324,49 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	string authPath = "https://api.aspose.cloud";	
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    string authPath = "https://api.aspose.cloud";    
 
-	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
-	
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.pdf");
-	
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
-		var response = convApi.GetConvertDocumentToPdfByUrl(
-			sourceUrl, format, width, height,
-			leftMargin, rightMargin, topMargin, bottomMargin,
-			xResolution, yResolution);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-		
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
+    
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.pdf");
+    
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
+        var response = convApi.GetConvertDocumentToPdfByUrl(
+            sourceUrl, format, width, height,
+            leftMargin, rightMargin, topMargin, bottomMargin,
+            xResolution, yResolution);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+        
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -412,52 +412,52 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	string authPath = "https://api.aspose.cloud";
-	
-	string name = "testpage4_embcss.html";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    string authPath = "https://api.aspose.cloud";
+    
+    string name = "testpage4_embcss.html";
 
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.xps");
-	
-	string folder = null;    // root folder
-	string storage = null;   // default storage
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.xps");
+    
+    string folder = null;    // root folder
+    string storage = null;   // default storage
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
-		var response = convApi.GetConvertDocumentToXps(
-			name, format, width, height,
-			leftMargin, rightMargin, topMargin, bottomMargin,
-			folder, storage);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-		
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
+        var response = convApi.GetConvertDocumentToXps(
+            name, format, width, height,
+            leftMargin, rightMargin, topMargin, bottomMargin,
+            folder, storage);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+        
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -505,44 +505,44 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	string authPath = "https://api.aspose.cloud";
-	
-	string name = "testpage4_embcss.html";
-	
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.md");
-	
-	string folder = null;    // root folder
-	string storage = null;   // default storage
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    string authPath = "https://api.aspose.cloud";
+    
+    string name = "testpage4_embcss.html";
+    
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.md");
+    
+    string folder = null;    // root folder
+    string storage = null;   // default storage
 
-	bool useGit = false;
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
-		var response = convApi.GetConvertDocumentToMarkdown(name, useGit, folder, storage);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-		
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    bool useGit = false;
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
+        var response = convApi.GetConvertDocumentToMarkdown(name, useGit, folder, storage);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+        
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -586,48 +586,48 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	string authPath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    string authPath = "https://api.aspose.cloud";
 
-	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
-	
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.xps");
-	
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
-		var response = convApi.GetConvertDocumentToXpsByUrl(
-			sourceUrl, format, width, height,
-			leftMargin, rightMargin, topMargin, bottomMargin);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-		
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
+    
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.xps");
+    
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
+        var response = convApi.GetConvertDocumentToXpsByUrl(
+            sourceUrl, format, width, height,
+            leftMargin, rightMargin, topMargin, bottomMargin);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+        
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -673,38 +673,38 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
-	
-	string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
-	
-	string outPath = @"d:\Out";
-	string outFile = Path.Combine(outPath, $"{name}_converted.mht");
-	
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-		var response = convApi.GetConvertDocumentToMHTMLByUrl(sourceUrl);
-			
-		if(response != null && response.ContentStream != null)
-		{
-			Stream stream = response.ContentStream;
-			string outFile = Path.Combine(outPath, response.FileName);
-		
-			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-			{
-				response.CopyTo(fstr);
-				fstr.Flush();
-				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
+    
+    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
+    
+    string outPath = @"d:\Out";
+    string outFile = Path.Combine(outPath, $"{name}_converted.mht");
+    
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+        var response = convApi.GetConvertDocumentToMHTMLByUrl(sourceUrl);
+            
+        if(response != null && response.ContentStream != null)
+        {
+            Stream stream = response.ContentStream;
+            string outFile = Path.Combine(outPath, response.FileName);
+        
+            if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+            using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+            {
+                response.CopyTo(fstr);
+                fstr.Flush();
+                Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 ```
 
@@ -744,39 +744,39 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.jpg";
-	string outFormat = "jpeg";
-	
-	string folder = null;    // root folder
-	string storage = null;   // default storage
+    string name = "testpage4_embcss.html";
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.jpg";
+    string outFormat = "jpeg";
+    
+    string folder = null;    // root folder
+    string storage = null;   // default storage
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	int resolution = 300;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    int resolution = 300;
 
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-		var response = convApi.PutConvertDocumentToImage(name, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+        var response = convApi.PutConvertDocumentToImage(name, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, folder, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 ```
 
@@ -828,45 +828,45 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.jpg";
-	string outFormat = "jpeg";
-	
-	string storage = null;   // default storage - where result file will be stored 
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.jpg";
+    string outFormat = "jpeg";
+    
+    string storage = null;   // default storage - where result file will be stored 
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	int resolution = 300;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    int resolution = 300;
 
-	try
-	{
-		using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
-		{
-			IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-			var response = convApi.PostConvertDocumentToImage(
-			    inStream, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
-			if(response != null && response.Status == "OK")
-			{
-				Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
+        {
+            IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+            var response = convApi.PostConvertDocumentToImage(
+                inStream, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+            if(response != null && response.Status == "OK")
+            {
+                Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 ```
 
@@ -917,44 +917,44 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.jpg";
-	string outFormat = "jpeg";
-	
-	string storage = null;   // default storage - where result file will be stored 
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.jpg";
+    string outFormat = "jpeg";
+    
+    string storage = null;   // default storage - where result file will be stored 
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
-	int resolution = 300;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
+    int resolution = 300;
 
-	try
-	{
-		using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
-		{
-			IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-			var response = convApi.PostConvertDocumentToImage(srcPath, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
-			if(response != null && response.Status == "OK")
-			{
-				Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
+        {
+            IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+            var response = convApi.PostConvertDocumentToImage(srcPath, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+            if(response != null && response.Status == "OK")
+            {
+                Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 ```
 
@@ -1004,37 +1004,37 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.pdf;
+    string name = "testpage4_embcss.html";
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.pdf;
 
-	string folder = null;    // root folder
-	string storage = null;   // default storage
+    string folder = null;    // root folder
+    string storage = null;   // default storage
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
 
-	try
-	{
-	    IConversionApi convApi = new ConversionApi(appKey, appSID, BasePath);
-		var response = convApi.PutConvertDocumentToPdf(name, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        IConversionApi convApi = new ConversionApi(appKey, appSID, BasePath);
+        var response = convApi.PutConvertDocumentToPdf(name, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 
 ```
@@ -1083,43 +1083,43 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.pdf";
-	string outFormat = "pdf";
-	
-	string storage = null;   // default storage - where result file will be stored 
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.pdf";
+    string outFormat = "pdf";
+    
+    string storage = null;   // default storage - where result file will be stored 
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
 
-	try
-	{
-		using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
-		{
-			IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-			var response = convApi.PostConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
-			if(response != null && response.Status == "OK")
-			{
-				Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
+        {
+            IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+            var response = convApi.PostConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            if(response != null && response.Status == "OK")
+            {
+                Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 
 ```
@@ -1168,40 +1168,40 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.pdf";
-	string outFormat = "pdf";
-	
-	string storage = null;   // default storage - where result file will be stored 
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.pdf";
+    string outFormat = "pdf";
+    
+    string storage = null;   // default storage - where result file will be stored 
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
 
-	try
-	{
-		IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-		var response = convApi.PostConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+        var response = convApi.PostConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 
 ```
@@ -1252,37 +1252,37 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.xps;
+    string name = "testpage4_embcss.html";
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.xps;
 
-	string folder = null;    // root folder
-	string storage = null;   // default storage
+    string folder = null;    // root folder
+    string storage = null;   // default storage
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
 
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-		var response = convApi.PutConvertDocumentToXps(name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+        var response = convApi.PutConvertDocumentToXps(name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 
 ```
@@ -1331,42 +1331,42 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.xps";
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.xps";
 
-	string storage = null;   // default storage - where result file will be stored 
+    string storage = null;   // default storage - where result file will be stored 
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
 
-	try
-	{
-		using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
-		{
-			IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-			var response = convApi.PostConvertDocumentToXps(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
-			if(response != null && response.Code == 0)
-			{
-				Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
+        {
+            IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+            var response = convApi.PostConvertDocumentToXps(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            if(response != null && response.Code == 0)
+            {
+                Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 ```
 
@@ -1414,40 +1414,40 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.xps";
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.xps";
 
-	string storage = null;   // default storage - where result file will be stored 
+    string storage = null;   // default storage - where result file will be stored 
 
-	int width = 800;
-	int height = 1200;
-	int leftMargin = 15;
-	int rightMargin = 15;
-	int topMargin = 15;
-	int bottomMargin = 15;
+    int width = 800;
+    int height = 1200;
+    int leftMargin = 15;
+    int rightMargin = 15;
+    int topMargin = 15;
+    int bottomMargin = 15;
 
-	try
-	{
-		IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-		var response = convApi.PostConvertDocumentToXps(srcPath, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
-		if(response != null && response.Code == 0)
-		{
-			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-		}	
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+        var response = convApi.PostConvertDocumentToXps(srcPath, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        if(response != null && response.Code == 0)
+        {
+            Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+        }    
 
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 ```
 
@@ -1498,32 +1498,32 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.md;
+    string name = "testpage4_embcss.html";
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.md;
 
-	string folder = null;    // root folder
-	string storage = null;   // default storage
+    string folder = null;    // root folder
+    string storage = null;   // default storage
 
-	bool useGit = false;
+    bool useGit = false;
 
-	try
-	{
-	    IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-		var response = convApi.PutConvertDocumentToMarkdown(name, outPath, useGit, folder, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+        var response = convApi.PutConvertDocumentToMarkdown(name, outPath, useGit, folder, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 
 ```
@@ -1568,37 +1568,37 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.md";
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.md";
 
-	string storage = null;   // default storage - where result file will be stored 
+    string storage = null;   // default storage - where result file will be stored 
 
-	bool useGit = false;
+    bool useGit = false;
 
-	try
-	{
-		using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
-		{
-			IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-			var response = convApi.PostConvertDocumentToMarkdown(inStream, outPath, useGit, storage);
-			if(response != null && response.Status == "OK")
-			{
-				Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
+        {
+            IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+            var response = convApi.PostConvertDocumentToMarkdown(inStream, outPath, useGit, storage);
+            if(response != null && response.Status == "OK")
+            {
+                Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 ```
 
@@ -1641,34 +1641,34 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 
 public static void Main(string[] args)
 {
-	string appKey = "XXXXX";   // put here your app key
-	string appSID = "XXXXX";   // put here your app SID
-	string BasePath = "https://api.aspose.cloud";
+    string appKey = "XXXXX";   // put here your app key
+    string appSID = "XXXXX";   // put here your app SID
+    string BasePath = "https://api.aspose.cloud";
 
-	string name = "testpage4_embcss.html";
-	
-	string srcDataDir = "d:\Data";
-	string srcPath = Path.Combine(srcPath, name);
-	
-	string outPath = $"/Testout/Conversion/{name}_converted.md";
+    string name = "testpage4_embcss.html";
+    
+    string srcDataDir = "d:\Data";
+    string srcPath = Path.Combine(srcPath, name);
+    
+    string outPath = $"/Testout/Conversion/{name}_converted.md";
 
-	string storage = null;   // default storage - where result file will be stored 
+    string storage = null;   // default storage - where result file will be stored 
 
-	bool useGit = false;
+    bool useGit = false;
 
-	try
-	{
-		IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-		var response = convApi.PostConvertDocumentToMarkdown(srcPath, outPath, useGit, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-		}	
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}	
+    try
+    {
+        IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+        var response = convApi.PostConvertDocumentToMarkdown(srcPath, outPath, useGit, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+        }    
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }    
 }
 ```
 

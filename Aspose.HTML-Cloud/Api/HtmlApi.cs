@@ -43,6 +43,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
     public class HtmlApi : ApiBase,
         IHtmlApi,
         IDocumentApi,
+        IImportApi,
         IConversionApi,
         ITranslationApi,
         IOcrApi,
@@ -57,6 +58,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         private ITranslationApi m_translationApiImpl = null;
         private ITemplateMergeApi m_templMergeApiImpl = null;
         private ISummarizationApi m_summApiImpl = null;
+        private IImportApi m_importApiImpl = null;
 
         #endregion
 
@@ -156,6 +158,18 @@ namespace Aspose.Html.Cloud.Sdk.Api
                     m_documentApiImpl = new DocumentApiImpl(ApiClient);
                 }
                 return m_documentApiImpl;
+            }
+        }
+
+        private IImportApi ImportApiImpl
+        {
+            get
+            {
+                if(m_importApiImpl == null)
+                {
+                    m_importApiImpl = new ImportApiImpl(ApiClient);
+                }
+                return m_importApiImpl;
             }
         }
 
@@ -295,6 +309,30 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
             return DocumentApiImpl.GetDocumentImagesByUrl(sourceUrl);
         }
+        #endregion
+
+        #region IImportApi interface implementation
+
+        public StreamResponse GetImportMarkdownToHtml(string name, string folder = null, string storage = null)
+        {
+            return ImportApiImpl.GetImportMarkdownToHtml(name, folder, storage);
+        }
+
+        public AsposeResponse PutImportMarkdownToHtml(string name, string outPath, string folder = null, string storage = null)
+        {
+            return ImportApiImpl.PutImportMarkdownToHtml(name, outPath, folder, storage);
+        }
+
+        public AsposeResponse PostImportMarkdownToHtml(Stream inStream, string outPath, string storage = null)
+        {
+            return ImportApiImpl.PostImportMarkdownToHtml(inStream, outPath, storage);
+        }
+
+        public AsposeResponse PostImportMarkdownToHtml(string localFilePath, string outPath, string storage = null)
+        {
+            return ImportApiImpl.PostImportMarkdownToHtml(localFilePath, outPath, storage);
+        }
+
         #endregion
 
         #region IConversionApi interface implementation

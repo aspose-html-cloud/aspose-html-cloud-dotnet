@@ -61,6 +61,9 @@
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAll.cs" />
     <Compile Include="SDK\HtmlDocument\ExtractHTMLImagesAllByUrl.cs" />
     <Compile Include="SDK\HtmlDocument\GetDocumentByUrl.cs" />
+    <Compile Include="SDK\HtmlImport\ImportHtmlFromMarkdownByName.cs" />
+    <Compile Include="SDK\HtmlImport\ImportHtmlFromMarkdownByNameToStorage.cs" />
+    <Compile Include="SDK\HtmlImport\ImportHtmlFromMarkdownLocalToStorage.cs" />
     <Compile Include="SDK\HtmlOcr\RecognizeAndImportToHTML.cs" />
     <Compile Include="SDK\HtmlOcr\RecognizeAndTranslateToHTML.cs" />
     <Compile Include="SDK\HtmlTemplateMerge\MergeHtmlTemplateWithData.cs" />
