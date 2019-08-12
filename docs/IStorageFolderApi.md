@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="GetFolderContentList"></a>
 # **GetFolderContentList**
-> List<StorageItem> GetFolderContentList(path, storage);
+> List``<StorageItem>`` GetFolderContentList(path, storage);
 
 Get all files and subfolders within a storage folder
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List**<StorageItem>**](StorageItem.md)
+[**List``<StorageItem>``**](StorageItem.md)
 
 ### Authorization
 

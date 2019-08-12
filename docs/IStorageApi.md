@@ -183,7 +183,7 @@ Name | Type | Description  | Notes
 
 <a name="GetStorageItemVersions"></a>
 # **GetStorageItemVersions**
-> List<StorageItemVersion> GetStorageItemVersions(path, storage)
+> List``<StorageItemVersion>`` GetStorageItemVersions(path, storage)
  
 Get list of file versions
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StorageItemVersion>**](StorageItemVersion.md)
+[**List``<StorageItemVersion>``**](StorageItemVersion.md)
 
 ### HTTP request headers
 
