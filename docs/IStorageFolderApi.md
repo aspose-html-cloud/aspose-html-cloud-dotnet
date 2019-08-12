@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List**<StorageItem>**](StorageItem.md)
+[**List``<StorageItem>``**](StorageItem.md)
 
 ### Authorization
 
