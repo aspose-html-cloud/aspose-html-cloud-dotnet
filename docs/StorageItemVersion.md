@@ -12,7 +12,7 @@ Aspose.Html.Cloud.Sdk.Api.Model
 
 ### Base class
 
-**StorageItem**
+[**StorageItem**](StorageItem.md)
 
 ### Properties
 

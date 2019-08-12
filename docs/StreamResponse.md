@@ -10,7 +10,8 @@ SDK methods should use this class as a return type if it's necessary to return t
 
 ### Base class
 
-AsposeResponse 
+[**AsposeResponse**](AsposeResponse.md)
+
 
 ### Namespace 
 
