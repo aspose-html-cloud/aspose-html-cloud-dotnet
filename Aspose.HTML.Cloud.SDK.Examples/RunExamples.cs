@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Aspose.HTML.Cloud.Examples.SDK;
+
 using Aspose.HTML.Cloud.Examples.SDK.HtmlDocument;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlConvert;
+using Aspose.HTML.Cloud.Examples.SDK.HtmlImport;
 using Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge;
 using Aspose.HTML.Cloud.Examples.SDK.Storage;
@@ -57,6 +59,7 @@ namespace Aspose.HTML.Cloud.Examples
             // == Example == delete storage file
             Runners.Add("DeleteFile", new DeleteFile());
 
+
             /// HTML API: Document
             /// ---------------------------------------
             // == Example == extract all images from HTML document from storage as an archive
@@ -72,7 +75,7 @@ namespace Aspose.HTML.Cloud.Examples
             // == Example == extract HTML fragments from Web by URLby CSS selector
             Runners.Add("ExtractHtmlFragmentsByCSSSelectorByUrl", new ExtractHtmlFragmentsByCSSSelectorByUrl());
 
-            /// HTML API: Conversion
+            /// HTML API: Conversion/Import
             /// ---------------------------------------
             // == Example == convert HTML document from URL to PDF
             Runners.Add("ConvertHTMLByUrl.PDF", new ConvertHTMLByUrl("pdf"));
@@ -95,6 +98,14 @@ namespace Aspose.HTML.Cloud.Examples
             Runners.Add("ConvertHTMLByNameToStorage.PDF", new ConvertHTMLByNameToStorage("pdf"));
             // == Example == convert HTML document from local file system to PDF and save result to storage
             Runners.Add("ConvertHTMLLocalToStorage.PDF", new ConvertHTMLLocalToStorage("pdf"));
+
+            // == Example == convert Markdown from storage to HTML document 
+            Runners.Add("ImportHtmlFromMarkdownByName", new ImportHtmlFromMarkdownByName());
+            // == Example == convert Markdown from storage to HTML document and save to storage 
+            Runners.Add("ImportHtmlFromMarkdownByNameToStorage", new ImportHtmlFromMarkdownByNameToStorage());
+            // == Example == convert Markdown from local file system to HTML document and save to storage
+            Runners.Add("ImportHtmlFromMarkdownLocalToStorage", new ImportHtmlFromMarkdownLocalToStorage());
+
 
             /// HTML API: Translate
             /// ---------------------------------------
@@ -125,7 +136,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "MergeHtmlTemplateWithLocalData";
+            string example = "ImportHtmlFromMarkdownByName";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");

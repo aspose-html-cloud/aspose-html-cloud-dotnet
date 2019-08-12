@@ -29,9 +29,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
         {
             var name = "testpage4_embcss.html";
             var srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
-            string folder = "/Html/Testout/Conversion";
+            string folder = CommonSettings.StorageDataFolder;
             string storage = null;
-            string storagePath = (folder == null) ? name : Path.Combine(folder, name).Replace('\\', '/');
+            // setup storage folder path where the result file will be uploaded to 
+            string outFolder = "/Html/Testout/Conversion";
 
             int width = 800;
             int height = 1200;
@@ -41,9 +42,11 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             int bottomMargin = 15;
             int resolution = 96;
 
+            string storagePath = (folder == null) ? name : Path.Combine(folder, name).Replace('\\', '/');
+
             string ext = (Format == "tiff") ? "tif" : ((Format == "jpeg") ? "jpg" : Format);
             string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}.{ext}";
-            string outPath = Path.Combine(folder, outFile).Replace('\\', '/');
+            string outPath = Path.Combine(outFolder, outFile).Replace('\\', '/');
 
             if (File.Exists(srcPath))
             {

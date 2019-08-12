@@ -4,20 +4,20 @@ All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetFolderContentList**] (IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
-[**CreateFolder**] (IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
-[**DeleteFolder**] (IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
-[**CopyFolder**] (IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
-[**MoveFolder**] (IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
+[**GetFolderContentList**](IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
+[**CreateFolder**](IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
+[**DeleteFolder**](IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
+[**CopyFolder**](IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
+[**MoveFolder**](IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
 
 
 <a name="GetFolderContentList"></a>
-#**GetFolderContentList**
-> List<StorageItem> GetFolderContentList(path, storage);
+# **GetFolderContentList**
+> List`<`StorageItem`>` GetFolderContentList(path, storage);
 
 Get all files and subfolders within a storage folder
 
-###Example
+### Example
 ```csharp
 
 using System;
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List**<StorageItem>**](StorageItem.md)
+[**List``<StorageItem>``**](StorageItem.md)
 
 ### Authorization
 
@@ -79,12 +79,12 @@ No authorization required
 
 
 <a name="CreateFolder"></a>
-#**CreateFolder**
+# **CreateFolder**
 > AsposeResponse CreateFolder(path, storage)
 
 Create folder in the storage 
 
-###Example
+### Example
 ```csharp
 
 using System;
@@ -144,12 +144,12 @@ No authorization required
 
 
 <a name="DeleteFolder"></a>
-#**DeleteFolder**
+# **DeleteFolder**
 > AsposeResponse DeleteFolder(path, storage)
 
 Delete folder from the storage
 
-###Example
+### Example
 ```csharp
 
 using System;
@@ -207,12 +207,12 @@ No authorization required
 
 
 <a name="CopyFolder"></a>
-#**CopyFolder**
+# **CopyFolder**
 > AsposeResponse CopyFolder(srcPath, destPath, srcStorage, destStorage)
 
 Copy storage folder
 
-###Example
+### Example
 ```csharp
 
 using System;
@@ -274,12 +274,12 @@ No authorization required
 
 
 <a name="MoveFolder"></a>
-#**MoveFolder**
+# **MoveFolder**
 > AsposeResponse MoveFolder(srcPath, destPath, srcStorage, destStorage)
 
 Move storage folder
 
-###Example
+### Example
 ```csharp
 
 using System;

@@ -1,4 +1,4 @@
-#StorageItemVersion
+# StorageItemVersion
 
 Class representing a storage file version.
 
@@ -12,7 +12,7 @@ Aspose.Html.Cloud.Sdk.Api.Model
 
 ### Base class
 
-**StorageItem**
+[**StorageItem**](StorageItem.md)
 
 ### Properties
 

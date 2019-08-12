@@ -29,10 +29,9 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             // setup local document path
             var srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
             // setup storage folder where the source document should be present
-            string folder = CommonSettings.LocalDataFolder;
+            string folder = CommonSettings.StorageDataFolder;
             // setup storage name (null for default storage)
             string storage = null;
-
             string storagePath = (folder == null) ? name : Path.Combine(folder, name).Replace('\\', '/');
 
             // setup resulting file parameters

@@ -4,16 +4,16 @@ All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DownloadFile] (IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
-[**UploadFile] (IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
-[**UploadFile] (IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
-[**DeleteFile] (IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
-[**CopyFile] (IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
-[**MoveFile] (IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
+[**DownloadFile**](IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
+[**UploadFile**](IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
+[**UploadFile**](IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
+[**DeleteFile**](IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
+[**CopyFile**](IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
+[**MoveFile**](IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
 
 
 <a name="DownloadFile"></a>
-#**DownloadFile**
+# **DownloadFile**
 > StreamResponse DownloadFile(path, storage, versionId)
 
 Download file from storage.
@@ -43,25 +43,25 @@ string outFile = Path.Combine(outPath, name);
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.DownloadFile(path, storage, versionId);
-		if(response != null && response.Status == "OK" && response.ContentStream != null)
-		{
-			// copy response stream to local file
-			using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
-			{
-				response.ContentStream.CopyTo(fstr);
-				fstr.Flush();
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.DownloadFile(path, storage, versionId);
+        if(response != null && response.Status == "OK" && response.ContentStream != null)
+        {
+            // copy response stream to local file
+            using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
+            {
+                response.ContentStream.CopyTo(fstr);
+                fstr.Flush();
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **path** | **String** | Storage file path to download, e.g. /folder/filename.ext |
 **storage** | **String** | Storage name |
-**versionId** | File version ID to download | Default is the latest version
+**versionId** | **String** | File version ID to download | Default is the latest version
 
  ### Return type
 
@@ -89,8 +89,8 @@ No authorization required
 
 
 <a name="UploadFile"></a>
-#**UploadFile**
-> AsposeResponse DownloadFile(inStream, path, storage)
+# **UploadFile**
+> AsposeResponse UploadFile(inStream, path, storage)
 
 Upload file to storage using file stream.
 
@@ -117,23 +117,23 @@ string sourcePath = Path.Combine(sourceDir, name);
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
-		{
-			var response = api.UploadFile(fstr, path, storage);
-			if(response != null && response.Status == "OK")
-			{
-				Console.WriteLine($"File {name} uploaded to {path}");
-			}
-		}
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        using(FileStream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write)
+        {
+            var response = api.UploadFile(fstr, path, storage);
+            if(response != null && response.Status == "OK")
+            {
+                Console.WriteLine($"File {name} uploaded to {path}");
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -161,8 +161,8 @@ No authorization required
  
 
 <a name="UploadFile_1"></a>
-#**UploadFile**
-> AsposeResponse DownloadFile(localPath, path, storage)
+# **UploadFile**
+> AsposeResponse UploadFile(localPath, path, storage)
 
 Overloaded method. Upload file to storage using file local path.
 
@@ -189,20 +189,20 @@ string sourcePath = Path.Combine(sourceDir, name);
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.UploadFile(sourcePath, path, storage);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {name} uploaded to {path}");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.UploadFile(sourcePath, path, storage);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {name} uploaded to {path}");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -231,7 +231,7 @@ No authorization required
 
 
 <a name="DeleteFile"></a>
-#**DeleteFile**
+# **DeleteFile**
 > AsposeResponse DeleteFile(path, storage, versionId)
 
 Delete file from the storage.
@@ -256,20 +256,20 @@ string versionId = null;
 
 public static void Main()
 {
-	try
-	{
-		var path = Path.Combine(folder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.DeleteFile(path, storage, versionId);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {path} deleted.");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var path = Path.Combine(folder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.DeleteFile(path, storage, versionId);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {path} deleted.");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -298,7 +298,7 @@ No authorization required
 
 
 <a name="CopyFile"></a>
-#**CopyFile**
+# **CopyFile**
 > AsposeResponse CopyFile(srcPath, destPath, srcStorage, destStorage, versionId)
  
 Copy storage file.
@@ -324,21 +324,21 @@ string versionId = null;
 
 public static void Main()
 {
-	try
-	{
-		var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
-		var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.CopyFile(srcpath, destpath, storage, storage, versionId);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {srcpath} copied to {destpath}.");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
+        var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.CopyFile(srcpath, destpath, storage, storage, versionId);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {srcpath} copied to {destpath}.");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 **destPath** | **String** | Destination storage file path, e.g. /folder/filename.ext |
 **srcStorage** | **String** | Source storage name |
 **destStorage** | **String** | Destination storage name |
-**versionId** | File version ID to copy | Default is the latest version
+**versionId** |  **String** | File version ID to copy | Default is the latest version
 
 ### Return type
 
@@ -369,7 +369,7 @@ No authorization required
 
 
 <a name="MoveFile"></a>
-#**MoveFile**
+# **MoveFile**
 > AsposeResponse MoveFile(srcPath, destPath, srcStorage, destStorage, versionId)
  
 Move storage file.
@@ -395,21 +395,21 @@ string versionId = null;
 
 public static void Main()
 {
-	try
-	{
-		var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
-		var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
-		IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
-		var response = api.MoveFile(srcpath, destpath, storage, storage, versionId);
-		if(response != null && response.Status == "OK")
-		{
-			Console.WriteLine($"File {srcpath} moved to {destpath}.");
-		}		
-	}
-	catch(Exception ex)
-	{
-		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
-	}
+    try
+    {
+        var srcpath = Path.Combine(srcFolder, name).Replace('\\', '/');
+        var destpath = Path.Combine(destFolder, name).Replace('\\', '/');
+        IStorageFileApi api = new StorageApi(appSID, appKey, BasePath, authPath);
+        var response = api.MoveFile(srcpath, destpath, storage, storage, versionId);
+        if(response != null && response.Status == "OK")
+        {
+            Console.WriteLine($"File {srcpath} moved to {destpath}.");
+        }        
+    }
+    catch(Exception ex)
+    {
+        Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
+    }
 }
 
 ```
@@ -422,7 +422,7 @@ Name | Type | Description  | Notes
 **destPath** | **String** | Destination storage file path, e.g. /folder/filename.ext |
 **srcStorage** | **String** | Source storage name |
 **destStorage** | **String** | Destination storage name |
-**versionId** | File version ID to move | Default is the latest version
+**versionId** |  **String** | File version ID to move | Default is the latest version
 
 ### Return type
 

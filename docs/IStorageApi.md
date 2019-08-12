@@ -5,12 +5,12 @@ All URIs are relative to *https://api.aspose.cloud/v3.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**StorageExists**](IStorageApi.md#StorageExists) | **GET** /html/storage/{storageName}/exist | Check if storage exists
-[**FileOrFolderExists](IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
+[**FileOrFolderExists**](IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
 [**GetDiscUsage**](IStorageApi.md#GetDiscUsage) | **GET** /html/storage/disc | Get disc usage
-[**GetStorageItemVersions**] (IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
+[**GetStorageItemVersions**](IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
 
 <a name="StorageExists"></a>
-#**StorageExists**
+# **StorageExists**
 > bool StorageExists(storage)
  
 Check if storage exists
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
  
 
 <a name="FileOrFolderExists"></a>
-#**FileOrFolderExists**
+# **FileOrFolderExists**
 > bool FileOrFolderExists(path, storage)
  
 Check if file or folder exists
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 
 <a name="GetDiscUsage"></a>
-#**GetDiscUsage**
+# **GetDiscUsage**
 > DiscUsage GetDiscUsage(path)
  
 Get disc usage
@@ -182,8 +182,8 @@ Name | Type | Description  | Notes
  
 
 <a name="GetStorageItemVersions"></a>
-#**GetStorageItemVersions**
-> List<StorageItemVersion> GetStorageItemVersions(path, storage)
+# **GetStorageItemVersions**
+> List``<StorageItemVersion>`` GetStorageItemVersions(path, storage)
  
 Get list of file versions
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StorageItemVersion>**](StorageItemVersion.md)
+[**List``<StorageItemVersion>``**](StorageItemVersion.md)
 
 ### HTTP request headers
 
