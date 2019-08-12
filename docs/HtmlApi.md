@@ -49,7 +49,7 @@ Initializes class instance with user credentials and REST API service URL
 
 Initializes class instance with Configuration object that should be previously created and initialized with with user credentials, REST API service URL, authorization service URL and connection timeout values.
 
-####Example
+#### Example
 
 ```csharp
 
@@ -68,7 +68,7 @@ var api = new HtmlApi(config);
 
 Initializes class instance with existing ApiBase-inherited class instance (explicit type cast may be needed). It can be useful to share authorization status between two or more API facade classes.
 
-####Example
+#### Example
 
 ```csharp
 

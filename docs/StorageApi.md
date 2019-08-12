@@ -1,8 +1,8 @@
-#StorageApi
+# StorageApi
 
 Facade class providing wrapper methods of Aspose.Storage Cloud REST API
 
-##Summary
+## Summary
 
 Class that is a common SDK facade of all storage access functionality. 
 SDK methods can be called directly from the HtmlApi class instance or using interfaces.
@@ -46,7 +46,7 @@ Initializes class instance with user credentials and REST API service URL
 
 Initializes class instance with Configuration object that should be previously created and initialized with with user credentials, REST API service URL, authorization service URL and connection timeout values.
 
-####Example
+#### Example
 
 ```csharp
 
@@ -65,7 +65,7 @@ var api = new StorageApi(config);
 
 Initializes class instance with existing ApiBase-inherited class instance (explicit type cast may be needed). It can be usable to share authorization status between two or more API facade classes.
 
-####Example
+#### Example
 
 ```csharp
 

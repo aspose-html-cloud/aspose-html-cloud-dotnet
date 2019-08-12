@@ -4,16 +4,16 @@ All URIs are relative to *https://api.aspose.cloud/v3.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DownloadFile] (IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
-[**UploadFile] (IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
-[**UploadFile] (IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
-[**DeleteFile] (IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
-[**CopyFile] (IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
-[**MoveFile] (IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
+[**DownloadFile**](IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
+[**UploadFile**](IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
+[**UploadFile**](IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
+[**DeleteFile**](IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
+[**CopyFile**](IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
+[**MoveFile**](IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
 
 
 <a name="DownloadFile"></a>
-#**DownloadFile**
+# **DownloadFile**
 > StreamResponse DownloadFile(path, storage, versionId)
 
 Download file from storage.
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **path** | **String** | Storage file path to download, e.g. /folder/filename.ext |
 **storage** | **String** | Storage name |
-**versionId** | File version ID to download | Default is the latest version
+**versionId** | **String** | File version ID to download | Default is the latest version
 
  ### Return type
 
@@ -89,8 +89,8 @@ No authorization required
 
 
 <a name="UploadFile"></a>
-#**UploadFile**
-> AsposeResponse DownloadFile(inStream, path, storage)
+# **UploadFile**
+> AsposeResponse UploadFile(inStream, path, storage)
 
 Upload file to storage using file stream.
 
@@ -161,8 +161,8 @@ No authorization required
  
 
 <a name="UploadFile_1"></a>
-#**UploadFile**
-> AsposeResponse DownloadFile(localPath, path, storage)
+# **UploadFile**
+> AsposeResponse UploadFile(localPath, path, storage)
 
 Overloaded method. Upload file to storage using file local path.
 
@@ -231,7 +231,7 @@ No authorization required
 
 
 <a name="DeleteFile"></a>
-#**DeleteFile**
+# **DeleteFile**
 > AsposeResponse DeleteFile(path, storage, versionId)
 
 Delete file from the storage.
@@ -298,7 +298,7 @@ No authorization required
 
 
 <a name="CopyFile"></a>
-#**CopyFile**
+# **CopyFile**
 > AsposeResponse CopyFile(srcPath, destPath, srcStorage, destStorage, versionId)
  
 Copy storage file.
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 **destPath** | **String** | Destination storage file path, e.g. /folder/filename.ext |
 **srcStorage** | **String** | Source storage name |
 **destStorage** | **String** | Destination storage name |
-**versionId** | File version ID to copy | Default is the latest version
+**versionId** |  **String** | File version ID to copy | Default is the latest version
 
 ### Return type
 
@@ -369,7 +369,7 @@ No authorization required
 
 
 <a name="MoveFile"></a>
-#**MoveFile**
+# **MoveFile**
 > AsposeResponse MoveFile(srcPath, destPath, srcStorage, destStorage, versionId)
  
 Move storage file.
@@ -422,7 +422,7 @@ Name | Type | Description  | Notes
 **destPath** | **String** | Destination storage file path, e.g. /folder/filename.ext |
 **srcStorage** | **String** | Source storage name |
 **destStorage** | **String** | Destination storage name |
-**versionId** | File version ID to move | Default is the latest version
+**versionId** |  **String** | File version ID to move | Default is the latest version
 
 ### Return type
 

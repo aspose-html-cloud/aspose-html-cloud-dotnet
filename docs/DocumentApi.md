@@ -323,8 +323,6 @@ No authorization required
  - **Accept**: text/plain, application/json
 
 
-#########################################################################
-
  
 <a name="GetDocumentFragmentByCSSSelectorByUrl"></a>
 # **GetDocumentFragmentByCSSSelectorByUrl**
@@ -404,9 +402,6 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: text/plain, application/json
 
-
-
-#########################################################################
  
  
 <a name="GetDocumentImages"></a>
