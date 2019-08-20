@@ -65,7 +65,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
                     throw new ArgumentException("\"appSID\" is required and isn't specified.");
             }
 
-            if (string.IsNullOrEmpty(appSID))
+            if (string.IsNullOrEmpty(appKey))
             {
                 appKey = Environment.GetEnvironmentVariable("appKey");
                 if (string.IsNullOrEmpty(appKey))
@@ -76,14 +76,14 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
             if (string.IsNullOrEmpty(apiBaseUrl))
             {
-                apiBaseUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
+                apiBaseUrl = Environment.GetEnvironmentVariable("baseUrl");
                 if (string.IsNullOrEmpty(apiBaseUrl))
                     apiBaseUrl = DefaultApiBaseUrl;
             }
 
             if (string.IsNullOrEmpty(authUrl))
             {
-                authUrl = Environment.GetEnvironmentVariable("AuthUrl");
+                authUrl = Environment.GetEnvironmentVariable("authUrl");
                 if (string.IsNullOrEmpty(authUrl))
                     authUrl = DefaultApiBaseUrl;
             }
