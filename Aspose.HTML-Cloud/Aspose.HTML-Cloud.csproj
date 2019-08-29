@@ -1,112 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7267EC34-07F9-47B0-939D-C3E6D0A156F7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Aspose.Html.Cloud.Sdk</RootNamespace>
-    <AssemblyName>Aspose.HTML-Cloud</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <Version>19.8.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Aspose.HTML-Cloud.XML</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Aspose.HTML-Cloud.XML</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Aspose.HTML-Cloud.xml</DocumentationFile>
+    <OutputPath>bin\Release</OutputPath>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Api\ApiBase.cs" />
-    <Compile Include="Api\HtmlApi.cs" />
-    <Compile Include="Api\Interfaces\IHtmlApi.cs" />
-    <Compile Include="Api\Interfaces\IImportApi.cs" />
-    <Compile Include="Api\Interfaces\IStorageApi.cs" />
-    <Compile Include="Api\Interfaces\IStorageFileApi.cs" />
-    <Compile Include="Api\Interfaces\IStorageFolderApi.cs" />
-    <Compile Include="Api\Internal\ApiImplBase.cs" />
-    <Compile Include="Api\Internal\ConversionApiImpl.cs" />
-    <Compile Include="Api\Internal\DocumentApiImpl.cs" />
-    <Compile Include="Api\Interfaces\IConversionApi.cs" />
-    <Compile Include="Api\Interfaces\IDocumentApi.cs" />
-    <Compile Include="Api\Interfaces\IOcrApi.cs" />
-    <Compile Include="Api\Interfaces\ISummarizationApi.cs" />
-    <Compile Include="Api\Interfaces\ITemplateMergeApi.cs" />
-    <Compile Include="Api\Interfaces\ITranslationApi.cs" />
-    <Compile Include="Api\Internal\ImportApiImpl.cs" />
-    <Compile Include="Api\Internal\OcrApiImpl.cs" />
-    <Compile Include="Api\Internal\StorageApiImpl.cs" />
-    <Compile Include="Api\Internal\StorageFileApiImpl.cs" />
-    <Compile Include="Api\Internal\StorageFolderApiImpl.cs" />
-    <Compile Include="Api\Internal\SummarizationApiImpl.cs" />
-    <Compile Include="Api\Internal\TemplateMergeApiImpl.cs" />
-    <Compile Include="Api\Internal\TranslationApiImpl.cs" />
-    <Compile Include="Api\Model\AsposeResponse.cs" />
-    <Compile Include="Api\Model\StorageItemList.cs" />
-    <Compile Include="Api\Model\StorageItemVersionList.cs" />
-    <Compile Include="Api\Model\StreamResponse.cs" />
-    <Compile Include="Api\Model\DiscUsage.cs" />
-    <Compile Include="Api\Model\Requests\ConversionRequest.cs" />
-    <Compile Include="Api\Model\Requests\TranslationRequest.cs" />
-    <Compile Include="Api\Model\ResourceHandlingOptions.cs" />
-    <Compile Include="Api\Model\StorageItem.cs" />
-    <Compile Include="Api\Model\StorageItemVersion.cs" />
-    <Compile Include="Api\StorageApi.cs" />
-    <Compile Include="Api\Utils\MimeHelper.cs" />
-    <Compile Include="Client\ApiClient.cs" />
-    <Compile Include="Client\ApiClientUtils.cs" />
-    <Compile Include="Client\ApiException.cs" />
-    <Compile Include="Client\Authentication\AuthBase.cs" />
-    <Compile Include="Client\Authentication\IAuthenticator.cs" />
-    <Compile Include="Client\Authentication\JwtAuth.cs" />
-    <Compile Include="Client\Authentication\OAuth2.cs" />
-    <Compile Include="Client\Configuration.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
