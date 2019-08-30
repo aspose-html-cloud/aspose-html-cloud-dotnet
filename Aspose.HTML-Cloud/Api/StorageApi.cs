@@ -64,7 +64,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         { }
 
         /// <summary>
-        /// Default constructor. Initalizes a new instance StorageApi class as the default constructor does
+        /// Constructor. Initalizes a new instance StorageApi class as the default constructor does
         /// and sets the service connection timeout.
         /// </summary>
         /// <param name="timeout">Service connection timeout</param>
