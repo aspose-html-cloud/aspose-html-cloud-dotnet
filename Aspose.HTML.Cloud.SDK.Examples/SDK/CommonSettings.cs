@@ -90,6 +90,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                 {
                     string val = ConfigurationManager.AppSettings["baseUrl"];
                     if (string.IsNullOrEmpty(val))
+                        val = Environment.GetEnvironmentVariable("baseUrl");
+                    if (string.IsNullOrEmpty(val))
                         val = DefaultBaseUrl;
                     _basePath = val;
                 }
@@ -104,6 +106,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                 if (_basePath == null)
                 {
                     string val = ConfigurationManager.AppSettings["authUrl"];
+                    if (string.IsNullOrEmpty(val))
+                        val = Environment.GetEnvironmentVariable("authUrl");
                     if (string.IsNullOrEmpty(val))
                         val = ConfigurationManager.AppSettings["baseUrl"] ?? DefaultBaseUrl;
                     _authPath = val;
@@ -132,6 +136,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                 {
                     string val = ConfigurationManager.AppSettings["appSID"];
                     if (string.IsNullOrEmpty(val))
+                        val = Environment.GetEnvironmentVariable("appSID");
+                    if (string.IsNullOrEmpty(val))
                         throw new Exception("appSID entry isn't specified in the App.config");
                     _appSID = val;
                 }
@@ -146,6 +152,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                 if (_appKey == null)
                 {
                     string val = ConfigurationManager.AppSettings["appKey"];
+                    if (string.IsNullOrEmpty(val))
+                        val = Environment.GetEnvironmentVariable("appKey");
                     if (string.IsNullOrEmpty(val))
                         throw new Exception("appKey entry isn't specified in the App.config");
                     _appKey = val;

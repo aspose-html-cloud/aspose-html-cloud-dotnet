@@ -29,6 +29,8 @@ namespace Aspose.HTML.Cloud.Examples
             /// ---------------------------------------
             // == Example == check if file exists
             Runners.Add("CheckIfFileExists", new CheckIfFileExists());
+            // == Example == check if file exists; default StorageApi constructor is used
+            Runners.Add("CheckIfFileExists.DC", new CheckIfFileExists());
             // == Example == check if folder exists
             Runners.Add("CheckIfFolderExists", new CheckIfFolderExists());
             // == Example == get list of storage file versions
@@ -64,6 +66,8 @@ namespace Aspose.HTML.Cloud.Examples
             /// ---------------------------------------
             // == Example == extract all images from HTML document from storage as an archive
             Runners.Add("ExtractHTMLImagesAll", new ExtractHTMLImagesAll());
+            // == Example == extract all images from HTML document from storage as an archive - use default HtmlApi constructor
+            Runners.Add("ExtractHTMLImagesAll.DC", new ExtractHTMLImagesAll_DC());
             // == Example == extract all images from HTML document from Web by URL as an archive
             Runners.Add("ExtractHTMLImagesAllByUrl", new ExtractHTMLImagesAllByUrl());
             // == Example == extract HTML fragments from storage by XPath query
@@ -136,7 +140,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ImportHtmlFromMarkdownByName";
+            string example = "ExtractHTMLImagesAll.DC";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");
@@ -159,6 +163,7 @@ namespace Aspose.HTML.Cloud.Examples
             {
                 Console.WriteLine("\nError running an example: " + ex.Message);
             }
+            Console.Out.Flush();
             // Stop before exiting
             Console.WriteLine("\n\nProgram Finished. Press any key to exit....");
             Console.ReadKey();

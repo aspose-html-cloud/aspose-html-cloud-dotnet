@@ -53,46 +53,68 @@ namespace Aspose.Html.Cloud.Sdk.Api
         #endregion
 
         #region Constructors
+
         /// <summary>
-        /// 
+        /// Default constructor. Initalizes a new instance of StorageApi class trying to get the user credentials
+        /// (application SID and application key), REST API service URL and authentication service URL 
+        /// from the application configuration file and then, if it don't succeed, from environment variables.
+        /// If needed settings were not found both in the config file or in the environment variables, throws an exception.   
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
-        /// <param name="basePath"></param>
+        public StorageApi() : base()
+        { }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance StorageApi class as the default constructor does
+        /// and sets the service connection timeout.
+        /// </summary>
+        /// <param name="timeout">Service connection timeout</param>
+        public StorageApi(TimeSpan timeout) : base(timeout)
+        { }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of StorageApi class with specified user credentials (application SID and application key),
+        /// and REST API service URL; by default, authentication service URL is the same.
+        /// </summary>
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
         public StorageApi(string appSid, string appKey, string basePath) : base(appSid, appKey, basePath)
         {
         }
 
         /// <summary>
-        /// 
+        /// Constructor. Initalizes a new instance of StorageApi class with specified user credentials (application SID and application key),
+        /// REST API service URL and authentication service URL.
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
-        /// <param name="basePath"></param>
-        /// <param name="authPath"></param>
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="authPath">Authorization service URL</param>
         public StorageApi(string appSid, string appKey, string basePath, string authPath) : base(appSid, appKey, basePath, authPath)
         {
         }
 
         /// <summary>
-        /// 
+        /// Constructor. Initalizes a new instance of StorageApi class with specified user credentials (application SID and application key),
+        /// REST API service URL and service connection timeout; by default, authentication service URL is the same.
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
-        /// <param name="basePath"></param>
-        /// <param name="timeout"></param>
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="timeout">Connection timeout</param>
         public StorageApi(string appSid, string appKey, string basePath, TimeSpan timeout) : base(appSid, appKey, basePath, timeout)
         {
         }
 
         /// <summary>
-        /// 
+        /// Constructor. Initalizes a new instance of StorageApi class with specified user credentials (application SID and application key),
+        /// REST API service URL, authentication service URL and service connection timeout.
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
-        /// <param name="basePath"></param>
-        /// <param name="authPath"></param>
-        /// <param name="timeout"></param>
+        /// <param name="appSid">Application SID (client ID)</param>
+        /// <param name="appKey">Application key (client secret)</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="authPath">Authorization service URL</param>
+        /// <param name="timeout">Connection timeout</param>
         public StorageApi(string appSid, string appKey, string basePath, string authPath, TimeSpan timeout) : base(appSid, appKey, basePath, authPath, timeout)
         {
         }
@@ -100,14 +122,15 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <summary>
         /// Constructor. Initalizes a new instance of StorageApi class with Configuration object.
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">Configuration object</param>
         public StorageApi(Configuration config) : base(config)
         { }
 
         /// <summary>
-        /// 
+        /// Constructor. Initalizes a new instance of StorageApi class inheriting ApiClient object
+        /// of existing ApiBase descendant class instance, so authorization data become shared between both instances.
         /// </summary>
-        /// <param name="instance"></param>
+        /// <param name="instance">Existing ApiBase inherited class instance</param>
         public StorageApi(ApiBase instance) : base(instance)
         { }
 

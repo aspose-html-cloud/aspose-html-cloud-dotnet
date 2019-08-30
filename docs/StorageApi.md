@@ -26,13 +26,39 @@ Class implements following interfaces:
 
 ## Constructors
 
+> StorageApi ()
+
+Default constructor. Allows to get settings (user credentials, REST API service URL, authorization service URL) implicitly from configuration file of application that uses SDK, or from the environment variables, or predefined defaults.
+
+If the StorageApi instance is initialized with the constructor without parameters, the user credentials, REST API service URL and authorization service URL are evaluated in the following order:
+* Trying to get settings from app.config file. A part of the config file may appear as follows:
+```
+    <appSettings>
+      <add key="appSID" value="userid" />
+      <add key="appKey" value="XXXXXX123445567890" />
+      <add key="baseUrl" value="https://api-qa.aspose.cloud" />
+      <add key="authUrl" value="https://api-qa.aspose.cloud" />
+    </appSettings>
+```
+* If some or all settings are absent in the config file, trying to get them from environment variables the application was started with. For example:
+```
+C:\Users\Me> myapp.exe -e "appSID=userid" -e "appKey=XXXXXX1234567890" -e "baseUrl=https://api.aspose.cloud" -e "authUrl=https://api.aspose.cloud" 
+```
+(NOTE: alternative names of 'appSID' and 'appKey' environment variables are 'client_id' and 'client_secret' respectively)
+* If 'baseUrl' or 'authUrl' are not found, they will be set to https://api.aspose.cloud by default.
+* 'appSID' and 'appKey' are required; if at least one of them isn't found, an exception will be thrown.
+
+> HtmlApi(timeout)
+
+Initializes class instance as the default constructor does (see above) and sets the service connection timeout as a TimeSpan structure instance (default connection timeout is 5 min)
+
 > StorageApi (appSid, appKey, basePath, authPath, timeout)
 
 Initializes class instance with user credentials, REST API service URL, authorization service URL and connection timeout
 
 > StorageApi (appSid, appKey, basePath, authPath)
 
-Initializes class instance with user credentials, REST API service URL, authorization service URL (default connection timeout is 5 min)
+Initializes class instance with user credentials, REST API service URL, authorization service URL
 
 > StorageApi (appSid, appKey, basePath, timeout)
 

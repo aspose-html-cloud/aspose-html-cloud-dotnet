@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+//using System.Configuration;
 
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Model;
@@ -39,7 +40,71 @@ namespace Aspose.Html.Cloud.Sdk.Api
     /// </summary>
     public abstract class ApiBase
     {
+        const string DefaultApiBaseUrl = "https://api.aspose.cloud";
         const string DefaultApiVersion = "3.0";
+
+        /// <summary>
+        /// Default constructor. Initalizes a new instance of an inherited class trying to get the user credentials
+        /// (application SID and application key), REST API service URL and authentication service URL 
+        /// from the application configuration file and then, if it don't succeed, from environment variables.
+        /// If needed settings were not found both in the config file or in the environment variables, throws an exception. 
+        /// </summary>
+        protected internal ApiBase()
+        {
+            var appSID = System.Configuration.ConfigurationManager.AppSettings["appSID"];
+            var appKey = System.Configuration.ConfigurationManager.AppSettings["appKey"];
+            var apiBaseUrl = System.Configuration.ConfigurationManager.AppSettings["baseUrl"];
+            var authUrl = System.Configuration.ConfigurationManager.AppSettings["authUrl"];
+
+            if (string.IsNullOrEmpty(appSID))
+            {
+                appSID = Environment.GetEnvironmentVariable("appSID");
+                if(string.IsNullOrEmpty(appSID))
+                    appSID = Environment.GetEnvironmentVariable("client_id");
+                if (string.IsNullOrEmpty(appSID))
+                    throw new ArgumentException("\"appSID\" is required and isn't specified.");
+            }
+
+            if (string.IsNullOrEmpty(appKey))
+            {
+                appKey = Environment.GetEnvironmentVariable("appKey");
+                if (string.IsNullOrEmpty(appKey))
+                    appKey = Environment.GetEnvironmentVariable("client_secret");
+                if (string.IsNullOrEmpty(appKey))
+                    throw new ArgumentException("\"appKey\" is required and isn't specified.");
+            }
+
+            if (string.IsNullOrEmpty(apiBaseUrl))
+            {
+                apiBaseUrl = Environment.GetEnvironmentVariable("baseUrl");
+                if (string.IsNullOrEmpty(apiBaseUrl))
+                    apiBaseUrl = DefaultApiBaseUrl;
+            }
+
+            if (string.IsNullOrEmpty(authUrl))
+            {
+                authUrl = Environment.GetEnvironmentVariable("authUrl");
+                if (string.IsNullOrEmpty(authUrl))
+                    authUrl = DefaultApiBaseUrl;
+            }
+
+            if (!ApiClientUtils.UrlContainsVersion(apiBaseUrl))
+            {
+                var baseUrl = apiBaseUrl + "/v" + DefaultApiVersion;
+                apiBaseUrl = baseUrl;
+            }
+            this.ApiClient = new ApiClient(appSID, appKey, apiBaseUrl, authUrl);
+        }
+
+        /// <summary>
+        /// Default constructor. Initalizes a new instance of an inherited class as the default constructor does
+        /// and sets the service connection timeout.
+        /// </summary>
+        /// <param name="timeout">Service connection timeout</param>
+        protected internal ApiBase(TimeSpan timeout) : this()
+        {
+            this.ApiClient.Timeout = timeout;
+        }
 
         /// <summary>
         /// Constructor. Initalizes a new instance ApiBase class with specified user credentials (application SID and application key),

@@ -119,7 +119,10 @@ namespace MyAppNamespace
 
 ## Dependencies
 - .NET Framework 4.0 or later
-- [Json.NET (9.0.1 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+- [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+
+- .NET Standard 2.0 or later
+- [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 ## Roadmap
 
