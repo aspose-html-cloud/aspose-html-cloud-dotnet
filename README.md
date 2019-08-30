@@ -179,21 +179,21 @@ Class | Interface | Method | HTTP request | Description
 [*HtmlApi*](docs/HtmlApi.md) | *IOcrApi* | [**GetRecognizeAndTranslateToHtml**](docs/OcrApi.md#GetRecognizeAndTranslateToHtml) | **GET** /html/{name}/ocr/translate/{srcLang}/{resLang} | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
 [*HtmlApi*](docs/HtmlApi.md) | *ISummarizationApi* | [**GetDetectHtmlKeywords**](docs/SummarizationApi.md#GetDetectHtmlKeywords) | **GET** /html/{name}/summ/keywords | Detect keywords of the HTML document specified by the name from default or specified storage.
 [*HtmlApi*](docs/HtmlApi.md) | *ISummarizationApi* | [**GetDetectHtmlKeywordsByUrl**](docs/SummarizationApi.md#GetDetectHtmlKeywordsByUrl) | **GET** /html/summ/keywords | Detect keywords of the HTML document specified by its URL.
-*StorageApi* | *IStorageFolderApi* | [**GetFolderContentList**] (docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CreateFolder**] (docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**DeleteFolder**] (docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CopyFolder**] (docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**MoveFolder**] (docs/IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DownloadFile] (docs/IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile] (docs/IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile] (docs/IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DeleteFile] (docs/IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**CopyFile] (docs/IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**MoveFile] (docs/IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
+[*StorageApi*](docs/StorageApi.md)  | *IStorageFolderApi* | [**GetFolderContentList**](docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CreateFolder**](docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**DeleteFolder**](docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CopyFolder**](docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**MoveFolder**](docs/IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DownloadFile**](docs/IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile**](docs/IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile**](docs/IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DeleteFile**](docs/IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**CopyFile**](docs/IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**MoveFile**](docs/IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
 [*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**StorageExists**](docs/IStorageApi.md#StorageExists) | **GET** /html/storage/{storageName}/exist | Check if storage exists
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**FileOrFolderExists](docs/IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
+[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**FileOrFolderExists**](docs/IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
 [*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetDiscUsage**](docs/IStorageApi.md#GetDiscUsage) | **GET** /html/storage/disc | Get disc usage
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetStorageItemVersions**] (docs/IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
+[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetStorageItemVersions**](docs/IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
 
 
 ## Resources
