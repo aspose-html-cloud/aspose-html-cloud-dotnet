@@ -29,8 +29,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
-//using Com.Aspose.Html.Client;
-//using Com.Aspose.Html.NativeClient;
 
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Model;

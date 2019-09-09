@@ -39,5 +39,9 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
     {
         bool Authenticate(HttpRequestMessage request);
         void RetryAuthentication();
+
+        bool UseExternalAuthentication { get; }
+
+        SdkAuthException AuthError { get; }
     }
 }

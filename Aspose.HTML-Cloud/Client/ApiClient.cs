@@ -56,7 +56,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         protected const string PAR_FILENAME_I = "__filename__";
 
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
         /// <param name="appSid">Application SID</param>
         /// <param name="appKey">Application key</param>
@@ -77,7 +77,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         }
 
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
         /// <param name="appSid"></param>
         /// <param name="appKey"></param>
@@ -98,6 +98,20 @@ namespace Aspose.Html.Cloud.Sdk.Client
             Timeout = new TimeSpan(0, 5, 0);
 
             Authenticator = auth ?? new JwtAuth(appSid, appKey, authPath);
+        }
+
+        public ApiClient(JwtToken authToken, string basePath = "http://api.aspose.cloud/v3.0")
+        {
+            BasePath = basePath;
+            Timeout = new TimeSpan(0, 5, 0);
+            Authenticator = new JwtAuth(authToken);
+        }
+
+        public ApiClient(string authToken, DateTime issuedOn, int expiresIn,  string basePath= "http://api.aspose.cloud/v3.0")
+        {
+            BasePath = basePath;
+            Timeout = new TimeSpan(0, 5, 0);
+            Authenticator = new JwtAuth(authToken, issuedOn, expiresIn);
         }
 
         public HttpResponseMessage CallGet(string methodPath, IDictionary<string, string> parameters)
@@ -229,9 +243,10 @@ namespace Aspose.Html.Cloud.Sdk.Client
             using (HttpClient client = new HttpClient() { Timeout = this.Timeout })
             {
                 int retries = 2;
+                bool authRes = false;
                 while (retries-- > 0)
                 {
-                    if (Authenticator.Authenticate(request))
+                    if (authRes = Authenticator.Authenticate(request))
                     {
                         Task task = client.SendAsync(request)
                             .ContinueWith((tsk) => { response = tsk.Result; }
@@ -241,10 +256,21 @@ namespace Aspose.Html.Cloud.Sdk.Client
                         if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized
                             || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                         {
-                            Authenticator.RetryAuthentication();
+                            if (!Authenticator.UseExternalAuthentication)
+                            {
+                                Authenticator.RetryAuthentication();
+                                continue;
+                            }
                         }
                         break;
                     }
+                }
+                if(!authRes && Authenticator.UseExternalAuthentication)
+                {
+                    if(Authenticator.AuthError != null)
+                        throw Authenticator.AuthError;
+
+                    throw new SdkAuthException(SdkAuthException.Reason.Common, $"Authentication error: unknown");
                 }
             }
             return response;

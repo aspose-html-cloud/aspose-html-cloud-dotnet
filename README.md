@@ -133,6 +133,12 @@ In the upcoming releases, we are set to implement a number of new features:
 Known issues that we are set to fix soon:
 * 
 
+## Documentation for authorization methods
+
+Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
+
+For more details see [**Authorization**](docs/Authorization.md)
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.aspose.cloud/v3.0*
