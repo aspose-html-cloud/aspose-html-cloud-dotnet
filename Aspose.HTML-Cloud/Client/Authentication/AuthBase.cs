@@ -57,6 +57,10 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         protected readonly string m_authPath;
         protected readonly AuthType m_AuthType;
 
+        protected bool ExternalAuth { get; set; }
+
+        protected SdkAuthException ErrorImpl { get; set; }
+
         static AuthBase()
         {
             DictAuthTypes.Add(AuthType.OAuth2, "OAuth 2.0");
@@ -78,7 +82,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                 case AuthType.Jwt:
                     return new JwtAuth(clientId, clientSecret, baseUri);
                 default:
-                    throw new Exception("Unknown authentication method");
+                    throw new SdkAuthException(SdkAuthException.Reason.UnknownAuthMethod);
             }
         }
 
@@ -91,26 +95,36 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         {
             if (m_authFlow != AuthFlow.Obtained)
             {
-                var host = m_authPath; //GetHost(request.RequestUri.AbsoluteUri);
-                var authUriString = GetAuthUriString(host);
-                HttpClient authClient = new HttpClient();
-                HttpRequestMessage authReq = new HttpRequestMessage()
+                if (!ExternalAuth)
                 {
-                    RequestUri = new Uri(authUriString),
-                    Method = HttpMethod.Post
-                };
-                authReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    var host = m_authPath; //GetHost(request.RequestUri.AbsoluteUri);
+                    var authUriString = GetAuthUriString(host);
+                    HttpClient authClient = new HttpClient();
+                    HttpRequestMessage authReq = new HttpRequestMessage()
+                    {
+                        RequestUri = new Uri(authUriString),
+                        Method = HttpMethod.Post
+                    };
+                    authReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                List<KeyValuePair<string, string>> authReqContent = BuildAuthRequestContent();
-                authReq.Content = new FormUrlEncodedContent(authReqContent);
-                authReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                    List<KeyValuePair<string, string>> authReqContent = BuildAuthRequestContent();
+                    authReq.Content = new FormUrlEncodedContent(authReqContent);
+                    authReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
-                var authResponse = authClient.SendAsync(authReq).Result;
-                if (authResponse.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    var content = authResponse.Content.ReadAsStringAsync().Result;
-                    AuthDataDeserializeImpl(content);
-                    m_authFlow = AuthFlow.Obtained;
+                    var authResponse = authClient.SendAsync(authReq).Result;
+                    if (authResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var content = authResponse.Content.ReadAsStringAsync().Result;
+                        AuthDataDeserializeImpl(content);
+                        m_authFlow = AuthFlow.Obtained;
+                    }
+                    else
+                    {
+                        var reason = SdkAuthException.Reason.Common;
+                        ErrorImpl = new SdkAuthException(reason, authResponse.ReasonPhrase);
+                        m_authFlow = AuthFlow.ObtainAccessTokenPending;
+                        return false;
+                    }
                 }
                 else
                 {
@@ -122,6 +136,9 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             {
                 if(IsAccessTokenExpired())
                 {
+                    if (ExternalAuth)
+                        ErrorImpl = new SdkAuthException(SdkAuthException.Reason.TokenExpired, "Externally provided authorization token expired.");
+
                     m_authFlow = AuthFlow.ObtainAccessTokenPending;
                     return false;
                 }

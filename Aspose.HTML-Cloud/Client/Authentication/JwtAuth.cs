@@ -31,6 +31,8 @@ using System.Net.Http;
 using System.Text;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 {
@@ -42,7 +44,6 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         class JwtData
         {
             public string ClientId { get; private set; }
-
             public string AccessToken { get; private set; }
             public string TokenType { get; private set; }
             public int ExpiresInSeconds { get; private set; }
@@ -86,6 +87,18 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                 }
             }
 
+            public static JwtData InitByExternalToken(JwtToken token)
+            {
+                var result = new JwtData();
+                result.AccessToken = token.Token;
+                result.IssuedOn = token.IssuedOn;
+                result.ExpiresInSeconds = token.ExpiresInSeconds;
+                result.TokenType = "Bearer";
+                result.ClientId = GetAppSidFromJwtToken(token.Token);
+
+                return result;
+            }
+
             public static JwtData Deserialize(string content)
             {
                 var result = new JwtData();
@@ -106,6 +119,21 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                 }
                 return result;
             }
+
+            private static string GetAppSidFromJwtToken(string token)
+            {
+                const string claimType = "client_id";
+
+                string appsid = null;
+                var jwtHandler = new JwtSecurityTokenHandler();
+                if(jwtHandler.CanReadToken(token))
+                {
+                    var jwt_token = jwtHandler.ReadJwtToken(token);
+                    var clientIdClaim = jwt_token?.Claims?.FirstOrDefault(_ => _.Type == claimType);
+                    appsid = clientIdClaim?.Value;
+                }
+                return appsid;
+            }
         }
 
         private JwtData m_authData = null;
@@ -115,19 +143,40 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         {
             m_ClientId = clientId;
             m_ClientSecret = clientSecret;
+            ExternalAuth = false;
 
             m_authFlow = AuthFlow.ObtainAccessTokenPending;
+        }
+
+        public JwtAuth(string authToken, DateTime issuedOn, int expiresIn) 
+            : this(new JwtToken() {
+                Token = authToken,
+                IssuedOn = issuedOn,
+                ExpiresInSeconds = expiresIn
+            })
+        {
+        }
+
+        public JwtAuth (JwtToken authToken) : base(AuthType.Jwt, "")
+        {
+            m_authData = JwtData.InitByExternalToken(authToken);
+            m_authFlow = AuthFlow.Obtained;
+            ExternalAuth = true;
         }
 
         public bool Authenticate(HttpRequestMessage request)
         {
             bool res =  AuthenticateImpl(request);
-            if (m_authData != null)
+            if (!res)
             {
-                if (m_authData.HasError)
-                    throw new Exception($"JWT: Authentication error: {m_authData.Error}", new Exception(m_authData.ErrorDescription));
-                else
-                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", m_authData.AccessToken);
+                if (m_authData != null && m_authData.HasError)
+                {
+                    ErrorImpl = new SdkAuthException(SdkAuthException.Reason.Common, $"{m_authData.Error}; \r\nDescription: {m_authData.ErrorDescription}");
+                } 
+            }
+            else
+            {
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", m_authData.AccessToken);
             }
             return res;
         }
@@ -137,11 +186,10 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             m_authFlow = AuthFlow.ObtainAccessTokenPending;
         }
 
-        private static void HandleAuthError(IAuthenticator instance)
-        {
-            var inst = instance as JwtAuth;
+        public bool UseExternalAuthentication => ExternalAuth;
 
-        }
+        public SdkAuthException AuthError => ErrorImpl;
+
 
         protected override string GetAuthUriString(string host)
         {
@@ -190,5 +238,6 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                 return $"{new String(tokenType)} {m_authData?.AccessToken}";
             }
         }
+
     }
 }

@@ -51,27 +51,27 @@ C:\Users\Me> myapp.exe -e "appSID=userid" -e "appKey=XXXXXX1234567890" -e "baseU
 * If 'baseUrl' or 'authUrl' are not found, they will be set to https://api.aspose.cloud by default.
 * 'appSID' and 'appKey' are required; if at least one of them isn't found, an exception will be thrown.
 
-> HtmlApi(timeout)
+> HtmlApi(*int* timeout)
 
 Initializes class instance as the default constructor does (see above) and sets the service connection timeout as a TimeSpan structure instance (default connection timeout is 5 min)
 
-> HtmlApi (appSid, appKey, basePath, authPath, timeout)
+> HtmlApi (*string* appSid, *string* appKey, *string* basePath, *string* authPath, *int* timeout)
 
 Initializes class instance with user credentials, REST API service URL, authorization service URL and connection timeout
 
-> HtmlApi (appSid, appKey, basePath, authPath)
+> HtmlApi (*string* appSid, *string* appKey, *string* basePath, *string* authPath)
 
 Initializes class instance with user credentials, REST API service URL, authorization service URL 
 
-> HtmlApi (appSid, appKey, basePath, timeout)
+> HtmlApi (*string* appSid, *string* appKey, *string* basePath, *int* timeout)
 
 Initializes class instance with user credentials, REST API service URL and connection timeout (authorization service URL is the same as basePath)
 
-> HtmlApi (appSid, appKey, basePath)
+> HtmlApi ((*string* appSid, (*string* appKey, (*string* basePath)
 
 Initializes class instance with user credentials and REST API service URL
 
-> HtmlApi (config)
+> HtmlApi ((*Configuration* config)
 
 Initializes class instance with Configuration object that should be previously created and initialized with with user credentials, REST API service URL, authorization service URL and connection timeout values.
 
@@ -90,7 +90,7 @@ var api = new HtmlApi(config);
 
 ```
 
-> HtmlApi (instance)
+> HtmlApi (*ApiBase* instance)
 
 Initializes class instance with existing ApiBase-inherited class instance (explicit type cast to ApiBase may be needed). It can be useful to share authorization status between two or more API facade classes.
 
@@ -103,4 +103,22 @@ var htmlApi = new HtmlApi(stApi);
 
 ```
 
+###### Next constructor provides ability for the SDK client to use authorization with externally provided token.
+
+> HtmlApi(*JwtToken* token, *string* basePath = null)
+
+Initializes class instance with an object that contains a JWT access token obtained by the client application with its generation date and expiration time in seconds (see [*JwtToken*](docs/JwtToken.md) class description for details) and the REST API service URL (optional, default is https://api.aspose.cloud/v3.0/html ). 
+
+#### Example
+
+```csharp
+
+var tokenObj = new JwtToken() { 
+      Token = "xxxxxxxxxxxxxxxxxxxxxxxx",
+	  IssuedOn = DateTime.UtcNow,
+	  ExpiresIn = 86400 };
+	  
+var htmlApi = new HtmlApi(tokenObj, basePath);
+
+```
 

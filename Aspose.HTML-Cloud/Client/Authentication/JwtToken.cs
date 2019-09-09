@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="IAuthenticator.cs">
+// <copyright company="Aspose" file="JwtToken.cs">
 //   Copyright (c) 2018 Aspose.HTML for Cloud
 // </copyright>
 // <summary>
@@ -25,23 +25,28 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 {
     /// <summary>
-    /// Internally used interface. Represents abstraction of the authentification functionality.
+    /// Object that stores the JWT token and its validity parameters 
     /// </summary>
-    internal interface IAuthenticator
+    public class JwtToken
     {
-        bool Authenticate(HttpRequestMessage request);
-        void RetryAuthentication();
+        /// <summary>
+        /// Token value.
+        /// </summary>
+        public string Token { get; set; }
 
-        bool UseExternalAuthentication { get; }
+        /// <summary>
+        /// Time when the token has been generated.
+        /// </summary>
+        public DateTime IssuedOn { get; set; }
 
-        SdkAuthException AuthError { get; }
+        /// <summary>
+        /// Time period in seconds while the token is still valid.
+        /// </summary>
+        public int ExpiresInSeconds { get; set; }
     }
 }

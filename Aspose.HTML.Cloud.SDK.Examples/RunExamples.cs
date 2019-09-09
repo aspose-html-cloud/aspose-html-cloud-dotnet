@@ -14,6 +14,7 @@ using Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge;
 using Aspose.HTML.Cloud.Examples.SDK.Storage;
 using Aspose.HTML.Cloud.Examples.SDK.StorageFile;
 using Aspose.HTML.Cloud.Examples.SDK.StorageFolder;
+using Aspose.HTML.Cloud.Examples.SDK.ExternalJwtAuth;
 
 namespace Aspose.HTML.Cloud.Examples
 {
@@ -134,13 +135,25 @@ namespace Aspose.HTML.Cloud.Examples
 
             /// HTML API: Summarization
             /// ---------------------------------------
+            /// 
+
+
+            /// HTML API: Authorization with an external token
+            /// -----------------------------------------------
+            /// == Example == extract all images from HTML document from storage as an archive 
+            ///    - using a JWT token provided by SDK caller application 
+            Runners.Add("ExtractHTMLImages_ExtJwtToken", new ExtractHTMLImages_ExtJwtToken());
+            /// == Example == get list of storage folder items (files and subfolders) 
+            ///    - using a JWT token provided by SDK caller application 
+            Runners.Add("GetFolderContent_ExtJwtToken", new GetFolderContent_ExtJwtToken());
+
         }
 
         [STAThread]
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ExtractHTMLImagesAll.DC";
+            string example = "ExtractHTMLImages_ExtJwtToken";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");
