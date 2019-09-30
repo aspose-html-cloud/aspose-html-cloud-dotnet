@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="IAuthenticator.cs">
+// <copyright company="Aspose" file="SdkAuthException.cs">
 //   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
@@ -25,19 +25,64 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 {
-    /// <summary>
-    /// Internally used interface. Represents abstraction of the authentification functionality.
-    /// </summary>
-    internal interface IAuthenticator
+    public class SdkAuthException : Exception
     {
-        bool Authenticate(HttpRequestMessage request);
-        void RetryAuthentication();
+        public enum Reason
+        {
+            Common,
+            UnknownAuthMethod,
+            TokenExpired,
+            AuthServiceConnect
+        }
+
+        private Reason m_reason;
+        private static Dictionary<Reason, string> dictDefaultReasonMsg;
+
+        static SdkAuthException()
+        {
+            dictDefaultReasonMsg = new Dictionary<Reason, string>()
+            {
+                { Reason.Common, "Authorization failed by unknown reason" },
+                { Reason.UnknownAuthMethod, "Unknown authorization method" },
+                { Reason.AuthServiceConnect, "Authorization service is unavailable." },
+                { Reason.TokenExpired, "Authorization token expired." }
+            };
+        }
+
+        public SdkAuthException()
+        {
+            m_reason = Reason.Common;
+        }
+
+        public SdkAuthException(Reason reason)
+        {
+            m_reason = reason;
+        }
+
+        public SdkAuthException(Reason reason, string message) : base(message)
+        {
+            m_reason = reason;
+        }
+
+        public Reason ErrorReason => m_reason;
+
+        public override string Message
+        {
+            get
+            {
+                if(base.Message == null)
+                {
+                    if (dictDefaultReasonMsg.ContainsKey(m_reason))
+                        return dictDefaultReasonMsg[m_reason];
+                }
+                return base.Message;
+            }
+        }
+
+
     }
 }

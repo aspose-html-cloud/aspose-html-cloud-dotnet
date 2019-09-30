@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ResourceHandlingOptions.cs">
+// <copyright company="Aspose" file="ITranslateApiEx.cs">
 //   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
@@ -21,51 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 // </summary>
-// ------------------
+// --------------------------------------------------------------------------------------------------------------------
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api.Model;
+using Aspose.Html.Cloud.Sdk.Api.Model.Requests;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Aspose.Html.Cloud.Sdk.Api.Model
+
+namespace Aspose.Html.Cloud.Sdk.Api.Interfaces.Extended
 {
     /// <summary>
-    /// This enum represents resource handling options.
+    /// 
     /// </summary>
-    public enum ResourceHandling
+    public interface ITranslateApiEx
     {
-
-        /// <summary>
-        /// Resource will be saved as file.
-        /// </summary>
-        Save = 0,
-
-        /// <summary>
-        /// Resource will be emdedded into owner
-        /// </summary>
-        Embed = 1,
- 
-        /// <summary>
-        /// Resource will be discarded.
-        /// </summary>
-        Discard = 2
     }
-
-    /// <summary>
-    /// This enum represents restriction applied to URLs of processed resources.
-    /// </summary>
-    public enum UrlRestriction
-    {
-        /// <summary>
-        /// Only resources located in the root and sub folders are processed.
-        /// </summary>
-        RootAndSubFolders = 0,
-
-        /// <summary>
-        /// Only resources located in the same host are processed.
-        /// </summary>
-        SameHost = 1,
-
-        /// <summary>
-        /// All resources are processed.
-        /// </summary>
-        None = 2
-    }
-
 }

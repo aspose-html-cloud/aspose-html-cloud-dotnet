@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="ResourceHandlingOptions.cs">
+// <copyright company="Aspose" file="JwtToken.cs">
 //   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
@@ -21,51 +21,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 // </summary>
-// ------------------
+// --------------------------------------------------------------------------------------------------------------------
 
-namespace Aspose.Html.Cloud.Sdk.Api.Model
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 {
     /// <summary>
-    /// This enum represents resource handling options.
+    /// Object that stores the JWT token and its validity parameters 
     /// </summary>
-    public enum ResourceHandling
-    {
-
-        /// <summary>
-        /// Resource will be saved as file.
-        /// </summary>
-        Save = 0,
-
-        /// <summary>
-        /// Resource will be emdedded into owner
-        /// </summary>
-        Embed = 1,
- 
-        /// <summary>
-        /// Resource will be discarded.
-        /// </summary>
-        Discard = 2
-    }
-
-    /// <summary>
-    /// This enum represents restriction applied to URLs of processed resources.
-    /// </summary>
-    public enum UrlRestriction
+    public class JwtToken
     {
         /// <summary>
-        /// Only resources located in the root and sub folders are processed.
+        /// Token value.
         /// </summary>
-        RootAndSubFolders = 0,
+        public string Token { get; set; }
 
         /// <summary>
-        /// Only resources located in the same host are processed.
+        /// Time when the token has been generated.
         /// </summary>
-        SameHost = 1,
+        public DateTime IssuedOn { get; set; }
 
         /// <summary>
-        /// All resources are processed.
+        /// Time period in seconds while the token is still valid.
         /// </summary>
-        None = 2
+        public int ExpiresInSeconds { get; set; }
     }
-
 }

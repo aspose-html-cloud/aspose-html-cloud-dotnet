@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="IHtmlApi.cs">
-//   Copyright (c) 2018 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,11 +23,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces.Extended;
 
 namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
 {
@@ -35,7 +31,8 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
     /// Interface that joins all HTML SDK API methods
     /// </summary>
     public interface IHtmlApi : 
-        IDocumentApi, IConversionApi, IOcrApi, ISummarizationApi, ITranslationApi, ITemplateMergeApi
+        IDocumentApi, IConversionApi, IOcrApi, ISummarizationApi, ITranslationApi, ITemplateMergeApi,
+        IConversionApiEx
     {
     }
 }
