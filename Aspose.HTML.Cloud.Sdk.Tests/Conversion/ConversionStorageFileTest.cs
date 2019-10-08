@@ -35,6 +35,17 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         }
 
         [TestMethod]
+        public void Test_GetHtmlConvert_Pdf_StorageToStream_2()
+        {
+            string name = "testpage5.html.zip";
+            string folder = StorageTestDataPath;
+            string storage = null;
+
+            var response = this.HtmlApi.GetConvertDocumentToPdf(name, 800, 1200, null, null, null, null, folder, storage);
+            checkGetMethodResponse(response, "Conversion");
+        }
+
+        [TestMethod]
         public void Test_GetHtmlConvert_Jpeg_StorageToStream()
         {
             string name = "testpage1.html";

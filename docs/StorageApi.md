@@ -21,7 +21,9 @@ Aspose.Html.Cloud.Sdk.Api
 Class implements following interfaces:
 
 [**IStorageFileApi**](IStorageFileApi.md)
+
 [**IStorageFolderApi**](IStorageFolderApi.md)
+
 [**IStorageApi**](IStorageApi.md)
 
 ## Constructors
@@ -48,27 +50,27 @@ C:\Users\Me> myapp.exe -e "appSID=userid" -e "appKey=XXXXXX1234567890" -e "baseU
 * If 'baseUrl' or 'authUrl' are not found, they will be set to https://api.aspose.cloud by default.
 * 'appSID' and 'appKey' are required; if at least one of them isn't found, an exception will be thrown.
 
-> HtmlApi(*int* timeout)
+> HtmlApi(timeout)
 
 Initializes class instance as the default constructor does (see above) and sets the service connection timeout as a TimeSpan structure instance (default connection timeout is 5 min)
 
-> StorageApi (*string* appSid, *string* appKey, *string* basePath, *string* authPath, *int* timeout)
+> StorageApi (appSid, appKey, basePath, authPath, timeout)
 
 Initializes class instance with user credentials, REST API service URL, authorization service URL and connection timeout
 
-> StorageApi (*string* appSid, *string* appKey, *string* basePath, *string* authPath)
+> StorageApi (appSid, appKey, basePath, authPath)
 
 Initializes class instance with user credentials, REST API service URL, authorization service URL
 
-> StorageApi (*string* appSid, *string* appKey, *string* basePath, *int* timeout)
+> StorageApi (appSid, appKey, basePath, timeout)
 
 Initializes class instance with user credentials, REST API service URL and connection timeout (authorization service URL is the same as basePath)
 
-> StorageApi (*string* appSid, *string* appKey, *string* basePath)
+> StorageApi (appSid, appKey, basePath)
 
 Initializes class instance with user credentials and REST API service URL
 
-> StorageApi (*Configuration* config)
+> StorageApi (config)
 
 Initializes class instance with Configuration object that should be previously created and initialized with with user credentials, REST API service URL, authorization service URL and connection timeout values.
 
@@ -87,7 +89,7 @@ var api = new StorageApi(config);
 
 ```
 
-> StorageApi (*ApiBase* instance)
+> StorageApi (instance)
 
 Initializes class instance with existing ApiBase-inherited class instance (explicit type cast may be needed). It can be usable to share authorization status between two or more API facade classes.
 
@@ -97,24 +99,5 @@ Initializes class instance with existing ApiBase-inherited class instance (expli
 
 var stApi = new HtmlApi(appSid, appKey, basePath, authPath);
 var htmlApi = new StorageApi(stApi);
-
-```
-
-###### Next constructor provides ability for the SDK client to use authorization with externally provided token.
-
-> StorageApi(*JwtToken* token, *string* basePath = null)
-
-Initializes class instance with an object that contains a JWT access token obtained by the client application with its generation date and expiration time in seconds (see [*JwtToken*](docs/JwtToken.md) class description for details) and the REST API service URL (optional, default is https://api.aspose.cloud ). 
-
-#### Example
-
-```csharp
-
-var tokenObj = new JwtToken() { 
-      Token = "xxxxxxxxxxxxxxxxxxxxxxxx",
-	  IssuedOn = DateTime.UtcNow,
-	  ExpiresIn = 86400 };
-	  
-var stApi = new StorageApi(tokenObj, basePath);
 
 ```

@@ -119,10 +119,7 @@ namespace MyAppNamespace
 
 ## Dependencies
 - .NET Framework 4.0 or later
-- [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
-
-- .NET Standard 2.0 or later
-- [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+- [Json.NET (9.0.1 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 ## Roadmap
 
@@ -132,12 +129,6 @@ In the upcoming releases, we are set to implement a number of new features:
 
 Known issues that we are set to fix soon:
 * 
-
-## Documentation for authorization methods
-
-Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
-
-For more details see [**Authorization**](docs/Authorization.md)
 
 ## Documentation for API Endpoints
 
@@ -165,6 +156,14 @@ Class | Interface | Method | HTTP request | Description
 [*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PutConvertDocumentToMarkdown**](docs/ConversionApi.md#PutConvertDocumentToMarkdown) | **PUT** /html/{name}/convert/md | Convert the HTML document from the storage by its name to Markdown and save it to storage.
 [*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown) |  **POST** /html/convert/md | Convert the HTML document from the request stream to Markdown and save it to storage.
 [*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown_1) |  **POST** /html/convert/md | Convert the HTML document from the local file system by its local path to Markdown and save it to storage.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToImageAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToImageAndDownload) | **POST** /html/convert/image/{outFormat} | Extension method. Convert the HTML document from the request stream to the specified image format, save to storage and download to stream.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToImageAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToImageAndDownload_1) | **POST** /html/convert/image/{outFormat} | Overloaded extension method. Convert the HTML document from the local file system to the specified image format, save to storage and download to stream.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToPdfAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToPdfAndDownload) | **POST** /html/convert/pdf | Extension method. Convert the HTML document from the request stream to PDF, save to storage and download to stream.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToPdfAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToPdfAndDownload_1) | **POST** /html/convert/pdf | Overloaded extension method. Convert the HTML document from the local file system to PDF, save to storage and download to stream.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToXpsAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToXpsAndDownload) | **POST**  /html/convert/xps | Extension method. Convert the HTML document from the request stream to XPS, save to storage and download to stream.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToXpsAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToXpsAndDownload_1) | **POST**  /html/convert/xps | Overloaded extension method. Convert the HTML document from the local file system to XPS, save to storage and download to stream.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToMarkdownAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToMarkdownAndDownload) | **POST**  /html/convert/md | Extension method. Convert the HTML document from the request stream to Markdown, save to storage and download to stream.
+[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToMarkdownAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToMarkdownAndDownload_1) | **POST**  /html/convert/md | Overloaded extension method. Convert the HTML document from the local file system to Markdown, save to storage and download to stream.
 [*HtmlApi*](docs/HtmlApi.md) | *IImportApi* | [**GetImportMarkdownToHtml**](docs/ImportApi.md#GetImportMarkdownToHtml) | **GET** /html/{name}/import/md | Create an HTML document from Markdown file (located in the storage) and return it in the response stream.
 [*HtmlApi*](docs/HtmlApi.md) | *IImportApi* | [**PutImportMarkdownToHtml**](docs/ImportApi.md#PutImportMarkdownToHtml) | **PUT** /html/{name}/import/md | Create an HTML document from Markdown file (located in the storage) and save it to storage.
 [*HtmlApi*](docs/HtmlApi.md) | *IImportApi* | [**PostImportMarkdownToHtml**](docs/ImportApi.md#PostImportMarkdownToHtml) | **POST** /html/import/md | Create an HTML document from Markdown file as input stream and save it to storage.
@@ -185,21 +184,21 @@ Class | Interface | Method | HTTP request | Description
 [*HtmlApi*](docs/HtmlApi.md) | *IOcrApi* | [**GetRecognizeAndTranslateToHtml**](docs/OcrApi.md#GetRecognizeAndTranslateToHtml) | **GET** /html/{name}/ocr/translate/{srcLang}/{resLang} | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
 [*HtmlApi*](docs/HtmlApi.md) | *ISummarizationApi* | [**GetDetectHtmlKeywords**](docs/SummarizationApi.md#GetDetectHtmlKeywords) | **GET** /html/{name}/summ/keywords | Detect keywords of the HTML document specified by the name from default or specified storage.
 [*HtmlApi*](docs/HtmlApi.md) | *ISummarizationApi* | [**GetDetectHtmlKeywordsByUrl**](docs/SummarizationApi.md#GetDetectHtmlKeywordsByUrl) | **GET** /html/summ/keywords | Detect keywords of the HTML document specified by its URL.
-[*StorageApi*](docs/StorageApi.md)  | *IStorageFolderApi* | [**GetFolderContentList**](docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CreateFolder**](docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**DeleteFolder**](docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CopyFolder**](docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**MoveFolder**](docs/IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DownloadFile**](docs/IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile**](docs/IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile**](docs/IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DeleteFile**](docs/IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**CopyFile**](docs/IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**MoveFile**](docs/IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
+*StorageApi* | *IStorageFolderApi* | [**GetFolderContentList**] (docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CreateFolder**] (docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**DeleteFolder**] (docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CopyFolder**] (docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**MoveFolder**] (docs/IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DownloadFile] (docs/IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile] (docs/IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile] (docs/IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DeleteFile] (docs/IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**CopyFile] (docs/IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
+[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**MoveFile] (docs/IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
 [*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**StorageExists**](docs/IStorageApi.md#StorageExists) | **GET** /html/storage/{storageName}/exist | Check if storage exists
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**FileOrFolderExists**](docs/IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
+[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**FileOrFolderExists](docs/IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
 [*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetDiscUsage**](docs/IStorageApi.md#GetDiscUsage) | **GET** /html/storage/disc | Get disc usage
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetStorageItemVersions**](docs/IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
+[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetStorageItemVersions**] (docs/IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
 
 
 ## Resources

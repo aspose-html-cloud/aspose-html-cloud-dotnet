@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="IAuthenticator.cs">
-//   Copyright (c) 2018 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -43,5 +43,6 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         bool UseExternalAuthentication { get; }
 
         SdkAuthException AuthError { get; }
+
     }
 }

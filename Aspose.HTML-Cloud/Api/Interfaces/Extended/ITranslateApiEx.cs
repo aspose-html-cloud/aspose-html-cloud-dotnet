@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="IHtmlApi.cs">
+// <copyright company="Aspose" file="ITranslateApiEx.cs">
 //   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
@@ -22,17 +22,20 @@
 //  SOFTWARE.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+using System.IO;
+using Aspose.Html.Cloud.Sdk.Api.Model;
+using Aspose.Html.Cloud.Sdk.Api.Model.Requests;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-using Aspose.Html.Cloud.Sdk.Api.Interfaces.Extended;
 
-namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
+namespace Aspose.Html.Cloud.Sdk.Api.Interfaces.Extended
 {
     /// <summary>
-    /// Interface that joins all HTML SDK API methods
+    /// 
     /// </summary>
-    public interface IHtmlApi : 
-        IDocumentApi, IConversionApi, IOcrApi, ISummarizationApi, ITranslationApi, ITemplateMergeApi,
-        IConversionApiEx
+    public interface ITranslateApiEx
     {
     }
 }

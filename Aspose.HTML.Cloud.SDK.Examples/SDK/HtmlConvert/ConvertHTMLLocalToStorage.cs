@@ -10,8 +10,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
     /// <summary>
     /// Aspose.HTML Cloud for .NET SDK - examples.
     /// =========================================
-    /// Example that demonstrates how to convert HTML page in the local filesystem passing it to the request stream,
-    /// convert it to one of the supported by Aspose.HTML for Cloud and save it to the cloud storage.
+    /// Example that demonstrates how to convert HTML page in the local filesystem to one of formats 
+    /// supported by Aspose.HTML Cloud passing it to the request stream and saving the result to the cloud storage.
     /// </summary>
     public class ConvertHTMLLocalToStorage : ISdkRunner
     {
@@ -59,7 +59,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
                 switch (Format)
                 {
                     case "pdf":
-                        outFile += ".pdf";
+                        //outFile += ".pdf";
                         response = convApi.PostConvertDocumentToPdf(
                             srcStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;

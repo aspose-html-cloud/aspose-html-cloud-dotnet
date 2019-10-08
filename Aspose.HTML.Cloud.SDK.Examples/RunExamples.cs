@@ -16,6 +16,7 @@ using Aspose.HTML.Cloud.Examples.SDK.StorageFile;
 using Aspose.HTML.Cloud.Examples.SDK.StorageFolder;
 using Aspose.HTML.Cloud.Examples.SDK.ExternalJwtAuth;
 
+
 namespace Aspose.HTML.Cloud.Examples
 {
     public class RunExamples
@@ -112,6 +113,22 @@ namespace Aspose.HTML.Cloud.Examples
             Runners.Add("ImportHtmlFromMarkdownLocalToStorage", new ImportHtmlFromMarkdownLocalToStorage());
 
 
+            /// HTML API: Conversion/Import (extension)
+            /// ---------------------------------------
+            // == Example == convert HTML document from local file system to PDF and download result 
+            Runners.Add("ConvertHTMLLocalAndDownloadResult.PDF", new ConvertHTMLLocalAndDownloadResult("pdf"));
+            // == Example == convert HTML document from local file system to XPS and download result 
+            Runners.Add("ConvertHTMLLocalAndDownloadResult.XPS", new ConvertHTMLLocalAndDownloadResult("xps"));
+            // == Example == convert HTML document from local file system to XPS and download result 
+            Runners.Add("ConvertHTMLLocalAndDownloadResult.JPEG", new ConvertHTMLLocalAndDownloadResult("jpeg"));
+            // == Example == convert HTML document from local file system to PDF and download result 
+            Runners.Add("ConvertHTMLLocalAsFileAndDownloadResult.PDF", new ConvertHTMLLocalAsFileAndDownloadResult("pdf"));
+            // == Example == convert HTML document from local file system to XPS and download result 
+            Runners.Add("ConvertHTMLLocalAsFileAndDownloadResult.XPS", new ConvertHTMLLocalAsFileAndDownloadResult("xps"));
+            // == Example == convert HTML document from local file system to XPS and download result 
+            Runners.Add("ConvertHTMLLocalAsFileAndDownloadResult.JPEG", new ConvertHTMLLocalAsFileAndDownloadResult("jpeg"));
+
+
             /// HTML API: Translate
             /// ---------------------------------------
             // == Example == translate HTML document in storage from English to French
@@ -153,7 +170,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ExtractHTMLImages_ExtJwtToken";
+            string example = "ConvertHTMLLocalAndDownloadResult.PDF";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");
@@ -169,6 +186,13 @@ namespace Aspose.HTML.Cloud.Examples
                 {
                     Console.WriteLine("RunExamples.cs. Starting...");
                     Console.WriteLine("=====================================================");
+                    Console.WriteLine("== Settings:");
+                    Console.WriteLine($"AppSID = {CommonSettings.AppSID}");
+                    Console.WriteLine($"AppKey = {CommonSettings.AppKey}");
+                    Console.WriteLine($"BasePath = {CommonSettings.BasePath}");
+                    Console.WriteLine($"AuthPath = {CommonSettings.AuthPath}");
+                    Console.WriteLine("=====================================================");
+                    Console.Out.Flush();
                     runner.Run();
                 }
             }

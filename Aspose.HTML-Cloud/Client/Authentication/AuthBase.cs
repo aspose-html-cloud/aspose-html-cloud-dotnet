@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="AuthBase.cs">
-//   Copyright (c) 2019 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -75,7 +75,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
         public static IAuthenticator GetAuthenticator(AuthType type, string clientId, string clientSecret, string baseUri)
         {
-            switch(type)
+            switch (type)
             {
                 case AuthType.OAuth2:
                     return new OAuth2(clientId, clientSecret, baseUri);
@@ -134,7 +134,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             }
             else
             {
-                if(IsAccessTokenExpired())
+                if (IsAccessTokenExpired())
                 {
                     if (ExternalAuth)
                         ErrorImpl = new SdkAuthException(SdkAuthException.Reason.TokenExpired, "Externally provided authorization token expired.");
@@ -156,3 +156,4 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
     }
 }
+

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="HtmlApi.cs">
-//   Copyright (c) 2018 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,10 +31,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
+using Aspose.Html.Cloud.Sdk.Api.Interfaces.Extended;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Internal;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Client.Authentication;
+
 
 namespace Aspose.Html.Cloud.Sdk.Api
 {
@@ -49,7 +51,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         ITranslationApi,
         IOcrApi,
         ITemplateMergeApi,
-        ISummarizationApi
+        ISummarizationApi,
+        IConversionApiEx
     {
         #region Private fields
 
@@ -60,6 +63,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         private ITemplateMergeApi m_templMergeApiImpl = null;
         private ISummarizationApi m_summApiImpl = null;
         private IImportApi m_importApiImpl = null;
+
+        private IConversionApiEx m_conversionApiExImpl = null;
 
         #endregion
 
@@ -76,7 +81,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Constructor. Initalizes a new instance of HtmlApi class as the default constructor does
+        /// Default constructor. Initalizes a new instance HtmlApi class as the default constructor does
         /// and sets the service connection timeout.
         /// </summary>
         /// <param name="timeout">Service connection timeout</param>
@@ -99,9 +104,10 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="authToken">Object that contains external JWT token with its generation time and expiration period</param>
         /// <param name="basePath">REST API service URL</param>
         /// <param name="timeout">Service connection timeout</param>
-        public HtmlApi(JwtToken authToken, string basePath, TimeSpan timeout) 
+        public HtmlApi(JwtToken authToken, string basePath, TimeSpan timeout)
             : base(authToken, basePath, timeout)
         { }
+
 
         /// <summary>
         /// Constructor. Initalizes a new instance of HtmlApi class with specified user credentials (application SID and application key),
@@ -185,6 +191,18 @@ namespace Aspose.Html.Cloud.Sdk.Api
                     m_conversionApiImpl = new ConversionApiImpl(ApiClient);
                 }
                 return m_conversionApiImpl;
+            }
+        }
+
+        private IConversionApiEx ConversionApiExImpl
+        {
+            get
+            {
+                if (m_conversionApiExImpl == null)
+                {
+                    m_conversionApiExImpl = new ConversionApiExImpl(ApiClient);
+                }
+                return m_conversionApiExImpl;
             }
         }
 
@@ -719,6 +737,56 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
         #endregion
 
+        #region IConversionApiEx implementation
+
+        public StreamResponse PostConvertDocumentToImageAndDownload(Stream inStream, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToImageAndDownload(inStream, outFormat, outPath,
+                width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+        }
+
+        public StreamResponse PostConvertDocumentToImageAndDownload(string localFilePath, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToImageAndDownload(localFilePath, outFormat, outPath,
+                width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+        }
+
+        public StreamResponse PostConvertDocumentToPdfAndDownload(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToPdfAndDownload(inStream, outPath,
+                width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        }
+
+        public StreamResponse PostConvertDocumentToPdfAndDownload(string localFilePath, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToPdfAndDownload(localFilePath, outPath,
+                width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        }
+
+        public StreamResponse PostConvertDocumentToXpsAndDownload(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToXpsAndDownload(inStream, outPath,
+                width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        }
+
+        public StreamResponse PostConvertDocumentToXpsAndDownload(string localFilePath, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToPdfAndDownload(localFilePath, outPath,
+                width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        }
+
+        public StreamResponse PostConvertDocumentToMarkdownAndDownload(Stream inStream, string outPath, bool? useGit = false, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToMarkdownAndDownload(inStream, outPath, useGit, storage);
+        }
+
+        public StreamResponse PostConvertDocumentToMarkdownAndDownload(string localFilePath, string outPath, bool? useGit = false, string storage = null)
+        {
+            return ConversionApiExImpl.PostConvertDocumentToMarkdownAndDownload(localFilePath, outPath, useGit, storage);
+        }
+
+        #endregion
+
         #region IOcrApi interface implementation
 
         /// <summary>
@@ -850,6 +918,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
             return SummarizationApiImpl.GetDetectHtmlKeywordsByUrl(sourceUrl);
         }
+
 
         #endregion
     }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="ApiBase.cs">
-//   Copyright (c) 2018 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -88,6 +88,11 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 if (string.IsNullOrEmpty(authUrl))
                     authUrl = DefaultApiBaseUrl;
             }
+            if (ApiClientUtils.UrlContainsVersion(authUrl))
+            {
+                int vIdx = authUrl.LastIndexOf("/v");
+                authUrl = authUrl.Substring(0, vIdx);
+            }
 
             if (!ApiClientUtils.UrlContainsVersion(apiBaseUrl))
             {
@@ -98,7 +103,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Constructor. Initalizes a new instance of an inherited class as the default constructor does
+        /// Default constructor. Initalizes a new instance of an inherited class as the default constructor does
         /// and sets the service connection timeout.
         /// </summary>
         /// <param name="timeout">Service connection timeout</param>
@@ -131,6 +136,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
             this.ApiClient.Timeout = timeout;
         }
 
+
         /// <summary>
         /// Constructor. Initalizes a new instance ApiBase class with specified user credentials (application SID and application key),
         /// and REST API service URL; by default, authentication service URL is the same.        
@@ -157,6 +163,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
             {
                 var baseUrl = $"{basePath}/v{DefaultApiVersion}";
                 basePath = baseUrl;
+            }
+
+            if(ApiClientUtils.UrlContainsVersion(authPath))
+            {
+                int vIdx = authPath.LastIndexOf("/v");
+                authPath = authPath.Substring(0, vIdx);
             }
             this.ApiClient = new ApiClient(appSid, appKey, basePath, authPath);
         }
@@ -202,6 +214,11 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 config.ApiBaseUrl = baseUrl;
             }
 
+            if (ApiClientUtils.UrlContainsVersion(config.AuthUrl))
+            {
+                int vIdx = config.AuthUrl.LastIndexOf("/v");
+                config.AuthUrl = config.AuthUrl.Substring(0, vIdx);
+            }
             this.ApiClient = new ApiClient(
                 config.AppSid, config.AppKey, config.ApiBaseUrl, config.AuthUrl);
         }

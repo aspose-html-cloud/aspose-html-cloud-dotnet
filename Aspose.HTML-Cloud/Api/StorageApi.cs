@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="StorageApi.cs">
-//   Copyright (c) 2018 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,6 +36,7 @@ using Aspose.Html.Cloud.Sdk.Api.Internal;
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Client.Authentication;
 
+
 namespace Aspose.Html.Cloud.Sdk.Api
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         { }
 
         /// <summary>
-        /// Constructor. Initalizes a new instance StorageApi class as the default constructor does
+        /// Default constructor. Initalizes a new instance StorageApi class as the default constructor does
         /// and sets the service connection timeout.
         /// </summary>
         /// <param name="timeout">Service connection timeout</param>

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="ApiClient.cs">
-//   Copyright (c) 2018 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -77,7 +77,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         }
 
         /// <summary>
-        /// Constructor
+        /// 
         /// </summary>
         /// <param name="appSid"></param>
         /// <param name="appKey"></param>
@@ -107,7 +107,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             Authenticator = new JwtAuth(authToken);
         }
 
-        public ApiClient(string authToken, DateTime issuedOn, int expiresIn,  string basePath= "http://api.aspose.cloud/v3.0")
+        public ApiClient(string authToken, DateTime issuedOn, int expiresIn, string basePath = "http://api.aspose.cloud/v3.0")
         {
             BasePath = basePath;
             Timeout = new TimeSpan(0, 5, 0);
@@ -265,9 +265,9 @@ namespace Aspose.Html.Cloud.Sdk.Client
                         break;
                     }
                 }
-                if(!authRes && Authenticator.UseExternalAuthentication)
+                if (!authRes && Authenticator.UseExternalAuthentication)
                 {
-                    if(Authenticator.AuthError != null)
+                    if (Authenticator.AuthError != null)
                         throw Authenticator.AuthError;
 
                     throw new SdkAuthException(SdkAuthException.Reason.Common, $"Authentication error: unknown");
@@ -275,6 +275,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             }
             return response;
         }
+
 
         #region REM - obsolete authentication method
         //private string SignUrl(string url)

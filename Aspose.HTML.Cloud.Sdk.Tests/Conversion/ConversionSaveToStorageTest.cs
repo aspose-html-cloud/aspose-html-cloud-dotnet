@@ -69,6 +69,21 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
         }
 
         [TestMethod]
+        public void Test_PostHtmlConvert_Pdf_LocalFileToStorage_2()
+        {
+            string name = "testpage5.html.zip";
+            string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
+            string srcPath = Path.Combine(LocalTestDataPath, name);
+            using (Stream stream = new FileStream(srcPath, FileMode.Open, FileAccess.Read))
+            {
+                var response = this.HtmlApi.PostConvertDocumentToPdf(stream, outPath);
+                Assert.IsNotNull(response);
+                Assert.AreEqual(200, response.Code);
+            }
+            Assert.IsTrue(StorageApi.FileOrFolderExists(outPath));
+        }
+
+        [TestMethod]
         public void Test_PutHtmlConvert_Xps_StorageDocToStorage()
         {
             string name = "testpage1.html";

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="JwtAuth.cs">
-//   Copyright (c) 2019 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44,6 +44,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         class JwtData
         {
             public string ClientId { get; private set; }
+
             public string AccessToken { get; private set; }
             public string TokenType { get; private set; }
             public int ExpiresInSeconds { get; private set; }
@@ -56,9 +57,11 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
             public bool HasError => !string.IsNullOrEmpty(Error);
 
-            public string Key {
-                get {
-                    if(!string.IsNullOrEmpty(AccessToken))
+            public string Key
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(AccessToken))
                     {
                         int pidx = AccessToken.IndexOf('.');
                         return AccessToken.Substring(0, pidx);
@@ -66,8 +69,10 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                     return "";
                 }
             }
-            public string Payload {
-                get {
+            public string Payload
+            {
+                get
+                {
                     if (!string.IsNullOrEmpty(AccessToken))
                     {
                         int pidx = AccessToken.IndexOf('.'), lpidx = AccessToken.LastIndexOf('.');
@@ -76,8 +81,10 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                     return "";
                 }
             }
-            public string Signature {
-                get {
+            public string Signature
+            {
+                get
+                {
                     if (!string.IsNullOrEmpty(AccessToken))
                     {
                         int lpidx = AccessToken.LastIndexOf('.');
@@ -126,7 +133,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
                 string appsid = null;
                 var jwtHandler = new JwtSecurityTokenHandler();
-                if(jwtHandler.CanReadToken(token))
+                if (jwtHandler.CanReadToken(token))
                 {
                     var jwt_token = jwtHandler.ReadJwtToken(token);
                     var clientIdClaim = jwt_token?.Claims?.FirstOrDefault(_ => _.Type == claimType);
@@ -148,8 +155,9 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             m_authFlow = AuthFlow.ObtainAccessTokenPending;
         }
 
-        public JwtAuth(string authToken, DateTime issuedOn, int expiresIn) 
-            : this(new JwtToken() {
+        public JwtAuth(string authToken, DateTime issuedOn, int expiresIn)
+            : this(new JwtToken()
+            {
                 Token = authToken,
                 IssuedOn = issuedOn,
                 ExpiresInSeconds = expiresIn
@@ -157,7 +165,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         {
         }
 
-        public JwtAuth (JwtToken authToken) : base(AuthType.Jwt, "")
+        public JwtAuth(JwtToken authToken) : base(AuthType.Jwt, "")
         {
             m_authData = JwtData.InitByExternalToken(authToken);
             m_authFlow = AuthFlow.Obtained;
@@ -166,13 +174,13 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
         public bool Authenticate(HttpRequestMessage request)
         {
-            bool res =  AuthenticateImpl(request);
+            bool res = AuthenticateImpl(request);
             if (!res)
             {
                 if (m_authData != null && m_authData.HasError)
                 {
                     ErrorImpl = new SdkAuthException(SdkAuthException.Reason.Common, $"{m_authData.Error}; \r\nDescription: {m_authData.ErrorDescription}");
-                } 
+                }
             }
             else
             {
@@ -189,6 +197,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         public bool UseExternalAuthentication => ExternalAuth;
 
         public SdkAuthException AuthError => ErrorImpl;
+
 
 
         protected override string GetAuthUriString(string host)
@@ -241,3 +250,4 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
     }
 }
+

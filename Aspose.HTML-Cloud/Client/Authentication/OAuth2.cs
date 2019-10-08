@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="OAuth2.cs">
-//   Copyright (c) 2018 Aspose.HTML for Cloud
+//   Copyright (c) 2019 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,6 +39,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
     /// 
     /// </summary>
     [Obsolete("Not supported since Aspose.HTML Cloud API supports only JWT authentication. Still kept for possible future usage.")]
+
     class OAuth2 : AuthBase, IAuthenticator
     {
 
@@ -178,6 +179,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         public bool UseExternalAuthentication => false;
 
         public SdkAuthException AuthError => ErrorImpl;
+
 
         public void RetryAuthentication()
         {

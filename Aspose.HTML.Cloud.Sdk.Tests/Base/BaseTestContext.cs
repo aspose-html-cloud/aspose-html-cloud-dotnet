@@ -1,6 +1,6 @@
 ﻿// // --------------------------------------------------------------------------------------------------------------------
 // // <copyright company="Aspose" file="BaseTestContext.cs">
-// //   Copyright (c) 2018 Aspose.HTML for Cloud
+// //   Copyright (c) 2019 Aspose.HTML Cloud
 // // </copyright>
 // // <summary>
 // //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,6 +38,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
     using Aspose.Html.Cloud.Sdk.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Aspose.Html.Cloud.Sdk.Client.Authentication;
+
 
     /// <summary>
     /// Base class for all tests
@@ -94,11 +95,13 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 
             this.HtmlApi = new HtmlApi(
                 config.AppSid, config.AppKey, baseUrl, config.AuthUrl);
+
             this.StorageApi = new StorageApi(this.HtmlApi);
 
             var tokenObj = GetAuthToken();
             this.HtmlApiEx = new HtmlApi(tokenObj, baseUrl);
             this.StorageApiEx = new StorageApi(tokenObj, baseUrl);
+
         }
 
         /// <summary>
@@ -173,8 +176,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 
         protected HtmlApi HtmlApiEx { get; set; }
 
-
         protected StorageApi StorageApiEx { get; set; }
+
 
         /// <summary>
         /// AppSid
@@ -311,6 +314,5 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             }
             return null;
         }
-
     }
 }
