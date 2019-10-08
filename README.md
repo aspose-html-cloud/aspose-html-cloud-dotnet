@@ -119,7 +119,11 @@ namespace MyAppNamespace
 
 ## Dependencies
 - .NET Framework 4.0 or later
-- [Json.NET (9.0.1 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+- [Json.NET (12.0.12 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+
+- .NET Standard 2.0 or later
+- [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+
 
 ## Roadmap
 
@@ -129,6 +133,13 @@ In the upcoming releases, we are set to implement a number of new features:
 
 Known issues that we are set to fix soon:
 * 
+
+## Documentation for authorization methods
+
+Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
+
+For more details see [**Authorization**](docs/Authorization.md)
+
 
 ## Documentation for API Endpoints
 
