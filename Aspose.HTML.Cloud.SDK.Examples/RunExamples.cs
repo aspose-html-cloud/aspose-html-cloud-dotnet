@@ -156,7 +156,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ConvertHTMLLocalAndDownloadResult.JPEG";
+            string example = "ConvertHTMLLocalAndDownloadResult.PDF";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");
@@ -171,6 +171,12 @@ namespace Aspose.HTML.Cloud.Examples
                 else
                 {
                     Console.WriteLine("RunExamples.cs. Starting...");
+                    Console.WriteLine("=====================================================");
+                    Console.WriteLine("== Settings:");
+                    Console.WriteLine($"AppSID = {CommonSettings.AppSID}");
+                    Console.WriteLine($"AppKey = {CommonSettings.AppKey}");
+                    Console.WriteLine($"BasePath = {CommonSettings.BasePath}");
+                    Console.WriteLine($"AuthPath = {CommonSettings.AuthPath}");
                     Console.WriteLine("=====================================================");
                     Console.Out.Flush();
                     runner.Run();
