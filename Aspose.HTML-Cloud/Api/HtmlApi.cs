@@ -35,6 +35,8 @@ using Aspose.Html.Cloud.Sdk.Api.Interfaces.Extended;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Internal;
 using Aspose.Html.Cloud.Sdk.Client;
+using Aspose.Html.Cloud.Sdk.Client.Authentication;
+
 
 namespace Aspose.Html.Cloud.Sdk.Api
 {
@@ -85,6 +87,27 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="timeout">Service connection timeout</param>
         public HtmlApi(TimeSpan timeout) : base(timeout)
         { }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of HtmlApi class with specified REST API service URL
+        /// and JWT token provided by the calling application 
+        /// </summary>
+        /// <param name="authToken">Object that contains external JWT token with its generation time and expiration period</param>
+        /// <param name="basePath">REST API service URL</param>
+        public HtmlApi(JwtToken authToken, string basePath = null) : base(authToken, basePath)
+        { }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of HtmlApi class with specified REST API service URL,
+        /// JWT token provided by the calling application and the service connection timeout.
+        /// </summary>
+        /// <param name="authToken">Object that contains external JWT token with its generation time and expiration period</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="timeout">Service connection timeout</param>
+        public HtmlApi(JwtToken authToken, string basePath, TimeSpan timeout)
+            : base(authToken, basePath, timeout)
+        { }
+
 
         /// <summary>
         /// Constructor. Initalizes a new instance of HtmlApi class with specified user credentials (application SID and application key),

@@ -38,6 +38,8 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
     /// <summary>
     /// 
     /// </summary>
+    [Obsolete("Not supported since Aspose.HTML Cloud API supports only JWT authentication. Still kept for possible future usage.")]
+
     class OAuth2 : AuthBase, IAuthenticator
     {
 
@@ -173,6 +175,11 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
                 return $"{new String(tokenType)} {m_authData?.AccessToken}";
             }
         }
+
+        public bool UseExternalAuthentication => false;
+
+        public SdkAuthException AuthError => ErrorImpl;
+
 
         public void RetryAuthentication()
         {

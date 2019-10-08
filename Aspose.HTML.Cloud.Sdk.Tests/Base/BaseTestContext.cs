@@ -28,19 +28,24 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 {
     using System;
     using System.IO;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using Newtonsoft.Json;
     using Aspose.Html.Cloud.Sdk.Api;
     using Aspose.Html.Cloud.Sdk.Api.Interfaces;
     using Aspose.Html.Cloud.Sdk.Api.Model;
     using Aspose.Html.Cloud.Sdk.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Aspose.Html.Cloud.Sdk.Client.Authentication;
+
 
     /// <summary>
     /// Base class for all tests
     /// </summary>
     public abstract class BaseTestContext
     {
-        private class Keys
+        protected class Keys
         {
             [JsonProperty(PropertyName = "AppSid", Required = Required.Always)]
             public string AppSid { get; set; }
@@ -63,7 +68,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 
         protected const string DefAuthServerUri = @"http://aspose.aspose.cloud";
 
-        private Keys keys;
+        protected Keys keys;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseTestContext"/> class.
@@ -86,10 +91,17 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
                 AppKey = this.keys.AppKey,
                 AppSid = this.keys.AppSid };
 
+            var baseUrl = config.ApiBaseUrl + $"/v{config.ApiVersion}";
+
             this.HtmlApi = new HtmlApi(
-                config.AppSid, config.AppKey, config.ApiBaseUrl + $"/v{config.ApiVersion}", config.AuthUrl);
+                config.AppSid, config.AppKey, baseUrl, config.AuthUrl);
 
             this.StorageApi = new StorageApi(this.HtmlApi);
+
+            var tokenObj = GetAuthToken();
+            this.HtmlApiEx = new HtmlApi(tokenObj, baseUrl);
+            this.StorageApiEx = new StorageApi(tokenObj, baseUrl);
+
         }
 
         /// <summary>
@@ -161,6 +173,11 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
         /// Html API
         /// </summary>
         protected HtmlApi HtmlApi { get; set; }
+
+        protected HtmlApi HtmlApiEx { get; set; }
+
+        protected StorageApi StorageApiEx { get; set; }
+
 
         /// <summary>
         /// AppSid
@@ -256,5 +273,46 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             Assert.IsTrue(File.Exists(outPath));
         }
 
+        protected JwtToken GetAuthToken(int forceExpiresIn = -1)
+        {
+            string authServicePath = $"{keys.AuthServerUri}/connect/token";
+            List<KeyValuePair<string, string>> authReqContent = new List<KeyValuePair<string, string>>
+                        {
+                            new KeyValuePair<string, string>("grant_type", "client_credentials"),
+                            new KeyValuePair<string, string>("client_id", keys.AppSid),
+                            new KeyValuePair<string, string>("client_secret", keys.AppKey)
+                        };
+
+            HttpRequestMessage authReq = new HttpRequestMessage()
+            {
+                RequestUri = new Uri(authServicePath),
+                Method = HttpMethod.Post
+            };
+            authReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            authReq.Content = new FormUrlEncodedContent(authReqContent);
+            authReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            HttpClient authClient = new HttpClient();
+            var authResponse = authClient.SendAsync(authReq).Result;
+            if (authResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var content = authResponse.Content.ReadAsStringAsync().Result;
+                Dictionary<string, object> dict =
+                    JsonConvert.DeserializeObject<Dictionary<string, object>>(content);
+                if (dict.ContainsKey("error"))
+                {
+                    var errDescr = dict.ContainsKey("error_description") ? dict["error_description"] : "";
+                    Console.WriteLine($"Unsuccessful authorization: {errDescr}");
+                    return null;
+                }
+                JwtToken token = new JwtToken()
+                {
+                    Token = dict["access_token"].ToString(),
+                    IssuedOn = DateTime.UtcNow,
+                    ExpiresInSeconds = (forceExpiresIn > 0) ? forceExpiresIn : Convert.ToInt32(dict["expires_in"])
+                };
+                return token;
+            }
+            return null;
+        }
     }
 }

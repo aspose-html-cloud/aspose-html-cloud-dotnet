@@ -31,6 +31,7 @@ using System.Web;
 //using System.Configuration;
 
 using Aspose.Html.Cloud.Sdk.Client;
+using Aspose.Html.Cloud.Sdk.Client.Authentication;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 
 namespace Aspose.Html.Cloud.Sdk.Api
@@ -110,6 +111,31 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
             this.ApiClient.Timeout = timeout;
         }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of an inherited class with specified REST API service URL
+        /// and JWT token provided by the calling application 
+        /// </summary>
+        /// <param name="authToken">Object that contains external JWT token with its generation time and expiration period</param>
+        /// <param name="basePath">REST API service URL</param>
+        protected internal ApiBase(JwtToken authToken, string basePath = "https://api.aspose.cloud/v3.0")
+        {
+            this.ApiClient = new ApiClient(authToken, basePath);
+        }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of an inherited class with specified REST API service URL,
+        /// JWT token provided by the calling application and the service connection timeout.
+        /// </summary>
+        /// <param name="authToken">Object that contains external JWT token with its generation time and expiration period</param>
+        /// <param name="basePath">REST API service URL</param>
+        /// <param name="timeout">Service connection timeout</param>
+        protected internal ApiBase(JwtToken authToken, string basePath, TimeSpan timeout)
+            : this(authToken, basePath)
+        {
+            this.ApiClient.Timeout = timeout;
+        }
+
 
         /// <summary>
         /// Constructor. Initalizes a new instance ApiBase class with specified user credentials (application SID and application key),
