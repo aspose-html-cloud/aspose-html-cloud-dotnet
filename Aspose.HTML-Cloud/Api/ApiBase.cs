@@ -87,6 +87,11 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 if (string.IsNullOrEmpty(authUrl))
                     authUrl = DefaultApiBaseUrl;
             }
+            if (ApiClientUtils.UrlContainsVersion(authUrl))
+            {
+                int vIdx = authUrl.LastIndexOf("/v");
+                authUrl = authUrl.Substring(0, vIdx);
+            }
 
             if (!ApiClientUtils.UrlContainsVersion(apiBaseUrl))
             {
@@ -133,6 +138,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 var baseUrl = $"{basePath}/v{DefaultApiVersion}";
                 basePath = baseUrl;
             }
+
+            if(ApiClientUtils.UrlContainsVersion(authPath))
+            {
+                int vIdx = authPath.LastIndexOf("/v");
+                authPath = authPath.Substring(0, vIdx);
+            }
             this.ApiClient = new ApiClient(appSid, appKey, basePath, authPath);
         }
 
@@ -177,6 +188,11 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 config.ApiBaseUrl = baseUrl;
             }
 
+            if (ApiClientUtils.UrlContainsVersion(config.AuthUrl))
+            {
+                int vIdx = config.AuthUrl.LastIndexOf("/v");
+                config.AuthUrl = config.AuthUrl.Substring(0, vIdx);
+            }
             this.ApiClient = new ApiClient(
                 config.AppSid, config.AppKey, config.ApiBaseUrl, config.AuthUrl);
         }

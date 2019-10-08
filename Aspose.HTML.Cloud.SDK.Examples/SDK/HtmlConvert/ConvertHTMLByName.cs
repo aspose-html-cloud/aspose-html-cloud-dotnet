@@ -52,7 +52,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             else
                 throw new Exception(string.Format("Error: file {0} not found.", srcPath));
 
-            IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey,  CommonSettings.BasePath, CommonSettings.AuthPath);
+            //IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey,  CommonSettings.BasePath, CommonSettings.AuthPath);
+            IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
 
             StreamResponse response = null;
             // call SDK methods that convert HTML document to supported out format

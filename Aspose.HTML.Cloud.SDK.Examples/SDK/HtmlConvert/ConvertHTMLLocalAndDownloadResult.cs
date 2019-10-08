@@ -3,21 +3,23 @@ using System.IO;
 using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Model;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
-
+using Aspose.Html.Cloud.Sdk.Api.Interfaces.Extended;
+using Aspose.HTML.Cloud.Examples.SDK;
 
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 {
-    /// <summary>
+
+    /// =========================================
     /// Aspose.HTML Cloud for .NET SDK - examples.
     /// =========================================
-    /// Example that demonstrates how to convert HTML page in the local filesystem to one of formats 
-    /// supported by Aspose.HTML Cloud passing it to the request stream and saving the result to the cloud storage.
-    /// </summary>
-    public class ConvertHTMLLocalToStorage : ISdkRunner
+    /// Example that demonstrates the extended SDK fuctionality:
+    /// how to convert HTML page in the local filesystem to one of formats supported by Aspose.HTML Cloud
+    /// passing it to the request stream and returning the result as a stream.
+    public class ConvertHTMLLocalAndDownloadResult : ISdkRunner
     {
         private string Format { get; set; }
 
-        public ConvertHTMLLocalToStorage(string format)
+        public ConvertHTMLLocalAndDownloadResult(string format)
         {
             Format = format;
         }
@@ -32,47 +34,46 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             string folder = "/Html/Testout/Conversion";
             string storage = null;
 
-            int width = 800;
-            int height = 1200;
-            int leftMargin = 15;
-            int rightMargin = 15;
-            int topMargin = 15;
-            int bottomMargin = 15;
-            int resolution = 96;
+
+            int? width = null;
+            int? height = null;
+            int? leftMargin = null;
+            int? rightMargin = null;
+            int? topMargin = null;
+            int? bottomMargin = null;
+            int? resolution = null;
 
             string ext = (Format == "tiff") ? "tif" : ((Format == "jpeg") ? "jpg" : Format);
             string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}.{ext}";
             string outPath = Path.Combine(folder, outFile).Replace('\\', '/');
 
+
             using (Stream srcStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                IConversionApi convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
-                IStorageApi storageApi = new StorageApi((ApiBase)convApi);
+                IConversionApiEx convApi = new HtmlApi(CommonSettings.AppSID, CommonSettings.AppKey, CommonSettings.BasePath);
 
-                if( !storageApi.FileOrFolderExists(folder, storage))
-                {
-                    ((IStorageFolderApi)storageApi).CreateFolder(folder, storage);
-                }
-                AsposeResponse response = null;
                 string dataType = Path.GetExtension(name).Replace(".", "");
                 // call SDK methods that convert HTML document to supported out format
+                StreamResponse response = null;
                 switch (Format)
                 {
                     case "pdf":
-                        //outFile += ".pdf";
-                        response = convApi.PostConvertDocumentToPdf(
-                            srcStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                        response = convApi.PostConvertDocumentToPdfAndDownload(srcStream, outPath,
+                            width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
                         break;
                     case "xps":
-                        response = convApi.PostConvertDocumentToXps(
-                            srcStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                        response = convApi.PostConvertDocumentToXpsAndDownload(srcStream, outPath,
+                            width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+                        break;
+                    case "md":
+                        response = convApi.PostConvertDocumentToMarkdownAndDownload(srcStream, outPath, false, storage);
                         break;
                     case "jpeg":
                     case "bmp":
                     case "png":
                     case "tiff":
                     case "gif":
-                        response = convApi.PostConvertDocumentToImage(
+                        response = convApi.PostConvertDocumentToImageAndDownload(
                             srcStream, Format, outPath, width, height,
                             leftMargin, rightMargin, topMargin, bottomMargin,
                             resolution, storage);
@@ -83,13 +84,19 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
 
                 if (response != null && response.Status == "OK")
                 {
-                    storageApi = new StorageApi((ApiBase)convApi);
-                    if (storageApi.FileOrFolderExists(outPath))
+                    string localOutPath = Path.Combine(CommonSettings.OutDirectory, outFile);
+
+                    Stream stream = response.ContentStream;
+                    using (FileStream fstr = new FileStream(localOutPath, FileMode.Create, FileAccess.Write))
                     {
-                        Console.WriteLine(string.Format("\nResult file uploaded to: {0}", outPath));
+                        stream.Position = 0;
+                        stream.CopyTo(fstr);
+                        fstr.Flush();
+                        Console.WriteLine(string.Format("\nResult file downloaded to: {0}", localOutPath));
                     }
                 }
             }
+
         }
     }
 }

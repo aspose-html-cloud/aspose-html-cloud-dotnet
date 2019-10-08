@@ -20,12 +20,20 @@ Aspose.Html.Cloud.Sdk.Api
 Class implements following interfaces:
 
 [**IDocumentApi**](DocumentApi.md)
+
 [**IConversionApi**](ConversionApi.md)
+
 [**IImportApi**](ImportApi.md)
+
 [**ITranslationApi**](TranslationApi.md)
+
 [**ITemplateMergeApi**](TemplateMergeApi.md)
+
 [**IOcrApi**](OcrApi.md)
+
 [**ISummarizationApi**](SummarizationApi.md)
+
+[**IConversionApiEx**](IConversionApiEx.md)
 
 ## Constructors
 
@@ -44,9 +52,11 @@ If the HtmlApi instance is initialized with the constructor without parameters, 
     </appSettings>
 ```
 * If some or all settings are absent in the config file, trying to get them from environment variables the application was started with. For example:
+
 ```
 C:\Users\Me> myapp.exe -e "appSID=userid" -e "appKey=XXXXXX1234567890" -e "baseUrl=https://api.aspose.cloud" -e "authUrl=https://api.aspose.cloud" 
 ```
+
 (NOTE: alternative names of 'appSID' and 'appKey' environment variables are 'client_id' and 'client_secret' respectively)
 * If 'baseUrl' or 'authUrl' are not found, they will be set to https://api.aspose.cloud by default.
 * 'appSID' and 'appKey' are required; if at least one of them isn't found, an exception will be thrown.

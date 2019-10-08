@@ -21,7 +21,9 @@ Aspose.Html.Cloud.Sdk.Api
 Class implements following interfaces:
 
 [**IStorageFileApi**](IStorageFileApi.md)
+
 [**IStorageFolderApi**](IStorageFolderApi.md)
+
 [**IStorageApi**](IStorageApi.md)
 
 ## Constructors

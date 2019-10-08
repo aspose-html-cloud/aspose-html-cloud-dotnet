@@ -44,12 +44,16 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
     {
         IConversionApi m_convApiImpl = null;
         IStorageFileApi m_storageFileApiImpl = null;
+        IStorageFolderApi m_storageFolderApiImpl = null;
+        IStorageApi m_storageApiImpl = null;
 
         #region Constructor
         public ConversionApiExImpl(ApiClient apiClient) : base(apiClient)
         {
             m_convApiImpl = new ConversionApiImpl(apiClient);
             m_storageFileApiImpl = new StorageFileApiImpl(apiClient);
+            m_storageFolderApiImpl = new StorageFolderApiImpl(apiClient);
+            m_storageApiImpl = new StorageApiImpl(apiClient);
         }
 
         #endregion
@@ -60,6 +64,10 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         public StreamResponse PostConvertDocumentToImageAndDownload(Stream inStream, string outFormat, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null, string storage = null)
         {
             var methodName = "PostConvertDocumentToImageAndDownload";
+            //if(string.IsNullOrEmpty(outPath))
+            //{
+            //    outPath = 
+            //}
             var response = m_convApiImpl.PostConvertDocumentToImage(inStream, outFormat, outPath, width, height,
                 leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
             if(response.Code == 200)
@@ -194,6 +202,30 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
                 Status = response.Status,
                 ReasonPhrase = response.ReasonPhrase
             };
+        }
+
+        #endregion
+
+        #region Protected methods
+
+        protected string CreateTempStorageFolder(string storage = null)
+        {
+            const string F_TEMP = "/Temp";
+            if (m_storageApiImpl.FileOrFolderExists(F_TEMP, storage))
+            {
+                m_storageFolderApiImpl.CreateFolder(F_TEMP, storage);
+            }
+            string tmpPath = Path.Combine(F_TEMP, Guid.NewGuid().ToString()).Replace('\\', '/');
+            AsposeResponse resp = m_storageFolderApiImpl.CreateFolder(tmpPath, storage);
+            if (resp.Code == 200)
+                return tmpPath;
+
+            return null;
+        }
+
+        protected void DeleteTempStorageFolder(string folder, string storage = null)
+        {
+
         }
 
         #endregion

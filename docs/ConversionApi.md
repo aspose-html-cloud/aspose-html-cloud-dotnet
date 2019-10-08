@@ -486,7 +486,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/vnd.ms-xpsdocumen
+ - **Accept**: application/vnd.ms-xpsdocument
  
 
 <a name="GetConvertDocumentToMarkdown"></a>
@@ -664,6 +664,7 @@ No authorization required
 Convert the HTML page from the web by its URL to MHTML.
 
 ### Example
+
 ```csharp
 
 using System;
