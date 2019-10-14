@@ -107,11 +107,11 @@ namespace Aspose.Html.Cloud.Sdk.Client
             Authenticator = new JwtAuth(authToken);
         }
 
-        public ApiClient(string authToken, DateTime issuedOn, int expiresIn, string basePath = "http://api.aspose.cloud/v3.0")
+        public ApiClient(string authToken, string basePath = "https://api.aspose.cloud/v3.0")
         {
             BasePath = basePath;
             Timeout = new TimeSpan(0, 5, 0);
-            Authenticator = new JwtAuth(authToken, issuedOn, expiresIn);
+            Authenticator = new JwtAuth(authToken);
         }
 
         public HttpResponseMessage CallGet(string methodPath, IDictionary<string, string> parameters)

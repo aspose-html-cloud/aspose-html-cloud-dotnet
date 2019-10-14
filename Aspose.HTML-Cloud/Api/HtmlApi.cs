@@ -110,6 +110,24 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
 
         /// <summary>
+        /// Constructor. Initalizes a new instance of HtmlApi class with specified JWT token 
+        /// provided by the calling application as a string and optional REST API service URL
+        /// </summary>
+        /// <param name="authToken">JWT token as string.</param>
+        /// <param name="basePath">REST API service URL</param>
+        public HtmlApi(string authToken, string basePath)
+            : base(authToken, basePath)
+        { }
+
+        /// <summary>
+        /// Constructor. Initalizes a new instance of HtmlApi class with specified JWT token 
+        /// provided by the calling application as string; REST API service URL is default
+        /// </summary>
+        /// <param name="authToken">JWT token as string.</param>
+        public HtmlApi(string authToken) : base(authToken)
+        { }
+
+        /// <summary>
         /// Constructor. Initalizes a new instance of HtmlApi class with specified user credentials (application SID and application key),
         /// and REST API service URL; by default, authentication service URL is the same.
         /// </summary>

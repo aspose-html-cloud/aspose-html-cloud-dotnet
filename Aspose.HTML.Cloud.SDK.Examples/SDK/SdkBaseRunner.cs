@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,7 +58,14 @@ namespace Aspose.HTML.Cloud.Examples.SDK
         }
 
 
-
+        static Regex re = new Regex(@"^v(\d{1,})\.(\d{1,})$");
+        internal static bool UrlContainsVersion(string url)
+        {
+            Uri uri = new Uri(url);
+            var s = uri.Segments.Last<string>();
+            bool res = re.Match(s).Success;
+            return res;
+        }
 
     }
 }

@@ -43,6 +43,10 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
     {
         class JwtData
         {
+            const string CLAIM_NBF = "nbf";
+            const string CLAIM_EXP = "exp";
+            const string CLAIM_CLID = "client_id";
+
             public string ClientId { get; private set; }
 
             public string AccessToken { get; private set; }
@@ -57,7 +61,7 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
 
             public bool HasError => !string.IsNullOrEmpty(Error);
 
-            public string Key
+            public string Header
             {
                 get
                 {
@@ -98,11 +102,48 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
             {
                 var result = new JwtData();
                 result.AccessToken = token.Token;
+                result.TokenType = "Bearer";
+
                 result.IssuedOn = token.IssuedOn;
                 result.ExpiresInSeconds = token.ExpiresInSeconds;
-                result.TokenType = "Bearer";
                 result.ClientId = GetAppSidFromJwtToken(token.Token);
 
+                return result;
+            }
+
+            public static JwtData InitByExternalToken(string token)
+            {
+                var result = new JwtData();
+                result.AccessToken = token;
+                result.TokenType = "Bearer";
+
+                // TODO: manual JWT token parsing, 
+                // to exclude System.IdentityModel.Tokens.Jwt dependency
+                //
+                //byte[] hdr_data = Convert.FromBase64String(result.Header);
+                //byte[] pl_data = Convert.FromBase64String(result.Payload);
+                //string hdr = Encoding.ASCII.GetString(hdr_data);
+                //string pl = Encoding.ASCII.GetString(pl_data);
+                //string sg = result.Signature;
+                //result.ClientId =
+                //    result.IssuedOn =
+                //    result.ExpiresInSeconds =
+
+                var jwtHandler = new JwtSecurityTokenHandler();
+                if (jwtHandler.CanReadToken(token))
+                {
+                    var jwt_token = jwtHandler.ReadJwtToken(token);
+                    var claimId = jwt_token?.Claims?.FirstOrDefault(_ => _.Type == CLAIM_CLID);
+                    result.ClientId = claimId?.Value;
+
+                    var claimIssued = jwt_token?.Claims?.FirstOrDefault(_ => _.Type == CLAIM_NBF);
+                    double issued = double.Parse(claimIssued?.Value);
+                    result.IssuedOn = ApiClientUtils.ConvertDateTimeFromUnixTimestamp(issued);
+                    
+                    var claimExp = jwt_token?.Claims?.FirstOrDefault(_ => _.Type == CLAIM_EXP);
+                    double expired = double.Parse(claimExp?.Value);
+                    result.ExpiresInSeconds = (int)(expired - issued);
+                }
                 return result;
             }
 
@@ -166,6 +207,13 @@ namespace Aspose.Html.Cloud.Sdk.Client.Authentication
         }
 
         public JwtAuth(JwtToken authToken) : base(AuthType.Jwt, "")
+        {
+            m_authData = JwtData.InitByExternalToken(authToken);
+            m_authFlow = AuthFlow.Obtained;
+            ExternalAuth = true;
+        }
+
+        public JwtAuth(string authToken) : base(AuthType.Jwt, "")
         {
             m_authData = JwtData.InitByExternalToken(authToken);
             m_authFlow = AuthFlow.Obtained;

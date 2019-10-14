@@ -99,9 +99,10 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             this.StorageApi = new StorageApi(this.HtmlApi);
 
             var tokenObj = GetAuthToken();
-            this.HtmlApiEx = new HtmlApi(tokenObj, baseUrl);
-            this.StorageApiEx = new StorageApi(tokenObj, baseUrl);
-
+            //this.HtmlApiEx = new HtmlApi(tokenObj, baseUrl);
+            //this.StorageApiEx = new StorageApi(tokenObj, baseUrl);
+            this.StorageApiEx = new StorageApi(tokenObj.Token, baseUrl);
+            this.HtmlApiEx = new HtmlApi(tokenObj.Token, baseUrl);
         }
 
         /// <summary>

@@ -170,7 +170,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ConvertHTMLLocalAndDownloadResult.PDF";
+            string example = "ExtractHTMLImages_ExtJwtToken";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");
