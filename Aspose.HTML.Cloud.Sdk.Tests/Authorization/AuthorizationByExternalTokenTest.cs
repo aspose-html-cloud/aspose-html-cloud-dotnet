@@ -34,7 +34,25 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Authorization
         }
 
         [TestMethod]
-        public void Test_AuthorizeByExternalToken_2()
+        public void Test_AuthorizeByExternalToken_1_2()
+        {
+            string name = "childrens-literature-20130206.epub";
+            string folder = StorageTestDataPath;
+
+            try
+            {
+                var response = this.HtmlApiEx.GetConvertDocumentToPdf(name, 
+                    null, null, null, null, null, null, folder);
+                Assert.AreEqual(response.Code, 200);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void Test_AuthorizeByExternalToken_2_1()
         {
             // setup folder path
             string folder = "/Html/TestData";
@@ -52,6 +70,37 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Authorization
             }
 
         }
+
+        [TestMethod]
+        public void Test_AuthorizeByExternalToken_2_2()
+        {
+            // setup folder path
+            string folder = "/Html/Testout";
+            // setup storage name (default storage if null)
+            string storage = null;
+
+            try
+            {
+                var response = this.StorageApiEx.GetFolderContentList(folder, storage);
+                Assert.IsTrue(response != null && response is List<StorageItem>);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+
+        }
+
+        //[TestMethod]
+        //public void Test_AuthorizeByExternalToken_3()
+        //{
+        //    string name = "testpage5.html.zip";
+        //    string xpath = ".//p";
+        //    string folder = StorageTestDataPath;
+
+
+        //}
+
 
         [TestMethod]
         public void Test_ExternalTokenExpiration_1()

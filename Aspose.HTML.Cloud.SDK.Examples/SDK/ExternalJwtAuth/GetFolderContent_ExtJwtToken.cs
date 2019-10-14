@@ -19,7 +19,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK.ExternalJwtAuth
 
             // here the JWT token is acquired with its issue date and expiration period 
             JwtToken token = GetAuthToken();
-            IStorageFolderApi fApi = new StorageApi(token, CommonSettings.BasePath);
+            // 14.10.2019 * changed to constructor accepting token as a string
+            IStorageFolderApi fApi = new StorageApi(token.Token, CommonSettings.BasePath);
             var resp = fApi.GetFolderContentList(folder, storage);
             if (resp != null)
             {

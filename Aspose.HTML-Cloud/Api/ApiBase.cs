@@ -138,6 +138,16 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="authToken"></param>
+        /// <param name="basePath">REST API service URL (optional)</param>
+        protected internal ApiBase(string authToken, string basePath = "https://api.aspose.cloud/v3.0")
+        {
+            this.ApiClient = new ApiClient(authToken, basePath);
+        }
+
+        /// <summary>
         /// Constructor. Initalizes a new instance ApiBase class with specified user credentials (application SID and application key),
         /// and REST API service URL; by default, authentication service URL is the same.        
         /// </summary>

@@ -94,6 +94,10 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                     if (string.IsNullOrEmpty(val))
                         val = DefaultBaseUrl;
                     _basePath = val;
+                    if(!SdkBaseRunner.UrlContainsVersion(_basePath))
+                    {
+                        _basePath += "/v3.0";
+                    }
                 }
                 return _basePath;
             }
@@ -103,7 +107,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK
         {
             get
             {
-                if (_basePath == null)
+                if (_authPath == null)
                 {
                     string val = ConfigurationManager.AppSettings["authUrl"];
                     if (string.IsNullOrEmpty(val))
@@ -111,8 +115,13 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                     if (string.IsNullOrEmpty(val))
                         val = ConfigurationManager.AppSettings["baseUrl"] ?? DefaultBaseUrl;
                     _authPath = val;
+                    if (SdkBaseRunner.UrlContainsVersion(_authPath))
+                    {
+                        int vIdx = _authPath.LastIndexOf("/v");
+                        _authPath = _authPath.Substring(0, vIdx);
+                    }
                 }
-                return _basePath;
+                return _authPath;
             }
         }
 
