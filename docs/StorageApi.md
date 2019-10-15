@@ -50,7 +50,7 @@ C:\Users\Me> myapp.exe -e "appSID=userid" -e "appKey=XXXXXX1234567890" -e "baseU
 * If 'baseUrl' or 'authUrl' are not found, they will be set to https://api.aspose.cloud by default.
 * 'appSID' and 'appKey' are required; if at least one of them isn't found, an exception will be thrown.
 
-> HtmlApi(timeout)
+> StorageApi(timeout)
 
 Initializes class instance as the default constructor does (see above) and sets the service connection timeout as a TimeSpan structure instance (default connection timeout is 5 min)
 
@@ -97,7 +97,25 @@ Initializes class instance with existing ApiBase-inherited class instance (expli
 
 ```csharp
 
-var stApi = new HtmlApi(appSid, appKey, basePath, authPath);
-var htmlApi = new StorageApi(stApi);
+var htmlApi = new HtmlApi(appSid, appKey, basePath, authPath);
+var stApi = new StorageApi(stApi);
 
 ```
+
+
+> StorageApi (authToken, basePath)
+
+Initializes class instance with a JwtToken object that contains externally provided JWT token with its issuing date and validity period, and REST API service URL (optional - default is https://api.aspose.cloud/v3.0). For details, see [**Authorization**](Authorization.md)
+
+NOTE: since SDK version 19.1.1, this constructor looks redundant because the JWT token issuing date and validity period can be obtained from the token.
+
+
+> StorageApi (authToken, basePath)
+
+Initializes class instance with externally provided JWT token string and REST API service URL (optional - default is https://api.aspose.cloud/v3.0)
+
+
+> StorageApi (authToken)
+
+Initializes class instance with externally provided JWT token as a string; REST API service URL is default (see previous constructor description)
+

@@ -58,3 +58,33 @@ catch(Exception ex)
 }
 
 ```
+
+Since v19.9.1, there is an option to use access token itself, without issued_on and expires_in parameters because they can be obtained from the token.
+
+#### Example
+
+```csharp
+
+string baseUrl = "https://api.aspose.cloud";
+
+string token = "..............."; // here is the access token string
+
+try
+{
+	HtmlApi api = new HtmlApi(token, baseUrl);
+	.....
+	// business code is here
+	.....
+}
+catch(Exception ex)
+{
+	if(ex is SdkAuthException 
+		&& ((SdkAuthException)ex).ErrorReason == SdkAuthException.Reason.TokenExpired )
+	{
+		// handle here by re-creating HtmlApi instance with a new token
+		.... 
+	}
+}
+
+```
+
