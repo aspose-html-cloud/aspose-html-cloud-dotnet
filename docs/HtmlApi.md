@@ -113,4 +113,23 @@ var htmlApi = new HtmlApi(stApi);
 
 ```
 
+> HtmlApi (authToken, basePath)
+
+Initializes class instance with a JwtToken object that contains externally provided JWT token with its issuing date and validity period, and REST API service URL (optional - default is https://api.aspose.cloud/v3.0). For details, see [**Authorization**](Authorization.md)
+
+NOTE: since SDK version 19.1.1, this constructor looks redundant because the JWT token issuing date and validity period can be obtained from the token.
+
+
+> HtmlApi (authToken, basePath)
+
+Initializes class instance with externally provided JWT token string and REST API service URL (optional - default is https://api.aspose.cloud/v3.0)
+
+
+> HtmlApi (authToken)
+
+Initializes class instance with externally provided JWT token as a string; REST API service URL is default (see previous constructor description)
+
+
+
+
 
