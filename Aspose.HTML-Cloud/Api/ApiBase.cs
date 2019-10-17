@@ -120,6 +120,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="basePath">REST API service URL</param>
         protected internal ApiBase(JwtToken authToken, string basePath = "https://api.aspose.cloud/v3.0")
         {
+            if (!ApiClientUtils.UrlContainsVersion(basePath))
+            {
+                string delimiter = basePath.EndsWith("/") ? "" : "/";
+                var baseUrl = $"{basePath}{delimiter}v{DefaultApiVersion}";
+                basePath = baseUrl;
+            }
             this.ApiClient = new ApiClient(authToken, basePath);
         }
 
@@ -144,6 +150,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="basePath">REST API service URL (optional)</param>
         protected internal ApiBase(string authToken, string basePath = "https://api.aspose.cloud/v3.0")
         {
+            if (!ApiClientUtils.UrlContainsVersion(basePath))
+            {
+                string delimiter = basePath.EndsWith("/") ? "" : "/";
+                var baseUrl = $"{basePath}{delimiter}v{DefaultApiVersion}";
+                basePath = baseUrl;
+            }
             this.ApiClient = new ApiClient(authToken, basePath);
         }
 
@@ -171,7 +183,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
             if (!ApiClientUtils.UrlContainsVersion(basePath))
             {
-                var baseUrl = $"{basePath}/v{DefaultApiVersion}";
+                string delimiter = basePath.EndsWith("/") ? "" : "/";
+                var baseUrl = $"{basePath}{delimiter}v{DefaultApiVersion}";
                 basePath = baseUrl;
             }
 
@@ -220,7 +233,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         {
             if (!ApiClientUtils.UrlContainsVersion(config.ApiBaseUrl))
             {
-                var baseUrl = config.ApiBaseUrl + "/v" + config.ApiVersion;
+                string delimiter = config.ApiBaseUrl.EndsWith("/") ? "" : "/";
+                var baseUrl = config.ApiBaseUrl + delimiter + "v" + config.ApiVersion;
                 config.ApiBaseUrl = baseUrl;
             }
 
@@ -264,7 +278,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="basePath">The base path</param>
         /// <value>The base path</value>
-        public String GetBasePath(String basePath)
+        public String GetBasePath()
         {
             return this.ApiClient.BasePath;
         }

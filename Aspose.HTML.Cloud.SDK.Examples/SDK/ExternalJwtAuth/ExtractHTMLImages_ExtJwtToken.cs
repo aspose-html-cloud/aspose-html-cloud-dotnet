@@ -34,7 +34,8 @@ namespace Aspose.HTML.Cloud.Examples.SDK.ExternalJwtAuth
 
             // constructor that accepts a token as parameter  
             // 14.10.2019 * changed to constructor accepting token as a string
-            IDocumentApi docApi = new HtmlApi(token.Token, CommonSettings.BasePath);
+            ///IDocumentApi docApi = new HtmlApi(token.Token, CommonSettings.BasePath);
+            IDocumentApi docApi = new HtmlApi(token.Token, "https://api-qa.aspose.cloud");
             // call SDK method that gets a zip archive with all HTML document images
             var response = docApi.GetDocumentImages(name, null, folder);
             if (response != null && response.ContentStream != null && response.Status == "OK")

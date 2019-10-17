@@ -28,7 +28,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
 {
     using System;
     using System.IO;
+    using System.Text.RegularExpressions;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using Newtonsoft.Json;
@@ -272,6 +274,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Base
             var fileName = getFileNameWithTimestamp(response.FileName, suffix);
             var outPath = saveResultStreamToOutDir(response.ContentStream, fileName, outSubdir);
             Assert.IsTrue(File.Exists(outPath));
+        }
+
+        static Regex re = new Regex(@"^v(\d{1,})\.(\d{1,})$");
+        internal static bool UrlContainsVersion(string url)
+        {
+            Uri uri = new Uri(url);
+            var s = uri.Segments.Last<string>();
+            bool res = re.Match(s).Success;
+            return res;
         }
 
         protected JwtToken GetAuthToken(int forceExpiresIn = -1)
