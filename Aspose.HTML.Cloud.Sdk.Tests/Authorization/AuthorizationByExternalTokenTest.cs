@@ -52,6 +52,33 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Authorization
         }
 
         [TestMethod]
+        public void Test_AuthorizeByExternalToken_1_3()
+        {
+            string name = "childrens-literature-20130206.epub";
+            string folder = StorageTestDataPath;
+
+            try
+            {
+                var token = GetAuthToken().Token;
+                var baseUrl = this.HtmlApi.GetBasePath();
+                if(UrlContainsVersion(baseUrl))
+                {
+                    int vIdx = baseUrl.LastIndexOf("/v");
+                    baseUrl = baseUrl.Substring(0, vIdx);
+                }
+
+                var htmlApiExpl = new HtmlApi(token, baseUrl);
+                var response = htmlApiExpl.GetConvertDocumentToPdf(name,
+                    null, null, null, null, null, null, folder);
+                Assert.AreEqual(response.Code, 200);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void Test_AuthorizeByExternalToken_2_1()
         {
             // setup folder path

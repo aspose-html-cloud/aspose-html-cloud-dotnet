@@ -3,16 +3,15 @@
   <metadata>
     <id>Aspose.HTML-Cloud</id>
 	  <title>Aspose.HTML Cloud SDK for .NET</title>
-    <version>19.09.1</version>
+    <version>19.09.2</version>
     <authors>asposecloud</authors>
     <owners>asposemarketplace</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
 	  <license type="expression">MIT</license>
     <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
     <releaseNotes>
-      Patch #1 of Aspose.HTML Cloud for .NET SDK release (v.19.09): 
-	  - added HtmlApi and StorageApi constructors accepting JWT token parameter as a string;
-      - System.IdentityModel.Tokens.Jwt dependency issue resolved	  
+      Patch #2 of Aspose.HTML Cloud for .NET SDK release (v.19.09): 
+	  - bugfix: all SDK methods return Unauthorized code (403) when basePath URL without explicit version v3.0 is passed to HtmlApi(token, basePath) and StorageApi(token, basePath) constructors.
     </releaseNotes>
     <copyright>Aspose 2002-2019. All Rights Reserved.</copyright>
     <tags>aspose.html html translate translation conversion pdf xps image xpath ocr css md mhtml template</tags>
