@@ -3,27 +3,26 @@
   <metadata>
     <id>Aspose.HTML-Cloud</id>
 	  <title>Aspose.HTML Cloud SDK for .NET</title>
-    <version>19.09.2</version>
+    <version>19.09.3</version>
     <authors>asposecloud</authors>
     <owners>asposemarketplace</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
 	  <license type="expression">MIT</license>
     <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
     <releaseNotes>
-      Patch #2 of Aspose.HTML Cloud for .NET SDK release (v.19.09): 
-	  - bugfix: all SDK methods return Unauthorized code (403) when basePath URL without explicit version v3.0 is passed to HtmlApi(token, basePath) and StorageApi(token, basePath) constructors.
+      Patch #3 of Aspose.HTML Cloud for .NET SDK release (v.19.09): 
+	  - bugfix of external JWT authorization (basePath parameter w/o version) applied again;   
+	  - extra dependency removed (System.Configuration.ConfigurationManager)
     </releaseNotes>
     <copyright>Aspose 2002-2019. All Rights Reserved.</copyright>
     <tags>aspose.html html translate translation conversion pdf xps image xpath ocr css md mhtml template</tags>
     <dependencies>
 		<group targetFramework="netstandard2.0">
 		      <dependency id="Newtonsoft.Json" version="12.0.2" />
-			  <dependency id="System.Configuration.ConfigurationManager" version="4.5.0" />
 			  <dependency id="System.IdentityModel.Tokens.Jwt" version="5.5.0" />
 		</group>
 		<group targetFramework="net462">
 		      <dependency id="Newtonsoft.Json" version="12.0.2" />
-			  <dependency id="System.Configuration.ConfigurationManager" version="4.5.0" />
 			  <dependency id="System.IdentityModel.Tokens.Jwt" version="5.5.0" />
 		</group>
     </dependencies>
