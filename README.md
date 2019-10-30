@@ -10,29 +10,25 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 * Conversion of HTML document from Web by its URLto MHTML document format
 * Conversion (import) of Markdown file to HTML page
 * Merging HTML/XHTML templates with external data source; XML is supported as source data format
-* Translation of HTML document between various human languages; the following language pairs are currently supported:
-- English to German
-- English to French
-- English to Russian
-- German to English
-- French to English
-- Russian to English
-- English to Chinese
 * Downloading of HTML page from Web by its URL with its linked resources as single ZIP archive
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
-* Recognition of text content of an image using the OCR service and its import into HTML document.
-* Recognition of text content of an image, import into HTML document with further translation to other languages.
-* Detection of keywords in the HTML text content.
+
 
 See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
 
 ## What's new in the last versions (19.5.0 and later)
 
 1) This SDK version uses Aspose.HTML Cloud REST API version 3.0 (implemented as a Docker container application). So the SDK has been updated according to API v3.0 and to use JWT authorization inside.
-2) All HTML REST API wrapper methods have been joined in the single [**HtmlApi**](docs/HtmlApi.md) class; it becomes a common facade for all HTML API groups. All HTML SDK methods are available using HtmlApi class instance or any of interfaces that it exposes (*IDocumentApi, IConversionApi, IImportApi, ITranslateApi, IOcrApi, ITemplateMergeApi, ISummarizationApi*)
+2) All HTML REST API wrapper methods have been joined in the single [**HtmlApi**](docs/HtmlApi.md) class; it becomes a common facade for all HTML API groups. All HTML SDK methods are available using HtmlApi class instance or any of interfaces that it exposes (*IDocumentApi, IConversionApi, IImportApi, ITemplateMergeApi*)
 3) A special group of SDK methods that provide a cloud storage access has been added. The storage access functionality is available using [**StorageApi**](docs/StorageApi.md) class instance or interfaces that it exposes (*IStorageApi, IStorageFileApi, IStorageFolderApi*). Thus, dependence on Aspose.Storage-Cloud SDK package has been removed.
+
+## What's new in the last versions (19.10.0 and later)
+
+Since the ML related features, namely the translation, the OCR and the keywords detection have been excluded from Aspose.HTML Cloud API, respective methods being represented by *ITranslateApi*, *IOcrApi*, *ISummarizationApi* interfaces also have been removed from the SDK since version 19.10.0. 
+(The previous SDK versions will work properly with all remained functionality, but will produce an exception trying to call any of enumerated interfaces)/
+
 
 ## How to use the SDK?
 The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
@@ -71,7 +67,7 @@ To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setti
 
 ### Sample usage
 
-The example below shows how your application have to translate the HTML document located by its URL using Aspose.HTML-Cloud library:
+The example below shows how your application have to convert the HTML document located by its URL into other formats (e.g. PDF) using Aspose.HTML-Cloud library:
 
 ```csharp
 using System;
@@ -91,27 +87,37 @@ namespace MyAppNamespace
 
         string sourceUrl = "https://www.le.ac.uk/oerresources/bdra/html/page_02.htm";
         // apply a source page URL
-        string source_lang = "en";  // source language
-        string result_lang = "fr";  // result language
+		int width = 800;
+		int height = 1200;
+		int leftMargin = 15;
+		int rightMargin = 15;
+		int topMargin = 15;
+		int bottomMargin = 15;
 
-        string resultFile = "page_02_en_fr.htm";
+        string resultFile = "page_02_converted.pdf";
 
         static void Main(string[] args)
         {
             // create instance of the API class
-            ITranslationApi trApi = new HtmlApi(APPKEY, APPSID, BASEPATH, AUTHPATH);
-            // translate the HTML document by its URL
-            StreamResponse response = trApi.GetTranslateDocumentByUrl(sourceUrl, source_lang, result_lang);
-            if(response.Status == "OK" && response.ContentStream != null)
-            {
-                // copy result to file 
-                using (FileStream fs = new FileStream("page_02_en_fr.htm", FileMode.Create, FileAccess.Write))
-                {
-                    stream.Position = 0;
-                    stream.CopyTo(fs);
-                    fs.Flush();
-                }
-            }
+            IConversionApi convApi = new HtmlApi(APPKEY, APPSID, BASEPATH, AUTHPATH);
+            // convert the HTML document by its URL to PDF
+			StreamResponse response = convApi.GetConvertDocumentToPdfByUrl(
+				sourceUrl, format, width, height,
+				leftMargin, rightMargin, topMargin, bottomMargin);
+				
+			if(response != null && response.ContentStream != null)
+			{
+				Stream stream = response.ContentStream;
+				string outFile = Path.Combine(outPath, response.FileName);
+			
+				if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+				using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+				{
+					response.CopyTo(fstr);
+					fstr.Flush();
+					Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
+				}
+			}
         }
     }
 }
@@ -128,8 +134,7 @@ namespace MyAppNamespace
 ## Roadmap
 
 In the upcoming releases, we are set to implement a number of new features:
-* Improve quality of translation: new neural network translator models will be applied to increase translation quality and performance.
-* Add more language pairs to translate: English-to-Japanese, Japanese-to-English and some others.
+*
 
 Known issues that we are set to fix soon:
 * 
@@ -189,13 +194,7 @@ Class | Interface | Method | HTTP request | Description
 [*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**GetMergeHtmlTemplate**](docs/TemplateMergeApi.md#GetMergeHtmlTemplate) | **GET** /html/{templateName}/merge | Populate HTML document template with data located as a file in the storage.
 [*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the stream. Result document will be saved to storage.
 [*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate_1) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the local file system. Result document will be saved to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *ITranslationApi* | [**GetTranslateDocument**](docs/TranslationApi.md#GetTranslateDocument) | **GET** /html/{name}/translate/{srcLang}/{resLang} | Translate the HTML document specified by the name from default or specified storage.
-[*HtmlApi*](docs/HtmlApi.md) | *ITranslationApi* | [**GetTranslateDocumentByUrl**](docs/TranslationApi.md#GetTranslateDocumentByUrl) | **GET** /html/translate/{srcLang}/{resLang} | Translate the HTML document specified by its URL.
-[*HtmlApi*](docs/HtmlApi.md) | *IOcrApi* | [**GetRecognizeAndImportToHtml**](docs/OcrApi.md#GetRecognizeAndImportToHtml) | **GET** /html/{name}/ocr/import | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document.
-[*HtmlApi*](docs/HtmlApi.md) | *IOcrApi* | [**GetRecognizeAndTranslateToHtml**](docs/OcrApi.md#GetRecognizeAndTranslateToHtml) | **GET** /html/{name}/ocr/translate/{srcLang}/{resLang} | Recognize text content from the source image file by its name from default or specified storage, and create an HTML document translated to the specified language.
-[*HtmlApi*](docs/HtmlApi.md) | *ISummarizationApi* | [**GetDetectHtmlKeywords**](docs/SummarizationApi.md#GetDetectHtmlKeywords) | **GET** /html/{name}/summ/keywords | Detect keywords of the HTML document specified by the name from default or specified storage.
-[*HtmlApi*](docs/HtmlApi.md) | *ISummarizationApi* | [**GetDetectHtmlKeywordsByUrl**](docs/SummarizationApi.md#GetDetectHtmlKeywordsByUrl) | **GET** /html/summ/keywords | Detect keywords of the HTML document specified by its URL.
-*StorageApi* | *IStorageFolderApi* | [**GetFolderContentList**] (docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
+[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**GetFolderContentList**] (docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
 [*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CreateFolder**] (docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
 [*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**DeleteFolder**] (docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
 [*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CopyFolder**] (docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder

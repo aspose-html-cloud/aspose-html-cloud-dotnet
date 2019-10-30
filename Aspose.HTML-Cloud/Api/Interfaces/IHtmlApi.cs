@@ -31,8 +31,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Interfaces
     /// Interface that joins all HTML SDK API methods
     /// </summary>
     public interface IHtmlApi : 
-        IDocumentApi, IConversionApi, IOcrApi, ISummarizationApi, ITranslationApi, ITemplateMergeApi,
-        IConversionApiEx
+        IDocumentApi, IConversionApi, ITemplateMergeApi, IImportApi, IConversionApiEx
     {
     }
 }

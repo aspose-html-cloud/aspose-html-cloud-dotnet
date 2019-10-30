@@ -346,8 +346,7 @@ public static void Main(string[] args)
         IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath, authPath);
         var response = convApi.GetConvertDocumentToPdfByUrl(
             sourceUrl, format, width, height,
-            leftMargin, rightMargin, topMargin, bottomMargin,
-            xResolution, yResolution);
+            leftMargin, rightMargin, topMargin, bottomMargin);
             
         if(response != null && response.ContentStream != null)
         {
@@ -945,7 +944,10 @@ public static void Main(string[] args)
         using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
         {
             IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-            var response = convApi.PostConvertDocumentToImage(srcPath, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, resolution, storage);
+            var response = convApi.PostConvertDocumentToImage(srcPath, outFormat, outPath, 
+				width, height, leftMargin, rightMargin, topMargin, bottomMargin, 
+				resolution, storage);
+				
             if(response != null && response.Status == "OK")
             {
                 Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
@@ -1026,7 +1028,10 @@ public static void Main(string[] args)
     try
     {
         IConversionApi convApi = new ConversionApi(appKey, appSID, BasePath);
-        var response = convApi.PutConvertDocumentToPdf(name, outFormat, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
+        var response = convApi.PutConvertDocumentToPdf(name, outFormat, outPath, 
+			width, height, leftMargin, rightMargin, topMargin, bottomMargin, 
+			folder, storage);
+			
         if(response != null && response.Status == "OK")
         {
             Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
@@ -1110,7 +1115,9 @@ public static void Main(string[] args)
         using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
         {
             IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-            var response = convApi.PostConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            var response = convApi.PostConvertDocumentToPdf(inStream, outPath, 
+				width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+				
             if(response != null && response.Status == "OK")
             {
                 Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
@@ -1193,7 +1200,9 @@ public static void Main(string[] args)
     try
     {
         IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-        var response = convApi.PostConvertDocumentToPdf(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        var response = convApi.PostConvertDocumentToPdf(inStream, outPath, 
+			width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+			
         if(response != null && response.Status == "OK")
         {
             Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
@@ -1274,7 +1283,10 @@ public static void Main(string[] args)
     try
     {
         IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-        var response = convApi.PutConvertDocumentToXps(name, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, folder, storage);
+        var response = convApi.PutConvertDocumentToXps(name, outPath, 
+			width, height, leftMargin, rightMargin, topMargin, bottomMargin, 
+			folder, storage);
+			
         if(response != null && response.Status == "OK")
         {
             Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
@@ -1357,7 +1369,9 @@ public static void Main(string[] args)
         using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
         {
             IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-            var response = convApi.PostConvertDocumentToXps(inStream, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+            var response = convApi.PostConvertDocumentToXps(inStream, outPath, 
+				width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+				
             if(response != null && response.Code == 0)
             {
                 Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
@@ -1438,7 +1452,9 @@ public static void Main(string[] args)
     try
     {
         IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-        var response = convApi.PostConvertDocumentToXps(srcPath, outPath, width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+        var response = convApi.PostConvertDocumentToXps(srcPath, outPath, 
+			width, height, leftMargin, rightMargin, topMargin, bottomMargin, storage);
+			
         if(response != null && response.Code == 0)
         {
             Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));

@@ -25,13 +25,7 @@ Class implements following interfaces:
 
 [**IImportApi**](ImportApi.md)
 
-[**ITranslationApi**](TranslationApi.md)
-
 [**ITemplateMergeApi**](TemplateMergeApi.md)
-
-[**IOcrApi**](OcrApi.md)
-
-[**ISummarizationApi**](SummarizationApi.md)
 
 [**IConversionApiEx**](IConversionApiEx.md)
 

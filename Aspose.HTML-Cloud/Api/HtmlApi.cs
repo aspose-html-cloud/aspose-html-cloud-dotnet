@@ -48,20 +48,13 @@ namespace Aspose.Html.Cloud.Sdk.Api
         IDocumentApi,
         IImportApi,
         IConversionApi,
-        ITranslationApi,
-        IOcrApi,
-        ITemplateMergeApi,
-        ISummarizationApi,
         IConversionApiEx
     {
         #region Private fields
 
         private IConversionApi m_conversionApiImpl = null;
         private IDocumentApi m_documentApiImpl = null;
-        private IOcrApi m_ocrApiImpl = null;
-        private ITranslationApi m_translationApiImpl = null;
         private ITemplateMergeApi m_templMergeApiImpl = null;
-        private ISummarizationApi m_summApiImpl = null;
         private IImportApi m_importApiImpl = null;
 
         private IConversionApiEx m_conversionApiExImpl = null;
@@ -248,30 +241,6 @@ namespace Aspose.Html.Cloud.Sdk.Api
             }
         }
 
-        private IOcrApi OcrApiImpl
-        {
-            get
-            {
-                if (m_ocrApiImpl == null)
-                {
-                    m_ocrApiImpl = new OcrApiImpl(ApiClient);
-                }
-                return m_ocrApiImpl;
-            }
-        }
-
-        private ITranslationApi TranslationApiImpl
-        {
-            get
-            {
-                if (m_translationApiImpl == null)
-                {
-                    m_translationApiImpl = new TranslationApiImpl(ApiClient);
-                }
-                return m_translationApiImpl;
-            }
-        }
-
         private ITemplateMergeApi TemplateMergeImpl
         {
             get
@@ -282,19 +251,6 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 }
                 return m_templMergeApiImpl;
             }
-        }
-
-        private ISummarizationApi SummarizationApiImpl
-        {
-            get
-            {
-                if (m_summApiImpl == null)
-                {
-                    m_summApiImpl = new SummarizationApiImpl(ApiClient);
-                }
-                return m_summApiImpl;
-            }
-
         }
 
         #endregion
@@ -805,67 +761,6 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
         #endregion
 
-        #region IOcrApi interface implementation
-
-        /// <summary>
-        /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document.
-        /// </summary>
-        /// <param name="name">String | Document name.</param>
-        /// <param name="engineLang">String | Optional. OCR engine language. </param>
-        /// <param name="folder">String | Optional. The document folder.</param>
-        /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>StreamResponse |  Stream of resulting document. </returns>
-        public StreamResponse GetRecognizeAndImportToHtml(string name, string engineLang = "en", string folder = null, string storage = null)
-        {
-            return OcrApiImpl.GetRecognizeAndImportToHtml(name, engineLang, folder, storage);
-        }
-
-        /// <summary>
-        /// Recognizes text content from the source image file by its name from default or specified storage, and creates an HTML document translated to the specified language.
-        /// </summary>
-        /// <param name="name">String | Document name.</param>
-        /// <param name="srcLang">String | Source language (considered as OCR engine language too).</param>
-        /// <param name="resLang">String | Result language.</param>
-        /// <param name="folder">String | Optional. The document folder.</param>
-        /// <param name="storage">String | Optional. The document storage.</param>
-        /// <returns>StreamResponse |  Stream of resulting document.</returns>
-        public StreamResponse GetRecognizeAndTranslateToHtml(string name, string srcLang, string resLang, string folder = null, string storage = null)
-        {
-            return OcrApiImpl.GetRecognizeAndTranslateToHtml(name, srcLang, resLang, folder, storage);
-        }
-        #endregion
-
-        #region ITranslationApi interface implementation
-
-        /// <summary>
-        /// Translates the HTML document specified by the name from default or specified storage. 
-        /// </summary>
-        /// <param name="name">Document name.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
-        /// <param name="folder">The document folder.</param>
-        /// <param name="storage">The document storage.</param>
-        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        public StreamResponse GetTranslateDocument(string name, string srcLang, string resLang, string folder = null, string storage = null)
-        {
-            return TranslationApiImpl.GetTranslateDocument(name, srcLang, resLang, folder, storage);
-        }
-
-        /// <summary>
-        /// Translates the HTML document specified by its URL. 
-        /// </summary>
-        /// <param name="sourceUrl">Source document URL.</param>
-        /// <param name="srcLang">Source language.</param>
-        /// <param name="resLang">Result language.</param>
-        /// <returns>AsposeStreamResponse | Stream of resulting document.</returns>
-        public StreamResponse GetTranslateDocumentByUrl(string sourceUrl, string srcLang, string resLang)
-        {
-            return TranslationApiImpl.GetTranslateDocumentByUrl(sourceUrl, srcLang, resLang);
-        }
-
-        #endregion
-
-
         #region ITemplateMergeApi interface implementation
         /// <summary>
         /// Populates HTML document template with data located as a file in the storage.
@@ -913,31 +808,5 @@ namespace Aspose.Html.Cloud.Sdk.Api
 
         #endregion
 
-        #region ISummarizationApi interface implementation
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="folder"></param>
-        /// <param name="storage"></param>
-        /// <returns></returns>
-        public StreamResponse GetDetectHtmlKeywords(string name, string folder = null, string storage = null)
-        {
-            return SummarizationApiImpl.GetDetectHtmlKeywords(name, folder, storage);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sourceUrl"></param>
-        /// <returns></returns>
-        public StreamResponse GetDetectHtmlKeywordsByUrl(string sourceUrl)
-        {
-            return SummarizationApiImpl.GetDetectHtmlKeywordsByUrl(sourceUrl);
-        }
-
-
-        #endregion
     }
 }

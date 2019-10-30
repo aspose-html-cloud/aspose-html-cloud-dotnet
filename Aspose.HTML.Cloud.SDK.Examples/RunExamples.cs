@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Aspose.HTML.Cloud.Examples.SDK;
 
 using Aspose.HTML.Cloud.Examples.SDK.HtmlDocument;
-using Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate;
+//using Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlConvert;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlImport;
-using Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr;
+//using Aspose.HTML.Cloud.SDK.Examples.SDK.HtmlOcr;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlTemplateMerge;
 using Aspose.HTML.Cloud.Examples.SDK.Storage;
 using Aspose.HTML.Cloud.Examples.SDK.StorageFile;
@@ -129,12 +129,13 @@ namespace Aspose.HTML.Cloud.Examples
             Runners.Add("ConvertHTMLLocalAsFileAndDownloadResult.JPEG", new ConvertHTMLLocalAsFileAndDownloadResult("jpeg"));
 
 
-            /// HTML API: Translate
-            /// ---------------------------------------
-            // == Example == translate HTML document in storage from English to French
-            Runners.Add("TranslateHTMLFromStorage", new TranslateHTMLFromStorage("en", "fr"));
-            // == Example == translate HTML document by URL from English to French
-            Runners.Add("TranslateHTMLByUrl", new TranslateHTMLByUrl("en", "fr"));
+            // AR 25.10.2019 - : unavailable since 19.10
+            ///// HTML API: Translate
+            ///// ---------------------------------------
+            //// == Example == translate HTML document in storage from English to French
+            //Runners.Add("TranslateHTMLFromStorage", new TranslateHTMLFromStorage("en", "fr"));
+            //// == Example == translate HTML document by URL from English to French
+            //Runners.Add("TranslateHTMLByUrl", new TranslateHTMLByUrl("en", "fr"));
 
             /// HTML API: Template Merge
             /// ---------------------------------------
@@ -143,12 +144,14 @@ namespace Aspose.HTML.Cloud.Examples
             // == Example == merge HTML template in the storage with data in the local file system
             Runners.Add("MergeHtmlTemplateWithLocalData", new MergeHtmlTemplateWithLocalData());
 
-            /// HTML API: OCR
-            /// ---------------------------------------
-            // == Example == Recognize text content from image and create HTML document with it
-            Runners.Add("RecognizeAndImportToHTML", new RecognizeAndImportToHTML());
-            // == Example == Recognize text content from image, create HTML and translate the text content
-            Runners.Add("RecognizeAndTranslateToHTML", new RecognizeAndTranslateToHTML("en", "fr"));
+
+            // AR 25.10.2019 - : unavailable since 19.10
+            ///// HTML API: OCR
+            ///// ---------------------------------------
+            //// == Example == Recognize text content from image and create HTML document with it
+            //Runners.Add("RecognizeAndImportToHTML", new RecognizeAndImportToHTML());
+            //// == Example == Recognize text content from image, create HTML and translate the text content
+            //Runners.Add("RecognizeAndTranslateToHTML", new RecognizeAndTranslateToHTML("en", "fr"));
 
             /// HTML API: Summarization
             /// ---------------------------------------
