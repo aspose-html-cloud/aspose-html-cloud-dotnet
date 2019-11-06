@@ -109,6 +109,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Document
         }
 
         [TestMethod]
+        public void Test_GetDocumentFragmentByXPathByUrl_3()
+        {
+            string sourceUrl = "https://google.com";
+            string xpath = "//body";
+
+            var response = HtmlApi.GetDocumentFragmentByXPathByUrl(sourceUrl, xpath, "json");
+            checkGetMethodResponse(response, "Document", "_xpath_body");
+        }
+
+        [TestMethod]
         public void Test_GetDocumentFragmentByCSSByUrl_1()
         {
             var url = testUrls[0];

@@ -1,5 +1,5 @@
 ----------------------------------------------------
-Aspose.HTML Cloud SDK for .NET v.19.10.0 - Readme
+Aspose.HTML Cloud SDK for .NET v.19.10.1 - Readme
 ----------------------------------------------------
 
 This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applications quickly and easily, with zero initial cost.

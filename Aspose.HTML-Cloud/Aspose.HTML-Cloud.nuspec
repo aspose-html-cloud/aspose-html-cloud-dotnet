@@ -3,15 +3,15 @@
   <metadata>
     <id>Aspose.HTML-Cloud</id>
 	  <title>Aspose.HTML Cloud SDK for .NET</title>
-    <version>19.10.0</version>
+    <version>19.10.1</version>
     <authors>asposecloud</authors>
     <owners>asposemarketplace</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
 	  <license type="expression">MIT</license>
     <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
     <releaseNotes>
-      Aspose.HTML Cloud for .NET SDK release (v.19.10): 
-	  - since ML features (translation, keywords detection and OCR) have been excluded from Aspose.HTML Cloud API, the methods of ITranslateApi, ISummarizationApi, IOcrApi interfaces aren't available since this SDK version. 
+      Patch #1 of Aspose.HTML Cloud for .NET SDK release (v.19.10): 
+	  - bugfix: GetDocumentFragmentByXPathByUrl method returns NoContent when a non-empty result must be.  
     </releaseNotes>
     <copyright>Aspose 2002-2019. All Rights Reserved.</copyright>
     <tags>aspose.html html conversion pdf xps image xpath css md mhtml template</tags>

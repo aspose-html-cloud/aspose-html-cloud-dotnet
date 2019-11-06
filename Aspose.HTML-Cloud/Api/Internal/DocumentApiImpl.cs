@@ -102,7 +102,6 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
 
             var path = "/html/fragments/css/{outFormat}";
-            path = path.Replace("{format}", "json");
             path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
 
             var queryParams = new Dictionary<String, String>();
@@ -132,7 +131,6 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
 
 
             var path = "/html/{name}/fragments/{outFormat}";
-            path = path.Replace("{format}", "json");
             path = path.Replace("{" + "name" + "}", ApiClientUtils.ParameterToString(name));
             path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
 
@@ -160,15 +158,14 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
             // verify the required parameter 'outFormat' is set
             if (outFormat == null) throw new ApiException(400, $"Missing required parameter 'outFormat' when calling {methodName}");
 
-            var path = "/html/fragments/css/{outFormat}";
-            path = path.Replace("{format}", "json");
+            var path = "/html/fragments/{outFormat}";
             path = path.Replace("{" + "outFormat" + "}", ApiClientUtils.ParameterToString(outFormat));
 
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
 
             queryParams.Add("sourceUrl", ApiClientUtils.ParameterToString(sourceUrl)); // query parameter
-            queryParams.Add("selector", ApiClientUtils.ParameterToString(xPath));   // query parameter
+            queryParams.Add("xPath", ApiClientUtils.ParameterToString(xPath));         // query parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { };
