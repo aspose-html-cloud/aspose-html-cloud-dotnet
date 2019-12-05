@@ -14,6 +14,7 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
+* HTML page SEO analysis; returns JSON list of SEO warnings 
 
 
 See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
@@ -194,6 +195,7 @@ Class | Interface | Method | HTTP request | Description
 [*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**GetMergeHtmlTemplate**](docs/TemplateMergeApi.md#GetMergeHtmlTemplate) | **GET** /html/{templateName}/merge | Populate HTML document template with data located as a file in the storage.
 [*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the stream. Result document will be saved to storage.
 [*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate_1) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the local file system. Result document will be saved to storage.
+[*HtmlApi*](docs/SeoApi.md) | *ISeoApi* | [**GetWebPageSEOWarnings**](docs/SeoApi.md#GetWebPageSEOWarnings) |  **GET** /html/seo | Return list of SEO warnings detected in a specified Web page.
 [*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**GetFolderContentList**] (docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
 [*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CreateFolder**] (docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
 [*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**DeleteFolder**] (docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder

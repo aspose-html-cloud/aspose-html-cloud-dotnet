@@ -29,6 +29,8 @@ Class implements following interfaces:
 
 [**IConversionApiEx**](IConversionApiEx.md)
 
+[**ISeoApi**](SeoApi.md)
+
 ## Constructors
 
 > HtmlApi ()

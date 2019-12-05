@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 <a name="GetDocumentByUrl"></a>
 # **GetDocumentByUrl**
-> StreamResponse GetDocumentByUrl(name, storage, folder)
+> StreamResponse GetDocumentByUrl(sourceUrl)
 
 Download the HTML page from Web by its URL with linked resources as a ZIP archive.
 
@@ -83,6 +83,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/zip
+ 
 
 <a name="GetDocumentFragmentByXPath"></a>
 # **GetDocumentFragmentByXPath**

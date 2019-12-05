@@ -48,7 +48,8 @@ namespace Aspose.Html.Cloud.Sdk.Api
         IDocumentApi,
         IImportApi,
         IConversionApi,
-        IConversionApiEx
+        IConversionApiEx,
+        ISeoApi
     {
         #region Private fields
 
@@ -58,6 +59,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
         private IImportApi m_importApiImpl = null;
 
         private IConversionApiEx m_conversionApiExImpl = null;
+        private ISeoApi m_seoApiImpl = null;
 
         #endregion
 
@@ -250,6 +252,18 @@ namespace Aspose.Html.Cloud.Sdk.Api
                     m_templMergeApiImpl = new TemplateMergeApiImpl(ApiClient);
                 }
                 return m_templMergeApiImpl;
+            }
+        }
+
+        private ISeoApi SeoApiImpl
+        {
+            get
+            {
+                if(m_seoApiImpl == null)
+                {
+                    m_seoApiImpl = new SeoApiImpl(ApiClient);
+                }
+                return m_seoApiImpl;
             }
         }
 
@@ -806,6 +820,24 @@ namespace Aspose.Html.Cloud.Sdk.Api
             return TemplateMergeImpl.PostMergeHtmlTemplate(templateName, localDataFilePath, outPath, options, folder, storage);
         }
 
+        #endregion
+
+        #region ISeoApi interface implementation
+
+        /// <summary>
+        /// Analyze Web page by provided URL and return a list of SEO warnings. 
+        /// The source page is checked for following points:
+        /// - detection of broken links;
+        /// - e-mail links validation;
+        /// - checking for presence of ALT attribute in the IMG elements
+        /// - checking for duplicated H1 elements.
+        /// </summary>
+        /// <param name="sourceUrl">Source page URL</param>
+        /// <returns><see cref="StreamResponse"/> | Stream containing JSON list of links and detected warnings. </returns>
+        public StreamResponse GetWebPageSEOWarnings(string sourceUrl)
+        {
+            return SeoApiImpl.GetWebPageSEOWarnings(sourceUrl);
+        }
         #endregion
 
     }

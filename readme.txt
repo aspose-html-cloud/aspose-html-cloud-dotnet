@@ -1,5 +1,5 @@
 ----------------------------------------------------
-Aspose.HTML Cloud SDK for .NET v.19.10.1 - Readme
+Aspose.HTML Cloud SDK for .NET v.19.11.1 - Readme
 ----------------------------------------------------
 
 This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applications quickly and easily, with zero initial cost.
@@ -14,6 +14,7 @@ Key Features
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
+* HTML page SEO analysis; returns JSON list of SEO warnings 
 
 
 See API Reference (https://apireference.aspose.cloud/html/) for full API specification.
