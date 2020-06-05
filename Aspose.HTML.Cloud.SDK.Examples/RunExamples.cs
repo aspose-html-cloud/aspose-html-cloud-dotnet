@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aspose.HTML.Cloud.Examples.SDK;
 
+using Aspose.HTML.Cloud.Examples.SDK.Configuration;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlDocument;
 //using Aspose.HTML.Cloud.Examples.SDK.HtmlTranslate;
 using Aspose.HTML.Cloud.Examples.SDK.HtmlConvert;
@@ -158,6 +159,12 @@ namespace Aspose.HTML.Cloud.Examples
             /// 
 
 
+            /// HTML API: Configuration
+            /// -----------------------------------------------
+            /// == Example == use custom default HTTP request headers
+            /// 
+            Runners.Add("ConvertHTMLByUrl_DefaultHeaders", new ConvertHTMLByUrl_DefaultHeaders("pdf"));
+
             /// HTML API: Authorization with an external token
             /// -----------------------------------------------
             /// == Example == extract all images from HTML document from storage as an archive 
@@ -173,7 +180,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ExtractHtmlFragmentsByXPathByUrl";
+            string example = "ConvertHTMLByUrl_DefaultHeaders";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");

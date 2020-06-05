@@ -20,7 +20,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK
         public static bool UploadToStorage(string storagePath, string srcPath = null, string storage = null)
         {
             var name = Path.GetFileName(storagePath);
-            Configuration storageConf = new Configuration()
+            Aspose.Html.Cloud.Sdk.Client.Configuration storageConf = new Aspose.Html.Cloud.Sdk.Client.Configuration()
             {
                 ApiBaseUrl = CommonSettings.BasePath,
                 AppKey = CommonSettings.AppKey,

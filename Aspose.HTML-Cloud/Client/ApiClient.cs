@@ -34,6 +34,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 //using Com.Aspose.Html.NativeClient.Authentication;
 using Aspose.Html.Cloud.Sdk.Client.Authentication;
+#if NETSTANDARD2_0
+using System.Reflection;
+#endif
 
 namespace Aspose.Html.Cloud.Sdk.Client
 {
@@ -42,6 +45,9 @@ namespace Aspose.Html.Cloud.Sdk.Client
     /// </summary>
     internal class ApiClient
     {
+        internal const string AsposeClientHeaderName = "x-aspose-client";
+        internal const string AsposeClientVersionHeaderName = "x-aspose-client-version";
+
         public string AppKey { get; protected set; }
         public string AppSid { get; protected set; }
         public string BasePath { get; set; }
@@ -55,6 +61,23 @@ namespace Aspose.Html.Cloud.Sdk.Client
 
         protected const string PAR_FILENAME_I = "__filename__";
 
+        protected Dictionary<string, string> defaultHeaderMap; 
+
+        private void InitDefaultHeaders(Dictionary<string, string> defaultHeaders)
+        {
+            defaultHeaderMap = defaultHeaders ?? new Dictionary<string, string>();
+#if NET20            
+            var sdkVersion = this.GetType().Assembly.GetName().Version;
+#endif
+#if NETSTANDARD2_0
+            var sdkVersion = this.GetType().GetTypeInfo().Assembly.GetName().Version;
+#endif
+            if(!defaultHeaderMap.ContainsKey(AsposeClientHeaderName))
+                defaultHeaderMap.Add(AsposeClientHeaderName, "aspose.html-cloud .net sdk");
+            if (!defaultHeaderMap.ContainsKey(AsposeClientVersionHeaderName))
+                defaultHeaderMap.Add(AsposeClientVersionHeaderName, string.Format("{0}.{1}", sdkVersion.Major, sdkVersion.Minor));
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -64,6 +87,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         /// <param name="auth"></param>
         public ApiClient(string appSid, string appKey, 
             string basePath = "http://api.aspose.cloud/v3.0",
+            Dictionary<string, string> defaultHeaders = null,
             IAuthenticator auth = null)
         {
             AppKey = appKey;
@@ -73,6 +97,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             //Debug = debug;
             Timeout = new TimeSpan(0, 5, 0);
 
+            InitDefaultHeaders(defaultHeaders);
             Authenticator = auth ?? new JwtAuth(appSid, appKey, basePath);
         }
 
@@ -87,6 +112,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         public ApiClient(string appSid, string appKey, 
             string basePath = "http://api.aspose.cloud/v3.0",
             string authPath = "http://api.aspose.cloud/v3.0",
+            Dictionary<string, string> defaultHeaders = null,
             IAuthenticator auth = null)
         {
             AppKey = appKey;
@@ -97,6 +123,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             //Debug = debug;
             Timeout = new TimeSpan(0, 5, 0);
 
+            InitDefaultHeaders(defaultHeaders);
             Authenticator = auth ?? new JwtAuth(appSid, appKey, authPath);
         }
 
@@ -105,6 +132,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             BasePath = basePath;
             Timeout = new TimeSpan(0, 5, 0);
             Authenticator = new JwtAuth(authToken);
+            InitDefaultHeaders(null);
         }
 
         public ApiClient(string authToken, string basePath = "https://api.aspose.cloud/v3.0")
@@ -112,6 +140,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
             BasePath = basePath;
             Timeout = new TimeSpan(0, 5, 0);
             Authenticator = new JwtAuth(authToken);
+            InitDefaultHeaders(null);
         }
 
         public HttpResponseMessage CallGet(string methodPath, IDictionary<string, string> parameters)
@@ -248,6 +277,11 @@ namespace Aspose.Html.Cloud.Sdk.Client
                 {
                     if (authRes = Authenticator.Authenticate(request))
                     {
+                        foreach(var defHeader in defaultHeaderMap)
+                        {
+                            client.DefaultRequestHeaders.Add(defHeader.Key, defHeader.Value);
+                        }
+                        
                         Task task = client.SendAsync(request)
                             .ContinueWith((tsk) => { response = tsk.Result; }
                         );
@@ -275,6 +309,8 @@ namespace Aspose.Html.Cloud.Sdk.Client
             }
             return response;
         }
+
+
 
 
         #region REM - obsolete authentication method

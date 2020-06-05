@@ -3,24 +3,20 @@
   <metadata>
     <id>Aspose.HTML-Cloud</id>
 	  <title>Aspose.HTML Cloud SDK for .NET</title>
-    <version>19.11.0</version>
+    <version>20.5.0</version>
     <authors>asposecloud</authors>
     <owners>asposemarketplace</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
 	  <license type="expression">MIT</license>
     <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
     <releaseNotes>
-      Aspose.HTML Cloud for .NET SDK release (v.19.11): 
-	  - new feature: SEO analyzer: get SEO warnings for a Web page specified by URL.  
+      Aspose.HTML Cloud for .NET SDK release (v.20.5): 
+	  - new feature: Configuration.AddDefaultHeader added; it provides ability to specify custom headers that will be added to each HTTP request beneath API calls.  
     </releaseNotes>
-    <copyright>Aspose 2002-2019. All Rights Reserved.</copyright>
+    <copyright>Aspose 2002-2020. All Rights Reserved.</copyright>
     <tags>aspose.html html conversion pdf xps image xpath css md mhtml template seo</tags>
     <dependencies>
 		<group targetFramework="netstandard2.0">
-		      <dependency id="Newtonsoft.Json" version="12.0.2" />
-			  <dependency id="System.IdentityModel.Tokens.Jwt" version="5.5.0" />
-		</group>
-		<group targetFramework="net462">
 		      <dependency id="Newtonsoft.Json" version="12.0.2" />
 			  <dependency id="System.IdentityModel.Tokens.Jwt" version="5.5.0" />
 		</group>

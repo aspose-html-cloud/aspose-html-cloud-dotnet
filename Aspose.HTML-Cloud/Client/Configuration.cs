@@ -42,7 +42,7 @@ namespace Aspose.Html.Cloud.Sdk.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "19.5.0";
+        public const string Version = "20.5.0";
 
         public const string DefaultApiVersion = "3.0";
   
@@ -134,10 +134,69 @@ namespace Aspose.Html.Cloud.Sdk.Client
         }
         #endregion
 
-        public string ApiBaseUrl { get; set; }
+        private Dictionary<string, string> defaultHeaders_;
+
+        /// <summary>
+        /// Application key (client secret)
+        /// </summary>
         public string AppKey { get; set; }
+
+        /// <summary>
+        /// Application SID (client ID)
+        /// </summary>
         public string AppSid { get; set; }
+
+        /// <summary>
+        /// REST API service URL to call by SDK.
+        /// </summary>
+        public string ApiBaseUrl { get; set; }
+
+        /// <summary>
+        /// Authentication service URL.
+        /// </summary>
         public string AuthUrl { get; set; }
+
+        /// <summary>
+        /// API version.
+        /// </summary>
         public string ApiVersion { get; set; }
+
+        /// <summary>
+        /// Returns a list of default HTTP request headers that are currently set.
+        /// By default, there are 2 predefined headers: 
+        ///   x-aspose-client = 'aspose.html-cloud .net sdk'
+        ///   x-aspose-client-version = '{current SDK version}'
+        /// </summary>
+        public Dictionary<string, string> DefaultHeaders { 
+            get 
+            {
+                if (defaultHeaders_ == null)
+                {
+                    defaultHeaders_ = new Dictionary<string, string>();
+                }
+                return defaultHeaders_; 
+            } 
+        }
+
+        /// <summary>
+        /// Sets default HTTP request headers that will be applied on each API call by HtmlApi or StorageApi objects created with this Configuration.
+        /// </summary>
+        /// <param name="key">Header name</param>
+        /// <param name="value">Header value</param>
+        public void AddDefaultHeader(string key, string value)
+        {
+            lock (this)
+            {
+                if (defaultHeaders_ == null)
+                {
+                    defaultHeaders_ = new Dictionary<string, string>();
+                }
+                if (!defaultHeaders_.ContainsKey(key))
+                    defaultHeaders_.Add(key, value);
+                else
+                    defaultHeaders_[key] = value;
+            }
+        }
+
     }
 }

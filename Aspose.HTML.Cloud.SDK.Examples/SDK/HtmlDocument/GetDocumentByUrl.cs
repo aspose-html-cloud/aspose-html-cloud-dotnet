@@ -5,6 +5,7 @@ using Aspose.Html.Cloud.Sdk.Api;
 using Aspose.Html.Cloud.Sdk.Api.Interfaces;
 using Aspose.Html.Cloud.Sdk.Client;
 
+
 namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlDocument
             // setup local file system directory to save the result file.
             string destDir = @"d:\testout";
 
-            var conf = new Configuration()
+            var conf = new Aspose.Html.Cloud.Sdk.Client.Configuration()
             {
                 AppSid = CommonSettings.AppSID,
                 AppKey = CommonSettings.AppKey,

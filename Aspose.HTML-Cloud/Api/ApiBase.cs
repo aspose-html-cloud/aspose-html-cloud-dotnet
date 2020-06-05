@@ -244,7 +244,7 @@ namespace Aspose.Html.Cloud.Sdk.Api
                 config.AuthUrl = config.AuthUrl.Substring(0, vIdx);
             }
             this.ApiClient = new ApiClient(
-                config.AppSid, config.AppKey, config.ApiBaseUrl, config.AuthUrl);
+                config.AppSid, config.AppKey, config.ApiBaseUrl, config.AuthUrl, config.DefaultHeaders);
         }
 
         /// <summary>

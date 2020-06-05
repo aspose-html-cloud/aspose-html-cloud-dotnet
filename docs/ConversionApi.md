@@ -100,13 +100,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Document name. |
  **outFormat** | **String**| Resulting image format. |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
- **resolution** | **int**| Horizontal and vertical resolution of resulting image. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
+ **resolution** | **int**| Horizontal and vertical resolution of resulting image (default is 96 dpi). | [optional]
  **folder** | **String**| The document folder. | [optional]
  **storage** | **String**| The document storage. | [optional]
 
@@ -193,13 +193,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sourceUrl** | **String**| Source page URL. |
  **outFormat** | **String**| Resulting image format. |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
- **resolution** | **int**| Horizontal and vertical resolution of resulting image. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
+ **resolution** | **int**| Horizontal and vertical resolution of resulting image (default is 96 dpi). | [optional]
 
 ### Return type
 
@@ -285,12 +285,12 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Document name. |
- **width** | **Integer**| Resulting image width.  | [optional]
- **height** | **Integer**| Resulting image height.  | [optional]
- **leftMargin** | **Integer**| Left resulting image margin. | [optional]
- **rightMargin** | **Integer**| Right resulting image margin. | [optional]
- **topMargin** | **Integer**| Top resulting image margin. | [optional]
- **bottomMargin** | **Integer**| Bottom resulting image margin. | [optional]
+ **width** | **Integer**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **Integer**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **Integer**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **Integer**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **Integer**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **Integer**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **folder** | **String**| The document folder. | [optional]
  **storage** | **String**| The document storage. | [optional]
 
@@ -374,12 +374,12 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sourceUrl** | **String**| Source page URL. |
- **width** | **Integer**| Resulting image width.  | [optional]
- **height** | **Integer**| Resulting image height.  | [optional]
- **leftMargin** | **Integer**| Left resulting image margin. | [optional]
- **rightMargin** | **Integer**| Right resulting image margin. | [optional]
- **topMargin** | **Integer**| Top resulting image margin. | [optional]
- **bottomMargin** | **Integer**| Bottom resulting image margin. | [optional]
+ **width** | **Integer**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **Integer**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **Integer**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **Integer**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **Integer**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **Integer**| Bottom resulting image margin (in 1/96 inch). | [optional]
 
 ### Return type
 
@@ -465,12 +465,12 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Document name. |
- **width** | **Integer**| Resulting image width.  | [optional]
- **height** | **Integer**| Resulting image height.  | [optional]
- **leftMargin** | **Integer**| Left resulting image margin. | [optional]
- **rightMargin** | **Integer**| Right resulting image margin. | [optional]
- **topMargin** | **Integer**| Top resulting image margin. | [optional]
- **bottomMargin** | **Integer**| Bottom resulting image margin. | [optional]
+ **width** | **Integer**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **Integer**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **Integer**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **Integer**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **Integer**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **Integer**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **folder** | **String**| The document folder. | [optional]
  **storage** | **String**| The document storage. | [optional]
 
@@ -635,12 +635,12 @@ public static void Main(string[] args)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sourceUrl** | **String**| Source page URL. |
- **width** | **Integer**| Resulting image width.  | [optional]
- **height** | **Integer**| Resulting image height.  | [optional]
- **leftMargin** | **Integer**| Left resulting image margin. | [optional]
- **rightMargin** | **Integer**| Right resulting image margin. | [optional]
- **topMargin** | **Integer**| Top resulting image margin. | [optional]
- **bottomMargin** | **Integer**| Bottom resulting image margin. | [optional]
+ **width** | **Integer**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **Integer**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **Integer**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **Integer**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **Integer**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **Integer**| Bottom resulting image margin (in 1/96 inch). | [optional]
 
 ### Return type
 
@@ -787,13 +787,13 @@ Name | Type | Description  | Notes
  **name** | **String**| Document name. |
  **outFormat** | **String**| Resulting image format. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
- **resolution** | **int**| Horizontal and vertical resolution of resulting image. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
+ **resolution** | **int**| Horizontal and vertical resolution of resulting image (default is 96 dpi). | [optional]
  **folder** | **String**| The document folder. | [optional]
  **storage** | **String**| The document storage. | [optional]
 
@@ -877,13 +877,13 @@ Name | Type | Description  | Notes
  **inStream** | **Stream**| Document stream. |
  **outFormat** | **String**| Resulting image format. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
- **resolution** | **int**| Horizontal and vertical resolution of resulting image. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
+ **resolution** | **int**| Horizontal and vertical resolution of resulting image (default is 96 dpi). | [optional]
  **storage** | **String**| The source and resulting document storage. | [optional]
 
 ### Return type
@@ -968,13 +968,13 @@ Name | Type | Description  | Notes
  **localFilePath** | **String**| Source file path. |
  **outFormat** | **String**| Resulting image format. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
- **resolution** | **int**| Horizontal and vertical resolution of resulting image. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
+ **resolution** | **int**| Horizontal and vertical resolution of resulting image  (default is 96 dpi). | [optional]
  **storage** | **String**| The source and resulting document storage. | [optional]
 
 ### Return type
@@ -1051,12 +1051,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Document name. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **folder** | **String**| The document folder. | [optional]
  **storage** | **String**| The document storage. | [optional]
 
@@ -1138,12 +1138,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inStream** | **Stream**| Document stream. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **storage** | **String**| The source and resulting document storage. | [optional]
 
 ### Return type
@@ -1222,12 +1222,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **localFilePath** | **String**| Local document file path. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **storage** | **String**| The source and resulting document storage. | [optional]
 
 ### Return type
@@ -1306,12 +1306,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Document name. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **folder** | **String**| The document folder. | [optional]
  **storage** | **String**| The document storage. | [optional]
 
@@ -1391,12 +1391,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inStream** | **Stream**| Document stream. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **storage** | **String**| The source and resulting document storage. | [optional]
 
 ### Return type
@@ -1474,12 +1474,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **localFilePath** | **String**| Local document file path. |
  **outPath** | **String**| Path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg |
- **width** | **int**| Resulting image width.  | [optional]
- **height** | **int**| Resulting image height.  | [optional]
- **leftMargin** | **int**| Left resulting image margin. | [optional]
- **rightMargin** | **int**| Right resulting image margin. | [optional]
- **topMargin** | **int**| Top resulting image margin. | [optional]
- **bottomMargin** | **int**| Bottom resulting image margin. | [optional]
+ **width** | **int**| Resulting image width (in 1/96 inch).  | [optional]
+ **height** | **int**| Resulting image height (in 1/96 inch).  | [optional]
+ **leftMargin** | **int**| Left resulting image margin (in 1/96 inch). | [optional]
+ **rightMargin** | **int**| Right resulting image margin (in 1/96 inch). | [optional]
+ **topMargin** | **int**| Top resulting image margin (in 1/96 inch). | [optional]
+ **bottomMargin** | **int**| Bottom resulting image margin (in 1/96 inch). | [optional]
  **storage** | **String**| The source and resulting document storage. | [optional]
 
 ### Return type

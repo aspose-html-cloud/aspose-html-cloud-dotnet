@@ -79,7 +79,7 @@ Initializes class instance with user credentials and REST API service URL
 
 > HtmlApi (config)
 
-Initializes class instance with Configuration object that should be previously created and initialized with with user credentials, REST API service URL, authorization service URL and connection timeout values.
+Initializes class instance with Configuration object that should be previously created and initialized with with user credentials, REST API service URL, authorization service URL and connection timeout values. See  [**Configuration**](Configuration.md)
 
 #### Example
 

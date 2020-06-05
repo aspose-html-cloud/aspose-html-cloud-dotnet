@@ -386,13 +386,13 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML document (located on storage) to the specified image format and returns resulting file in the response content.
         /// </summary>
         /// <param name="name">The source file name.</param>
-        /// <param name="outFormat">Output image format.</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="outFormat">Output image format (in 1/96 inch).</param>
+        /// <param name="width">Resulting image width (in 1/96 inch). </param>
+        /// <param name="height">Resulting image height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left image margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right image margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top image margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom image margin (in 1/96 inch).</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="folder">The source document folder.</param>
         /// <param name="storage">The source document storage.</param>
@@ -407,12 +407,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="sourceUrl">The source page URL.</param>
         /// <param name="outFormat">Output image format.</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="width">Resulting image width (in 1/96 inch). </param>
+        /// <param name="height">Resulting image height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left image margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right image margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top image margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom image margin (in 1/96 inch).</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <returns>StreamResponse | Stream of the resulting image.</returns>
         public StreamResponse GetConvertDocumentToImageByUrl(string sourceUrl, string outFormat, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, int? resolution = null)
@@ -447,14 +447,14 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML document (located on storage) to PDF and returns resulting file in the response content.
         /// </summary>
         /// <param name="name">The source file name.</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
-        /// <param name="folder">The source document folder.</param>
-        /// <param name="storage">The source document storage.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
+        /// <param name="folder">The source document folder (in 1/96 inch).</param>
+        /// <param name="storage">The source document storage (in 1/96 inch).</param>
         /// <returns>StreamResponse | Stream of the resulting PDF document.</returns>
         public StreamResponse GetConvertDocumentToPdf(string name, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string folder = null, string storage = null)
         {
@@ -465,12 +465,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML page (located in the Web by its URL) to PDF and returns resulting file in the response content.
         /// </summary>
         /// <param name="sourceUrl">The source page URL.</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top image document page.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top image document page (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <returns>StreamResponse | Stream of the resulting PDF document.</returns>
         public StreamResponse GetConvertDocumentToPdfByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
         {
@@ -481,12 +481,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML document (located on storage) to XPS and returns resulting file in the response content.
         /// </summary>
         /// <param name="name">The source file name.</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top image document page.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top image document page (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <param name="folder">The document folder.</param>
         /// <param name="storage">The document storage.</param>
         /// <returns>StreamResponse | Stream of the resulting XPS document.</returns>
@@ -499,12 +499,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// Converts the HTML page (located in the Web by its URL) to XPS and returns resulting file in the response content. 
         /// </summary>
         /// <param name="sourceUrl">The source page URL.</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <returns>StreamResponse | Stream of the resulting XPS document.</returns>
         public StreamResponse GetConvertDocumentToXpsByUrl(string sourceUrl, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null)
         {
@@ -517,12 +517,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="inStream">Source document stream.</param>
         /// <param name="outFormat">Output image format</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="width">Resulting image width (in 1/96 inch). </param>
+        /// <param name="height">Resulting image height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left image margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right image margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top image margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom image margin (in 1/96 inch).</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="storage">Resulting image storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
@@ -549,12 +549,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
         public AsposeResponse PostConvertDocumentToPdf(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
@@ -567,12 +567,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="inStream">Source document stream.</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
         public AsposeResponse PostConvertDocumentToXps(Stream inStream, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
@@ -586,12 +586,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="localFilePath"></param>
         /// <param name="outFormat">Output image format</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="width">Resulting image width (in 1/96 inch). </param>
+        /// <param name="height">Resulting image height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left image margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right image margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top image margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom image margin (in 1/96 inch).</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="storage">Resulting image storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
@@ -605,12 +605,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="localFilePath">The local file system path to source document.</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
         /// <returns></returns>
@@ -624,12 +624,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="localFilePath">The local file system path to source document.</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <param name="storage">Resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
         public AsposeResponse PostConvertDocumentToXps(string localFilePath, string outPath, int? width = null, int? height = null, int? leftMargin = null, int? rightMargin = null, int? topMargin = null, int? bottomMargin = null, string storage = null)
@@ -656,12 +656,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// <param name="name">The source file name</param>
         /// <param name="outFormat">Output image format</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.jpg</param>
-        /// <param name="width">Resulting image width. </param>
-        /// <param name="height">Resulting image height. </param>
-        /// <param name="leftMargin">Left image margin.</param>
-        /// <param name="rightMargin">Right image margin.</param>
-        /// <param name="topMargin">Top image margin.</param>
-        /// <param name="bottomMargin">Bottom image margin.</param>
+        /// <param name="width">Resulting image width (in 1/96 inch). </param>
+        /// <param name="height">Resulting image height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left image margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right image margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top image margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom image margin (in 1/96 inch).</param>
         /// <param name="resolution">Image resolution; 96 ppi by default.</param>
         /// <param name="folder">Source document folder</param>
         /// <param name="storage">Source and resulting document storage</param>
@@ -690,12 +690,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="name">The source file name</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.pdf</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <param name="folder">Source document folder</param>
         /// <param name="storage">Source and resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
@@ -709,12 +709,12 @@ namespace Aspose.Html.Cloud.Sdk.Api
         /// </summary>
         /// <param name="name">The source file name</param>
         /// <param name="outPath">The path to resulting file; like this: [/Folder1][/Folder2]/Filename.xps</param>
-        /// <param name="width">Resulting document page width. </param>
-        /// <param name="height">Resulting document page height. </param>
-        /// <param name="leftMargin">Left document page margin.</param>
-        /// <param name="rightMargin">Right document page margin.</param>
-        /// <param name="topMargin">Top document page margin.</param>
-        /// <param name="bottomMargin">Bottom document page margin.</param>
+        /// <param name="width">Resulting document page width (in 1/96 inch). </param>
+        /// <param name="height">Resulting document page height (in 1/96 inch). </param>
+        /// <param name="leftMargin">Left document page margin (in 1/96 inch).</param>
+        /// <param name="rightMargin">Right document page margin (in 1/96 inch).</param>
+        /// <param name="topMargin">Top document page margin (in 1/96 inch).</param>
+        /// <param name="bottomMargin">Bottom document page margin (in 1/96 inch).</param>
         /// <param name="folder">Source document folder</param>
         /// <param name="storage">Source and resulting document storage</param>
         /// <returns>AsposeResponse | Response status.</returns>
