@@ -14,6 +14,7 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
+* HTML page SEO analysis; returns JSON list of SEO warnings
 
 
 See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
