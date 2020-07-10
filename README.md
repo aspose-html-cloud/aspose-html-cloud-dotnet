@@ -14,9 +14,7 @@ This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK al
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
-* Recognition of text content of an image using the OCR service and its import into HTML document.
-* Recognition of text content of an image, import into HTML document with further translation to other languages.
-* Detection of keywords in the HTML text content.
+
 
 See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
 
