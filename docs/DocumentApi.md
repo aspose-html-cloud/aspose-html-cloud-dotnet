@@ -128,7 +128,7 @@ public static void Main(string[] args)
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
-				response.CopyTo(fstr);
+				stream.CopyTo(fstr);
 				fstr.Flush();
 				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
 			}
@@ -139,6 +139,7 @@ public static void Main(string[] args)
 		Console.Out.WriteLine(string.Format("Error: {0}", ex.Message));
 	}
 }
+
 ```
 
 
@@ -189,7 +190,9 @@ public static void Main(string[] args)
 	
 	string outPath = @"d:\Out";
 	Uri uri = new Uri(sourceUrl);
-	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_fragments.txt");
+	string outFile = Path.Combine(
+		outPath, 
+		$"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_fragments.txt");
 	
 	string xPath = ".//p/@class";              // String | XPath query string.
 	string outFormat = "plain";                // String | Output format. Possible values: 'plain' and 'json'.
@@ -207,7 +210,7 @@ public static void Main(string[] args)
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
-				response.CopyTo(fstr);
+				stream.CopyTo(fstr);
 				fstr.Flush();
 				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
 			}
@@ -287,7 +290,7 @@ public static void Main(string[] args)
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
-				response.CopyTo(fstr);
+				stream.CopyTo(fstr);
 				fstr.Flush();
 				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
 			}
@@ -349,7 +352,9 @@ public static void Main(string[] args)
 	
 	string outPath = @"d:\Out";
 	Uri uri = new Uri(sourceUrl);
-	string outFile = Path.Combine(outPath, $"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_css_fragments.txt");
+	string outFile = Path.Combine(
+		outPath, 
+		$"{Path.GetFileNameWithoutExtension(uri.Segments.LastOrDefault())}_css_fragments.txt");
 	
 	string selector = "p[class]";           // String | CSS selector string.
 	string outFormat = "plain";                // String | Output format. Possible values: 'plain' and 'json'.
@@ -367,7 +372,7 @@ public static void Main(string[] args)
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
-				response.CopyTo(fstr);
+				stream.CopyTo(fstr);
 				fstr.Flush();
 				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
 			}
@@ -445,7 +450,7 @@ public static void Main(string[] args)
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
-				response.CopyTo(fstr);
+				stream.CopyTo(fstr);
 				fstr.Flush();
 				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
 			}
@@ -512,12 +517,15 @@ public static void Main(string[] args)
 	    IDocumentApi docApi = new HtmlApi(appKey, appSID, BasePath);
 		var response = docApi.GetDocumentImagesByUrl(sourceUrl);
 			
-		if(response != null && response is FileStream)
+		if(response != null && response.ContentStream != null)
 		{
+			Stream stream = response.ContentStream;
+			string outFile = Path.Combine(outPath, response.FileName);
+			
 			if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
 			using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
 			{
-				response.CopyTo(fstr);
+				stream.CopyTo(fstr);
 				fstr.Flush();
 				Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
 			}

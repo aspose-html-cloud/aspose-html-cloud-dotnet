@@ -33,8 +33,8 @@ public static void Main(string[] args)
     
     string name = "testpage1.md";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);    
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);    
     string storagePath = Path.Combine(folder, name).Replace('\\', '/');
     
     string outPath = @"d:\Out";

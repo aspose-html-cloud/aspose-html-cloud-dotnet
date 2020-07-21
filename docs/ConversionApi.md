@@ -52,7 +52,6 @@ public static void Main(string[] args)
     string format = "jpeg";
     
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.jpg");
     
     string folder = null;     // root folder
     string storage = null;    // default storage
@@ -149,7 +148,6 @@ public static void Main(string[] args)
     string format = "jpeg";
     
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.jpg");
 
     int width = 800;
     int height = 1200;
@@ -239,7 +237,6 @@ public static void Main(string[] args)
     string name = "testpage4_embcss.html";
     
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.pdf");
     
     string folder = null;    // root folder
     string storage = null;   // default storage
@@ -332,7 +329,6 @@ public static void Main(string[] args)
     string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
     
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.pdf");
     
     int width = 800;
     int height = 1200;
@@ -419,7 +415,6 @@ public static void Main(string[] args)
     string name = "testpage4_embcss.html";
 
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.xps");
     
     string folder = null;    // root folder
     string storage = null;   // default storage
@@ -512,7 +507,6 @@ public static void Main(string[] args)
     string name = "testpage4_embcss.html";
     
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.md");
     
     string folder = null;    // root folder
     string storage = null;   // default storage
@@ -590,10 +584,8 @@ public static void Main(string[] args)
     string BasePath = "https://api.aspose.cloud";
     string authPath = "https://api.aspose.cloud";
 
-    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
-    
+    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";   
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.xps");
     
     int width = 800;
     int height = 1200;
@@ -677,10 +669,8 @@ public static void Main(string[] args)
     string appSID = "XXXXX";   // put here your app SID
     string BasePath = "https://api.aspose.cloud";
     
-    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";
-    
+    string sourceUrl = @"https://www.le.ac.uk/oerresources/bdra/html/page_01.htm";   
     string outPath = @"d:\Out";
-    string outFile = Path.Combine(outPath, $"{name}_converted.mht");
     
     try
     {
@@ -834,9 +824,9 @@ public static void Main(string[] args)
 
     string name = "testpage4_embcss.html";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
-    
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);
+
     string outPath = $"/Testout/Conversion/{name}_converted.jpg";
     string outFormat = "jpeg";
     
@@ -923,8 +913,8 @@ public static void Main(string[] args)
 
     string name = "testpage4_embcss.html";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);
     
     string outPath = $"/Testout/Conversion/{name}_converted.jpg";
     string outFormat = "jpeg";
@@ -941,18 +931,15 @@ public static void Main(string[] args)
 
     try
     {
-        using(Stream inStream = new FileStream(srcPath, FileMode.Open, FileAccess.Read)
-        {
-            IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
-            var response = convApi.PostConvertDocumentToImage(srcPath, outFormat, outPath, 
-				width, height, leftMargin, rightMargin, topMargin, bottomMargin, 
-				resolution, storage);
-				
-            if(response != null && response.Status == "OK")
-            {
-                Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
-            }
-        }
+		IConversionApi convApi = new HtmlApi(appKey, appSID, BasePath);
+		var response = convApi.PostConvertDocumentToImage(srcPath, outFormat, outPath, 
+			width, height, leftMargin, rightMargin, topMargin, bottomMargin, 
+			resolution, storage);
+			
+		if(response != null && response.Status == "OK")
+		{
+			Console.Out.WriteLine(string.Format("Success: Result file uploaded as {0}", outPath));
+		}
     }
     catch(Exception ex)
     {
@@ -1095,8 +1082,8 @@ public static void Main(string[] args)
 
     string name = "testpage4_embcss.html";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);
     
     string outPath = $"/Testout/Conversion/{name}_converted.pdf";
     string outFormat = "pdf";
@@ -1182,8 +1169,8 @@ public static void Main(string[] args)
 
     string name = "testpage4_embcss.html";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);
     
     string outPath = $"/Testout/Conversion/{name}_converted.pdf";
     string outFormat = "pdf";
@@ -1350,8 +1337,8 @@ public static void Main(string[] args)
 
     string name = "testpage4_embcss.html";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);
     
     string outPath = $"/Testout/Conversion/{name}_converted.xps";
 
@@ -1436,7 +1423,7 @@ public static void Main(string[] args)
     string name = "testpage4_embcss.html";
     
     string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
+    string srcPath = Path.Combine(srcDataDir, name);
     
     string outPath = $"/Testout/Conversion/{name}_converted.xps";
 
@@ -1525,7 +1512,6 @@ public static void Main(string[] args)
 
     string folder = null;    // root folder
     string storage = null;   // default storage
-
     bool useGit = false;
 
     try
@@ -1591,8 +1577,8 @@ public static void Main(string[] args)
 
     string name = "testpage4_embcss.html";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);
     
     string outPath = $"/Testout/Conversion/{name}_converted.md";
 
@@ -1646,7 +1632,7 @@ No authorization required
 # **PostConvertDocumentToMarkdown**
 > AsposeResponse PostConvertDocumentToMarkdown(localFilePath, outPath, useGit, storage)
 
-Convert the HTML document from the request stream to Markdown and save to the storage.
+Overloaded method. Convert the HTML document from the local file system to Markdown and save to the storage.
 
 ### Example
 
@@ -1664,13 +1650,12 @@ public static void Main(string[] args)
 
     string name = "testpage4_embcss.html";
     
-    string srcDataDir = "d:\Data";
-    string srcPath = Path.Combine(srcPath, name);
+    string srcDataDir = @"d:\Data";
+    string srcPath = Path.Combine(srcDataDir, name);
     
     string outPath = $"/Testout/Conversion/{name}_converted.md";
 
     string storage = null;   // default storage - where result file will be stored 
-
     bool useGit = false;
 
     try
