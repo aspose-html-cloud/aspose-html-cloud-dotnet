@@ -1,5 +1,5 @@
 ----------------------------------------------------
-Aspose.HTML Cloud SDK for .NET - Readme
+Aspose.HTML Cloud SDK for .NET v.19.10.1 - Readme
 ----------------------------------------------------
 
 This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applications quickly and easily, with zero initial cost.
@@ -11,20 +11,10 @@ Key Features
 * Conversion of HTML document into various formats; PDF, XPS document formats and JPEG, PNG, BMP, TIFF raster graphics formats are supported
 * Conversion of ePUB or MHTML document into the same formats that are supported for HTML
 * Merging HTML/XHTML templates with external data source; XML is supported as source data format
-* Translation of HTML document between various human languages; the following language pairs are currently supported:
-- English to German
-- English to French
-- English to Russian
-- German to English
-- Russian to English
-- English to Chinese
-- Chinese to English
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
 * Extraction of all HTML document images in a ZIP archive
-* Recognition of text content of an image using the OCR service and its import into HTML document.
-* Recognition of text content of an image, import into HTML document with further translation to other languages.
-* Detection of keywords in the HTML document text content.
+* HTML page SEO analysis; returns JSON list of SEO warnings 
 
 
 See API Reference (https://apireference.aspose.cloud/html/) for full API specification.
