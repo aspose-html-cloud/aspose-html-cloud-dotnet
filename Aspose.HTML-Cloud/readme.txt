@@ -13,14 +13,6 @@ Key Features
 * Conversion of HTML document from Web by its URLto MHTML document format
 * Conversion (import) of Markdown file to HTML page
 * Merging HTML/XHTML templates with external data source; XML is supported as source data format
-* Translation of HTML document between various human languages; the following language pairs are currently supported:
-- English to German
-- English to French
-- English to Russian
-- German to English
-- French to English
-- Russian to English
-- English to Chinese
 * Downloading of HTML page from Web by its URL with its linked resources as single ZIP archive
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
