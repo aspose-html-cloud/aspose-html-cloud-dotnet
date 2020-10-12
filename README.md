@@ -2,7 +2,6 @@
 
 
 
-
 <img src="Data/header.png">
 
 # Aspose.HTML Cloud SDK for .NET [![NuGet](https://img.shields.io/nuget/v/Aspose.HTML-Cloud.svg)](https://www.nuget.org/packages/Aspose.HTML-Cloud/)
@@ -37,9 +36,9 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 >  - [Contact Us](README.md#ContactUs)
 
 
+<a name="KeyFeatures"/>
 
 ## Key Features
-<a name="KeyFeatures"/>
 
 * Conversion of HTML document into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
 * Conversion of MHTML document into the same formats that are supported for HTML
@@ -53,26 +52,32 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 * Merging HTML/XHTML templates with external data source; XML and JSON are supported as source data format
 * HTML page SEO analysis; returns JSON list of SEO warnings 
 
-## How to use the SDK?
 <a name="HowToUseSDK" />
+
+## How to use the SDK?
+
 
 The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). 
 For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
 
+<a name="HowTo-prerequisites"/>
 
 ### Prerequisites
-<a name="HowTo-prerequisites"/>
+
 
 To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
+<a name="HowTo-installation"/>
 
 ### Installation
-<a name="HowTo-installation"/>
+
 
 Get the ready package from [NuGet](https://www.nuget.org/packages/Aspose.HTML-Cloud/) or build from source available in this repository folder Aspose.HTML-Cloud.
 
-#### Install Aspose.HTML-Cloud via NuGet
 <a name="HowTo-install-nuget"/>
+
+#### Install Aspose.HTML-Cloud via NuGet
+
 
 From the command line:
 
@@ -90,17 +95,18 @@ From within Visual Studio:
 4. Click on the *Browse* tab and search for "Aspose.HTML-Cloud".
 5. Click on the Aspose.HTML-Cloud package, select the appropriate version in the right-tab and click *Install*.
 
+<a name="HowTo-RunTestsExamples"/>
 
 ### Run tests and examples.
-<a name="HowTo-RunTestsExamples"/>
+
 
 To run tests, first modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
 
 To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up AppSID, AppKey, and optionally DataPath.
 
+<a name="CodeExample"/>
 
 ### Usage sample
-<a name="CodeExample"/>
 
 The example below demonstrates how you can use the proposed SDK functionality in your application.
 In this example, the HTML document located by its URL is converted to other format, e.g. PDF using Aspose.HTML-Cloud library.
@@ -114,7 +120,7 @@ In this example, the HTML document located by its URL is converted to other form
  5. Replace APPKEY and APPSID variable values in the code with respective values from your account ( see [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) page )
  6. Run the application and check a result by the path displayed in the console output.
 
-To get more buildable and executable examples, click here.
+For more buildable and executable examples, refer the [**Documentation for API Endpoints**](README.md#Doc_API) chapter.
 
 ```csharp
 
@@ -128,15 +134,21 @@ namespace MyAppNamespace
 {
 	public class Example
 	{
-		static string APPKEY = "XXXXXXXXXXXXXXXXXXX";         // put here the app Key
-		static string APPSID = "XXXXXXXXXXXXXXXXXXX";         // put here the app SID
-		static string BASEPATH = "https://api.aspose.cloud";
-		static string AUTHPATH = "https://api.aspose.cloud";
+		const string ACTION = "Convert the HTML document by its URL to PDF";
+			
+		const string APPKEY = "XXXXXXXXXXXXXXXXXXX";         // put here the app Key
+		const string APPSID = "XXXXXXXXXXXXXXXXXXX";         // put here the app SID
+		const string BASEPATH = "https://api.aspose.cloud";
+		const string AUTHPATH = "https://api.aspose.cloud";
+
+		const string OUT_PATH = @"d:\aspose\testout";
+
 
 		static void Main(string[] args)
 		{
-			string sourceUrl = "https://www.le.ac.uk/oerresources/bdra/html/page_02.htm";
 			// apply a source page URL
+			string sourceUrl = "https://www.le.ac.uk/oerresources/bdra/html/page_02.htm";
+			// all these parameters are optional
 			int width = 800;
 			int height = 1200;
 			int leftMargin = 15;
@@ -144,42 +156,52 @@ namespace MyAppNamespace
 			int topMargin = 15;
 			int bottomMargin = 15;
 
-			//string resultFile = "page_02_converted.pdf";
-			string outPath = @"d:\aspose\testout";
-
 			// create instance of the API class
 			IConversionApi convApi = new HtmlApi(APPKEY, APPSID, BASEPATH, AUTHPATH);
-			// convert the HTML document by its URL to PDF
-			StreamResponse response = convApi.GetConvertDocumentToPdfByUrl(
-				sourceUrl, width, height,
-				leftMargin, rightMargin, topMargin, bottomMargin);
-
-			if (response != null && response.ContentStream != null)
+			try
 			{
-				Stream stream = response.ContentStream;
-				string outFile = Path.Combine(outPath, response.FileName);
+				Console.WriteLine($"{ACTION} : started...");
+				Console.Out.Flush();
 
-				if (!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
+				StreamResponse response = convApi.GetConvertDocumentToPdfByUrl(
+					sourceUrl, width, height,
+					leftMargin, rightMargin, topMargin, bottomMargin);
 
-				using (Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+				if (response != null && response.ContentStream != null)
 				{
-					stream.CopyTo(fstr);
-					fstr.Flush();
+					Stream stream = response.ContentStream;
+					string outFile = Path.Combine(OUT_PATH, response.FileName);
 
-					Console.WriteLine($"Succeeded: result file saved to {outFile}");
-					Console.Out.Flush();
-					Console.WriteLine("Press any key to end");
-					Console.In.Read();
+					if (!Directory.Exists(OUT_PATH)) Directory.CreateDirectory(OUT_PATH);
+
+					using (Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
+					{
+						stream.CopyTo(fstr);
+						fstr.Flush();
+
+						Console.WriteLine($"Succeeded: result file saved to {outFile}");
+						Console.Out.Flush();
+					}
 				}
 			}
+			catch(Exception ex)
+			{
+				Console.WriteLine($"Error: {ex.Message}");
+				Console.Out.Flush();
+			}
+			Console.WriteLine("Press any key to end");
+			Console.In.Read();
 		}
 	}
 }
 
 ```
 
-## Dependencies
+
 <a name="Dependencies"/>
+
+## Dependencies
+
 
 .NET Framework 4.0 or later
 - [Json.NET (12.0.12 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
@@ -188,9 +210,9 @@ namespace MyAppNamespace
 - [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 
+<a name="Doc_API"/>
 
 ## Documentation for API Endpoints
-<a name="Doc_API"/>
 
 The functionality provided by the SDK is divided to two groups:
 
@@ -199,15 +221,14 @@ The functionality provided by the SDK is divided to two groups:
 
 All URIs are relative to *https://api.aspose.cloud/v3.0*
 
-
-### Class: [*HtmlApi*](docs/HtmlApi.md)
 <a name="Doc_Api_Class_HtmlApi"/>
 
-Provides HTML functionality 
+### Class: [*HtmlApi*](docs/HtmlApi.md)
 
-#### Interface: [*IConversionApi*](docs/ConversionApi.md)
+
 <a name="Doc_API_Interface_IConversionApi"/>
 
+#### Interface: [*IConversionApi*](docs/ConversionApi.md)
 
 
  Method | HTTP request | Description
@@ -233,13 +254,11 @@ Provides HTML functionality
  [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown) |  **POST** /html/convert/md | Convert the HTML document from the request stream to Markdown and save it to storage.
  [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown_1) |  **POST** /html/convert/md | Overloaded method. Convert the HTML document from the local file system by its local path to Markdown and save it to storage.
  
- [&#8593;Up to API doc&#8593;](README.md#Doc_API)
 
-
-
-#### Interface: [*IConversionApiEx*](docs/IConversionApiEx.md)
+<br>
 <a name="Doc_API_Interface_IConversionApiEx"/>
 
+#### Interface: [*IConversionApiEx*](docs/IConversionApiEx.md)
 
 
  Method | HTTP request | Description
@@ -253,11 +272,12 @@ Provides HTML functionality
 [**PostConvertDocumentToMarkdownAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToMarkdownAndDownload) | **POST**  /html/convert/md | Extension method. Convert the HTML document from the request stream to Markdown, save to storage and download to stream.
 [**PostConvertDocumentToMarkdownAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToMarkdownAndDownload_1) | **POST**  /html/convert/md | Overloaded extension method. Convert the HTML document from the local file system to Markdown, save to storage and download to stream.
 
- [&#8593;Up to API doc&#8593;](README.md#Doc_API)
- 
+
+ <br>
+<a name="Doc_API_Interface_IImportApi"/>
 
 #### Interface: [*IImportApi*](docs/ImportApi.md)
-<a name="Doc_API_Interface_IImportApi"/>
+
 
  Method | HTTP request | Description
  ------------ | ------------- | -------------
@@ -266,9 +286,10 @@ Provides HTML functionality
  [**PostImportMarkdownToHtml**](docs/ImportApi.md#PostImportMarkdownToHtml) | **POST** /html/import/md | Create an HTML document from Markdown file as input stream and save it to storage.
  [**PostImportMarkdownToHtml**](docs/ImportApi.md#PostImportMarkdownToHtml_1) | **POST** /html/import/md | Overloaded method. Create an HTML document from Markdown file (located in the local file system) and save it to storage.
  
+ <br>
+<a name="Doc_API_Interface_IDocumentApi"/>
 
 #### Interface: [*IDocumentApi*](docs/DocumentApi.md)
-<a name="Doc_API_Interface_IDocumentApi"/>
 
  Method | HTTP request | Description
  ------------ | ------------- | -------------
@@ -280,10 +301,11 @@ Provides HTML functionality
  [**GetDocumentImages**](docs/DocumentApi.md#GetDocumentImages) | **GET** /html/{name}/images/all | Return all HTML document images packaged as a ZIP archive.
  [**GetDocumentImagesByUrl**](docs/DocumentApi.md#GetDocumentImagesByUrl) | **GET** /html/images/all | Return all HTML document images packaged as a ZIP archive - from a Web page by its URL.
 
- [&#8593;Up to API doc&#8593;](README.md#Doc_API)
+
+<br>
+<a name="Doc_API_Interface_ITemplateMergeApi"/>
 
 #### Interface: [*ITemplateMergeApi*](docs/TemplateMergeApi.md)
-<a name="Doc_API_Interface_ITemplateMergeApi"/>
 
  Method | HTTP request | Description
  ------------ | ------------- | -------------
@@ -291,22 +313,26 @@ Provides HTML functionality
  [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the stream. Result document will be saved to storage.
  [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate_1) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the local file system. Result document will be saved to storage.
  
-  [&#8593;Up to API doc&#8593;](README.md#Doc_API)
+
+ <br>
+ <a name="Doc_API_Interface_ISeoApi"/>
  
 #### Interface: [*ISeoApi*](docs/SeoApi.md)
- <a name="Doc_API_Interface_ISeoApi"/>
  
  Method | HTTP request | Description
  ------------ | ------------- | ------------- 
  [**GetWebPageSEOWarnings**](docs/SeoApi.md#GetWebPageSEOWarnings) |  **GET** /html/seo | Return list of SEO warnings detected in a specified Web page.
- 
- 
- 
-### Class: [*StorageApi*](docs/StorageApi.md)
+  
+<br>
 <a name="Doc_Api_Class_StorageApi"/>
+
+### Class: [*StorageApi*](docs/StorageApi.md)
+
  
-#### Interface: [*IStorageFolderApi*](docs/IStorageFolderApi.md)
  <a name="Doc_API_Interface_IStorageFolderApi"/>
+  
+#### Interface: [*IStorageFolderApi*](docs/IStorageFolderApi.md)
+
  
   Method | HTTP request | Description
  ------------ | ------------- | ------------- 
@@ -315,11 +341,14 @@ Provides HTML functionality
  [**DeleteFolder**](docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
  [**CopyFolder**](docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
  [**MoveFolder**](docs/IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
+ <br>
+
  
-  [&#8593;Up to API doc&#8593;](README.md#Doc_API)
+ 
+<a name="Doc_API_Interface_IStorageFileApi"/>
  
 #### Interface: [*IStorageFileApi*](docs/IStorageFileApi.md)
- <a name="Doc_API_Interface_IStorageFileApi"/>
+
  
   Method | HTTP request | Description
  ------------ | ------------- | ------------- 
@@ -330,11 +359,11 @@ Provides HTML functionality
  [**CopyFile**](docs/IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
  [**MoveFile**](docs/IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
  
-  [&#8593;Up to API doc&#8593;](README.md#Doc_API)
- 
-#### Interface: [*IStorageApi*](docs/IStorageApi.md)
-  <a name="Doc_API_Interface_IStorageApi"/>
+ <br>
+<a name="Doc_API_Interface_IStorageApi"/>
   
+#### Interface: [*IStorageApi*](docs/IStorageApi.md)
+
   Method | HTTP request | Description
  ------------ | ------------- | ------------- 
  [**StorageExists**](docs/IStorageApi.md#StorageExists) | **GET** /html/storage/{storageName}/exist | Check if storage exists
@@ -342,20 +371,22 @@ Provides HTML functionality
  [**GetDiscUsage**](docs/IStorageApi.md#GetDiscUsage) | **GET** /html/storage/disc | Get disc usage
  [**GetStorageItemVersions**](docs/IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
 
- [&#8593;Up to API doc&#8593;](README.md#Doc_API)
 
+
+<br>
+<a name="Doc_Auth"/>
 
 ## Documentation for authorization methods
-<a name="Doc_Auth"/>
 
 Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
 
 For more details see [**Authorization**](docs/Authorization.md)
 
-
+<br>
+<a name="Resources"/>
 
 ## Resources
-<a name="Resources"/>
+
 
 - **Website:** [www.aspose.com](http://www.aspose.cloud)
 - **Product Home:** [Aspose.HTML for Cloud](https://products.aspose.cloud/html/cloud)
@@ -363,6 +394,7 @@ For more details see [**Authorization**](docs/Authorization.md)
 - **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.cloud/c/html)
 - **Blog:** [Aspose.HTML for Cloud Blog](https://blog.aspose.cloud/category/aspose-products/aspose-html-cloud/)
 
+<br>
 
 ## Contact Us
 <a name="ContactUs"/>
