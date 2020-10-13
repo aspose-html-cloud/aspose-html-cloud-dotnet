@@ -1,16 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Net.Http;
-using System.Linq;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class BaseTest  /*<TStartup> : WebApplicationFactory<TStartup> where TStartup : class*/
+    public class BaseTest
     {
         private const string QA_APPSID = "html.cloud";
         private const string QA_APPKEY = "html.cloud";
@@ -26,6 +19,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public HttpClient CreateClient()
         {
             var client = new HttpClient();
+            client.BaseAddress = new Uri(LOCAL_BASE_URL);
 
             return client;
         }
@@ -36,27 +30,5 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public string AuthServiceUrl { get; set; } = QA_AUTH_URL;
 
         public string ApiServiceBaseUrl { get; set; } = LOCAL_BASE_URL;
-
-
-        //protected override void ConfigureWebHost(IWebHostBuilder builder)
-        //{
-        //    builder.ConfigureTestServices(services =>
-        //    {
-        //        // Dynabic.Billing.Services.Abstractions.IUsageProcessor
-        //        // get clientIP, in test => throw errors
-
-        //        // Or send Header
-        //        //_client.DefaultRequestHeaders
-        //        //    .Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //        //_client.DefaultRequestHeaders.TryAddWithoutValidation("X-Forwarded-For", "localhost");
-        //        var descriptor = services.SingleOrDefault(s =>
-        //           s.ServiceType.Name == "IUsageProcessor");
-
-        //        Mock<IUsageProcessor> mockClient = new Mock<IUsageProcessor>();
-
-        //        bool result = services.Remove(descriptor);
-        //        services.AddSingleton(typeof(IUsageProcessor), mockClient.Object);
-        //    });
-        //}
     }
 }

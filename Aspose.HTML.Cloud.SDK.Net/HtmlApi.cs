@@ -593,6 +593,19 @@ namespace Aspose.HTML.Cloud.Sdk
             return result;
         }
 
+        public bool DeleteTask(string id)
+        {
+            var query = CONVERSION_URI + $@"/{id}";
+
+            var response = this.restClient.DeleteAsync(query).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void Dispose()
         {
             cancellationTokenSource.Cancel();
