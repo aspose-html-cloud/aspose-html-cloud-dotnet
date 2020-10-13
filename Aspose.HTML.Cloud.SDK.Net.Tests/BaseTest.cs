@@ -20,7 +20,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         public BaseTest()
         {
-            //Server.AllowSynchronousIO = true;
         }
 
         public HttpClient CreateClient()

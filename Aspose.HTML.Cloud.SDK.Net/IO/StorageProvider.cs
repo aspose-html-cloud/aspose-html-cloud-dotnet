@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Aspose.HTML.Cloud.Sdk.IO
 {
-    public sealed class StorageProvider
+    internal sealed class StorageProvider
     {
         private Configuration configuration;
         private StorageFactory factory;
@@ -389,18 +389,6 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             return GetFileInfo(filePath, parsed.StorageName);
         }
 
-        ///// <summary>
-        ///// create empty file - ????????
-        ///// </summary>
-        ///// <param name="fileUri"></param>
-        ///// <param name="storageName"></param>
-        ///// <param name="option"></param>
-        ///// <returns></returns>
-        //public RemoteFile CreateFile(string fileUri, string storageName = null, NameCollisionOption option = NameCollisionOption.FailIfExists)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         /// <summary>
         /// Uploads a file synchronously by its local file system path to the specified storage.
         /// </summary>
@@ -454,7 +442,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                 var resfile = new RemoteFile(new Uri(response.Uploaded.First()), null);
                 res.WithData(resfile);
                 res.Complete();
-                ;
+                
             }, cancellationTokenSource.Token);
 
             return res;
@@ -510,8 +498,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                         response.UploadedInfo[0].ModifiedDate.Value));
 
                 res.WithData(resFile);
-                res.Complete();
-                ;
+                res.Complete();               
             }, cancellationTokenSource.Token);
 
             return res;
@@ -539,8 +526,8 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         public void DownloadFile(RemoteFile file, string localFilePath, string versionId = null)
         {
             var parsed = PathUtility.Parse(file.Path);
-            var fullPath = Path.Combine(localFilePath, parsed.FileName);
-            DownloadFile(parsed.Url, fullPath, parsed.StorageName, versionId);
+            //var fullPath = Path.Combine(localFilePath, parsed.FileName);
+            DownloadFile(parsed.Url, localFilePath, parsed.StorageName, versionId);
         }
 
         /// <summary>
@@ -561,14 +548,13 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             var url = RequestUrlBuilder.GetBuilder(FILE_URI)
                 .WithPath(fileUri)
                 .WithStorageName(storageName).Build();
+
             var remotePath = PathUtility.BuildPath("storage", storageName, fileUri);
 
             taskFactory.StartNew(() => {
 
-                var response = configuration.HttpClient.GetAsync(url, 
-                    HttpCompletionOption.ResponseHeadersRead, 
-                    cancellationTokenSource.Token).Result;
-                response.EnsureSuccessStatusCode();
+                var apiInvoker = InvokerFactory.GetInvoker<StreamResponse>();
+                var response = apiInvoker.CallGetAsStream(url, HttpCompletionOption.ResponseHeadersRead);
 
                 var dir = Path.GetDirectoryName(localFilePath);
                 if (!Directory.Exists(dir))
@@ -576,11 +562,11 @@ namespace Aspose.HTML.Cloud.Sdk.IO
 
                 using (var outputStream = File.Create(localFilePath))
                 using (var wr = new BinaryWriter(outputStream))
-                using (var resourceStream = response.Content.ReadAsStreamAsync().Result)
+                using (var resourceStream = response.Stream )
                 {
                     byte[] buffer = new byte[4096];
                     int readBytes = 0;
-                    long totalBytes = response.Content.Headers.ContentLength.Value; 
+                    long totalBytes = response.StreamLength; 
                     long totalRead = 0;
 
                     while((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
@@ -663,22 +649,21 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             var url = RequestUrlBuilder.GetBuilder(FILE_URI)
                 .WithPath(fileUri)
                 .WithStorageName(storageName).Build();
+
             var remotePath = PathUtility.BuildPath("storage", storageName, fileUri);
 
             taskFactory.StartNew(() =>  {
 
-                var response = configuration.HttpClient.GetAsync(url,
-                     HttpCompletionOption.ResponseHeadersRead,
-                     cancellationTokenSource.Token).Result;
-                response.EnsureSuccessStatusCode();
+                var apiInvoker = InvokerFactory.GetInvoker<StreamResponse>();
+                var response = apiInvoker.CallGetAsStream(url, HttpCompletionOption.ResponseHeadersRead);
                
                 using (var outputStream = new MemoryStream())
                 using (var wr = new BinaryWriter(outputStream))
-                using (var resourceStream = response.Content.ReadAsStreamAsync().Result)
+                using (var resourceStream = response.Stream)
                 {
                     byte[] buffer = new byte[4096];
                     int readBytes = 0;
-                    long totalBytes = response.Content.Headers.ContentLength.Value;
+                    long totalBytes = response.StreamLength;
                     long totalRead = 0;
 
                     while ((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
@@ -703,8 +688,6 @@ namespace Aspose.HTML.Cloud.Sdk.IO
 
             return res;
         }
-
-
 
         /// <summary>
         /// Overloaded method. Starts asynchronous download of a storage file into the byte array.
@@ -733,7 +716,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             var url = RequestUrlBuilder.GetBuilder(FILE_URI)
                 .WithPath(fileUri)
                 .WithStorageName(storageName).Build();
-            return apiInvoker.CallGetAsStream(url);
+            return apiInvoker.CallGetAsStream(url).Stream;
         }
 
         /// <summary>
@@ -790,7 +773,6 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         public RemoteFile CopyFile(string srcFileUri, string destFileUri, string srcStorageName = null, string destStorageName = null, NameCollisionOption option = NameCollisionOption.FailIfExists)
         {
             var apiInvoker = InvokerFactory.GetInvoker<ObjectExist>();
-            //var apiInvoker = ApiInvoker<ObjectExist>.New(configuration);
             var response = apiInvoker.CallPut(
                  RequestUrlBuilder.GetBuilder($"{FILE_URI}/copy")
                      .WithSourcePath(srcFileUri)
@@ -842,7 +824,6 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         public RemoteFile MoveFile(string srcFileUri, string destFileUri, string srcStorageName = null, string destStorageName = null, NameCollisionOption option = NameCollisionOption.FailIfExists)
         {
             var apiInvoker = InvokerFactory.GetInvoker<ObjectExist>();
-            //var apiInvoker = ApiInvoker<ObjectExist>.New(configuration);
             var response = apiInvoker.CallPut(
                  RequestUrlBuilder.GetBuilder($"{FILE_URI}/move")
                      .WithSourcePath(srcFileUri)

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using System.Xml.Serialization;
 
 namespace Aspose.HTML.Cloud.Sdk.DTO
@@ -157,6 +159,26 @@ namespace Aspose.HTML.Cloud.Sdk.DTO
         /// </summary>
         public List<StorageFile> UploadedInfo { get; set; }
 
+    }
+
+    public class StreamResponse
+    {
+        public Stream  Stream { get; protected set; }
+
+        public long StreamLength { get; protected set; }
+
+
+        internal StreamResponse()
+        {
+        }
+
+        public static StreamResponse GetFromHttpResponse(HttpResponseMessage response)
+        {
+            var res = new StreamResponse();
+            res.Stream = response.Content.ReadAsStreamAsync().Result;
+            res.StreamLength = response.Content.Headers.ContentLength.Value;
+            return res;
+        }
     }
 
     #endregion

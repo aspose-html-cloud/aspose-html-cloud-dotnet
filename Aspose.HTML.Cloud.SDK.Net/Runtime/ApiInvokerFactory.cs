@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime
 {
-    public class ApiInvokerFactory
+    internal class ApiInvokerFactory
     {
         private IAuthenticator Authenticator { get; set; }
         private Configuration Configuration { get; set; }

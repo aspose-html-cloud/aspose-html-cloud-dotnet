@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="testResult\**" />
+    <Compile Remove="testSource\**" />
+    <EmbeddedResource Remove="testResult\**" />
+    <EmbeddedResource Remove="testSource\**" />
+    <None Remove="testResult\**" />
+    <None Remove="testSource\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.7" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />

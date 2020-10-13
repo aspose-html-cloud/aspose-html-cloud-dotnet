@@ -20,7 +20,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public ZipConversionStorageToLocalTests(BaseTest fixture)
         {
             client = fixture.CreateClient();
-            api = new HtmlApi(_ => _.WithHttpClient(client));
+            api = new HtmlApi(cb => cb
+                .WithHttpClient(client)
+                .WithAppSid(fixture.AppSid)
+                .WithAppKey(fixture.AppKey)
+                .WithAuthUrl(fixture.AuthServiceUrl)
+                .WithBaseUrl(fixture.ApiServiceBaseUrl));
             var remoteFile = api.Storage.UploadFile(TestHelper.srcDir + "ZipTests/test1.zip", "/test1.zip");
         }
 

@@ -30,19 +30,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
         [Fact]
         public void CreateTaskPDFConversion()
         {
-            using (var api = new HtmlApi(_
-               => _.WithHttpClient(client)))
-            {
-                var result = api.ConvertLocalFileAsync(sourceFile, new PDFConversionOptions());
+            var result = api.ConvertLocalFileAsync(sourceFile, new PDFConversionOptions());
                 
-                result.AsyncWaitHandle.WaitOne();
+            result.AsyncWaitHandle.WaitOne();
 
-                var data = result.Data;
-                Assert.NotEmpty(data.Files);
+            var data = result.Data;
+            Assert.NotEmpty(data.Files);
 
-                var id = result.Data.Id;
-
-            }
+            var id = result.Data.Id;
         }
 
         public void Dispose()
