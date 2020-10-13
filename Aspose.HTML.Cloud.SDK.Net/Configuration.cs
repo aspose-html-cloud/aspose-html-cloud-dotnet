@@ -91,7 +91,7 @@ namespace Aspose.HTML.Cloud.Sdk
             return this;
         }
 
-        public Configuration WithHttpClient(HttpClient httpClient)
+        internal Configuration WithHttpClient(HttpClient httpClient)
         {
             this.HttpClient = httpClient;
             return this;

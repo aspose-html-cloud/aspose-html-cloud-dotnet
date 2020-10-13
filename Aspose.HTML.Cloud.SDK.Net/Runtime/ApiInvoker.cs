@@ -16,7 +16,7 @@ using Aspose.HTML.Cloud.Sdk.Runtime.Authentication;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime
 {
-    public class ApiInvoker<TResult> : ApiInvoker
+    internal class ApiInvoker<TResult> : ApiInvoker
     {
         public static ApiInvoker<TResult> New(Configuration config, IAuthenticator auth)
         {
@@ -67,7 +67,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
         public TResult CallGet(string url)
         {
             // updateHeaders() ------ auth
-            var response = CallGetImpl(url);
+            var response = CallGetImpl(url, HttpCompletionOption.ResponseContentRead);
             var responseContent = response.Content.ReadAsStringAsync().Result;
             var responseDTO = JsonConvert.DeserializeObject<TResult>(responseContent);
             return responseDTO;
@@ -79,16 +79,18 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
         //}
 
 
-        public Stream CallGetAsStream(RequestUrlBuilder urlBuilder)
+        public StreamResponse CallGetAsStream(RequestUrlBuilder urlBuilder)
         {
             return CallGetAsStream(urlBuilder.Build());
         }
 
-        public Stream CallGetAsStream(string url)
+        public StreamResponse CallGetAsStream(string url, 
+            HttpCompletionOption completionOption = HttpCompletionOption.ResponseContentRead)
         {
-            var response = CallGetImpl(url);
-            var responseContent = response.Content.ReadAsStreamAsync().Result;
-            return responseContent;
+            var response = CallGetImpl(url, completionOption);
+            return StreamResponse.GetFromHttpResponse(response);
+            //var responseContent = response.Content.ReadAsStreamAsync().Result;
+            //return responseContent;
         }
 
         public byte[] CallGetAsByteArray(RequestUrlBuilder urlBuilder)
@@ -98,7 +100,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
 
         public byte[] CallGetAsByteArray(string url)
         {
-            var response = CallGetImpl(url);
+            var response = CallGetImpl(url, HttpCompletionOption.ResponseContentRead);
             var responseContent = response.Content.ReadAsByteArrayAsync().Result;
             return responseContent;
         }
@@ -146,7 +148,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
 
     }
 
-    public class ApiInvoker
+    internal class ApiInvoker
     {
         protected TaskFactory taskFactory;
         protected readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -163,12 +165,12 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
 
         public Configuration Configuration { get; set; }
 
-        protected HttpResponseMessage CallGetImpl(string url)
+        protected HttpResponseMessage CallGetImpl(string url, HttpCompletionOption completionOption)
         {
             try
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, GetFinalUrlToInvoke(url));
-                return AuthenticateAndInvokeSync(request);
+                return AuthenticateAndInvokeSync(request, completionOption);
             }
             catch(Exception ex)
             {
@@ -232,7 +234,6 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
         {
             if (!string.IsNullOrEmpty(ApiBaseUrl))
             {
-                //var baseUrl = ApiBaseUrl;
                 var urlPath = url;
                 if(urlPath.StartsWith("/v4.0/html"))
                 {
@@ -244,13 +245,16 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
             return url;
         }
 
-        private HttpResponseMessage AuthenticateAndInvokeSync(HttpRequestMessage request)
+        private HttpResponseMessage AuthenticateAndInvokeSync(
+            HttpRequestMessage request,
+            HttpCompletionOption complOption = HttpCompletionOption.ResponseContentRead)
         {
             if (Authenticator.Authenticate(request))
             {
                 var httpClient = HttpClient ?? new HttpClient();
-
-                var response = httpClient.SendAsync(request).Result;
+                
+                var response = httpClient.SendAsync(request, complOption,
+                    cancellationTokenSource.Token).Result;
                 response.EnsureSuccessStatusCode();
                 return response;
             }

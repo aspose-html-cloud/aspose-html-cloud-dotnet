@@ -74,7 +74,7 @@ namespace Aspose.HTML.Cloud.Sdk
 
         //}
 
-        public StorageProvider Storage { get; }
+        internal StorageProvider Storage { get; }
 
         public ConversionResult Convert(ConverterBuilder builder)
         {
@@ -92,8 +92,6 @@ namespace Aspose.HTML.Cloud.Sdk
                 //To storage
                 if (outputPath.StartsWith("storage://"))
                 {
-
-
                     var result = (Directory.Exists(inputParams[0])) 
                         ? ConvertLocalDirectory(inputParams, builder.options, outputPath)
                         : inputParams[0].ToLower().EndsWith(".zip")
@@ -369,12 +367,8 @@ namespace Aspose.HTML.Cloud.Sdk
                 query += $"&outputPath={Uri.EscapeDataString(outputFilePath)}";
             }
 
-            var response = this.restClient.PostAsync(query, content).Result;
-
-            response.EnsureSuccessStatusCode();
-
-            var responseContent = response.Content.ReadAsStringAsync().Result;
-            var resultDto = JsonConvert.DeserializeObject<ConversionResult>(responseContent);
+            var apiInvoker = apiInvokerFactory.GetInvoker<ConversionResult>();
+            var resultDto = apiInvoker.CallPost(query, content);
             result.Data.UpdateFrom(resultDto);
 
             // Notify Conversion Scheduled
@@ -395,11 +389,7 @@ namespace Aspose.HTML.Cloud.Sdk
 
                     Thread.Sleep(UPDATE_INTERVAL);
 
-                    response = restClient.GetAsync(resultDto.Links.Self).Result;
-                    response.EnsureSuccessStatusCode();
-
-                    responseContent = response.Content.ReadAsStringAsync().Result;
-                    resultDto = JsonConvert.DeserializeObject<ConversionResult>(responseContent);
+                    resultDto = apiInvoker.CallGet(resultDto.Links.Self);
                     result.Data.UpdateFrom(resultDto);
                 }
 

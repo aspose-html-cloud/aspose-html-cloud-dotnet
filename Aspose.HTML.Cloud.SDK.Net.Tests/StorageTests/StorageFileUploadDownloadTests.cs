@@ -83,7 +83,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(files.Count > 0);
 
             var local = $"{localPath}{files.First().Name}";
-            storage.DownloadFile(files.First(), local);
+            storage.DownloadFile(files.First(), localPath);
 
             Assert.True(System.IO.File.Exists(local));
             
@@ -125,48 +125,41 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var localPath = "d:\\aspose\\TestData\\html_example1.html";
             var storagePath = "/HTML/Testout/html_example1.html";
 
-            using (var api = new HtmlApi(_ => _
-                .WithHttpClient(client)))
-            {
-                var storage = api.Storage;
-                var exists = storage.FileExists(storagePath);
-                if (exists)
-                    storage.DeleteFile(storagePath);
-                else
-                    Assert.False(exists);
+            var storage = api.Storage;
+            var exists = storage.FileExists(storagePath);
+            if (exists)
+                storage.DeleteFile(storagePath);
+            else
+                Assert.False(exists);
 
-                var task = storage.UploadFileAsync(localPath, storagePath);
-                task.AsyncWaitHandle.WaitOne();
-                // OR
-                //while (!result.IsCompleted)
-                //    Thread.Sleep(10);
+            var task = storage.UploadFileAsync(localPath, storagePath);
+            task.AsyncWaitHandle.WaitOne();
+            // OR
+            //while (!result.IsCompleted)
+            //    Thread.Sleep(10);
 
-                exists = storage.FileExists(storagePath);
-                Assert.True(exists);
-            }
+            exists = storage.FileExists(storagePath);
+            Assert.True(exists);
+            
         }
 
         [Fact]
         public void UploadBytesAsyncTest()
         {
+            var storage = api.Storage;
+            var data = Encoding.ASCII.GetBytes("Hello World!!");
+            var task = storage.UploadDataAsync(data, "file.html");
 
-            using (var api = new HtmlApi(_
-                => _.WithHttpClient(client)))
-            {
-                var storage = api.Storage;
-                var data = Encoding.ASCII.GetBytes("Hello World!!");
-                var task = storage.UploadDataAsync(data, "file.html");
+            task.AsyncWaitHandle.WaitOne();
+            // OR
+            //while (!result.IsCompleted)
+            //    Thread.Sleep(10);
 
-                task.AsyncWaitHandle.WaitOne();
-                // OR
-                //while (!result.IsCompleted)
-                //    Thread.Sleep(10);
-
-                var file = task.Data;
-                var parsed = PathUtility.Parse(file.Path);
-                var finfo = storage.GetFileInfo(parsed.Path, parsed.StorageName);
-                Assert.Equal(data.Length, finfo.Info.Size);
-            }
+            var file = task.Data;
+            var parsed = PathUtility.Parse(file.Path);
+            var finfo = storage.GetFileInfo(parsed.Path, parsed.StorageName);
+            Assert.Equal(data.Length, finfo.Info.Size);
+            
         }
 
         [Fact]
@@ -174,19 +167,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             var filePath = "/HTML/html_example1.html";
 
-            using (var api = new HtmlApi(_ => _
-                .WithHttpClient(client)))
-            {
-                var storage = api.Storage;
-                var task = storage.DownloadFileAsync(filePath, "c:\\folder\\file.html");
+            var storage = api.Storage;
+            var task = storage.DownloadFileAsync(filePath, "c:\\folder\\file.html");
 
-                task.AsyncWaitHandle.WaitOne();
-                // OR
-                //while (!result.IsCompleted)
-                //    Thread.Sleep(10);
+            task.AsyncWaitHandle.WaitOne();
+            // OR
+            //while (!result.IsCompleted)
+            //    Thread.Sleep(10);
 
-                Assert.True(System.IO.File.Exists("c:\\folder\\file.html"));
-            }
+            Assert.True(System.IO.File.Exists("c:\\folder\\file.html"));
+            
         }
 
         #endregion
