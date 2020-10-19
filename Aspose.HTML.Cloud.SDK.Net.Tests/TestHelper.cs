@@ -9,8 +9,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
     {
         public static string appDir = AppDomain.CurrentDomain.BaseDirectory;
         public static string projPath = appDir.Substring(0, appDir.IndexOf("\\bin"));
-        public static string srcDir = projPath + "/testSource/";
-        public static string dstDir = projPath + "/testResult/";
+        public static string srcDir = projPath + "/TestSource/";
+        public static string dstDir = projPath + "/TestResult/";
 
         public static MultipartFormDataContent PrepareMultipart(string pathToFile, params KeyValuePair<string, string>[] formParams) 
         {

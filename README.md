@@ -44,7 +44,10 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 * Conversion of MHTML document into the same formats that are supported for HTML
 * Conversion of ePub document into the same formats that are supported for HTML
 * Conversion of HTML document from Web by its URL to MHTML document format
-* Conversion (import) of Markdown file to HTML page
+* Conversion of Markdown file to HTML page
+
+
+
 * Downloading of HTML page from Web by its URL with its linked resources as single ZIP archive
 * Extraction of HTML fragments using XPath queries
 * Extraction of HTML fragments using CSS selectors
@@ -202,9 +205,6 @@ namespace MyAppNamespace
 
 ## Dependencies
 
-
-.NET Framework 4.0 or later
-- [Json.NET (12.0.12 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 .NET Standard 2.0 or later
 - [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)

@@ -556,36 +556,44 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                 var apiInvoker = InvokerFactory.GetInvoker<StreamResponse>();
                 var response = apiInvoker.CallGetAsStream(url, HttpCompletionOption.ResponseHeadersRead);
 
-                var dir = Path.GetDirectoryName(localFilePath);
-                if (!Directory.Exists(dir))
-                    Directory.CreateDirectory(dir);
+                try
+                {               
+                    var dir = Path.GetDirectoryName(localFilePath);
+                    if (!Directory.Exists(dir))
+                        Directory.CreateDirectory(dir);
 
-                using (var outputStream = File.Create(localFilePath))
-                using (var wr = new BinaryWriter(outputStream))
-                using (var resourceStream = response.Stream )
-                {
-                    byte[] buffer = new byte[4096];
-                    int readBytes = 0;
-                    long totalBytes = response.StreamLength; 
-                    long totalRead = 0;
-
-                    while((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
+                    using (var outputStream = File.Create(localFilePath))
+                    using (var wr = new BinaryWriter(outputStream))
+                    using (var resourceStream = response.Stream)
                     {
-                        totalRead += readBytes;
-                        // TODO: progress here
-                        if (cancellationTokenSource.IsCancellationRequested)
-                        {
-                            // set Cancel status
-                            //res.Status
-                            break;
-                        }
+                        byte[] buffer = new byte[4096];
+                        int readBytes = 0;
+                        long totalBytes = response.StreamLength;
+                        long totalRead = 0;
 
-                        progressCallback?.Report(new ProgressData { ProcessedBytes = totalRead, TotalBytes = totalBytes });
-                        wr.Write(buffer, 0, readBytes);
+                        while ((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
+                        {
+                            totalRead += readBytes;
+                            // TODO: progress here
+                            if (cancellationTokenSource.IsCancellationRequested)
+                            {
+                                // set Cancel status
+                                //res.Status
+                                break;
+                            }
+
+                            progressCallback?.Report(new ProgressData { ProcessedBytes = totalRead, TotalBytes = totalBytes });
+                            wr.Write(buffer, 0, readBytes);
+                        }
+                        wr.Flush();
+                        res.Complete();
                     }
-                    wr.Flush();
+                }
+                catch(Exception ex)
+                {
                     res.Complete();
-                }               
+                    throw ex;
+                }
             }, cancellationTokenSource.Token);
             return res;
         }

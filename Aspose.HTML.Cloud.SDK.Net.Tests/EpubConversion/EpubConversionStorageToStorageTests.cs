@@ -11,7 +11,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
     {
         private readonly HttpClient client;
         private HtmlApi api;
-        private string sourceFile = "/epub_file.epub";
+        private string sourceFile = "/example.epub";
         private string destFolder = "StorageFileToStorage";
         private string destWithParamFolder = "StorageFileToStorageWithParam";
 
@@ -25,7 +25,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .WithAppKey(fixture.AppKey)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
-            var remoteFile = api.Storage.UploadFile(TestHelper.srcDir + "epub_file.epub", "/epub_file.epub");
+            var remoteFile = api.Storage.UploadFile(TestHelper.srcDir + "/example.epub", "example.epub");
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact(Skip = "Out of memory")]
+        [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_PDF_WithParams()
         {
             ConversionOptions pdfOpts = new PDFConversionOptions()
@@ -85,7 +85,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact(Skip = "Out of memory")]
+        [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_XPS_WithParams()
         {
             ConversionOptions xpsOpts = new XPSConversionOptions()
@@ -125,7 +125,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact(Skip = "Out of memory")]
+        [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_JPG_WithParams()
         {
             ConversionOptions jpgOpts = new JPEGConversionOptions()
@@ -166,7 +166,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact(Skip = "Out of memory")]
+        [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_PNG_WithParams()
         {
             ConversionOptions pngOpts = new PNGConversionOptions()
@@ -207,7 +207,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact(Skip = "Out of memory")]
+        [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_BMP_WithParams()
         {
             ConversionOptions bmpOpts = new BMPConversionOptions()
@@ -248,7 +248,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact(Skip = "Out of memory")]
+        [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_GIF_WithParams()
         {
             ConversionOptions gifOpts = new GIFConversionOptions()
@@ -289,7 +289,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact(Skip = "Out of memory")]
+        [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_TIFF_WithParams()
         {
             ConversionOptions tiffOpts = new TIFFConversionOptions()

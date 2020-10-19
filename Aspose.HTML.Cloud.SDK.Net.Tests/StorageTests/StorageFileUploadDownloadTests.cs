@@ -83,7 +83,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(files.Count > 0);
 
             var local = $"{localPath}{files.First().Name}";
-            storage.DownloadFile(files.First(), localPath);
+            storage.DownloadFile(files.First(), local);
 
             Assert.True(System.IO.File.Exists(local));
             
