@@ -37,7 +37,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .to(new PDFConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPdf); ;
+            ConversionResult result = api.Convert(convHtmlPdf);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");

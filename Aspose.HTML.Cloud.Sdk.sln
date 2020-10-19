@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspose.HTML.Cloud.Sdk", "As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspose.HTML.Cloud.Sdk.Tests", "Aspose.HTML.Cloud.SDK.Net.Tests\Aspose.HTML.Cloud.Sdk.Tests.csproj", "{ED247D8C-A535-4D81-A642-CA8BB79EA628}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamplesConsoleApp", "ExamplesConsoleApp\ExamplesConsoleApp.csproj", "{C42C951E-ED54-4642-BA63-E3BD2B41EF96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ED247D8C-A535-4D81-A642-CA8BB79EA628}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED247D8C-A535-4D81-A642-CA8BB79EA628}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED247D8C-A535-4D81-A642-CA8BB79EA628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C42C951E-ED54-4642-BA63-E3BD2B41EF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C42C951E-ED54-4642-BA63-E3BD2B41EF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C42C951E-ED54-4642-BA63-E3BD2B41EF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C42C951E-ED54-4642-BA63-E3BD2B41EF96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
