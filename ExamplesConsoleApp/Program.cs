@@ -22,8 +22,8 @@ namespace ExamplesConsoleApp
             
             // Convert to single file
             ConverterBuilder convHtmlPdf = new ConverterBuilder()
-                .fromLocalFile(sourceFile)
-                .to(new PDFConversionOptions())
+                .FromLocalFile(sourceFile)
+                .To(new PDFConversionOptions())
                 .SaveToLocal("test.pdf");
 
             ConversionResult result = api.Convert(convHtmlPdf);

@@ -6,39 +6,39 @@
         {
         }
 
-        public XPSConversionOptions setWidth(int width)
+        public XPSConversionOptions SetWidth(int width)
         {
-            this.width = width;
+            Width = width;
             return this;
         }
 
-        public XPSConversionOptions setHeight(int height)
+        public XPSConversionOptions SetHeight(int height)
         {
-            this.height = height;
+            Height = height;
             return this;
         }
 
-        public XPSConversionOptions setLeftMargin(int leftMargin)
+        public XPSConversionOptions SetLeftMargin(int leftMargin)
         {
-            this.leftMargin = leftMargin;
+            LeftMargin = leftMargin;
             return this;
         }
 
-        public XPSConversionOptions setRightMargin(int rightMargin)
+        public XPSConversionOptions SetRightMargin(int rightMargin)
         {
-            this.rightMargin = rightMargin;
+            RightMargin = rightMargin;
             return this;
         }
 
-        public XPSConversionOptions setTopMargin(int topMargin)
+        public XPSConversionOptions SetTopMargin(int topMargin)
         {
-            this.topMargin = topMargin;
+            TopMargin = topMargin;
             return this;
         }
 
-        public XPSConversionOptions setBottomMargin(int bottomMargin)
+        public XPSConversionOptions SetBottomMargin(int bottomMargin)
         {
-            this.bottomMargin = bottomMargin;
+            BottomMargin = bottomMargin;
             return this;
         }
     }

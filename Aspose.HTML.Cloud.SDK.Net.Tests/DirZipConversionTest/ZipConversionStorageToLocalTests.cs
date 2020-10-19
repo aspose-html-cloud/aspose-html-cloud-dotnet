@@ -34,8 +34,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlPdf = new ConverterBuilder()                   
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new PDFConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new PDFConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlPdf); ;
@@ -49,18 +49,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_PDF_WithParams()
         {
             ConversionOptions pdfOpts = new PDFConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setQuality(95);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetQuality(95);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlPdf = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(pdfOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(pdfOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlPdf);
@@ -75,8 +75,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlXps = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new XPSConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new XPSConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlXps); ;
@@ -90,17 +90,17 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_XPS_WithParams()
         {
             ConversionOptions xpsOpts = new XPSConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlXps = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(xpsOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(xpsOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlXps);
@@ -115,8 +115,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlJpg = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new JPEGConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new JPEGConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlJpg); ;
@@ -130,18 +130,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_JPG_WithParams()
         {
             ConversionOptions jpgOpts = new JPEGConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlJpg = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(jpgOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(jpgOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlJpg);
@@ -156,8 +156,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlPng = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new PNGConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new PNGConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlPng); ;
@@ -171,18 +171,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_PNG_WithParams()
         {
             ConversionOptions pngOpts = new PNGConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlPng = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(pngOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(pngOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlPng);
@@ -197,8 +197,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlBmp = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new BMPConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new BMPConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlBmp); ;
@@ -212,18 +212,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_BMP_WithParams()
         {
             ConversionOptions bmpOpts = new BMPConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlBmp = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(bmpOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(bmpOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlBmp);
@@ -238,8 +238,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlGif = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new GIFConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new GIFConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlGif); ;
@@ -253,18 +253,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_GIF_WithParams()
         {
             ConversionOptions gifOpts = new GIFConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlGif = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(gifOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(gifOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlGif);
@@ -279,8 +279,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlTiff = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new TIFFConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new TIFFConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff); ;
@@ -294,18 +294,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_TIFF_WithParams()
         {
             ConversionOptions tiffOpts = new TIFFConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlTiff = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(tiffOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(tiffOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff);
@@ -320,8 +320,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlMD = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new MarkdownConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new MarkdownConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlMD); ;
@@ -335,12 +335,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageZipToLocal_MD_WithParams()
         {
             ConversionOptions mdOpts = new MarkdownConversionOptions()
-                .setUseGit(true);
+                .SetUseGit(true);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlMD = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(mdOpts)
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(mdOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlMD);
@@ -355,8 +355,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlMHTML = new ConverterBuilder()
-                .fromStorageArchive(sourceArch, "index.html")
-                .to(new MHTMLConversionOptions())
+                .FromStorageArchive(sourceArch, "index.html")
+                .To(new MHTMLConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlMHTML); ;

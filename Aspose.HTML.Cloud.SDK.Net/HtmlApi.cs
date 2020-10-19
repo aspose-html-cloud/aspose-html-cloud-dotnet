@@ -78,9 +78,9 @@ namespace Aspose.HTML.Cloud.Sdk
 
         public ConversionResult Convert(ConverterBuilder builder)
         {
-            string first = builder.inputPath.First();
-            List<string> inputParams = builder.inputPath;
-            string outputPath = builder.outputPath;
+            string first = builder.InputPath.First();
+            List<string> inputParams = builder.InputPath;
+            string outputPath = builder.OutputPath;
 
             string storageName = ""; // TODO: get storage name from path
 
@@ -93,10 +93,10 @@ namespace Aspose.HTML.Cloud.Sdk
                 if (outputPath.StartsWith("storage://"))
                 {
                     var result = (Directory.Exists(inputParams[0])) 
-                        ? ConvertLocalDirectory(inputParams, builder.options, outputPath)
+                        ? ConvertLocalDirectory(inputParams, builder.Options, outputPath)
                         : inputParams[0].ToLower().EndsWith(".zip")
-                          ? ConvertLocalArchive(inputParams, builder.options, outputPath)
-                          : ConvertLocalFile(inputParams, builder.options, outputPath);
+                          ? ConvertLocalArchive(inputParams, builder.Options, outputPath)
+                          : ConvertLocalFile(inputParams, builder.Options, outputPath);
 
                     if (result.Status == "completed")
                     {
@@ -134,10 +134,10 @@ namespace Aspose.HTML.Cloud.Sdk
                     string outPath = outputPath.Remove(0, 7);
 
                     var result = (Directory.Exists(inputParams[0]))
-                        ? ConvertLocalDirectory(inputParams, builder.options)
+                        ? ConvertLocalDirectory(inputParams, builder.Options)
                         : inputParams[0].ToLower().EndsWith(".zip")
-                          ? ConvertLocalArchive(inputParams, builder.options)
-                          : ConvertLocalFile(inputParams, builder.options);
+                          ? ConvertLocalArchive(inputParams, builder.Options)
+                          : ConvertLocalFile(inputParams, builder.Options);
 
                     ConversionResult res = SaveToLocal(outPath, result);
 
@@ -160,7 +160,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 //To local
                 if (outputPath.StartsWith("file://"))
                 {
-                    var result = Convert(inputParams, builder.options);
+                    var result = Convert(inputParams, builder.Options);
 
                     string outPath = outputPath.Remove(0, 7);
                     ConversionResult res = SaveToLocal(outPath, result);
@@ -174,7 +174,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 // To storage
                 else if (outputPath.StartsWith("storage://"))
                 {
-                    var result = Convert(inputParams, builder.options, outputPath);
+                    var result = Convert(inputParams, builder.Options, outputPath);
 
                     if (result.Status == "completed")
                     {
@@ -207,7 +207,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 //To local
                 if (outputPath.StartsWith("file://"))
                 {
-                    var result = Convert(inputParams, builder.options);
+                    var result = Convert(inputParams, builder.Options);
 
                     string outPath = outputPath.Remove(0, 7);
                     ConversionResult res = SaveToLocal(outPath, result);
@@ -221,7 +221,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 // To storage
                 else if (outputPath.StartsWith("storage://"))
                 {
-                    var result = Convert(inputParams, builder.options, outputPath);
+                    var result = Convert(inputParams, builder.Options, outputPath);
 
                     if (result.Status == "completed")
                     {
@@ -314,7 +314,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 OutputFileFormat = options.Format
             };
 
-            var content = new StringContent(options.toJson(),
+            var content = new StringContent(options.ToJson(),
                 Encoding.UTF8, "application/json");
 
             switch (source)

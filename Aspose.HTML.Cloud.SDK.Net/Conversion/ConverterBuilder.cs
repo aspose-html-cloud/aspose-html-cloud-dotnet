@@ -6,13 +6,13 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
     public class ConverterBuilder
     {
-        public InputFormats inputFormat { get; private set; }
-        public OutputFormats outputFormat { get; private set; }
-        public List<string> inputPath { get; private set; }
-        public string outputPath { get; private set; }
-        public ConversionOptions options { get; private set; }
+        public InputFormats InputFormat { get; private set; }
+        public OutputFormats OutputFormat { get; private set; }
+        public List<string> InputPath { get; private set; }
+        public string OutputPath { get; private set; }
+        public ConversionOptions Options { get; private set; }
 
-        public ConverterBuilder fromLocalDirectory(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromLocalDirectory(string inPath, string startPoint, params string[] files)
         {
             if (String.IsNullOrEmpty(inPath))
                 throw new ArgumentNullException("inputPath");
@@ -20,16 +20,16 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!Directory.Exists(inPath))
                 throw new IOException("Directory not exists");
 
-            this.inputPath = new List<string>() { "file://" + inPath, startPoint};
+            InputPath = new List<string>() { "file://" + inPath, startPoint};
 
             foreach (var f in files) 
             {
-                this.inputPath.Add(f);
+                InputPath.Add(f);
             }
 
             return this;
         }
-        public ConverterBuilder fromLocalArchive(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromLocalArchive(string inPath, string startPoint, params string[] files)
         {
             if (String.IsNullOrEmpty(inPath))
                 throw new ArgumentNullException("inputPath");
@@ -40,17 +40,17 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!inPath.ToLower().EndsWith(".zip"))
                 throw new ArgumentException("File must be a zip file.");
 
-            this.inputPath = new List<string>() { "file://" + inPath, startPoint };
+            InputPath = new List<string>() { "file://" + inPath, startPoint };
 
             foreach (var f in files)
             {
-                this.inputPath.Add(f);
+                InputPath.Add(f);
             }
 
             return this;
         }
 
-        public ConverterBuilder fromStorageArchive(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromStorageArchive(string inPath, string startPoint, params string[] files)
         {
             if (String.IsNullOrEmpty(inPath))
                 throw new ArgumentNullException("inputPath");
@@ -58,34 +58,34 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!inPath.ToLower().EndsWith(".zip"))
                 throw new ArgumentException("File must be a zip file.");
 
-            this.inputPath = new List<string>() { "storage://" + inPath, startPoint };
+            InputPath = new List<string>() { "storage://" + inPath, startPoint };
 
             foreach (var f in files)
             {
-                this.inputPath.Add(f);
+                InputPath.Add(f);
             }
 
             return this;
         }
 
-        public ConverterBuilder fromStorageDirectory(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromStorageDirectory(string inPath, string startPoint, params string[] files)
         {
             if (!inPath.EndsWith("/"))
                 inPath += "/";
             if (!inPath.StartsWith("/"))
                 inPath = inPath.Insert(0, "/");
 
-            this.inputPath = new List<string>() { "file://" + inPath, startPoint };
+            InputPath = new List<string>() { "file://" + inPath, startPoint };
 
             foreach (var f in files)
             {
-                this.inputPath.Add(f);
+                InputPath.Add(f);
             }
 
             return this;
         }
 
-        public ConverterBuilder fromLocalFile(string inputPath)
+        public ConverterBuilder FromLocalFile(string inputPath)
         {
             if (String.IsNullOrEmpty(inputPath))
                 throw new ArgumentNullException("Input path is empty");
@@ -95,11 +95,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!File.Exists(inputPath))
                 throw new IOException("File not exists");
 
-            this.inputPath = new List<string> { "file://" + inputPath };
+            InputPath = new List<string> { "file://" + inputPath };
             return this;
         }
 
-        public ConverterBuilder fromStorageFile(string inPath)
+        public ConverterBuilder FromStorageFile(string inPath)
         {
             if (String.IsNullOrEmpty(inPath))
                 throw new ArgumentNullException("Input path is empty");
@@ -107,26 +107,20 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!inPath.StartsWith("/"))
                 inPath = inPath.Insert(0, "/");
 
-            this.inputPath = new List<string>(){ "storage://" + inPath };
+            InputPath = new List<string>(){ "storage://" + inPath };
             return this;
         }
 
-        public ConverterBuilder fromUrl(string inPath)
+        public ConverterBuilder FromUrl(string inPath)
         {
-            this.inputPath = new List<string>() { inPath };
+            InputPath = new List<string>() { inPath };
             return this;
         }
 
-        public ConverterBuilder fromStream(Stream stream, InputFormats format)
+        public ConverterBuilder To(ConversionOptions options)
         {
-            this.inputFormat = format;
-            return this;
-        }
-
-        public ConverterBuilder to(ConversionOptions options)
-        {
-            this.outputFormat = options.Format;
-            this.options = options;
+            OutputFormat = options.Format;
+            Options = options;
             return this;
         }
 
@@ -135,7 +129,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (String.IsNullOrEmpty(outputDirectory))
                 throw new ArgumentNullException("Output path is empty");
 
-            this.outputPath = "file://" + outputDirectory.Trim();
+            OutputPath = "file://" + outputDirectory.Trim();
             return this;
         }
 
@@ -150,7 +144,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!outputDirectory.EndsWith("/"))
                 outputDirectory += "/";
 
-            this.outputPath = "storage://" + outputDirectory.Trim();
+            OutputPath = "storage://" + outputDirectory.Trim();
             return this;
         }
     }
