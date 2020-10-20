@@ -17,9 +17,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         public HtmlConversionLocalToStorageTests(BaseTest fixture)
         {
-            client = fixture.CreateClient();
+            //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
-                .WithHttpClient(client)
+                //.WithHttpClient(client)
                 .WithAppSid(fixture.AppSid)
                 .WithAppKey(fixture.AppKey)
                 .WithAuthUrl(fixture.AuthServiceUrl)

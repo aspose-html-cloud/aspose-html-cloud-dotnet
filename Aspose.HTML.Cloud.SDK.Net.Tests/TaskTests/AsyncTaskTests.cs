@@ -15,9 +15,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
 
         public AsyncTaskTests()
         {
-            client = this.CreateClient();
+            //client = this.CreateClient();
             api = new HtmlApi(cb => cb
-                .WithHttpClient(client)
+                //.WithHttpClient(client)
                 .WithAppSid(AppSid)
                 .WithAppKey(AppKey)
                 .WithAuthUrl(AuthServiceUrl)

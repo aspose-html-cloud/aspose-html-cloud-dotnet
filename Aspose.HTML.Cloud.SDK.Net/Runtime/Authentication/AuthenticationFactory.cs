@@ -17,9 +17,9 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
             }
 
             if (!string.IsNullOrEmpty(conf.AppSid)
-                    && !string.IsNullOrEmpty(conf.AppKey)
-                    && !string.IsNullOrEmpty(conf.AuthUrl))
+                    && !string.IsNullOrEmpty(conf.AppKey))
             {
+                var authUrl = conf.AuthUrl;
                 return new JwtAuth(conf.AppSid, conf.AppKey, conf.AuthUrl);
             }
             else

@@ -17,6 +17,12 @@ namespace Aspose.HTML.Cloud.Sdk
         public const string CONF_CLIENTID = "client_id";
         public const string CONF_CLIENTSECRET = "client_secret";
 
+#if PRODUCTION
+        public const string DEF_AUTH_URL = "https://api.aspose.cloud/connect/token";
+#else
+        public const string DEF_AUTH_URL = "https://api-qa.aspose.cloud/connect/token";
+#endif
+
         public static string[] ConfigParams = { 
             CONF_AUTHURL, 
             CONF_APIBASEURL, 
@@ -28,7 +34,7 @@ namespace Aspose.HTML.Cloud.Sdk
         };
         public string BaseUrl { get; set; } = "/v4.0/html/";
 
-        public string AuthUrl { get; set; }
+        public string AuthUrl { get; set; } = DEF_AUTH_URL;
         public string AppKey { get; set; }
         public string AppSid { get; set; }
         public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
@@ -48,13 +54,18 @@ namespace Aspose.HTML.Cloud.Sdk
 
         public static Configuration NewDefault()
         {
-            return new Configuration() { 
+            return new Configuration() {
+#if PRODUCTION
                 AuthUrl = "https://api.aspose.cloud/",
                 BaseUrl = "https://api.aspose.cloud/v4.0/html"
+#else
+                AuthUrl = "https://api-qa.aspose.cloud/",
+                BaseUrl = "https://api-qa.aspose.cloud/v4.0/html"
+#endif
             };
         }
 
-        #region REM - reserved for future implementation
+#region REM - reserved for future implementation
         //public static Configuration GetFromAppConfig()
         //{
         //    // TODO:
@@ -71,7 +82,7 @@ namespace Aspose.HTML.Cloud.Sdk
         //    // TODO:
         //    return NewDefault();
         //}
-        #endregion
+#endregion
 
         public Configuration WithAppKey(string appKey)
         {
@@ -91,11 +102,11 @@ namespace Aspose.HTML.Cloud.Sdk
             return this;
         }
 
-        internal Configuration WithHttpClient(HttpClient httpClient)
-        {
-            this.HttpClient = httpClient;
-            return this;
-        }
+        //internal Configuration WithHttpClient(HttpClient httpClient)
+        //{
+        //    this.HttpClient = httpClient;
+        //    return this;
+        //}
 
         public Configuration WithExternalAuthentication(string token)
         {
@@ -169,7 +180,7 @@ namespace Aspose.HTML.Cloud.Sdk
 
             public ConfigurationBuilder WithAuthUrl(string url)
             {
-                configuration.AuthUrl = url;
+                configuration.AuthUrl = url ?? DEF_AUTH_URL;
                 return this;
             }
 

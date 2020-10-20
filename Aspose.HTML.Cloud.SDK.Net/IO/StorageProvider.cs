@@ -559,7 +559,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                 try
                 {               
                     var dir = Path.GetDirectoryName(localFilePath);
-                    if (!Directory.Exists(dir))
+                    if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
                         Directory.CreateDirectory(dir);
 
                     using (var outputStream = File.Create(localFilePath))

@@ -36,8 +36,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var cfg = Configuration.New()
                 .WithAppKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
                 .WithAppSid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
-                .WithTimeout(TimeSpan.FromMinutes(10))
-                .WithHttpClient(httpClient);
+                .WithTimeout(TimeSpan.FromMinutes(10));
+                //.WithHttpClient(httpClient);
 
             using (var api = new HtmlApi(cfg))
             {
@@ -52,8 +52,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             using (var api = new HtmlApi(_ => _
                 .WithAppKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
                 .WithAppSid("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
-                .WithTimeout(TimeSpan.FromMinutes(10))
-                .WithHttpClient(httpClient)))
+                .WithTimeout(TimeSpan.FromMinutes(10))))
+            //.WithHttpClient(httpClient)))
             {
                 // 
             }
