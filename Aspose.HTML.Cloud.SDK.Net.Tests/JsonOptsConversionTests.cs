@@ -44,7 +44,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             optsImg = new PNGConversionOptions().SetHeight(100);
 
             string strResult = optsImg.ToJson();
-            string strExpected = "{\"height\":100}";
+            string strExpected = "{\"Height\":100}";
             Assert.True(strResult.Equals(strExpected));
 
             optsImg = new PNGConversionOptions().SetResolution(300);
@@ -88,7 +88,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             optsPDF = new PDFConversionOptions().SetHeight(100);
 
             strResult = optsPDF.ToJson();
-            strExpected = "{\"height\":100}";
+            strExpected = "{\"Height\":100}";
             Assert.True(strResult.Equals(strExpected));
 
             optsPDF = new PDFConversionOptions().SetHeight(300);
@@ -129,7 +129,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             optsXPS = new XPSConversionOptions().SetHeight(100);
 
             strResult = optsXPS.ToJson();
-            strExpected = "{\"height\":100}";
+            strExpected = "{\"Height\":100}";
             Assert.True(strResult.Equals(strExpected));
 
             optsXPS = new XPSConversionOptions().SetHeight(300);
