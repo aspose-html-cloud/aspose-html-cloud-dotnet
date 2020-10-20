@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
 using Xunit;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
@@ -25,16 +26,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
         }
 
         [Fact]
-        public void CreateTaskLongConversionCancel()
+        public void CreateTaskLongConversion()
         {
             var result = api.ConvertLocalFileAsync(sourceFile, new PDFConversionOptions());
-            var data = result.Data;
-            var id = result.Data.Id;
-            bool res = api.DeleteTask(id);
-            Assert.True(res);
+            Assert.True(result.Data.Status == "uploading");
 
-            var cancel = api.GetConversion(id);
-            Assert.True(cancel.Data.Status == "canceled");
+            result.AsyncWaitHandle.WaitOne();
+            Assert.True(result.Data.Status == "completed");
+
+            Assert.True(result.Data.Files.Length >= 1);
         }
 
         public void Dispose()

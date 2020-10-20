@@ -307,75 +307,75 @@ namespace Aspose.HTML.Cloud.Sdk
             observer = observer ?? ConversionObserver.Instance;
 
             var result = new AsyncResult<Conversion.Conversion>()
-            .WithData(new Conversion.Conversion().WithStatus(Conversion.Conversion.COMPLETED));
-
-            var createModel = new ConversionRequest
-            {
-                OutputFileFormat = options.Format
-            };
-
-            var content = new StringContent(options.ToJson(),
-                Encoding.UTF8, "application/json");
-
-            switch (source)
-            {
-                case LocalFileSetConversionSource local:
-                {
-                    var uploadUri = StorageFactory.GetLocalUri(Path.GetFileName(local.Path));
-                    var upload = Storage.UploadFile(local.Path, uploadUri.OriginalString);
-
-                    createModel.InputUrl = new List<string> { upload.Path };
-                    break;
-                }
-                case LocalArchiveConversionSource arch:
-                {
-                    var uploadUri = StorageFactory.GetLocalUri(Path.GetFileName(arch.Path));
-                    var upload = Storage.UploadFile(arch.Path, uploadUri.OriginalString);
-                    createModel.InputUrl = arch.Paths;
-                    createModel.InputUrl[0] = upload.Path;
-                    break;
-                }
-                case LocalDirectoryConversionSource localDir:
-                {
-                    var uploadUri = StorageFactory.GetLocalUri(Path.GetFileName(localDir.Path));
-                    byte[] sourceArr = ZipUtils.ZipFolder(localDir.Path);
-                    var upload = Storage.UploadData(sourceArr, uploadUri.OriginalString + ".zip");
-                    createModel.InputUrl = localDir.Paths;
-                    createModel.InputUrl[0] = upload.Path;
-                    break;
-                }
-                case RemoteFileConversionSource remote:
-                {
-                        createModel.InputUrl = remote.Paths;
-                        break;
-                }
-                default: 
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            var name = typeof(ConversionRequest)
-                .GetProperty("InputUrl")
-                .GetCustomAttribute<JsonPropertyAttribute>()
-                .PropertyName;
-
-            var query = CONVERSION_URI + $@"?{createModel.InputUrl.ToQueryString(name)}&outputFormat={createModel.OutputFileFormat}";
-
-            if (!String.IsNullOrEmpty(outputFilePath))
-            {
-                query += $"&outputPath={Uri.EscapeDataString(outputFilePath)}";
-            }
-
-            var apiInvoker = apiInvokerFactory.GetInvoker<ConversionResult>();
-            var resultDto = apiInvoker.CallPost(query, content);
-            result.Data.UpdateFrom(resultDto);
-
-            // Notify Conversion Scheduled
-            observer.OnNext(result.Data);
-
+                .WithData(new Conversion.Conversion().WithStatus(Conversion.Conversion.UPLOADING));
+            
             taskFactory.StartNew(() =>
             {
+                var createModel = new ConversionRequest
+                {
+                    OutputFileFormat = options.Format
+                };
+
+                var content = new StringContent(options.ToJson(),
+                    Encoding.UTF8, "application/json");
+
+                switch (source)
+                {
+                    case LocalFileSetConversionSource local:
+                        {
+                            var uploadUri = StorageFactory.GetLocalUri(Path.GetFileName(local.Path));
+                            var upload = Storage.UploadFile(local.Path, uploadUri.OriginalString);
+
+                            createModel.InputUrl = new List<string> { upload.Path };
+                            break;
+                        }
+                    case LocalArchiveConversionSource arch:
+                        {
+                            var uploadUri = StorageFactory.GetLocalUri(Path.GetFileName(arch.Path));
+                            var upload = Storage.UploadFile(arch.Path, uploadUri.OriginalString);
+                            createModel.InputUrl = arch.Paths;
+                            createModel.InputUrl[0] = upload.Path;
+                            break;
+                        }
+                    case LocalDirectoryConversionSource localDir:
+                        {
+                            var uploadUri = StorageFactory.GetLocalUri(Path.GetFileName(localDir.Path));
+                            byte[] sourceArr = ZipUtils.ZipFolder(localDir.Path);
+                            var upload = Storage.UploadData(sourceArr, uploadUri.OriginalString + ".zip");
+                            createModel.InputUrl = localDir.Paths;
+                            createModel.InputUrl[0] = upload.Path;
+                            break;
+                        }
+                    case RemoteFileConversionSource remote:
+                        {
+                            createModel.InputUrl = remote.Paths;
+                            break;
+                        }
+                    default:
+                        {
+                            throw new NotImplementedException();
+                        }
+                }
+
+                var name = typeof(ConversionRequest)
+                    .GetProperty("InputUrl")
+                    .GetCustomAttribute<JsonPropertyAttribute>()
+                    .PropertyName;
+
+                var query = CONVERSION_URI + $@"?{createModel.InputUrl.ToQueryString(name)}&outputFormat={createModel.OutputFileFormat}";
+
+                if (!String.IsNullOrEmpty(outputFilePath))
+                {
+                    query += $"&outputPath={Uri.EscapeDataString(outputFilePath)}";
+                }
+
+                var apiInvoker = apiInvokerFactory.GetInvoker<ConversionResult>();
+                var resultDto = apiInvoker.CallPost(query, content);
+                result.Data.UpdateFrom(resultDto);
+
+                // Notify Conversion Scheduled
+                observer.OnNext(result.Data);
+                
                 while (!cancellationTokenSource.IsCancellationRequested)
                 {
                     if (OperationResult.PENDING != result.Data.Status &&
