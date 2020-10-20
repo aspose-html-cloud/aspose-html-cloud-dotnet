@@ -1,7 +1,5 @@
 ﻿using Aspose.HTML.Cloud.Sdk.Conversion;
-using Aspose.HTML.Cloud.Sdk.Runtime.Core.Model;
 using Newtonsoft.Json.Linq;
-using System.IO;
 using System.Net.Http;
 using Xunit;
 
@@ -21,41 +19,41 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // All fields in the ImageOptions
             ConversionOptions optsImg = new JPEGConversionOptions()
-                .setHeight(100)
-                .setWidth(100)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setTopMargin(10)
-                .setBottomMargin(10)
-                .setResolution(150);
+                .SetHeight(100)
+                .SetWidth(100)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetTopMargin(10)
+                .SetBottomMargin(10)
+                .SetResolution(150);
 
             JObject result = (JObject)JToken.FromObject(optsImg);
             JObject expected = (JObject)JToken.FromObject( new {
-                width = 100,
-                height = 100,
-                leftMargin = 10,
-                rightMargin = 10,
-                topMargin = 10,
-                bottomMargin = 10,
-                resolution = 150
+                Width = 100,
+                Height = 100,
+                LeftMargin = 10,
+                RightMargin = 10,
+                TopMargin = 10,
+                BottomMargin = 10,
+                Resolution = 150
             });
 
             Assert.True(JToken.DeepEquals(result, expected));
 
             // Test nullable values
-            optsImg = new PNGConversionOptions().setHeight(100);
+            optsImg = new PNGConversionOptions().SetHeight(100);
 
-            string strResult = optsImg.toJson();
+            string strResult = optsImg.ToJson();
             string strExpected = "{\"height\":100}";
             Assert.True(strResult.Equals(strExpected));
 
-            optsImg = new PNGConversionOptions().setResolution(300);
+            optsImg = new PNGConversionOptions().SetResolution(300);
 
             result = (JObject)JToken.FromObject(optsImg);
             expected = (JObject)JToken.FromObject(
                 new
                 {
-                    resolution = 300
+                    Resolution = 300
                 });
 
             // Null value is present
@@ -63,37 +61,37 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             // All fields in the PdfOptions
             ConversionOptions optsPDF = new PDFConversionOptions()
-                .setHeight(100)
-                .setWidth(100)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setTopMargin(10)
-                .setBottomMargin(10)
-                .setQuality(95);
+                .SetHeight(100)
+                .SetWidth(100)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetTopMargin(10)
+                .SetBottomMargin(10)
+                .SetQuality(95);
 
             result = (JObject)JToken.FromObject(optsPDF);
             expected = (JObject)JToken.FromObject(
                 new
                 {
-                    width = 100,
-                    height = 100,
-                    leftMargin = 10,
-                    rightMargin = 10,
-                    topMargin = 10,
-                    bottomMargin = 10,
+                    Width = 100,
+                    Height = 100,
+                    LeftMargin = 10,
+                    RightMargin = 10,
+                    TopMargin = 10,
+                    BottomMargin = 10,
                     JpegQuality =95
                 });
 
             Assert.True(JToken.DeepEquals(result, expected));
 
             // Test nullable values
-            optsPDF = new PDFConversionOptions().setHeight(100);
+            optsPDF = new PDFConversionOptions().SetHeight(100);
 
-            strResult = optsPDF.toJson();
+            strResult = optsPDF.ToJson();
             strExpected = "{\"height\":100}";
             Assert.True(strResult.Equals(strExpected));
 
-            optsPDF = new PDFConversionOptions().setHeight(300);
+            optsPDF = new PDFConversionOptions().SetHeight(300);
 
             result = (JObject)JToken.FromObject(optsPDF);
             expected = (JObject)JToken.FromObject(new
@@ -106,40 +104,40 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             // All fields in the XpsOptions
             ConversionOptions optsXPS = new XPSConversionOptions()
-                .setHeight(100)
-                .setWidth(100)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setTopMargin(10)
-                .setBottomMargin(10);
+                .SetHeight(100)
+                .SetWidth(100)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetTopMargin(10)
+                .SetBottomMargin(10);
 
             result = (JObject)JToken.FromObject(optsXPS);
             expected = (JObject)JToken.FromObject(
                 new
                 {
-                    width = 100,
-                    height = 100,
-                    leftMargin = 10,
-                    rightMargin = 10,
-                    topMargin = 10,
-                    bottomMargin = 10
+                    Width = 100,
+                    Height = 100,
+                    LeftMargin = 10,
+                    RightMargin = 10,
+                    TopMargin = 10,
+                    BottomMargin = 10
                 });
 
             Assert.True(JToken.DeepEquals(result, expected));
 
             // Test nullable values
-            optsXPS = new XPSConversionOptions().setHeight(100);
+            optsXPS = new XPSConversionOptions().SetHeight(100);
 
-            strResult = optsXPS.toJson();
+            strResult = optsXPS.ToJson();
             strExpected = "{\"height\":100}";
             Assert.True(strResult.Equals(strExpected));
 
-            optsXPS = new XPSConversionOptions().setHeight(300);
+            optsXPS = new XPSConversionOptions().SetHeight(300);
 
             result = (JObject)JToken.FromObject(optsXPS);
             expected = (JObject)JToken.FromObject(new
             {
-                height = 300
+                Height = 300
             });
 
             // Null value is present

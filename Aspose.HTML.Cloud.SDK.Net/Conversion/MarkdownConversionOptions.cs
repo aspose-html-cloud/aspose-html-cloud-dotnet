@@ -6,15 +6,15 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
     public class MarkdownConversionOptions : ConversionOptions
     {
-        bool? useGit;
+        bool? UseGit;
 
         public MarkdownConversionOptions() : base(OutputFormats.MD)
         { 
         }
 
-        public MarkdownConversionOptions setUseGit(bool useGit)
+        public MarkdownConversionOptions SetUseGit(bool useGit)
         {
-            this.useGit = useGit;
+            this.UseGit = useGit;
             return this;
         }
     }

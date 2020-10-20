@@ -33,8 +33,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlPdf = new ConverterBuilder()                   
-                .fromUrl(sourceUrl)
-                .to(new PDFConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new PDFConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlPdf); ;
@@ -48,18 +48,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_PDF_WithParams()
         {
             ConversionOptions pdfOpts = new PDFConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setQuality(95);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetQuality(95);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlPdf = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(pdfOpts)
+                .FromUrl(sourceUrl)
+                .To(pdfOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlPdf);
@@ -74,8 +74,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlXps = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new XPSConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new XPSConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlXps); ;
@@ -89,17 +89,17 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_XPS_WithParams()
         {
             ConversionOptions xpsOpts = new XPSConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlXps = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(xpsOpts)
+                .FromUrl(sourceUrl)
+                .To(xpsOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlXps);
@@ -114,8 +114,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlJpg = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new JPEGConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new JPEGConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlJpg); ;
@@ -129,18 +129,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_JPG_WithParams()
         {
             ConversionOptions jpgOpts = new JPEGConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlJpg = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(jpgOpts)
+                .FromUrl(sourceUrl)
+                .To(jpgOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlJpg);
@@ -155,8 +155,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlPng = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new PNGConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new PNGConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlPng); ;
@@ -170,18 +170,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_PNG_WithParams()
         {
             ConversionOptions pngOpts = new PNGConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlPng = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(pngOpts)
+                .FromUrl(sourceUrl)
+                .To(pngOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlPng);
@@ -196,8 +196,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlBmp = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new BMPConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new BMPConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlBmp);
@@ -211,18 +211,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_BMP_WithParams()
         {
             ConversionOptions bmpOpts = new BMPConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlBmp = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(bmpOpts)
+                .FromUrl(sourceUrl)
+                .To(bmpOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlBmp);
@@ -237,8 +237,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlGif = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new GIFConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new GIFConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlGif); ;
@@ -252,18 +252,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_GIF_WithParams()
         {
             ConversionOptions gifOpts = new GIFConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlGif = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(gifOpts)
+                .FromUrl(sourceUrl)
+                .To(gifOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlGif);
@@ -278,8 +278,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlTiff = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new TIFFConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new TIFFConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff); ;
@@ -293,18 +293,18 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_TIFF_WithParams()
         {
             ConversionOptions tiffOpts = new TIFFConversionOptions()
-                .setHeight(800)
-                .setWidth(1000)
-                .setLeftMargin(10)
-                .setRightMargin(10)
-                .setBottomMargin(10)
-                .setTopMargin(10)
-                .setResolution(300);
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10)
+                .SetResolution(300);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlTiff = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(tiffOpts)
+                .FromUrl(sourceUrl)
+                .To(tiffOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff);
@@ -319,8 +319,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlMD = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new MarkdownConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new MarkdownConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlMD); ;
@@ -334,12 +334,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromUrlToLocal_MD_WithParams()
         {
             ConversionOptions mdOpts = new MarkdownConversionOptions()
-                .setUseGit(true);
+                .SetUseGit(true);
 
             // Convert to single or multiple files with options
             ConverterBuilder convHtmlMD = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(mdOpts)
+                .FromUrl(sourceUrl)
+                .To(mdOpts)
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlMD);
@@ -354,8 +354,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             // Convert to single file
             ConverterBuilder convHtmlMHTML = new ConverterBuilder()
-                .fromUrl(sourceUrl)
-                .to(new MHTMLConversionOptions())
+                .FromUrl(sourceUrl)
+                .To(new MHTMLConversionOptions())
                 .SaveToLocal(destFolder);
 
             ConversionResult result = api.Convert(convHtmlMHTML); ;

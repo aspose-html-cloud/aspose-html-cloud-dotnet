@@ -12,7 +12,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         [JsonIgnore]
         public OutputFormats Format { get; }
 
-        public string toJson()
+        public string ToJson()
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;

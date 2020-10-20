@@ -2,52 +2,52 @@
 {
     public abstract class ImageConversionOptions : FixedLayoutConversionOptions
     { 
-        public int? resolution;
+        public int? Resolution;
         
         protected ImageConversionOptions(OutputFormats format) 
             : base(format)
         {
         }
 
-        public ImageConversionOptions setWidth(int width)
+        public ImageConversionOptions SetWidth(int width)
         {
-            this.width = width;
+            Width = width;
             return this;
         }
 
-        public ImageConversionOptions setHeight(int height)
+        public ImageConversionOptions SetHeight(int height)
         {
-            this.height = height;
+            Height = height;
             return this;
         }
 
-        public ImageConversionOptions setLeftMargin(int leftMargin)
+        public ImageConversionOptions SetLeftMargin(int leftMargin)
         {
-            this.leftMargin = leftMargin;
+            LeftMargin = leftMargin;
             return this;
         }
 
-        public ImageConversionOptions setRightMargin(int rightMargin)
+        public ImageConversionOptions SetRightMargin(int rightMargin)
         {
-            this.rightMargin = rightMargin;
+            RightMargin = rightMargin;
             return this;
         }
 
-        public ImageConversionOptions setTopMargin(int topMargin)
+        public ImageConversionOptions SetTopMargin(int topMargin)
         {
-            this.topMargin = topMargin;
+            TopMargin = topMargin;
             return this;
         }
 
-        public ImageConversionOptions setBottomMargin(int bottomMargin)
+        public ImageConversionOptions SetBottomMargin(int bottomMargin)
         {
-            this.bottomMargin = bottomMargin;
+            BottomMargin = bottomMargin;
             return this;
         }
 
-        public ImageConversionOptions setResolution(int resolution)
+        public ImageConversionOptions SetResolution(int resolution)
         {
-            this.resolution = resolution;
+            Resolution = resolution;
             return this;
         }
     }

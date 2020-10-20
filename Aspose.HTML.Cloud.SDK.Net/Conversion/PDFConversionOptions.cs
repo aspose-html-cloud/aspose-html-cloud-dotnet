@@ -8,45 +8,45 @@
         {
         }
 
-        public PDFConversionOptions setWidth(int width)
+        public PDFConversionOptions SetWidth(int width)
         {
-            this.width = width;
+            Width = width;
             return this;
         }
 
-        public PDFConversionOptions setHeight(int height)
+        public PDFConversionOptions SetHeight(int height)
         {
-            this.height = height;
+            Height = height;
             return this;
         }
 
-        public PDFConversionOptions setLeftMargin(int leftMargin)
+        public PDFConversionOptions SetLeftMargin(int leftMargin)
         {
-            this.leftMargin = leftMargin;
+            LeftMargin = leftMargin;
             return this;
         }
 
-        public PDFConversionOptions setRightMargin(int rightMargin)
+        public PDFConversionOptions SetRightMargin(int rightMargin)
         {
-            this.rightMargin = rightMargin;
+            RightMargin = rightMargin;
             return this;
         }
 
-        public PDFConversionOptions setTopMargin(int topMargin)
+        public PDFConversionOptions SetTopMargin(int topMargin)
         {
-            this.topMargin = topMargin;
+            TopMargin = topMargin;
             return this;
         }
 
-        public PDFConversionOptions setBottomMargin(int bottomMargin)
+        public PDFConversionOptions SetBottomMargin(int bottomMargin)
         {
-            this.bottomMargin = bottomMargin;
+            BottomMargin = bottomMargin;
             return this;
         }
 
-        public PDFConversionOptions setQuality(int JpegQuality)
+        public PDFConversionOptions SetQuality(int jpegQuality)
         {
-            this.JpegQuality = JpegQuality;
+            JpegQuality = jpegQuality;
             return this;
         }
     }

@@ -6,11 +6,8 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
     public class MHTMLConversionOptions : ConversionOptions
     {
-        bool? useGit;
-
         public MHTMLConversionOptions() : base(OutputFormats.MHTML)
         { 
         }
-
     }
 }

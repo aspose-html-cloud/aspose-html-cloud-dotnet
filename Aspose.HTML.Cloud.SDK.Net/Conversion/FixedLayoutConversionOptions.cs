@@ -4,12 +4,12 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
     public abstract class FixedLayoutConversionOptions : ConversionOptions
     {
-        public int? width;
-        public int? height;
-        public int? leftMargin;
-        public int? rightMargin;
-        public int? topMargin;
-        public int? bottomMargin;
+        public int? Width;
+        public int? Height;
+        public int? LeftMargin;
+        public int? RightMargin;
+        public int? TopMargin;
+        public int? BottomMargin;
 
         protected FixedLayoutConversionOptions(OutputFormats format)
             : base(format) { }
