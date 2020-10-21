@@ -166,7 +166,7 @@ ConversionOptions mdOpts = new MarkdownConversionOptions()
 ```
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **useGit** | **Boolean**| Use [Git Markdown flavor](https://github.github.com/gfm/) to save. | [optional] [default to false]
+ **UseGit** | **Boolean**| Use [Git Markdown flavor](https://github.github.com/gfm/) to save. | [optional] [default to false]
 
 <a name="MHTMLConversionOptions"></a>
 ### MHTMLConversionOptions
