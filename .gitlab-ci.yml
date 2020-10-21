@@ -1,0 +1,30 @@
+# INIT
+variables:
+  GIT_STRATEGY: fetch
+  ErrorActionPreference: stop
+  GIT_SUBMODULE_STRATEGY: recursive
+
+# RUNNERS
+.classic dotnet: &aps_net_runner
+  tags:
+   - asp.net
+   - net
+
+# MAIN WORKFLOW
+stages:
+  - tests
+
+# TEST STAGE
+tests:
+  stage: tests
+  <<: *aps_net_runner
+  except:
+    - tags
+  script:
+    - powershell -file build.ps1 -target unit-tests
+  artifacts:
+    reports:
+      junit: junit-test-result.xml
+    paths:
+      - junit-test-result.xml
+    when: always
