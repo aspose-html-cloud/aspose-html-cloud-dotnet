@@ -36,19 +36,8 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 * Conversion of HTML document from Web by its URL to MHTML document format
 * Conversion of Markdown file to HTML page
 
-
-
-* Downloading of HTML page from Web by its URL with its linked resources as single ZIP archive
-* Extraction of HTML fragments using XPath queries
-* Extraction of HTML fragments using CSS selectors
-* Extraction of all HTML document images in a ZIP archive
-* Merging HTML/XHTML templates with external data source; XML and JSON are supported as source data format
-* HTML page SEO analysis; returns JSON list of SEO warnings 
-
 <a name="HowToUseSDK" />
-
 ## How to use the SDK?
-
 
 The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). 
 For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
@@ -57,18 +46,14 @@ For more details, please visit our [documentation website](https://docs.aspose.c
 
 ### Prerequisites
 
-
 To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
 <a name="HowTo-installation"/>
-
 ### Installation
-
 
 Get the ready package from [NuGet](https://www.nuget.org/packages/Aspose.HTML-Cloud/) or build from source available in this repository folder Aspose.HTML-Cloud.
 
 <a name="HowTo-install-nuget"/>
-
 #### Install Aspose.HTML-Cloud via NuGet
 
 
@@ -89,16 +74,13 @@ From within Visual Studio:
 5. Click on the Aspose.HTML-Cloud package, select the appropriate version in the right-tab and click *Install*.
 
 <a name="HowTo-RunTestsExamples"/>
-
 ### Run tests and examples.
-
 
 To run tests, first modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
 
 To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up AppSID, AppKey, and optionally DataPath.
 
 <a name="CodeExample"/>
-
 ### Usage sample
 
 The example below demonstrates how you can use the proposed SDK functionality in your application.
@@ -201,14 +183,11 @@ Result object for conversion.
 string[] Files | List of conversion result files.
 string Description | Description in case of unsuccessful conversion. 
 
-
 <a name="Dependencies"/>
 ## Dependencies
 
-
 .NET Standard 2.0 or later
 - [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
-
 
 <a name="Doc_API"/>
 ## Documentation for API Endpoints
