@@ -124,7 +124,7 @@ namespace ExamplesConsoleApp
             ConverterBuilder convHtmlPdf = new ConverterBuilder()
                 .FromLocalFile(sourceFile)
                 .To(new PDFConversionOptions())
-                .SaveToLocal("test.pdf");
+                .SaveToLocal("TestResultDirectory");
 
             // Convert html page to pdf
             ConversionResult result = api.Convert(convHtmlPdf);
@@ -138,7 +138,13 @@ namespace ExamplesConsoleApp
 
 ### From...
 
-Specifies input data for conversion.
+Specifies input data for conversion. 
+
+Possible conversions:
+- HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
+- XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
+- MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
+- EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
 
   Method | Parameters | Description
  ------------ | ------------- | ------------- 
