@@ -17,17 +17,12 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 >  - [Dependencies](README.md#Dependencies)
 >  - [Documentation for API Endpoints](README.md#Doc_API)
 > 	 - [Class: **HtmlApi**](README.md#Doc_Api_Class_HtmlApi)
-> 	 - [Class: **StorageApi**](README.md#Doc_Api_Class_StorageApi)
-> 		 - [Interface: *IStorageFolderApi*](README.md#Doc_API_Interface_IStorageFolderApi)
-> 		 - [Interface: *IStorageFileApi*](README.md#Doc_API_Interface_IStorageFileApi)
-> 		 - [Interface: *IStorageApi*](README.md#Doc_API_Interface_IStorageApi)
 >  - [Documentation for authorization methods](README.md#Doc_Auth)
 >  - [Resources](README.md#Resources)
 >  - [Contact Us](README.md#ContactUs)
 
 
-<a name="KeyFeatures"/>
-
+<a name="KeyFeatures"></a>
 ## Key Features
 
 * Conversion of HTML document into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
@@ -36,24 +31,24 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 * Conversion of HTML document from Web by its URL to MHTML document format
 * Conversion of Markdown file to HTML page
 
-<a name="HowToUseSDK" />
+<a name="HowToUseSDK"></a>
 ## How to use the SDK?
 
 The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). 
 For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
 
-<a name="HowTo-prerequisites"/>
-
+<a name="HowTo-prerequisites"></a>
 ### Prerequisites
 
 To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
-<a name="HowTo-installation"/>
+
+<a name="HowTo-installation"></a>
 ### Installation
 
 Get the ready package from [NuGet](https://www.nuget.org/packages/Aspose.HTML-Cloud/) or build from source available in this repository folder Aspose.HTML-Cloud.
 
-<a name="HowTo-install-nuget"/>
+<a name="HowTo-install-nuget"></a>
 #### Install Aspose.HTML-Cloud via NuGet
 
 
@@ -73,14 +68,14 @@ From within Visual Studio:
 4. Click on the *Browse* tab and search for "Aspose.HTML-Cloud".
 5. Click on the Aspose.HTML-Cloud package, select the appropriate version in the right-tab and click *Install*.
 
-<a name="HowTo-RunTestsExamples"/>
+<a name="HowTo-RunTestsExamples"></a>
 ### Run tests and examples.
 
 To run tests, first modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
 
 To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up AppSID, AppKey, and optionally DataPath.
 
-<a name="CodeExample"/>
+<a name="CodeExample"></a>
 ### Usage sample
 
 The example below demonstrates how you can use the proposed SDK functionality in your application.
@@ -189,13 +184,13 @@ Result object for conversion.
 string[] Files | List of conversion result files.
 string Description | Description in case of unsuccessful conversion. 
 
-<a name="Dependencies"/>
+<a name="Dependencies"></a>
 ## Dependencies
 
 .NET Standard 2.0 or later
 - [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
 
-<a name="Doc_API"/>
+<a name="Doc_API"></a>
 ## Documentation for API Endpoints
 
 The functionality provided by the SDK is divided to two groups:
@@ -205,61 +200,10 @@ The functionality provided by the SDK is divided to two groups:
 
 All URIs are relative to *https://api.aspose.cloud/v4.0*
 
-<a name="Doc_Api_Class_HtmlApi"/>
+<a name="Doc_Api_Class_HtmlApi"></a>
 ### Class: [*HtmlApi*](docs/HtmlApi.md)
 
-
-
-<a name="Doc_Api_Class_StorageApi"/>
-### Class: [*StorageApi*](docs/StorageApi.md)
-
- 
-<a name="Doc_API_Interface_IStorageFolderApi"/>
-#### Interface: [*IStorageFolderApi*](docs/IStorageFolderApi.md)
-
- 
-  Method | HTTP request | Description
- ------------ | ------------- | ------------- 
- [**GetFolderContentList**](docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
- [**CreateFolder**](docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
- [**DeleteFolder**](docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
- [**CopyFolder**](docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
- [**MoveFolder**](docs/IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
- <br>
-
- 
- 
-<a name="Doc_API_Interface_IStorageFileApi"/>
- 
-#### Interface: [*IStorageFileApi*](docs/IStorageFileApi.md)
-
- 
-  Method | HTTP request | Description
- ------------ | ------------- | ------------- 
- [**DownloadFile**](docs/IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
- [**UploadFile**](docs/IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
- [**UploadFile**](docs/IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
- [**DeleteFile**](docs/IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
- [**CopyFile**](docs/IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
- [**MoveFile**](docs/IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
- 
- <br>
-<a name="Doc_API_Interface_IStorageApi"/>
-  
-#### Interface: [*IStorageApi*](docs/IStorageApi.md)
-
-  Method | HTTP request | Description
- ------------ | ------------- | ------------- 
- [**StorageExists**](docs/IStorageApi.md#StorageExists) | **GET** /html/storage/{storageName}/exist | Check if storage exists
- [**FileOrFolderExists**](docs/IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
- [**GetDiscUsage**](docs/IStorageApi.md#GetDiscUsage) | **GET** /html/storage/disc | Get disc usage
- [**GetStorageItemVersions**](docs/IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
-
-
-
-<br>
-<a name="Doc_Auth"/>
-
+<a name="Doc_Auth"></a>
 ## Documentation for authorization methods
 
 Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
@@ -267,7 +211,7 @@ Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK 
 For more details see [**Authorization**](docs/Authorization.md)
 
 <br>
-<a name="Resources"/>
+<a name="Resources"></a>
 
 ## Resources
 
@@ -280,7 +224,7 @@ For more details see [**Authorization**](docs/Authorization.md)
 
 <br>
 
+<a name="ContactUs"></a>
 ## Contact Us
-<a name="ContactUs"/>
 
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/html).
