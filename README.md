@@ -143,14 +143,14 @@ Possible conversions:
 
 
   Method | Parameters | Description
- ------------ | ------------- | -------------
- FromLocalFile(string inputPath) | inputPath - path to local file. | Source is a file in the local file system.
- FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage. | Source is a file in the cloud (user storage).
- FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file ore files in local directory with linked resources (css, image, etc.,) in this directory.
- FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in local file system.
- FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file or files in directory with linked resources (css, image, etc.,) in this directory.
- FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in the storage.
- FromUrl(string urlAddress) | urlAddress - web site for conversion | Source get from url.
+ ------------ | ------------- | ------------- 
+FromLocalFile(string inputPath) | inputPath - path to local file. | Source is a file in the local file system.
+FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage. | Source is a file in the cloud (user storage).
+FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file ore files in local directory with linked resources (css, image, etc.,) in this directory.
+FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in local file system.
+FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file or files in directory with linked resources (css, image, etc.,) in this directory.
+FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in the storage.
+FromUrl(string urlAddress) | urlAddress - web site for conversion | Source get from url.
 
 
 ### To(ConversionOptions)
