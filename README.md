@@ -136,10 +136,10 @@ namespace ExamplesConsoleApp
 Specifies input data for conversion. 
 
 Possible conversions:
-- HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
-- XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
-- MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
-- EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
+ - HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
+ - XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
+ - MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
+ - EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
 
 
   Method | Parameters | Description
