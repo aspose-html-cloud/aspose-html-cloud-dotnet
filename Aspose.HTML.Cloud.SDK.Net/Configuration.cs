@@ -19,8 +19,16 @@ namespace Aspose.HTML.Cloud.Sdk
 
 #if PRODUCTION
         public const string DEF_AUTH_URL = "https://api.aspose.cloud/connect/token";
+        public const string DEF_API_URL = "https://api.aspose.cloud/v4.0/html";
 #else
         public const string DEF_AUTH_URL = "https://api-qa.aspose.cloud/connect/token";
+
+#if DEBUG
+        public const string DEF_API_URL = "http://localhost:5000/v4.0/html";
+#else
+        public const string DEF_API_URL = "https://api-qa.aspose.cloud/v4.0/html";
+#endif
+
 #endif
 
         public static string[] ConfigParams = { 
@@ -55,13 +63,8 @@ namespace Aspose.HTML.Cloud.Sdk
         public static Configuration NewDefault()
         {
             return new Configuration() {
-#if PRODUCTION
-                AuthUrl = "https://api.aspose.cloud/",
-                BaseUrl = "https://api.aspose.cloud/v4.0/html"
-#else
-                AuthUrl = "https://api-qa.aspose.cloud/",
-                BaseUrl = "https://api-qa.aspose.cloud/v4.0/html"
-#endif
+                AuthUrl = DEF_AUTH_URL,
+                BaseUrl = DEF_API_URL
             };
         }
 
@@ -114,21 +117,6 @@ namespace Aspose.HTML.Cloud.Sdk
             ExternalAuthToken = token;
             return this;
         }
-
-        //public Configuration Clone()
-        //{
-        //    var builder = new ConfigurationBuilder( _ => _
-        //        .WithAppKey(this.AppKey)
-        //        .WithAppSid(this.AppSid)
-        //        .WithBaseUrl(this.BaseUrl)
-        //        .WithTimeout(this.Timeout)
-        //        .WithHttpClient( new HttpClient()));
-                
-        //    var newInst = builder.Build();
-        //    newInst.HttpClient.BaseAddress = this.HttpClient.BaseAddress;
-        //    //newInst.HttpClient.
-        //    return newInst;
-        //}
 
         private const string ISO8601_DATETIME_FORMAT = "o";
 

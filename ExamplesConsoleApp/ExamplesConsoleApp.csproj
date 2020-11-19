@@ -9,6 +9,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;PRODUCTION</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Aspose.HTML.Cloud.SDK.Net\Aspose.HTML.Cloud.Sdk.csproj" />
   </ItemGroup>

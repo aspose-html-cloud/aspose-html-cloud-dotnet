@@ -20,14 +20,17 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         private readonly string QA_APPSID = "html.cloud";
         private readonly string QA_APPKEY = "html.cloud";
         private readonly string LOCAL_BASE_URL = "https://localhost:5001/v4.0/html";
+        private const string LOCAL_DOCKER_BASE_URL = "https://localhost:47976/v4.0/html";
+        
 
         private readonly HttpClient client;
         private HtmlApi api;
 
+        private string ApiBaseUrl { get; set; }
+
         public AuthUserCredsTest(BaseTest fixture)
         {
-
-
+            ApiBaseUrl = fixture.ApiServiceBaseUrl;
             client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 .WithAppSid(fixture.AppSid)
@@ -108,7 +111,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
 
             // base URL (REST API service URL) and externally obtained auth token are required here
             using (var api2 = new HtmlApi(cb => cb
-            .WithBaseUrl(LOCAL_BASE_URL)
+            .WithBaseUrl(ApiBaseUrl)
             .WithExternalAuthentication(token)))
             {
                 

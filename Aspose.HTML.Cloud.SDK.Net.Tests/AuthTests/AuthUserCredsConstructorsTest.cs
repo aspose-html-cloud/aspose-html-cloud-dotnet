@@ -19,12 +19,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         private readonly string QA_APPSID = "html.cloud";
         private readonly string QA_APPKEY = "html.cloud";
         private readonly string LOCAL_BASE_URL = "https://localhost:5001/v4.0/html";
+        private const string LOCAL_DOCKER_BASE_URL = "https://localhost:47976/v4.0/html";
 
         private readonly HttpClient client;
         private HtmlApi api;
 
         public AuthUserCredsConstructorsTest()
         {
+
         }
 
         [Fact]
@@ -32,7 +34,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         {
             string storageName = "First Storage";
 
-            api = new HtmlApi(QA_APPSID, QA_APPKEY, LOCAL_BASE_URL);
+            api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
 
             var storageApi = api.Storage;
             Assert.True(storageApi.Exists(storageName));
@@ -43,7 +45,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         public void AuthenticateJwt_Sequence()
         {
             var folder = "/HTML";
-            api = new HtmlApi(QA_APPSID, QA_APPKEY, LOCAL_BASE_URL);
+            api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
             var storageApi = api.Storage;
 
             var exists = storageApi.DirectoryExists(folder);
