@@ -23,7 +23,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public HttpClient CreateClient()
         {
             var client = new HttpClient();
-            client.BaseAddress = new Uri(LOCAL_DOCKER_BASE_URL);
+            client.BaseAddress = new Uri(QA_API_URL);
 
             return client;
         }
@@ -33,6 +33,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         public string AuthServiceUrl { get; set; } = QA_AUTH_URL;
 
-        public string ApiServiceBaseUrl { get; set; } = LOCAL_DOCKER_BASE_URL;
+        public string ApiServiceBaseUrl { get; set; } = QA_API_URL;
     }
 }

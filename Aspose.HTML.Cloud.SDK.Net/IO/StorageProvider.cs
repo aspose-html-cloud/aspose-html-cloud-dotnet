@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Aspose.HTML.Cloud.Sdk.IO
 {
-    internal sealed class StorageProvider
+    public sealed class StorageProvider
     {
         private Configuration configuration;
         private StorageFactory factory;
@@ -350,7 +350,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// Overloaded method. 
+        /// Overloaded method. Gets a list of files in the directory specified by RemoteDirectory object.
         /// </summary>
         /// <param name="directory"></param>
         /// <returns></returns>
@@ -360,6 +360,12 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             return GetFiles(parsed.Path, parsed.StorageName);
         }
 
+        /// <summary>
+        /// Gets the file info by its path in the specified or default storage. 
+        /// </summary>
+        /// <param name="fileUri"></param>
+        /// <param name="storageName"></param>
+        /// <returns></returns>
         public RemoteFile GetFileInfo(string fileUri, string storageName = null)
         {
             var dir = PathUtility.GetFolderPath(fileUri);
@@ -377,7 +383,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// Gets the file info by its name in the directory specified by RemoteDirectory object
+        /// Overloaded method. Gets the file info by its name in the directory specified by RemoteDirectory object
         /// </summary>
         /// <param name="directory"></param>
         /// <param name="fileName"></param>
@@ -514,7 +520,9 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         /// <param name="versionId"></param>
         public void DownloadFile(string fileUri, string localFilePath, string storageName = null, string versionId = null)
         {
-            DownloadFileAsync(fileUri, localFilePath, storageName, versionId).AsyncWaitHandle.WaitOne();
+            DownloadFileAsync(fileUri, localFilePath, storageName, versionId)
+                .AsyncWaitHandle
+                .WaitOne();
         }
 
         /// <summary>
@@ -531,7 +539,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// Starts asynchronous dowmload of a storage file into a local file.
+        /// Starts asynchronous download of a storage file into a local file.
         /// </summary>
         /// <param name="fileUri"></param>
         /// <param name="localFilePath"></param>
@@ -599,7 +607,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// Overload method. Starts asynchronous dowmload of a storage file into a local file.
+        /// Overloaded method. Starts asynchronous download of a storage file into a local file.
         /// </summary>
         /// <param name="file"></param>
         /// <param name="localFilePath"></param>
@@ -614,19 +622,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="file"></param>
-        /// <param name="versionId"></param>
-        /// <returns></returns>
-        public byte[] DownloadData(RemoteFile file, string versionId = null)
-        {
-            var parsed = PathUtility.Parse(file.Path);
-            return DownloadData(parsed.Path, parsed.StorageName, versionId);
-        }
-
-        /// <summary>
-        /// 
+        /// Downloads a storage file into a byte array synchronously by its storage path and saves by a local file system path.
         /// </summary>
         /// <param name="fileUri"></param>
         /// <param name="storageName"></param>
@@ -640,7 +636,19 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// Starts asynchronous download of a storage file into the byte array.
+        /// Overloaded method. Downloads a storage file into a byte array synchronously by RemoteFile object.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="versionId"></param>
+        /// <returns></returns>
+        public byte[] DownloadData(RemoteFile file, string versionId = null)
+        {
+            var parsed = PathUtility.Parse(file.Path);
+            return DownloadData(parsed.Path, parsed.StorageName, versionId);
+        }
+
+        /// <summary>
+        /// Starts asynchronous download of a storage file into a byte array.
         /// </summary>
         /// <param name="fileUri"></param>
         /// <param name="storageName"></param>
@@ -712,7 +720,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// 
+        /// Opens to read a stream associated with a storage file specified by its path in the specified or default storage.
         /// </summary>
         /// <param name="fileUri"></param>
         /// <param name="storageName"></param>
@@ -728,7 +736,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         }
 
         /// <summary>
-        /// 
+        /// Overloaded method. Opens to read a stream associated with a storage file specified by RemoteFile object.
         /// </summary>
         /// <param name="file"></param>
         /// <param name="versionId"></param>

@@ -130,7 +130,7 @@ namespace Aspose.HTML.Cloud.Sdk
         /// No validation is done to ensure that the string you're providing is valid
         /// </summary>
         /// <value>The DateTimeFormat string</value>
-        public static String DateTimeFormat
+        internal static String DateTimeFormat
         {
             get
             {

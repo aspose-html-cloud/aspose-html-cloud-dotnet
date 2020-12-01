@@ -7,7 +7,7 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 
 ## Table of Contents
 
->  -  [Key Features](README.md#KeyFeatures)
+>  - [Key Features](README.md#KeyFeatures)
 >  - [How to use the SDK?](README.md#HowToUseSDK)
 > 	 - [Prerequisites](README.md#HowTo-prerequisites)
 > 	 - [Installation](README.md#HowTo-installation)
@@ -150,7 +150,7 @@ FromLocalDirectory(string inputDir, string startPoint, params string[] files) | 
 FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in local file system.
 FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file or files in directory with linked resources (css, image, etc.,) in this directory.
 FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in the storage.
-FromUrl(string urlAddress) | urlAddress - web site for conversion | Source get from url.
+FromUrl(string urlAddress) | urlAddress - web site for conversion | Source get from URL.
 
 
 ### To(ConversionOptions)
@@ -159,14 +159,14 @@ Specifies the output format for conversion.
 
   Options | Description
  ------------ | ------------- 
-[GIFConversionOptions](docs/ConversionOptions.md#GIFConversionOptions) | Converting source file or url to single or several images in GIF format.
-[JPEGConversionOptions](docs/ConversionOptions.md#JPEGConversionOptions) | Converting source file or url to single or several images in JPEG format.
-[PNGConversionOptions](docs/ConversionOptions.md#PNGConversionOptions) | Converting source file or url to single or several images in PNG format.
-[TIFFConversionOptions](docs/ConversionOptions.md#TIFFConversionOptions) | Converting source file or url to single or several images in TIFF format.
-[BMPConversionOptions](docs/ConversionOptions.md#BMPConversionOptions) | Converting source file or url to single or several images in BMP format.
-[PDFConversionOptions](docs/ConversionOptions.md#PDFConversionOptions) | Converting source file or url to PDF.
-[XPSConversionOptions](docs/ConversionOptions.md#XPSConversionOptions) | Converting source file or url to XPS.
-[MarkdownConversionOptions](docs/ConversionOptions.md#MarkdownConversionOptions) | Converting source file or url to Markdown.
+[GIFConversionOptions](docs/ConversionOptions.md#GIFConversionOptions) | Converting source file or URL to single or several images in GIF format.
+[JPEGConversionOptions](docs/ConversionOptions.md#JPEGConversionOptions) | Converting source file or URL to single or several images in JPEG format.
+[PNGConversionOptions](docs/ConversionOptions.md#PNGConversionOptions) | Converting source file or URL to single or several images in PNG format.
+[TIFFConversionOptions](docs/ConversionOptions.md#TIFFConversionOptions) | Converting source file or URL to single or several images in TIFF format.
+[BMPConversionOptions](docs/ConversionOptions.md#BMPConversionOptions) | Converting source file or URL to single or several images in BMP format.
+[PDFConversionOptions](docs/ConversionOptions.md#PDFConversionOptions) | Converting source file or URL to PDF.
+[XPSConversionOptions](docs/ConversionOptions.md#XPSConversionOptions) | Converting source file or URL to XPS.
+[MarkdownConversionOptions](docs/ConversionOptions.md#MarkdownConversionOptions) | Converting source file or URL to Markdown.
 
 ### SaveTo...
 
@@ -198,7 +198,7 @@ string Description | Description in case of unsuccessful conversion.
 The functionality provided by the SDK is divided to two groups:
 
  - HTML methods; represented by [*HtmlApi*](docs/HtmlApi.md) class
- - Storage access methods; represented by [*StorageApi*](docs/StorageApi.md) class
+ - Storage access methods; represented by [*StorageProvider*](docs/StorageProvider.md) class; the storage entry point is represented by an instance of [*StorageProvider*] that is available as [*HtmlApi.Storage*](docs/HtmlApi.md#Storage) property of [*HtmlApi*](docs/HtmlApi.md) class.
 
 All URIs are relative to *https://api.aspose.cloud/v4.0*
 
