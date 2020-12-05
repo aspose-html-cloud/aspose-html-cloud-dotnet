@@ -353,3 +353,15 @@ Overloaded method. Synchronous mode of method *ConvertLocalFileAsync*. Converts 
 
 
 
+#### ConvertLocalDirectory
+
+> ```
+> Conversion.Conversion ConvertLocalDirectory(
+>             List<string> paths,
+>             ConversionOptions options,
+>             string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Converts synchronously files in a list of local directories.
