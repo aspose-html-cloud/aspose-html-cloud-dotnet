@@ -2,130 +2,366 @@
 
 Facade class providing wrapper methods of Aspose.HTML Cloud REST API
 
+[TOC]
+
+<a name="Summary" />
+
 ## Summary
 
 Class that is a common SDK facade of all HTML functionality. 
-SDK methods can be called directly from the HtmlApi class instance or using interfaces.
+
+In the current version, it provides:
+
+- a group of constructors that provide various ways of API setup concerning user credentials, API services (if they are different from default) and some other parameters, such as HTTP connection timeout.
+
+- a group of synchronous and asynchronous conversion methods that work with various data sources, such as local files, files in the cloud storage, web pages. The supported source file types are: HTML (including HTML pages with local resources in ZIP archive), MHTML, ePub, Markdown. The supported output formats the source files can be converted to are: PDF, XPS, JPEG, BMP, PNG, GIF, TIFF. 
+
+- an entry point of the cloud storage access API.
+
+  
 
 ## Namespace 
 
-Aspose.Html.Cloud.Sdk.Api
+Aspose.HTML.Cloud.Sdk
 
-## Base class
+<br>
 
-**ApiBase**
 
-## Interfaces
-
-Class implements following interfaces:
-
-[**IDocumentApi**](DocumentApi.md)
-
-[**IConversionApi**](ConversionApi.md)
-
-[**IImportApi**](ImportApi.md)
-
-[**ITemplateMergeApi**](TemplateMergeApi.md)
-
-[**IConversionApiEx**](IConversionApiEx.md)
-
-[**ISeoApi**](SeoApi.md)
 
 ## Constructors
 
-> HtmlApi ()
+> **HtmlApi  (Configuration configuration)**
 
-Default constructor. Initializes class instance allowing to get settings (user credentials, REST API service URL, authorization service URL) implicitly from configuration file of application that uses SDK, or from the environment variables, or predefined defaults.
+Constructor. Initializes a class instance with API parameters provided by specified Configuration object.
 
-If the HtmlApi instance is initialized with the constructor without parameters, the user credentials, REST API service URL and authorization service URL are evaluated in the following order:
-* Trying to get settings from app.config file. A part of the config file may appear as follows:
+
+
+> **HtmlApi  (Action<Configuration.ConfigurationBuilder> builder)**
+
+Constructor. Initializes a class instance with API parameters using a configuration builder.
+
+
+
+> **HtmlApi (String appSid, String appKey)**
+
+Constructor. Initializes a class instance with user credentials and default API server URL.
+
+
+
+> **HtmlApi (String appSid, String appKey, String baseUrl)**
+
+Constructor. Initializes a class instance with user credentials and explicit API server URL.
+
+
+
+> **HtmlApi (String appSid, String appKey, String baseUrl, TimeSpan timeout)**
+
+Constructor. Initializes a class instance with user credentials, explicit API server URL and HTTP(S) connection timeout.
+
+
+
+
+#### Examples of constructor usage.
+
+Here examples of various **HtmlApi** initialization ways are provided.
+
+
+
+Example of initialization by  **Configuration** object:
+
 ```
-    <appSettings>
-      <add key="appSID" value="userid" />
-      <add key="appKey" value="XXXXXX123445567890" />
-      <add key="baseUrl" value="https://api-qa.aspose.cloud" />
-      <add key="authUrl" value="https://api-qa.aspose.cloud" />
-    </appSettings>
-```
-* If some or all settings are absent in the config file, trying to get them from environment variables the application was started with. For example:
+var conf = Configuration.NewDefault(); 
+conf.Timeout = TimeSpan.FromMinutes(5);
 
-```
-C:\Users\Me> myapp.exe -e "appSID=userid" -e "appKey=XXXXXX1234567890" -e "baseUrl=https://api.aspose.cloud" -e "authUrl=https://api.aspose.cloud" 
-```
-
-(NOTE: alternative names of 'appSID' and 'appKey' environment variables are 'client_id' and 'client_secret' respectively)
-* If 'baseUrl' or 'authUrl' are not found, they will be set to https://api.aspose.cloud by default.
-* 'appSID' and 'appKey' are required; if at least one of them isn't found, an exception will be thrown.
-
-> HtmlApi(timeout)
-
-Initializes class instance as the default constructor does (see above) and sets the service connection timeout as a TimeSpan structure instance (default connection timeout is 5 min)
-
-> HtmlApi (appSid, appKey, basePath, authPath, timeout)
-
-Initializes class instance with user credentials, REST API service URL, authorization service URL and connection timeout
-
-> HtmlApi (appSid, appKey, basePath, authPath)
-
-Initializes class instance with user credentials, REST API service URL, authorization service URL 
-
-> HtmlApi (appSid, appKey, basePath, timeout)
-
-Initializes class instance with user credentials, REST API service URL and connection timeout (authorization service URL is the same as basePath)
-
-> HtmlApi (appSid, appKey, basePath)
-
-Initializes class instance with user credentials and REST API service URL
-
-> HtmlApi (config)
-
-Initializes class instance with Configuration object that should be previously created and initialized with with user credentials, REST API service URL, authorization service URL and connection timeout values. See  [**Configuration**](Configuration.md)
-
-#### Example
-
-```csharp
-
-var config = new Configuration() {
-                AppSid = appSid,
-				AppKey = appKey,
-				ApiBaseUrl = basePath,
-				AuthUrl = authPath,
-				ApiVersion = "3.0"
-            };
-var api = new HtmlApi(config);
+using(var api =  new HtmlApi(conf))
+{
+	// business code ....
+}
 
 ```
 
-> HtmlApi (instance)
 
-Initializes class instance with existing ApiBase-inherited class instance (explicit type cast to ApiBase may be needed). It can be useful to share authorization status between two or more API facade classes.
 
-#### Example
+Example of initialization by user credentials with explicit authentication service and HTML API service URLs using the configuration builder: 
 
-```csharp
+```
+var AppSid = "clientid";
+var AppKey = ""cXdD45HHTn&&-Bu^787;
+var ApiServiceBaseUrl = "https://api.aspose.cloud";
+var AuthServiceUrl = "https://api.aspose.cloud";
 
-var stApi = new StorageApi(appSid, appKey, basePath, authPath);
-var htmlApi = new HtmlApi(stApi);
+var api =  new HtmlApi(cb => cb
+                .WithAppSid(AppSid)
+                .WithAppKey(AppKey)
+                .WithAuthUrl(AuthServiceUrl)
+                .WithBaseUrl(ApiServiceBaseUrl));
+```
+
+
+
+Example of initialization by user credentials using the configuration builder: 
+
+``` 
+var AppSid = "clientid";
+var AppKey = ""cXdD45HHTn&&-Bu^787;
+
+var api = new HtmlApi(cb => cb
+                .WithAppSid(AppSid)
+                .WithAppKey(AppKey)); 
+                // URLs of authentication and HTML API services aren't specified explicitly
+                // default values are assumed ( 
+                // https://api.aspose.cloud/connect/token and https://api.aspose.cloud/v4.0/html respectively )
+                
+```
+
+
+
+Example of initialization by externally obtained authentication token using the configuration builder: 
+
+```code
+
+string token;
+
+// get the JWT token from some external source here
+// ...............
+
+var api = new HtmlApi(cb => cb
+            .WithBaseUrl(ApiBaseUrl)
+            .WithExternalAuthentication(token));
+
 
 ```
 
-> HtmlApi (authToken, basePath)
+<br>
 
-Initializes class instance with a JwtToken object that contains externally provided JWT token with its issuing date and validity period, and REST API service URL (optional - default is https://api.aspose.cloud/v3.0). For details, see [**Authorization**](Authorization.md)
+## Properties
 
-NOTE: since SDK version 19.1.1, this constructor looks redundant because the JWT token issuing date and validity period can be obtained from the token.
+#### **Storage**
+> ```
+> StorageProvider  Storage { get; }
+> ```
+
+Entry point to storage access API.
+
+See [**StorageProvider**](StorageProvider.md) for detailed specification of Storage API v4.0
+
+<br>
+
+## Public Methods
+
+#### *Common parameters*
+
+The list of parameters that are used by most of methods:
+
+| Name                | Description                                                  | Type                                          | Note     |
+| ------------------- | ------------------------------------------------------------ | --------------------------------------------- | -------- |
+| source              | Source file (or files)                                       | [**ConversionSource**]()                      |          |
+| options             | Specifies the conversion options, i.e. the resulting file format and other result parameters, such as page size and margins, image resolution etc. | [**ConversionOptions**](ConversionOptions.md) |          |
+| outputFilePath      | Storage path where the result file will be saved; by default, it is a system temporary storage path. | string                                        | optional |
+| nameCollisionOption | How to handle a resulting file name collision. There are 3 options: *FailIfExists* (default), *GenerateUniqueName*, *ReplaceExisting* | enum **NameCollisionOption**                  | optional |
+| observer            |                                                              | [IObserver]()<[Conversion.Conversion]()>      | optional |
 
 
-> HtmlApi (authToken, basePath)
-
-Initializes class instance with externally provided JWT token string and REST API service URL (optional - default is https://api.aspose.cloud/v3.0)
-
-
-> HtmlApi (authToken)
-
-Initializes class instance with externally provided JWT token as a string; REST API service URL is default (see previous constructor description)
 
 
 
+#### ConvertAsync
+
+> ```
+> AsyncResult<Conversion.Conversion> ConvertAsync(
+>             ConversionSource source,
+>             ConversionOptions options,
+>             string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Starts asynchronously a long-time conversion operation of a source file (or files) specified by *source* parameter and returns an **AsyncResult** object that allows to watch for the current asynchronous operation status. 
 
 
+
+#### ConvertAsync
+
+> ```
+> AsyncResult<Conversion.Conversion> ConvertAsync(
+>             List<RemoteFile> files,
+>             ConversionOptions options,
+>             string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Overloaded method.  Starts asynchronously a long-time conversion operation of a list of storage files.
+
+
+
+#### GetConversion
+
+> ```
+> AsyncResult<Conversion.Conversion> GetConversion(string id)
+> ```
+
+Gets a current status of long-time conversion operation started previously by  *ConvertAsync* method.
+
+
+
+#### DeleteTask
+
+> ```
+> bool DeleteTask(string id)
+> ```
+
+Cancels a long-time conversion operation started previously by *ConvertAsync* method.
+
+
+
+#### Convert
+
+> ```
+> Conversion.Conversion Convert(
+>          ConversionSource source,
+>          ConversionOptions options,
+>          string outputFilePath = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Converts synchronously a file (or files) specified by  specified by *source* parameter. This method is a synchronous mode of *ConvertAsync*. Returns Conversion.Conversion object with a list of conversion results.
+
+
+
+#### Convert
+
+> ```
+> Conversion.Conversion Convert(
+>             List<RemoteFile> files, 
+>             ConversionOptions options, string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Overloaded method. Converts synchronously a a list of storage files. Synchronous mode of *ConvertAsync* (overloaded).
+
+
+
+
+
+Below the specialized versions of conversion methods are described.
+
+#### ConvertWebSiteAsync
+
+> ```
+> AsyncResult<Conversion.Conversion> ConvertWebSiteAsync(
+>             string address, 
+>             ConversionOptions options,
+>             string outputFilePath = null, 
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Starts asynchronously a long-time conversion operation of a web page specified by its URL (*address* parameter). Analog of *ConvertAsync* specialized for web pages.
+
+
+
+#### ConvertWebSite
+
+> ```
+> Conversion.Conversion ConvertWebSite(
+>             string address,
+>             ConversionOptions options,
+>             string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Synchronous mode of method *ConvertWebSiteAsync*. Converts a web page specified by its URL.
+
+
+
+#### ConvertWebSite
+
+> ```
+> Conversion.Conversion ConvertWebSite(
+>             List<string> address, 
+>             ConversionOptions options,
+>             string outputFilePath = null, 
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Overloaded method. Synchronous mode of method *ConvertWebSiteAsync*. Converts several web pages specified the list of their URLs.
+
+
+
+#### ConvertLocalFileAsync
+
+> ```
+> AsyncResult<Conversion.Conversion> ConvertLocalFileAsync(
+>             string filePath,
+>             ConversionOptions options,
+>             string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Starts asynchronously a long-time conversion operation of a file specified by its local file system path.
+
+
+
+#### ConvertLocalFileAsync
+
+> ```
+> AsyncResult<Conversion.Conversion> ConvertLocalFileAsync(
+>             List<string> filePaths, 
+>             ConversionOptions options,
+>             string outputFilePath = null, 
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Overloaded method.  Starts asynchronously a long-time conversion operation of several files specified by a list of their local file system paths.
+
+
+
+#### ConvertLocalFile
+
+> ```
+> Conversion.Conversion ConvertLocalFile(
+>             string filePath,
+>             ConversionOptions options,
+>             string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Synchronous mode of method *ConvertLocalFileAsync*. Converts a file specified by its local file system path.
+
+
+
+#### ConvertLocalFile
+
+> ```
+> Conversion.Conversion ConvertLocalFile(
+>             List<string> filePath, 
+>             ConversionOptions options,
+>             string outputFilePath = null, 
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Overloaded method. Synchronous mode of method *ConvertLocalFileAsync*. Converts several files specified by a list of their local file system paths.
+
+
+
+#### ConvertLocalDirectory
+
+> ```
+> Conversion.Conversion ConvertLocalDirectory(
+>             List<string> paths,
+>             ConversionOptions options,
+>             string outputFilePath = null,
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Converts synchronously files in a list of local directories.

@@ -1,0 +1,100 @@
+function cnCreateScriptElem(url, elem_id) {
+    var dt = new Date();
+    var unic = dt.getMilliseconds();
+    var elem = document.createElement('script');
+    elem.type = 'text/javascript';
+    elem.id = 'cnScriptComCount' + elem_id;
+    elem.src = url + '&unic=' + unic;
+    var s = document.getElementById(elem_id);
+    if (s) {
+        s.parentNode.insertBefore(elem, s);
+    }
+}
+
+function cnGetCounter(url, elem_id, left_symb, right_symb, hide_block) {
+    if (typeof url === 'undefined') {
+        return;
+    }
+    
+    if (typeof left_symb === 'undefined') {
+        left_symb = '';
+    }
+    if (typeof right_symb === 'undefined') {
+        right_symb = '';
+    }
+    if (typeof hide_block === 'undefined') {
+        hide_block = '';
+    }
+    
+    url = encodeURIComponent(url);
+    left_symb = encodeURIComponent(left_symb);
+    right_symb = encodeURIComponent(right_symb);
+    hide_block = encodeURIComponent(hide_block);
+    
+    cnCreateScriptElem('//comm.cnews.ru/comment_count.php?url=' + url + '&elem=' + elem_id + '&left_symb=' + left_symb + '&right_symb=' + right_symb + '&hide_block=' + hide_block, elem_id);
+}
+
+if (typeof jQuery != 'undefined') {
+    (function ($) {
+        /* cnGetCounter */
+        var _cn = _cn || [];
+        while ((c = _cn.shift()) != null) {
+            cnGetCounter(c[0], c[1], c[2]);
+        }
+        $(function () {
+            getCounterAll(document.body);
+        });
+        /* /cnGetCounter */
+    })(jQuery);
+}
+
+function getCounterAll(parent) {
+    var data = [];
+    $('[data-comment]', parent).each(function () {
+        var el = $(this);
+        if (el.data('nocomment')) {
+            return true;
+        }
+        data.push({
+            url: el.data('comment'),
+            id: el.attr('id'),
+            prefix: el.data('prefix'),
+            postfix: el.data('postfix'),
+            hide: el.data('hide')
+        });
+    });
+    
+    if (data.length === 0) {
+        return;
+    }
+    
+    $.ajax({
+        url: '//comm.cnews.ru/comment_count.php',
+        data: {data: data},
+        type: 'post',
+        dataType: 'json',
+    }).done(function (data) {
+        var item;
+        for (var k in data) {
+            if (typeof data[k] !== 'object') {
+                continue;
+            }
+            item = data[k];
+            
+            if (item.hide && !item.count) {
+                document.getElementById(item.hide).style.display = 'none';
+                document.getElementById(item.hide + 'l').style.display = 'inline';
+            } else if (item.hide) {
+                document.getElementById(item.id).innerHTML = item.count;
+                document.getElementById(item.hide).style.display = 'inline';
+                document.getElementById(item.hide + 'l').style.display = 'none';
+            } else {
+                document.getElementById(item.id).innerHTML = item.count;
+            }
+        }
+        
+        $(document).trigger('cnews.comments.loaded');
+    }).fail(function () {
+        $(document).trigger('cnews.comments.fail');
+    });
+}

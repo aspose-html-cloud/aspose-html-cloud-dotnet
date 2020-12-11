@@ -26,7 +26,7 @@ HtmlApi api = new HtmlApi(appSid, appKey, baseUrl, authUrl);
 
 * by externally provided access token
 
-The client application provides a token that it acquired itself or obtained from elsewhere, SDK only uses it for API calls. In this case, the client application is responsible for the handling of the token expiration. When the token is expired, SDK throws an exception that should be catched by client application, and it should refresh the token calling the authorization service or getting it from other external provider. 
+The client application provides a token that is acquired by itself or obtained from elsewhere, SDK only uses it for API calls. In this case, the client application is responsible for the handling of the token expiration. When the token is expired, SDK throws an exception that should be catched by client application, and it should refresh the token calling the authorization service or getting it from other external provider. 
 
 #### Example
 
@@ -34,11 +34,6 @@ The client application provides a token that it acquired itself or obtained from
 
 string baseUrl = "https://api.aspose.cloud";
 
-JwtToken tokenObj = new JwtToken() {
-	Token = token,         // access token string
-	IssuedOn = issued_on,  // token generation date
-	ExpiresIn = expires_in // token expiration period in seconds
-};
 
 try
 {
@@ -71,7 +66,9 @@ string token = "..............."; // here is the access token string
 
 try
 {
-	HtmlApi api = new HtmlApi(token, baseUrl);
+    HtmlApi api = new HtmlApi(cb => cb
+            .WithBaseUrl(baseUrl)
+            .WithExternalAuthentication(token));
 	.....
 	// business code is here
 	.....

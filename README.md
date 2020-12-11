@@ -3,46 +3,54 @@
 # Aspose.HTML Cloud SDK for .NET [![NuGet](https://img.shields.io/nuget/v/Aspose.HTML-Cloud.svg)](https://www.nuget.org/packages/Aspose.HTML-Cloud/)
 This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applications quickly and easily, with zero initial cost.
 
-
-# Key Features
-* Conversion of HTML document into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
-* Conversion of MHTML document into the same formats that are supported for HTML
-* Conversion of HTML document from Web by its URLto MHTML document format
-* Conversion (import) of Markdown file to HTML page
-* Merging HTML/XHTML templates with external data source; XML is supported as source data format
-* Downloading of HTML page from Web by its URL with its linked resources as single ZIP archive
-* Extraction of HTML fragments using XPath queries
-* Extraction of HTML fragments using CSS selectors
-* Extraction of all HTML document images in a ZIP archive
-* HTML page SEO analysis; returns JSON list of SEO warnings 
-
-
 See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
 
-## What's new in the last versions (19.5.0 and later)
+## Table of Contents
 
-1) This SDK version uses Aspose.HTML Cloud REST API version 3.0 (implemented as a Docker container application). So the SDK has been updated according to API v3.0 and to use JWT authorization inside.
-2) All HTML REST API wrapper methods have been joined in the single [**HtmlApi**](docs/HtmlApi.md) class; it becomes a common facade for all HTML API groups. All HTML SDK methods are available using HtmlApi class instance or any of interfaces that it exposes (*IDocumentApi, IConversionApi, IImportApi, ITemplateMergeApi*)
-3) A special group of SDK methods that provide a cloud storage access has been added. The storage access functionality is available using [**StorageApi**](docs/StorageApi.md) class instance or interfaces that it exposes (*IStorageApi, IStorageFileApi, IStorageFolderApi*). Thus, dependence on Aspose.Storage-Cloud SDK package has been removed.
+>  - [Key Features](README.md#KeyFeatures)
+>  - [How to use the SDK?](README.md#HowToUseSDK)
+> 	 - [Prerequisites](README.md#HowTo-prerequisites)
+> 	 - [Installation](README.md#HowTo-installation)
+> 		 - [Install Aspose.HTML-Cloud via NuGet](README.md#HowTo-install-nuget)
+> 	 - [Run tests and examples](README.md#HowTo-RunTestsExamples)
+> 	 - [Usage sample](README.md#CodeExample)
+>  - [Dependencies](README.md#Dependencies)
+>  - [Documentation for API Endpoints](README.md#Doc_API)
+> 	 - [Class: **HtmlApi**](README.md#Doc_Api_Class_HtmlApi)
+>  - [Documentation for authorization methods](README.md#Doc_Auth)
+>  - [Resources](README.md#Resources)
+>  - [Contact Us](README.md#ContactUs)
 
-## What's new in the last versions (19.10.0 and later)
 
-Since the ML related features, namely the translation, the OCR and the keywords detection have been excluded from Aspose.HTML Cloud API, respective methods being represented by *ITranslateApi*, *IOcrApi*, *ISummarizationApi* interfaces also have been removed from the SDK since version 19.10.0. 
-(The previous SDK versions will work properly with all remained functionality, but will produce an exception trying to call any of enumerated interfaces)/
+<a name="KeyFeatures"></a>
+## Key Features
 
+* Conversion of HTML document into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
+* Conversion of MHTML document into the same formats that are supported for HTML
+* Conversion of ePub document into the same formats that are supported for HTML
+* Conversion of HTML document from Web by its URL to MHTML document format
+* Conversion of Markdown file to HTML page
 
+<a name="HowToUseSDK"></a>
 ## How to use the SDK?
-The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
 
+The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). 
+For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
 
+<a name="HowTo-prerequisites"></a>
 ### Prerequisites
 
 To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
 
+<a name="HowTo-installation"></a>
 ### Installation
 
+Get the ready package from [NuGet](https://www.nuget.org/packages/Aspose.HTML-Cloud/) or build from source available in this repository folder Aspose.HTML-Cloud.
+
+<a name="HowTo-install-nuget"></a>
 #### Install Aspose.HTML-Cloud via NuGet
+
 
 From the command line:
 
@@ -60,160 +68,155 @@ From within Visual Studio:
 4. Click on the *Browse* tab and search for "Aspose.HTML-Cloud".
 5. Click on the Aspose.HTML-Cloud package, select the appropriate version in the right-tab and click *Install*.
 
+<a name="HowTo-RunTestsExamples"></a>
 ### Run tests and examples.
 
 To run tests, first modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
 
 To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up AppSID, AppKey, and optionally DataPath.
 
-### Sample usage
+<a name="CodeExample"></a>
+### Usage sample
 
-The example below shows how your application have to convert the HTML document located by its URL into other formats (e.g. PDF) using Aspose.HTML-Cloud library:
+The example below demonstrates how you can use the proposed SDK functionality in your application.
+In this example, the HTML document located by local path is converted to other format, e.g. PDF using Aspose.HTML-Cloud library.
+
+**How to try this code sample**:
+
+ 1. Open Visual Studio and create an empty solution.
+ 2. In the solution, create a  C# console application project.
+ 3. In the console project, install the last version of Aspose.HTML-Cloud package from NuGet  ( see [Install Aspose.HTML-Cloud via NuGet](README.md#HowTo-install-nuget) above )
+ 4. Copy the code snippet below and replace Program.cs file content.
+ 5. Replace APPKEY and APPSID variable values in the code with respective values from your account ( see [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) page )
+ 6. Run the application and check a result by the path displayed in the console output.
+
+For more buildable and executable examples, refer the [**Documentation for API Endpoints**](README.md#Doc_API) chapter.
 
 ```csharp
+using Aspose.HTML.Cloud.Sdk;
+using Aspose.HTML.Cloud.Sdk.Conversion;
+using Aspose.HTML.Cloud.Sdk.Runtime.Core.Model;
 using System;
 using System.IO;
-using Com.Aspose.Storage.Api;
-using Com.Aspose.Storage.Model;
-using Aspose.Html.Cloud.Sdk.Api;
 
-namespace MyAppNamespace
+namespace ExamplesConsoleApp
 {
-    public class Example
+    class Program
     {
-        string APPKEY = "XXXXXXX"; // put here the app Key
-        string APPSID = "XXXXXXX"; // put here the app SID
-        string BASEPATH = "https://api.aspose.cloud";
-        string AUTHPATH = "https://api.aspose.cloud";
-
-        string sourceUrl = "https://www.le.ac.uk/oerresources/bdra/html/page_02.htm";
-        // apply a source page URL
-		int width = 800;
-		int height = 1200;
-		int leftMargin = 15;
-		int rightMargin = 15;
-		int topMargin = 15;
-		int bottomMargin = 15;
-
-        string resultFile = "page_02_converted.pdf";
-
         static void Main(string[] args)
         {
-            // create instance of the API class
-            IConversionApi convApi = new HtmlApi(APPKEY, APPSID, BASEPATH, AUTHPATH);
-            // convert the HTML document by its URL to PDF
-			StreamResponse response = convApi.GetConvertDocumentToPdfByUrl(
-				sourceUrl, format, width, height,
-				leftMargin, rightMargin, topMargin, bottomMargin);
-				
-			if(response != null && response.ContentStream != null)
-			{
-				Stream stream = response.ContentStream;
-				string outFile = Path.Combine(outPath, response.FileName);
-			
-				if(!Directory.Exists(outPath)) Directory.CreateDirectory(outPath);
-				using(Stream fstr = new FileStream(outFile, FileMode.Create, FileAccess.Write))
-				{
-					response.CopyTo(fstr);
-					fstr.Flush();
-					Console.Out.WriteLine(string.Format("Result file copied to: {0}", outFile));
-				}
-			}
+            string AppSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+            string AppKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+
+            string appDir = AppDomain.CurrentDomain.BaseDirectory;
+            string projPath = appDir.Substring(0, appDir.IndexOf("\\bin"));
+            string sourceFile = Path.Combine(projPath, "TestSource", "test.html");
+
+            // Creating api with credentials.
+            var api = new HtmlApi(appSid : AppSid, appKey : AppKey);
+            
+            // Create converter by ConverterBuilder
+            ConverterBuilder convHtmlPdf = new ConverterBuilder()
+                .FromLocalFile(sourceFile)
+                .To(new PDFConversionOptions())
+                .SaveToLocal("TestResultDirectory");
+
+            // Convert html page to pdf
+            ConversionResult result = api.Convert(convHtmlPdf);
+
         }
     }
 }
 ```
 
-## Dependencies
-- .NET Framework 4.0 or later
-- [Json.NET (12.0.12 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
+## ConverterBuilder
 
-- .NET Standard 2.0 or later
+### From...
+
+Specifies input data for conversion. 
+
+Possible conversions:
+ - HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
+ - XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
+ - MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
+ - EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
+
+
+  Method | Parameters | Description
+ ------------ | ------------- | ------------- 
+FromLocalFile(string inputPath) | inputPath - path to local file. | Source is a file in the local file system.
+FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage. | Source is a file in the cloud (user storage).
+FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file ore files in local directory with linked resources (css, image, etc.,) in this directory.
+FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in local file system.
+FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file or files in directory with linked resources (css, image, etc.,) in this directory.
+FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in the storage.
+FromUrl(string urlAddress) | urlAddress - web site for conversion | Source get from URL.
+
+
+### To(ConversionOptions)
+
+Specifies the output format for conversion.
+
+  Options | Description
+ ------------ | ------------- 
+[GIFConversionOptions](docs/ConversionOptions.md#GIFConversionOptions) | Converting source file or URL to single or several images in GIF format.
+[JPEGConversionOptions](docs/ConversionOptions.md#JPEGConversionOptions) | Converting source file or URL to single or several images in JPEG format.
+[PNGConversionOptions](docs/ConversionOptions.md#PNGConversionOptions) | Converting source file or URL to single or several images in PNG format.
+[TIFFConversionOptions](docs/ConversionOptions.md#TIFFConversionOptions) | Converting source file or URL to single or several images in TIFF format.
+[BMPConversionOptions](docs/ConversionOptions.md#BMPConversionOptions) | Converting source file or URL to single or several images in BMP format.
+[PDFConversionOptions](docs/ConversionOptions.md#PDFConversionOptions) | Converting source file or URL to PDF.
+[XPSConversionOptions](docs/ConversionOptions.md#XPSConversionOptions) | Converting source file or URL to XPS.
+[MarkdownConversionOptions](docs/ConversionOptions.md#MarkdownConversionOptions) | Converting source file or URL to Markdown.
+
+### SaveTo...
+
+Target directory for conversion result.
+
+  Method | Parameters | Description
+ ------------ | ------------- | ------------- 
+SaveToLocal(string outputDirectory) | outputDirectory - directory for save result. | Directory in the local file system for save result conversion.
+SaveToStorage(string outputDirectory) | outputDirectory - directory for save result. | Directory in the cloud (user storage) for save result conversion.
+
+## ConversionResult
+
+Result object for conversion.
+
+  Field | Description
+ ------------ | ------------- 
+string[] Files | List of conversion result files.
+string Description | Description in case of unsuccessful conversion. 
+
+<a name="Dependencies"></a>
+## Dependencies
+
+.NET Standard 2.0 or later
 - [Json.NET (12.0.2 or later)](https://www.nuget.org/packages/Newtonsoft.Json/)
 
+<a name="Doc_API"></a>
+## Documentation for API Endpoints
 
-## Roadmap
+The functionality provided by the SDK is divided to two groups:
 
-In the upcoming releases, we are set to implement a number of new features:
-*
+ - HTML methods; represented by [*HtmlApi*](docs/HtmlApi.md) class
+ - Storage access methods; represented by [*StorageProvider*](docs/StorageProvider.md) class; the storage entry point is represented by an instance of [*StorageProvider*] that is available as [*HtmlApi.Storage*](docs/HtmlApi.md#Storage) property of [*HtmlApi*](docs/HtmlApi.md) class.
 
-Known issues that we are set to fix soon:
-* 
+All URIs are relative to *https://api.aspose.cloud/v4.0*
 
+<a name="Doc_Api_Class_HtmlApi"></a>
+### Class: [*HtmlApi*](docs/HtmlApi.md)
+
+<a name="Doc_Auth"></a>
 ## Documentation for authorization methods
 
 Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
 
 For more details see [**Authorization**](docs/Authorization.md)
 
-
-## Documentation for API Endpoints
-
-All URIs are relative to *https://api.aspose.cloud/v3.0*
-
-Class | Interface | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------|---------------
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToImage**](docs/ConversionApi.md#GetConvertDocumentToImage) | **GET** /html/{name}/convert/image/{outFormat} | Convert the HTML document from the storage by its name to the specified image format.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToImageByUrl**](docs/ConversionApi.md#GetConvertDocumentToImageByUrl) | **GET** /html/convert/image/{outFormat} | Convert the HTML page from the web by its URL to the specified image format.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToPdf**](docs/ConversionApi.md#GetConvertDocumentToPdf) | **GET** /html/{name}/convert/pdf | Convert the HTML document from the storage by its name to PDF.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToPdfByUrl**](docs/ConversionApi.md#GetConvertDocumentToPdfByUrl) | **GET** /html/convert/pdf | Convert the HTML page from the web by its URL to PDF.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToXps**](docs/ConversionApi.md#GetConvertDocumentToXps) | **GET** /html/{name}/convert/xps | Convert the HTML document from the storage by its name to XPS.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToMarkdown**](docs/ConversionApi.md#GetConvertDocumentToMarkdown) | **GET** /html/{name}/convert/md | Convert the HTML document from the storage by its name to Markdown.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToXpsByUrl**](docs/ConversionApi.md#GetConvertDocumentToXpsByUrl) | **GET** /html/convert/xps | Convert the HTML page from the web by its URL to XPS.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**GetConvertDocumentToMHTMLByUrl**](docs/ConversionApi.md#GetConvertDocumentToMHTMLByUrl) | **GET** /html/convert/mhtml | Convert the HTML page from the web by its URL to MHTML.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PutConvertDocumentToImage**](docs/ConversionApi.md#PutConvertDocumentToImage) | **PUT** /html/{name}/convert/image/{outFormat} | Convert the HTML document from the storage by its name to the specified image format and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToImage**](docs/ConversionApi.md#PostConvertDocumentToImage) | **PUT** /html/convert/image/{outFormat} | Convert the HTML document from the request stream to the specified image format and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToImage**](docs/ConversionApi.md#PostConvertDocumentToImage_1) | **PUT** /html/convert/image/{outFormat} | Convert the HTML document from the local file system by its local path to the specified image format and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PutConvertDocumentToPdf**](docs/ConversionApi.md#PutConvertDocumentToPdf) | **PUT** /html/{name}/convert/pdf | Convert the HTML document from the storage by its name to PDF and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToPdf**](docs/ConversionApi.md#PostConvertDocumentToPdf) | **POST** /html/convert/pdf | Convert the HTML document from the request stream to PDF and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PutConvertDocumentToPdf**](docs/ConversionApi.md#PostConvertDocumentToPdf_1) | **POST** /html/convert/pdf | Convert the HTML document from the local file system by its local path to PDF and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PutConvertDocumentToXps**](docs/ConversionApi.md#PutConvertDocumentToXps) | **PUT** /html/{name}/convert/xps | Convert the HTML document from the storage by its name to XPS and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToXps**](docs/ConversionApi.md#PostConvertDocumentToXps) |  **POST** /html/convert/xps | Convert the HTML document from the request stream to XPS and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToXps**](docs/ConversionApi.md#PostConvertDocumentToXps_1) |  **POST** /html/convert/xps | Convert the HTML document from the local file system by its local path to XPS and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PutConvertDocumentToMarkdown**](docs/ConversionApi.md#PutConvertDocumentToMarkdown) | **PUT** /html/{name}/convert/md | Convert the HTML document from the storage by its name to Markdown and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown) |  **POST** /html/convert/md | Convert the HTML document from the request stream to Markdown and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApi* | [**PostConvertDocumentToMarkdown**](docs/ConversionApi.md#PostConvertDocumentToMarkdown_1) |  **POST** /html/convert/md | Convert the HTML document from the local file system by its local path to Markdown and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToImageAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToImageAndDownload) | **POST** /html/convert/image/{outFormat} | Extension method. Convert the HTML document from the request stream to the specified image format, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToImageAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToImageAndDownload_1) | **POST** /html/convert/image/{outFormat} | Overloaded extension method. Convert the HTML document from the local file system to the specified image format, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToPdfAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToPdfAndDownload) | **POST** /html/convert/pdf | Extension method. Convert the HTML document from the request stream to PDF, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToPdfAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToPdfAndDownload_1) | **POST** /html/convert/pdf | Overloaded extension method. Convert the HTML document from the local file system to PDF, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToXpsAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToXpsAndDownload) | **POST**  /html/convert/xps | Extension method. Convert the HTML document from the request stream to XPS, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToXpsAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToXpsAndDownload_1) | **POST**  /html/convert/xps | Overloaded extension method. Convert the HTML document from the local file system to XPS, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToMarkdownAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToMarkdownAndDownload) | **POST**  /html/convert/md | Extension method. Convert the HTML document from the request stream to Markdown, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IConversionApiEx* | [**PostConvertDocumentToMarkdownAndDownload**](docs/IConversionApiEx.md#PostConvertDocumentToMarkdownAndDownload_1) | **POST**  /html/convert/md | Overloaded extension method. Convert the HTML document from the local file system to Markdown, save to storage and download to stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IImportApi* | [**GetImportMarkdownToHtml**](docs/ImportApi.md#GetImportMarkdownToHtml) | **GET** /html/{name}/import/md | Create an HTML document from Markdown file (located in the storage) and return it in the response stream.
-[*HtmlApi*](docs/HtmlApi.md) | *IImportApi* | [**PutImportMarkdownToHtml**](docs/ImportApi.md#PutImportMarkdownToHtml) | **PUT** /html/{name}/import/md | Create an HTML document from Markdown file (located in the storage) and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IImportApi* | [**PostImportMarkdownToHtml**](docs/ImportApi.md#PostImportMarkdownToHtml) | **POST** /html/import/md | Create an HTML document from Markdown file as input stream and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IImportApi* | [**PostImportMarkdownToHtml**](docs/ImportApi.md#PostImportMarkdownToHtml_1) | **POST** /html/import/md | Overloaded method. Create an HTML document from Markdown file (located in the local file system) and save it to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *IDocumentApi* | [**GetDocumentByUrl**](docs/DocumentApi.md#GetDocumentByUrl) | **GET** /html/download | Download the HTML page from Web by its URL with linked resources as a ZIP archive. 
-[*HtmlApi*](docs/HtmlApi.md) | *IDocumentApi* | [**GetDocumentFragmentByXPath**](docs/DocumentApi.md#GetDocumentFragmentByXPath) | **GET** /html/{name}/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query. 
-[*HtmlApi*](docs/HtmlApi.md) | *IDocumentApi* | [**GetDocumentFragmentByXPathByUrl**](docs/DocumentApi.md#GetDocumentFragmentByXPathByUrl) | **GET** /html/fragments/{outFormat} | Return list of HTML fragments matching the specified XPath query - from a Web page by its URL. 
-[*HtmlApi*](docs/HtmlApi.md) | *IDocumentApi* |[**GetDocumentFragmentByCSSSelector**](docs/DocumentApi.md#GetDocumentFragmentByCSSSelector) | **GET** /html/{name}/fragments/css/{outFormat} | Return list of HTML fragments matching the specified CSS selector
-[*HtmlApi*](docs/HtmlApi.md) | *IDocumentApi* |[**GetDocumentFragmentByCSSSelectorByUrl**](docs/DocumentApi.md#GetDocumentFragmentByCSSSelectorByUrl) | **GET** /html/fragments/css/{outFormat} | Return list of HTML fragments matching the specified CSS selector - from a Web page by its URL. 
-[*HtmlApi*](docs/HtmlApi.md) | *IDocumentApi* | [**GetDocumentImages**](docs/DocumentApi.md#GetDocumentImages) | **GET** /html/{name}/images/all | Return all HTML document images packaged as a ZIP archive.
-[*HtmlApi*](docs/HtmlApi.md) | *IDocumentApi* | [**GetDocumentImagesByUrl**](docs/DocumentApi.md#GetDocumentImagesByUrl) | **GET** /html/images/all | Return all HTML document images packaged as a ZIP archive - from a Web page by its URL.
-[*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**GetMergeHtmlTemplate**](docs/TemplateMergeApi.md#GetMergeHtmlTemplate) | **GET** /html/{templateName}/merge | Populate HTML document template with data located as a file in the storage.
-[*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the stream. Result document will be saved to storage.
-[*HtmlApi*](docs/HtmlApi.md) | *ITemplateMergeApi* | [**PostMergeHtmlTemplate**](docs/TemplateMergeApi.md#PostMergeHtmlTemplate_1) | **POST** /html/{templateName}/merge | Populate HTML document template with data from the local file system. Result document will be saved to storage.
-[*HtmlApi*](docs/SeoApi.md) | *ISeoApi* | [**GetWebPageSEOWarnings**](docs/SeoApi.md#GetWebPageSEOWarnings) |  **GET** /html/seo | Return list of SEO warnings detected in a specified Web page.
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**GetFolderContentList**](docs/IStorageFolderApi.md#GetFolderContentList) | **GET** /html/storage/folder/{path} | Get all files and subfolders within a folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CreateFolder**](docs/IStorageFolderApi.md#CreateFolder) | **PUT** /html/storage/folder/{path} | Create the folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**DeleteFolder**](docs/IStorageFolderApi.md#DeleteFolder) | **DELETE** /html/storage/folder/{path} | Delete folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**CopyFolder**](docs/IStorageFolderApi.md#CopyFolder) | **PUT** /html/storage/folder/copy/{srcPath} |  Copy folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFolderApi* | [**MoveFolder**](docs/IStorageFolderApi.md#MoveFolder) | **PUT** /html/storage/folder/move/{srcPath} | Move folder
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DownloadFile**](docs/IStorageFileApi.md#DownloadFile) | **GET** /html/storage/file/{path} | Download file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile**](docs/IStorageFileApi.md#UploadFile) | **PUT** /html/storage/file/{path} | Upload file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**UploadFile**](docs/IStorageFileApi.md#UploadFile_1) | **PUT** /html/storage/file/{path} | Upload file by local path. Overloaded method.
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**DeleteFile**](docs/IStorageFileApi.md#DeleteFile) | **DELETE** /html/storage/file/{path} | Delete file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**CopyFile**](docs/IStorageFileApi.md#CopyFile) | **PUT** /html/storage/file/copy/{srcPath} | Copy file
-[*StorageApi*](docs/StorageApi.md) | *IStorageFileApi* | [**MoveFile**](docs/IStorageFileApi.md#MoveFile) | **PUT** /html/storage/file/move/{srcPath} | Move file
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**StorageExists**](docs/IStorageApi.md#StorageExists) | **GET** /html/storage/{storageName}/exist | Check if storage exists
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**FileOrFolderExists**](docs/IStorageApi.md#FileOrFolderExists) | **GET** /html/storage/exist/{path} | Check if file or folder exists
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetDiscUsage**](docs/IStorageApi.md#GetDiscUsage) | **GET** /html/storage/disc | Get disc usage
-[*StorageApi*](docs/StorageApi.md) | *IStorageApi* | [**GetStorageItemVersions**](docs/IStorageApi.md#GetStorageItemVersions) | **GET** /html/storage/version/{path} | Get list of file versions
-
+<br>
+<a name="Resources"></a>
 
 ## Resources
+
 
 - **Website:** [www.aspose.com](http://www.aspose.cloud)
 - **Product Home:** [Aspose.HTML for Cloud](https://products.aspose.cloud/html/cloud)
@@ -221,6 +224,9 @@ Class | Interface | Method | HTTP request | Description
 - **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.cloud/c/html)
 - **Blog:** [Aspose.HTML for Cloud Blog](https://blog.aspose.cloud/category/aspose-products/aspose-html-cloud/)
 
+<br>
 
+<a name="ContactUs"></a>
 ## Contact Us
+
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/html).
