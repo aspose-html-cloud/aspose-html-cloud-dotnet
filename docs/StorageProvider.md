@@ -1,6 +1,6 @@
 # StorageProvider
 
-Class providing methods of cloud storage access.
+A class that provides methods of cloud storage access.
 
 
 
@@ -91,7 +91,7 @@ Aspose.HTML.Cloud.Sdk.IO
 > bool Exists(string storageName)
 > ```
 
-Checks if specified cloud storage exists or is available for the user
+Checks if specified cloud storage exists or is available for the user.
 
 
 
@@ -102,7 +102,7 @@ Checks if specified cloud storage exists or is available for the user
 > Storage GetStorage(string storageName)
 > ```
 
-Gets storage info by specified storage name, including total and used disc space
+Gets storage info by specified storage name, including total and used disc space.
 
 <br>
 
@@ -120,7 +120,7 @@ Gets storage info by specified storage name, including total and used disc space
 > bool DirectoryExists(string directoryUri, string storageName = null)
 > ```
 
-Checks if a directory specified by the path exists in the specified or default storage
+Checks if a directory specified by the path exists in the specified or default storage.
 
 
 
@@ -131,7 +131,7 @@ Checks if a directory specified by the path exists in the specified or default s
 > bool DirectoryExists(RemoteDirectory dir)
 > ```
 
-Overloaded method. Checks if a directory exists by the storage/folder path specified by [**RemoteDirectory**](RemoteDirectory.md) object's *Path* property
+Overloaded method. Checks if a directory exists by the storage/folder path specified by [**RemoteDirectory**](RemoteDirectory.md) object's *Path* property.
 
 
 

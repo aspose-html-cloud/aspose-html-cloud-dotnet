@@ -25,13 +25,15 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 <a name="KeyFeatures"></a>
 ## Key Features
 
-* Conversion of HTML document into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
-* Conversion of MHTML document into the same formats that are supported for HTML
-* Conversion of ePub document into the same formats that are supported for HTML
-* Conversion of HTML document from Web by its URL to MHTML document format
-* Conversion of Markdown file to HTML page
+* Conversion of HTML documents into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
+* Conversion of an MHTML document into the same formats that are supported for HTML
+* Conversion of an ePub document into the same formats that are supported for HTML
+* Conversion of an HTML document from the Web by its URL to MHTML document format
+* Conversion of a Markdown file to an HTML page
 
 <a name="HowToUseSDK"></a>
+
+
 ## How to use the SDK?
 
 The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). 
@@ -64,14 +66,15 @@ From within Visual Studio:
 
 1. Open the Solution Explorer.
 2. Right-click on a project within your solution.
-3. Click on *Manage NuGet Packages...*
+3. Click on *Manage NuGet Packages.*
 4. Click on the *Browse* tab and search for "Aspose.HTML-Cloud".
 5. Click on the Aspose.HTML-Cloud package, select the appropriate version in the right-tab and click *Install*.
 
 <a name="HowTo-RunTestsExamples"></a>
-### Run tests and examples.
 
-To run tests, first modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
+### Run tests and examples
+
+To run tests, firstly modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
 
 To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up AppSID, AppKey, and optionally DataPath.
 
@@ -79,15 +82,15 @@ To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setti
 ### Usage sample
 
 The example below demonstrates how you can use the proposed SDK functionality in your application.
-In this example, the HTML document located by local path is converted to other format, e.g. PDF using Aspose.HTML-Cloud library.
+In this example, the HTML document located by local path is converted to another format, e.g. PDF using Aspose.HTML-Cloud library.
 
 **How to try this code sample**:
 
  1. Open Visual Studio and create an empty solution.
  2. In the solution, create a  C# console application project.
- 3. In the console project, install the last version of Aspose.HTML-Cloud package from NuGet  ( see [Install Aspose.HTML-Cloud via NuGet](README.md#HowTo-install-nuget) above )
+ 3. In the console project, install the last version of Aspose.HTML-Cloud package from NuGet  ( see [Install Aspose.HTML-Cloud via NuGet](README.md#HowTo-install-nuget) above ).
  4. Copy the code snippet below and replace Program.cs file content.
- 5. Replace APPKEY and APPSID variable values in the code with respective values from your account ( see [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) page )
+ 5. Replace APPKEY and APPSID variable values in the code with respective values from your account ( see [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) page ).
  6. Run the application and check a result by the path displayed in the console output.
 
 For more buildable and executable examples, refer the [**Documentation for API Endpoints**](README.md#Doc_API) chapter.
@@ -144,13 +147,13 @@ Possible conversions:
 
   Method | Parameters | Description
  ------------ | ------------- | ------------- 
-FromLocalFile(string inputPath) | inputPath - path to local file. | Source is a file in the local file system.
-FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage. | Source is a file in the cloud (user storage).
-FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file ore files in local directory with linked resources (css, image, etc.,) in this directory.
-FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in local file system.
-FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Convert file or files in directory with linked resources (css, image, etc.,) in this directory.
-FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | Source with linked resources is a zip archive, located in the storage.
-FromUrl(string urlAddress) | urlAddress - web site for conversion | Source get from URL.
+FromLocalFile(string inputPath) | inputPath - path to a local file | A source is a file in a local file system. 
+FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage | A source is a file in the cloud (user storage). 
+FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a local directory with linked resources (css, image, etc.) in this directory. 
+FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to a zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in a local file system. 
+FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a directory with linked resources (css, image, etc.) in this directory. 
+FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in the storage. 
+FromUrl(string urlAddress) | urlAddress - web site for conversion | A source gets from a URL. 
 
 
 ### To(ConversionOptions)
@@ -170,12 +173,12 @@ Specifies the output format for conversion.
 
 ### SaveTo...
 
-Target directory for conversion result.
+The target directory for a conversion result.
 
   Method | Parameters | Description
  ------------ | ------------- | ------------- 
-SaveToLocal(string outputDirectory) | outputDirectory - directory for save result. | Directory in the local file system for save result conversion.
-SaveToStorage(string outputDirectory) | outputDirectory - directory for save result. | Directory in the cloud (user storage) for save result conversion.
+SaveToLocal(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the local file system to save a conversion result. 
+SaveToStorage(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the cloud (user storage) to save a conversion result. 
 
 ## ConversionResult
 
@@ -183,8 +186,8 @@ Result object for conversion.
 
   Field | Description
  ------------ | ------------- 
-string[] Files | List of conversion result files.
-string Description | Description in case of unsuccessful conversion. 
+string[] Files | A list of conversion result files. 
+string Description | A description in case of unsuccessful conversion. 
 
 <a name="Dependencies"></a>
 ## Dependencies
@@ -195,14 +198,15 @@ string Description | Description in case of unsuccessful conversion.
 <a name="Doc_API"></a>
 ## Documentation for API Endpoints
 
-The functionality provided by the SDK is divided to two groups:
+The functionality provided by the SDK is divided into two groups:
 
- - HTML methods; represented by [*HtmlApi*](docs/HtmlApi.md) class
- - Storage access methods; represented by [*StorageProvider*](docs/StorageProvider.md) class; the storage entry point is represented by an instance of [*StorageProvider*] that is available as [*HtmlApi.Storage*](docs/HtmlApi.md#Storage) property of [*HtmlApi*](docs/HtmlApi.md) class.
+ - HTML methods; represented by [*HtmlApi*](docs/HtmlApi.md) class.
+ - Storage access methods; represented by [*StorageProvider*](docs/StorageProvider.md) class; the storage entry point is represented by an instance of *StorageProvider* that is available as [*HtmlApi.Storage*](docs/HtmlApi.md#Storage) property of the [*HtmlApi*](docs/HtmlApi.md) class.
 
-All URIs are relative to *https://api.aspose.cloud/v4.0*
+All URIs are relative to *https://api.aspose.cloud/v4.0*.
 
 <a name="Doc_Api_Class_HtmlApi"></a>
+
 ### Class: [*HtmlApi*](docs/HtmlApi.md)
 
 <a name="Doc_Auth"></a>
@@ -210,7 +214,7 @@ All URIs are relative to *https://api.aspose.cloud/v4.0*
 
 Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
 
-For more details see [**Authorization**](docs/Authorization.md)
+For more details, see [**Authorization**](docs/Authorization.md).
 
 <br>
 <a name="Resources"></a>

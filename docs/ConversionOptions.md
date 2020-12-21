@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
  **RightMargin** | **Number**| Right resulting document page margin in points (1/96 inch). | [optional] 
  **TopMargin** | **Number**| Top resulting document page margin in points (1/96 inch). | [optional] 
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
- **Resolution** | **Number**| Resolution of resulting image. Default is 96 dpi. | [optional]
+ **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
 <a name="PNGConversionOptions"></a> 
 ### PNGConversionOptions
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
  **RightMargin** | **Number**| Right resulting document page margin in points (1/96 inch). | [optional] 
  **TopMargin** | **Number**| Top resulting document page margin in points (1/96 inch). | [optional] 
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
- **Resolution** | **Number**| Resolution of resulting image. Default is 96 dpi. | [optional]
+ **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
 <a name="BMPConversionOptions"></a>
 ### BMPConversionOptions
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
  **RightMargin** | **Number**| Right resulting document page margin in points (1/96 inch). | [optional] 
  **TopMargin** | **Number**| Top resulting document page margin in points (1/96 inch). | [optional] 
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
- **Resolution** | **Number**| Resolution of resulting image. Default is 96 dpi. | [optional]
+ **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
 <a name="GIFConversionOptions"></a>
 ### GIFConversionOptions
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
  **RightMargin** | **Number**| Right resulting document page margin in points (1/96 inch). | [optional] 
  **TopMargin** | **Number**| Top resulting document page margin in points (1/96 inch). | [optional] 
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
- **Resolution** | **Number**| Resolution of resulting image. Default is 96 dpi. | [optional]
+ **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
 <a name="TIFFConversionOptions"></a>
 ### TIFFConversionOptions
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
  **RightMargin** | **Number**| Right resulting document page margin in points (1/96 inch). | [optional] 
  **TopMargin** | **Number**| Top resulting document page margin in points (1/96 inch). | [optional] 
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
- **Resolution** | **Number**| Resolution of resulting image. Default is 96 dpi. | [optional]
+ **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
 <a name="MarkdownConversionOptions"></a>
 ### MarkdownConversionOptions
