@@ -4,7 +4,7 @@ There are two ways to authorize Aspose.HTML Cloud REST API calls provided by SDK
 
 * by user credentials
 
-The client application provides user credentials, i.e. appSid and appKey, and (optionally) an URL of authorization service that provides access tokens (all there parameters can be provided explicitly or implicitly, i.e. from config file or environment variables). Then SDK authorizes the REST API calls internally: it obtains an access token, uses it for API calls and handles the token expiration itself acquiring it again.  
+The client application provides user credentials, i.e. appSid and appKey, and (optionally) an URL of authorization service that provides access tokens (all their parameters can be provided explicitly or implicitly, i.e. from a config file or environment variables). Then SDK authorizes the REST API calls internally: it obtains an access token, uses it for API calls and handles the token expiration itself acquiring it again.   
 
 #### Example
 
@@ -26,7 +26,7 @@ HtmlApi api = new HtmlApi(appSid, appKey, baseUrl, authUrl);
 
 * by externally provided access token
 
-The client application provides a token that is acquired by itself or obtained from elsewhere, SDK only uses it for API calls. In this case, the client application is responsible for the handling of the token expiration. When the token is expired, SDK throws an exception that should be catched by client application, and it should refresh the token calling the authorization service or getting it from other external provider. 
+The client application provides a token that is acquired by itself or obtained from elsewhere, SDK only uses it for API calls. In this case, the client application is responsible for the handling of the token expiration. When the token is expired, SDK throws an exception that should be caught by the client application, and it should refresh the token calling the authorization service or getting it from another external provider. 
 
 #### Example
 

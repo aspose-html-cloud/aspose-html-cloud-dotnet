@@ -1,6 +1,6 @@
 # HtmlApi
 
-Facade class providing wrapper methods of Aspose.HTML Cloud REST API
+A facade class that provides wrapper methods of Aspose.HTML Cloud REST API.
 
 [TOC]
 
@@ -8,17 +8,15 @@ Facade class providing wrapper methods of Aspose.HTML Cloud REST API
 
 ## Summary
 
-Class that is a common SDK facade of all HTML functionality. 
+An HtmlApi class is a common SDK facade of all HTML functionality. 
 
 In the current version, it provides:
 
 - a group of constructors that provide various ways of API setup concerning user credentials, API services (if they are different from default) and some other parameters, such as HTTP connection timeout.
-
 - a group of synchronous and asynchronous conversion methods that work with various data sources, such as local files, files in the cloud storage, web pages. The supported source file types are: HTML (including HTML pages with local resources in ZIP archive), MHTML, ePub, Markdown. The supported output formats the source files can be converted to are: PDF, XPS, JPEG, BMP, PNG, GIF, TIFF. 
-
 - an entry point of the cloud storage access API.
 
-  
+
 
 ## Namespace 
 
@@ -32,42 +30,40 @@ Aspose.HTML.Cloud.Sdk
 
 > **HtmlApi  (Configuration configuration)**
 
-Constructor. Initializes a class instance with API parameters provided by specified Configuration object.
+ Initializes a class instance with API parameters provided by specified Configuration object.
 
 
 
 > **HtmlApi  (Action<Configuration.ConfigurationBuilder> builder)**
 
-Constructor. Initializes a class instance with API parameters using a configuration builder.
+Initializes a class instance with API parameters using a configuration builder.
 
 
 
 > **HtmlApi (String appSid, String appKey)**
 
-Constructor. Initializes a class instance with user credentials and default API server URL.
+Initializes a class instance with user credentials and default API server URL.
 
 
 
 > **HtmlApi (String appSid, String appKey, String baseUrl)**
 
-Constructor. Initializes a class instance with user credentials and explicit API server URL.
+Initializes a class instance with user credentials and explicit API server URL.
 
 
 
 > **HtmlApi (String appSid, String appKey, String baseUrl, TimeSpan timeout)**
 
-Constructor. Initializes a class instance with user credentials, explicit API server URL and HTTP(S) connection timeout.
+Initializes a class instance with user credentials, explicit API server URL and HTTP(S) connection timeout.
 
 
 
 
-#### Examples of constructor usage.
+#### Examples of constructor usage
 
-Here examples of various **HtmlApi** initialization ways are provided.
+Here are examples of various **HtmlApi** initialization ways. 
 
-
-
-Example of initialization by  **Configuration** object:
+An example of initialization by the **Configuration** object:
 
 ```
 var conf = Configuration.NewDefault(); 
@@ -82,7 +78,7 @@ using(var api =  new HtmlApi(conf))
 
 
 
-Example of initialization by user credentials with explicit authentication service and HTML API service URLs using the configuration builder: 
+An example of initialization by user credentials with explicit authentication service and HTML API service URLs using the configuration builder: 
 
 ```
 var AppSid = "clientid";
@@ -99,7 +95,7 @@ var api =  new HtmlApi(cb => cb
 
 
 
-Example of initialization by user credentials using the configuration builder: 
+An example of initialization by user credentials using the configuration builder: 
 
 ``` 
 var AppSid = "clientid";
@@ -116,7 +112,7 @@ var api = new HtmlApi(cb => cb
 
 
 
-Example of initialization by externally obtained authentication token using the configuration builder: 
+An example of initialization by externally obtained authentication token using the configuration builder: 
 
 ```code
 
@@ -141,7 +137,7 @@ var api = new HtmlApi(cb => cb
 > StorageProvider  Storage { get; }
 > ```
 
-Entry point to storage access API.
+An entry point to storage access API.
 
 See [**StorageProvider**](StorageProvider.md) for detailed specification of Storage API v4.0
 
@@ -155,11 +151,11 @@ The list of parameters that are used by most of methods:
 
 | Name                | Description                                                  | Type                                          | Note     |
 | ------------------- | ------------------------------------------------------------ | --------------------------------------------- | -------- |
-| source              | Source file (or files)                                       | [**ConversionSource**]()                      |          |
+| source              | A source file (or files).                                    | [**ConversionSource**]()                      |          |
 | options             | Specifies the conversion options, i.e. the resulting file format and other result parameters, such as page size and margins, image resolution etc. | [**ConversionOptions**](ConversionOptions.md) |          |
-| outputFilePath      | Storage path where the result file will be saved; by default, it is a system temporary storage path. | string                                        | optional |
-| nameCollisionOption | How to handle a resulting file name collision. There are 3 options: *FailIfExists* (default), *GenerateUniqueName*, *ReplaceExisting* | enum **NameCollisionOption**                  | optional |
-| observer            |                                                              | [IObserver]()<[Conversion.Conversion]()>      | optional |
+| outputFilePath      | A storage path where the result file will be saved; by default, it is a system temporary storage path. | string                                        | optional |
+| nameCollisionOption | How to handle a resulting file name collision. There are 3 options: *FailIfExists* (default), *GenerateUniqueName*, *ReplaceExisting.* | enum **NameCollisionOption**                  | optional |
+| observer            | Object that will get notifications on the conversion process state changes. It must implement the interface *IObserver<Conversion.Conversion>* | [IObserver]()<[Conversion.Conversion]()>      | optional |
 
 
 
@@ -176,7 +172,7 @@ The list of parameters that are used by most of methods:
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Starts asynchronously a long-time conversion operation of a source file (or files) specified by *source* parameter and returns an **AsyncResult** object that allows to watch for the current asynchronous operation status. 
+Starts asynchronously a long-time conversion operation of a source file (or files) specified by *source* parameter and returns an **AsyncResult** object that allows watching for the current asynchronous operation status. 
 
 
 
@@ -201,7 +197,7 @@ Overloaded method.  Starts asynchronously a long-time conversion operation of a 
 > AsyncResult<Conversion.Conversion> GetConversion(string id)
 > ```
 
-Gets a current status of long-time conversion operation started previously by  *ConvertAsync* method.
+Gets a current status of long-time conversion operation started previously by the *ConvertAsync* method.
 
 
 
@@ -211,7 +207,7 @@ Gets a current status of long-time conversion operation started previously by  *
 > bool DeleteTask(string id)
 > ```
 
-Cancels a long-time conversion operation started previously by *ConvertAsync* method.
+Cancels a long-time conversion operation started previously by the *ConvertAsync* method.
 
 
 
@@ -226,7 +222,7 @@ Cancels a long-time conversion operation started previously by *ConvertAsync* me
 >          IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Converts synchronously a file (or files) specified by  specified by *source* parameter. This method is a synchronous mode of *ConvertAsync*. Returns Conversion.Conversion object with a list of conversion results.
+Converts synchronously a file (or files) specified by  *source* parameter. This method is a synchronous mode of the *ConvertAsync*. Returns the Conversion.Conversion object with a list of conversion results.
 
 
 
@@ -240,13 +236,9 @@ Converts synchronously a file (or files) specified by  specified by *source* par
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Overloaded method. Converts synchronously a a list of storage files. Synchronous mode of *ConvertAsync* (overloaded).
+Overloaded method. Converts synchronously a list of storage files. This method is a synchronous mode of the *ConvertAsync* (overloaded).
 
-
-
-
-
-Below the specialized versions of conversion methods are described.
+The specialized versions of the conversion methods are described below.
 
 #### ConvertWebSiteAsync
 
@@ -259,7 +251,7 @@ Below the specialized versions of conversion methods are described.
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Starts asynchronously a long-time conversion operation of a web page specified by its URL (*address* parameter). Analog of *ConvertAsync* specialized for web pages.
+Starts asynchronously a long-time conversion operation of a web page specified by its URL (*address* parameter). This method is an analog of the *ConvertAsync* specialized for web pages.
 
 
 
@@ -274,7 +266,7 @@ Starts asynchronously a long-time conversion operation of a web page specified b
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Synchronous mode of method *ConvertWebSiteAsync*. Converts a web page specified by its URL.
+Synchronous mode of the *ConvertWebSiteAsync* method. Converts a web page specified by its URL.
 
 
 
@@ -289,7 +281,7 @@ Synchronous mode of method *ConvertWebSiteAsync*. Converts a web page specified 
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Overloaded method. Synchronous mode of method *ConvertWebSiteAsync*. Converts several web pages specified the list of their URLs.
+Overloaded method. Synchronous mode of the *ConvertWebSiteAsync* method. Converts several web pages specified the list of their URLs.
 
 
 
@@ -334,7 +326,7 @@ Overloaded method.  Starts asynchronously a long-time conversion operation of se
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Synchronous mode of method *ConvertLocalFileAsync*. Converts a file specified by its local file system path.
+Synchronous mode of the *ConvertLocalFileAsync* method. Converts a file specified by its local file system path.
 
 
 
@@ -349,7 +341,7 @@ Synchronous mode of method *ConvertLocalFileAsync*. Converts a file specified by
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Overloaded method. Synchronous mode of method *ConvertLocalFileAsync*. Converts several files specified by a list of their local file system paths.
+Overloaded method. Synchronous mode of the *ConvertLocalFileAsync* method. Converts several files specified by a list of their local file system paths.
 
 
 

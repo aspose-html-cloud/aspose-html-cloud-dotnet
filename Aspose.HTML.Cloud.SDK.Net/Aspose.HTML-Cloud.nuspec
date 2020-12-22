@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd" >
+  <metadata>
+    <id>Aspose.HTML-Cloud</id>
+	  <title>Aspose.HTML Cloud SDK for .NET</title>
+    <version>20.11.0</version>
+    <authors>asposecloud</authors>
+    <owners>asposemarketplace</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+	  <license type="expression">MIT</license>
+    <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
+    <releaseNotes>
+      Aspose.HTML Cloud for .NET SDK release (v.20.11).
+	  
+	  New generation of Aspose.HTML Cloud SDK for .NET/C# is provided in this release. It enables your .NET applications to easily convert HTML/XHTML documents from your local file system, from your Aspose cloud storage and any pages from Web. Also ePub, MHTML, Markdown formats are allowed as the source formats of conversion. The source documents can be rendered as PDF, XPS, JPEG, PNG, GIF, BMP, TIFF, Markdown (only from HTML/XHTML files). Also MHTML can be converted to HTML. 
+	  
+	  GENERAL NOTE: this version of SDK has been redesigned from scratch being based on new Aspose.HTML Cloud REST API (v4.0), so currently it provides only the conversion feature; other features that are still available in the versions up to v.20.08 are planned to be implemented in this SDK later.
+	  
+	  What's new in this release
+	  
+	  1. Conversion interface has been simplified, it provides more flexible conversion parameters setup; also a conversion operation can run synchronously or asynchronously. 
+	  2. Redesigned storage access is provided using SDK entry point HtmlApi.Storage. The synchronous and asynchronous file upload and download methods are provided; also the asynchronous download provides ability to get progress data for long-time downloads.    	  
+	  
+	  
+	  For details, see https://github.com/aspose-html-cloud/aspose-html-cloud-dotnet/blob/master/README.md
+    </releaseNotes>
+    <copyright>Aspose 2002-2020. All Rights Reserved.</copyright>
+    <dependencies>
+		<group targetFramework="netstandard2.0">
+		      <dependency id="Newtonsoft.Json" version="12.0.3" />
+			  <dependency id="System.IdentityModel.Tokens.Jwt" version="6.7.1" />
+			  <dependency id="System.Collections.Immutable" version="1.7.1" />
+		</group>
+    </dependencies>
+  </metadata>
+  <files>
+	<file src="bin\Release\netstandard2.0\Aspose.HTML.Cloud.Sdk.dll" target="lib\netstandard2.0" />
+	<file src="bin\Release\netstandard2.0\Aspose.HTML.Cloud.Sdk.XML" target="lib\netstandard2.0" />
+  </files>
+</package>

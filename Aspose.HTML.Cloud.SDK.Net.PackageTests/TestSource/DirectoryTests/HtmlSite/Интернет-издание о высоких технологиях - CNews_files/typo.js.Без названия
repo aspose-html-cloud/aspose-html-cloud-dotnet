@@ -1,0 +1,144 @@
+(function () {
+    var config = {};
+    
+    load_config(function (config1) {
+        config = config1;
+        load_script('https://www.google.com/recaptcha/api.js?render=' + config.recaptcha_key);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('keypress', on_keypress);
+        window.addEventListener('mouseup', on_mouseup);
+        
+        add_style(
+            '.grecaptcha-badge {display:none !important}' +
+            '.selection-popup {position:fixed; padding:2px 5px; color:#000; background:#e4e4e4; border: 1px solid #ccc; border-radius:2px;}'
+        );
+    });
+    
+    function on_keypress(e) {
+        var keyCode = e.which || e.keyCode;
+        
+        if (!((e.ctrlKey || e.metaKey) && (keyCode === 13 || keyCode === 10))) {
+            return;
+        }
+        var text = get_selection_text();
+        
+        if (!text) {
+            return;
+        }
+        
+        if (text.length > 150) {
+            alert('Выделено слишком много текта');
+            
+            return;
+        }
+        
+        var message = prompt('Отправить комментарий в редакцию:');
+        if (!message) {
+            return;
+        }
+        
+        grecaptcha.ready(function() {
+            grecaptcha.execute(config.recaptcha_key, {action: 'homepage'}).then(function(token) {
+                var params = {text: text, message: message, url: location.href, token: token};
+                ajax_post('//comm.cnews.ru/typo.php', params);
+            });
+        });
+    }
+    
+    function on_mouseup() {
+        var popup_class = 'selection-popup';
+        var popup = document.querySelector('.' + popup_class);
+        if (popup) {
+            popup.remove();
+        }
+        
+        var  text = get_selection_text();
+        if (!text) {
+            return;
+        }
+        
+        var selection = window.getSelection();
+        var range = selection.getRangeAt(0);
+        var rect = range.getBoundingClientRect();
+        
+        var div = document.createElement('div');
+        div.classList.add(popup_class);
+        
+        div.style.left = rect.left + 'px';
+        div.style.top = (rect.top + rect.height) + 'px';
+        
+        //div.innerHTML = 'Нажмите Ctrl+Enter чтобы сообщить об ошибке';
+        
+        //document.body.appendChild(div);
+    }
+    
+    function get_selection_text() {
+        var text = '';
+        if (window.getSelection) {
+            text = window.getSelection().toString();
+        }
+        else if (document.selection && document.selection.type !== 'Control') {
+            text = document.selection.createRange().text;
+        }
+        
+        return text;
+    }
+    
+    function ajax_post(url, params, callback) {
+        var params_str = '';
+        var comma = '';
+        for (var name in params) {
+            params_str += comma + name + '=' + encodeURIComponent(params[name]);
+            comma = '&';
+        }
+        
+        var request = new XMLHttpRequest();
+        request.open('POST', url, true);
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.addEventListener('readystatechange', function() {
+            if (request.readyState === 4 && request.status === 200) {
+                var response = JSON.parse(request.responseText);
+                
+                if (response.message) {
+                    alert(response.message);
+                }
+                
+                if (callback) {
+                    callback(response);
+                }
+            }
+        });
+        
+        request.send(params_str);
+    }
+    
+    function load_script(src) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+        document.body.appendChild(script);
+    }
+    
+    function add_style(css) {
+        var style = document.createElement('style');
+        style.innerText = css;
+        document.body.appendChild(style);
+    }
+    
+    function load_config(callback) {
+        var request = new XMLHttpRequest();
+        var url = '//comm.cnews.ru/config_json.php';
+
+        request.open('GET', url, true);
+        request.addEventListener('readystatechange', function() {
+            if (request.readyState === 4 && request.status === 200) {
+                var config = JSON.parse(request.responseText);
+                callback(config);
+            }
+        });
+        
+        request.send();
+    }
+})();

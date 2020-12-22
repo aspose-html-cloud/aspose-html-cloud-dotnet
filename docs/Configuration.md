@@ -8,8 +8,8 @@ Configuration class for SDK API facade objects.
 
 ## Summary
 
-Class that initializes API facade objects with needed settings, such as credentials, called REST API URL, timeout etc. 
-See [**HtmlApi**](HtmdApi.md), constructors with Configuration parameter.
+The configuration is a class that initializes API facade objects with needed settings, such as credentials, called REST API URL, timeout etc.
+See [**HtmlApi**](HtmdApi.md) constructors with a Configuration parameter.
 
 ### Namespace 
 
@@ -24,7 +24,7 @@ Aspose.Html.Cloud.Sdk
 > string BaseUrl { get; set; }
 > ```
 
-REST API service URL being called by SDK.
+A REST API service URL being called by SDK.
 
 #### AuthUrl
 
@@ -32,7 +32,7 @@ REST API service URL being called by SDK.
 > string AuthUrl { get; set; }
 > ```
 
-Authentication service URL.
+An authentication service URL.
 
 #### AppSid 
 
@@ -40,7 +40,7 @@ Authentication service URL.
 > string AppSid { get; set; }
 > ```
 
-Application SID (client ID)
+An application SID (client ID).
 
 #### AppKey
 
@@ -48,7 +48,7 @@ Application SID (client ID)
 > string AppKey { get; set; }
 > ```
 
-Application key (client secret)
+An application key (client secret).
 
 #### HttpClient 
 
@@ -56,7 +56,7 @@ Application key (client secret)
 > HttpClient HttpClient { get; set; }
 > ```
 
-HTTP client object with predefined properties (Used mainly for test purposes).
+An HTTP client object with predefined properties (Used mainly for test purposes).
 
 
 
@@ -80,7 +80,7 @@ Checks whether SDK uses an authentication token obtained from external provided 
 > static Configuration New()
 > ```
 
-Fabric method. Initializes an empty Configuration instance; then all needed configuration values should be set up by public properties or builder-style methods below.
+A fabric method. Initializes an empty Configuration instance; then all needed configuration values should be set up by public properties or builder-style methods below.
 
 #### NewDefault
 
@@ -88,7 +88,7 @@ Fabric method. Initializes an empty Configuration instance; then all needed conf
 > static Configuration NewDefault()
 > ```
 
-Fabric method. Initializes an empty Configuration instance with default **BaseUrl** and **AuthUrl** values.
+A fabric method. Initializes an empty Configuration instance with default **BaseUrl** and **AuthUrl** values.
 
 
 
@@ -98,7 +98,7 @@ Fabric method. Initializes an empty Configuration instance with default **BaseUr
 > Configuration WithAppSid(string appSid)
 > ```
 
-Builder-style method. Sets the user's application SID (client ID).
+A builder-style method. Sets the user's application SID (client ID).
 
 
 
@@ -108,7 +108,7 @@ Builder-style method. Sets the user's application SID (client ID).
 > Configuration WithAppKey(string appKey)
 > ```
 
-Builder-style method. Sets the user's application key (client secret).
+A builder-style method. Sets the user's application key (client secret).
 
 
 
@@ -118,7 +118,7 @@ Builder-style method. Sets the user's application key (client secret).
 > Configuration WithTimeout(TimeSpan timeout)
 > ```
 
-Builder-style method. Sets the HTTP connection timeout. 
+A builder-style method. Sets the HTTP connection timeout. 
 
 
 
@@ -128,7 +128,7 @@ Builder-style method. Sets the HTTP connection timeout.
 > Configuration WithExternalAuthentication(string token)
 > ```
 
-Builder-style method. Sets a JWT authentication token obtained from external source. It also sets *UseExternalAuthentication*  property to *true*.
+A builder-style method. Sets a JWT authentication token obtained from external source. It also sets *UseExternalAuthentication*  property to *true*.
 
 
 
@@ -136,7 +136,7 @@ Builder-style method. Sets a JWT authentication token obtained from external sou
 
 ## ConfigurationBuilder
 
-Builder class that is used to set up **Configuration** objects
+A builder class that is used to set up **Configuration** objects.
 
 ### Public methods
 
@@ -194,11 +194,11 @@ Sets the HTTP connection timeout.
 > ConfigurationBuilder WithHttpClient(HttpClient httpClient)
 > ```
 
-Assigns HTTP client object with predefined properties for **Configuration** (Used mainly for test purposes).
+Assigns an HTTP client object with predefined properties for the **Configuration** (Used mainly for test purposes).
 
 
 
-#### WithExternalAuthentication
+#### WithExternalAuthenticationS
 
 > ```
 > ConfigurationBuilder WithExternalAuthentication(string token)
@@ -210,7 +210,7 @@ Sets a JWT authentication token obtained from external source.
 
 ## Examples
 
-Configure **HtmlApi** object with default **Configuration**.
+Configure an **HtmlApi** object with default **Configuration**.
 
 ```
 var api = new HtmlApi(Configuration.NewDefault());
@@ -218,7 +218,7 @@ var api = new HtmlApi(Configuration.NewDefault());
 
 
 
-Configure **HtmlApi** object with **Configuration **object when parameters are explicitly set in a constructor. 
+Configure an **HtmlApi** object with a **Configuration **object when parameters are explicitly set in a constructor. 
 
 ```csharp
 var AppSid = "clientid";
@@ -240,7 +240,7 @@ var api = new HtmlApi(config);
 
 
 
-Configure **HtmlApi** object with **ConfigurationBuilder** 
+Configure an **HtmlApi** object with the **ConfigurationBuilder**. 
 
 ```
 var AppSid = "clientid";
@@ -257,7 +257,7 @@ var api = new HtmlApi(cb => cb
 
 
 
-Configure **HtmlApi** object with externally obtained authentication token
+Configure an **HtmlApi** object with externally obtained authentication token.
 
  
 

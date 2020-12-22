@@ -2,7 +2,7 @@
 
 using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Aspose.HTML.Cloud.Sdk.Tests")]
-
+[assembly: InternalsVisibleTo("Aspose.HTML.Cloud.Sdk.PackageTests")]
 namespace Aspose.HTML.Cloud.Sdk.IO
 {
     public class RemoteFile : RemoteFileSystem
