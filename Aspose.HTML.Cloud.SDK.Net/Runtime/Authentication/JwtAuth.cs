@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright company="Aspose" file="JwtAuth.cs">
-//   Copyright (c) 2019 Aspose.HTML Cloud
+//   Copyright (c) 2020 Aspose.HTML Cloud
 // </copyright>
 // <summary>
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,11 +28,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using Aspose.HTML.Cloud.Sdk.Runtime.Utils;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
