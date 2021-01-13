@@ -2,55 +2,7 @@
 
 A class that provides methods of cloud storage access.
 
-
-
-## Table of Contents
-
-> - [**Summary**](StorageProvider.md#Summary)
->
-> - [**Namespace**](StorageProvider.md#Namespace)
->
-> - [**Public methods**](StorageProvider.md#Public_Methods)
->
->   - [**Storage API**](StorageProvider.md#Storage_API)
->
->     - [*Exists*](StorageProvider.md#Storage_Exists)
->     - [*GetStorage*](StorageProvider.md#Storage_GetStorage)
->
->   - [**Directory API**](StorageProvider.md#Directory_API)
->
->     - [*DirectoryExists*](StorageProvider.md#Dir_DirectoryExists)
->     - [*DirectoryExists (overloaded)*](StorageProvider.md#Dir_DirectoryExists)
->     - [*GetDirectories*](StorageProvider.md#Dir_GetDirectories)
->     - [*GetDirectory*]()
->     - [*CreateDirectory*](StorageProvider.md#Dir_CreateDirectory)
->     - [*DeleteDirectory*](StorageProvider.md#Dir_DeleteDirectory)
->     - [*DeleteDirectory (overloaded)*](StorageProvider.md#Dir_DeleteDirectory_1)
->     - [*CopyDirectory*](StorageProvider.md#Dir_CopyDirectory)
->     - [*CopyDirectory (overloaded)*](StorageProvider.md#Dir_CopyDirectory_1)
->     - [*CopyDirectory (overloaded)*](StorageProvider.md#Dir_CopyDirectory_2)
->     - [*MoveDirectory*](StorageProvider.md#Dir_MoveDirectory)
->     - [*MoveDirectory (overloaded)*](StorageProvider.md#Dir_MoveDirectory_1)
->     - [*MoveDirectory (overloaded)*](StorageProvider.md#Dir_MoveDirectory_2)
->
->   - [**File API**](StorageProvider.md#File_API)
->
->     - [*FileExists*](StorageProvider.md#File_Exists)
->     - [*FileExists (overloaded)*](StorageProvider.md#File_Exists_1)
->     - [*GetFiles*](StorageProvider.md#File_GetFiles)
->     - [*GetFiles (overloaded)*](StorageProvider.md#File_GetFiles_1)
->     - [*UploadFile*](StorageProvider.md#File_UploadFile)
->     - [*UploadFileAsync*](StorageProvider.md#File_UploadFileAsync)
->     - [*UploadData*](StorageProvider.md#File_UploadData)
->     - [*UploadDataAsync*](StorageProvider.md#File_UploadDataAsync)
->     - [*DownloadFile*](StorageProvider.md#File_DownloadFile)
->     - [*DownloadFile (overloaded)*](StorageProvider.md#File_DownloadFile_1)
->     - [*DownloadFileAsync*](StorageProvider.md#File_DownloadFileAsync)
->     - [*DownloadFileAsync (overloaded)*](StorageProvider.md#File_DownloadFileAsync_1)
->
->     
-
-
+[TOC]
 
 <a name="Summary"/>
 

@@ -69,7 +69,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void GetFilesListTest_1()
         {
-            var folder = "/HTML";
+            var folder = "/HtmlTestDoc";
 
             var storage = api.Storage;
             var files = storage.GetFiles(folder);
@@ -96,11 +96,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void GetFileFromDirectoryTest()
         {
-            var storageFolder = "/HTML";
-            var fileName = "html_example1.html";
+            var storageFolder = "/Html/TestData";
+            var fileName = "testpage1.html";
 
             var storage = api.Storage;
             var directory = storage.GetDirectory(storageFolder);
+            Assert.NotNull(directory);
             var file = storage.GetFileInfo(directory, fileName);
             Assert.NotNull(file);
             Assert.Equal(fileName, file.Name);           
@@ -114,10 +115,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void CopyFileTest()
         {
-            var storagePathSrc = "/HTML/html_example1.html";
+            var storagePathSrc = "/Html/TestData/testpage1.html";
             var storagePathDst = "/HTML/Testout/html_example1_copy.html";
 
             var storage = api.Storage;
+            var exists = storage.FileExists(storagePathSrc);
+            Assert.True(exists);
 
             var resultFile = storage.CopyFile(
                 storagePathSrc, storagePathDst, "", "", NameCollisionOption.ReplaceExisting);

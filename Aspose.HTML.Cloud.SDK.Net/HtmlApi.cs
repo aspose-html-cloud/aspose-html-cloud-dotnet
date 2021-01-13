@@ -56,13 +56,13 @@ namespace Aspose.HTML.Cloud.Sdk
 
         private ApiInvokerFactory apiInvokerFactory;
         private IAuthenticator Authenticator { get; set; }
-        
+
         /// <summary>
         /// Constructor. Initializes a class instance with API parameters provided by specified Configuration object.
         /// </summary>
         /// <param name="configuration"></param>
         public HtmlApi(Configuration configuration)
-        {         
+        {
             restClient = configuration.HttpClient;
             taskFactory = new TaskFactory(cancellationTokenSource.Token);
 
@@ -138,7 +138,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 //To storage
                 if (outputPath.StartsWith("storage://"))
                 {
-                    var result = (Directory.Exists(inputParams[0])) 
+                    var result = (Directory.Exists(inputParams[0]))
                         ? ConvertLocalDirectory(inputParams, builder.Options, outputPath)
                         : inputParams[0].ToLower().EndsWith(".zip")
                           ? ConvertLocalArchive(inputParams, builder.Options, outputPath)
@@ -305,16 +305,26 @@ namespace Aspose.HTML.Cloud.Sdk
 
             List<string> files = new List<string>();
 
+            // AR 12-01-2021: bugfix - dir path treated as file
+            if (!Directory.Exists(outputPath))
+            {
+                if (File.Exists(outputPath))
+                    File.Delete(outputPath);
+                Directory.CreateDirectory(outputPath);
+            }
+
             foreach (var f in result.Files)
             {
-                Storage.DownloadFile(f, outputPath);
+                var targetPath = Path.Combine(outputPath, Path.GetFileName(f.Name));
+                Storage.DownloadFile(f, targetPath);
+                //Storage.DownloadFile(f, outputPath);
                 files.Add(f.Name);
             }
 
             return new ConversionResult()
             {
                 Status = "success",
-                Description = $"All converded files in {outputPath}",
+                Description = $"All converted files in {outputPath}",
                 Files = files.ToArray()
             };
         }

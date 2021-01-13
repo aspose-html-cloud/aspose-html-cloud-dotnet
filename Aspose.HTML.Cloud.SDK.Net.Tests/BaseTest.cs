@@ -8,6 +8,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         private const string QA_APPSID = "html.cloud";
         private const string QA_APPKEY = "html.cloud";
 
+        private const string QA_APPSID_1 = "80e32ca5-a828-46a4-9d54-7199dfd3764a";
+        private const string QA_APPKEY_1 = "60487a72d6325241191177e37ae52146";
 
         private const string QA_AUTH_URL = "https://api-qa.aspose.cloud/connect/token";
 
@@ -33,8 +35,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             return client;
         }
 
-        public string AppSid { get; set; } = QA_APPSID;
-        public string AppKey { get; set; } = QA_APPKEY;
+        public string AppSid { get; set; } = QA_APPSID_1;
+        public string AppKey { get; set; } = QA_APPKEY_1;
 
         public string AuthServiceUrl { get; set; } = QA_AUTH_URL;
 
