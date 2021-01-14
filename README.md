@@ -1,42 +1,40 @@
-<img src="Data/header.png">
+![](https://img.shields.io/badge/api-v3.0-lightgrey)  ![Nuget](https://img.shields.io/nuget/v/Aspose.html-Cloud) ![Nuget](https://img.shields.io/nuget/dt/Aspose.html-Cloud) [![GitHub license](https://img.shields.io/github/license/aspose-html-cloud/aspose-html-cloud-dotnet)](https://github.com/aspose-html-cloud/aspose-html-cloud-dotnet/blob/master/LICENSE)
+# HTML Rendering & Conversion .NET Cloud REST API
+Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.
+This cloud SDK assists to develop cloud-based [HTML page rendering, processing, translation & conversion](https://products.aspose.cloud/html/net) apps in C#, ASP.NET & other .NET languages via REST API.
 
-# Aspose.HTML Cloud SDK for .NET [![NuGet](https://img.shields.io/nuget/v/Aspose.HTML-Cloud.svg)](https://www.nuget.org/packages/Aspose.HTML-Cloud/)
-This repository contains Aspose.HTML Cloud SDK for .NET source code. This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applications quickly and easily, with zero initial cost.
+## HTML Processing Features
+- Fetch the HTML page along with its resources as a ZIP archive by providing the page URL.
+- Based on page URL, retrieve all images of an HTML page as a ZIP package.
+- Load data from a local file to populate the HTML document template.
+- Use the request body to populate the HTML document template.
+- Convert HTML page to numerous other file formats.
 
-See [API Reference](https://apireference.aspose.cloud/html/) for full API specification.
+## Read & Write HTML Formats
+HTML, XHTML, zipped HTML, zipped XHTML, MHTML, HTML containing SVG markup, Markdown, JSON
 
-## Table of Contents
+## Save HTML As
+*Fixed Layout*: PDF, XPS
+*Images*: TIFF, JPEG, PNG, BMP, GIF
+*Other*: TXT, ZIP (images)
 
->  - [Key Features](README.md#KeyFeatures)
->  - [How to use the SDK?](README.md#HowToUseSDK)
-> 	 - [Prerequisites](README.md#HowTo-prerequisites)
-> 	 - [Installation](README.md#HowTo-installation)
-> 		 - [Install Aspose.HTML-Cloud via NuGet](README.md#HowTo-install-nuget)
-> 	 - [Run tests and examples](README.md#HowTo-RunTestsExamples)
-> 	 - [Usage sample](README.md#CodeExample)
->  - [Dependencies](README.md#Dependencies)
->  - [Documentation for API Endpoints](README.md#Doc_API)
-> 	 - [Class: **HtmlApi**](README.md#Doc_Api_Class_HtmlApi)
->  - [Documentation for authorization methods](README.md#Doc_Auth)
->  - [Resources](README.md#Resources)
->  - [Contact Us](README.md#ContactUs)
+## Read HTML Formats
+*eBook*: EPUB
+*Other*: XML, SVG
 
+## Enhancements Version 20.11
 
-<a name="KeyFeatures"></a>
-## Key Features
-
-* Conversion of HTML documents into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
-* Conversion of an MHTML document into the same formats that are supported for HTML
-* Conversion of an ePub document into the same formats that are supported for HTML
-* Conversion of an HTML document from the Web by its URL to MHTML document format
-* Conversion of a Markdown file to an HTML page
-
-<a name="HowToUseSDK"></a>
-
+- New generation of Aspose.HTML Cloud SDK for .NET (C#) is provided.
+- This version of SDK has been redesigned from scratch being based on the new Aspose.HTML Cloud REST API (v3.0).
+- Currently, it provides only the conversion feature. Other features that are still available in the versions up to v.20.08 are planned to be implemented in this SDK later.
+- Conversion interface provides a more flexible conversion parameters setup.
+- Redesigned storage access is provided using SDK entry point HtmlApi.Storage.
+- Availability of synchronous and asynchronous file upload and download methods.
+- Asynchronous download provides the ability to get progress data for the longer downloads.
 
 ## How to use the SDK?
 
-The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended). 
+The complete source code is available in this repository folder. You can either use it directly in your project via source code or get [NuGet distribution](https://www.nuget.org/packages/Aspose.HTML-Cloud/) (recommended).
 For more details, please visit our [documentation website](https://docs.aspose.cloud/display/htmlcloud/Available+SDKs#AvailableSDKs-.NET).
 
 <a name="HowTo-prerequisites"></a>
@@ -117,7 +115,7 @@ namespace ExamplesConsoleApp
 
             // Creating api with credentials.
             var api = new HtmlApi(appSid : AppSid, appKey : AppKey);
-            
+
             // Create converter by ConverterBuilder
             ConverterBuilder convHtmlPdf = new ConverterBuilder()
                 .FromLocalFile(sourceFile)
@@ -136,7 +134,7 @@ namespace ExamplesConsoleApp
 
 ### From...
 
-Specifies input data for conversion. 
+Specifies input data for conversion.
 
 Possible conversions:
  - HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
@@ -146,14 +144,14 @@ Possible conversions:
 
 
   Method | Parameters | Description
- ------------ | ------------- | ------------- 
-FromLocalFile(string inputPath) | inputPath - path to a local file | A source is a file in a local file system. 
-FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage | A source is a file in the cloud (user storage). 
-FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a local directory with linked resources (css, image, etc.) in this directory. 
-FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to a zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in a local file system. 
-FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a directory with linked resources (css, image, etc.) in this directory. 
-FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in the storage. 
-FromUrl(string urlAddress) | urlAddress - web site for conversion | A source gets from a URL. 
+ ------------ | ------------- | -------------
+FromLocalFile(string inputPath) | inputPath - path to a local file | A source is a file in a local file system.
+FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage | A source is a file in the cloud (user storage).
+FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a local directory with linked resources (css, image, etc.) in this directory.
+FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to a zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in a local file system.
+FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a directory with linked resources (css, image, etc.) in this directory.
+FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in the storage.
+FromUrl(string urlAddress) | urlAddress - web site for conversion | A source gets from a URL.
 
 
 ### To(ConversionOptions)
@@ -161,7 +159,7 @@ FromUrl(string urlAddress) | urlAddress - web site for conversion | A source get
 Specifies the output format for conversion.
 
   Options | Description
- ------------ | ------------- 
+ ------------ | -------------
 [GIFConversionOptions](docs/ConversionOptions.md#GIFConversionOptions) | Converting source file or URL to single or several images in GIF format.
 [JPEGConversionOptions](docs/ConversionOptions.md#JPEGConversionOptions) | Converting source file or URL to single or several images in JPEG format.
 [PNGConversionOptions](docs/ConversionOptions.md#PNGConversionOptions) | Converting source file or URL to single or several images in PNG format.
@@ -176,18 +174,18 @@ Specifies the output format for conversion.
 The target directory for a conversion result.
 
   Method | Parameters | Description
- ------------ | ------------- | ------------- 
-SaveToLocal(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the local file system to save a conversion result. 
-SaveToStorage(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the cloud (user storage) to save a conversion result. 
+ ------------ | ------------- | -------------
+SaveToLocal(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the local file system to save a conversion result.
+SaveToStorage(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the cloud (user storage) to save a conversion result.
 
 ## ConversionResult
 
 Result object for conversion.
 
   Field | Description
- ------------ | ------------- 
-string[] Files | A list of conversion result files. 
-string Description | A description in case of unsuccessful conversion. 
+ ------------ | -------------
+string[] Files | A list of conversion result files.
+string Description | A description in case of unsuccessful conversion.
 
 <a name="Dependencies"></a>
 ## Dependencies
@@ -212,25 +210,18 @@ All URIs are relative to *https://api.aspose.cloud/v4.0*.
 <a name="Doc_Auth"></a>
 ## Documentation for authorization methods
 
-Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access. 
+Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access.
 
 For more details, see [**Authorization**](docs/Authorization.md).
 
 <br>
 <a name="Resources"></a>
 
-## Resources
+## Aspose.HTML Cloud SDKs in Popular Languages
 
+| .NET | Java | PHP | Python | Ruby | Node.js | Android | Swift|C++|Go|
+|---|---|---|---|---|---|---|--|--|--|
+| [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-dotnet) | [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-java) | [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-php) | [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-python) | [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-ruby)  | [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-nodejs) | [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-android) | [GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-swift)|[GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-cpp) |[GitHub](https://github.com/aspose-html-cloud/aspose-html-cloud-go) |
+| [NuGet](https://www.nuget.org/packages/Aspose.html-Cloud/) | [Maven](https://repository.aspose.cloud/webapp/#/artifacts/browse/tree/General/repo/com/aspose/aspose-html-cloud) | [Composer](https://packagist.org/packages/aspose/aspose-html-cloud-php) | [PIP](https://pypi.org/project/asposehtmlcloud/) | [GEM](https://rubygems.org/gems/aspose_html_cloud)  | [NPM](https://www.npmjs.com/package/@asposecloud/aspose-html-cloud) | [Maven](https://repository.aspose.cloud/webapp/#/artifacts/browse/tree/General/repo/com/aspose/aspose-html-cloud) | [Cocoapods](https://cocoapods.org/pods/AsposeHtmlCloud)|[NuGet](https://www.nuget.org/packages/Aspose.Html-Cloud.Cpp/) | [Go.Dev](#) |
 
-- **Website:** [www.aspose.com](http://www.aspose.cloud)
-- **Product Home:** [Aspose.HTML for Cloud](https://products.aspose.cloud/html/cloud)
-- **Documentation:** [Aspose.HTML for Cloud Documentation](https://docs.aspose.cloud/display/htmlcloud/Home)
-- **Forum:** [Aspose.HTML for Cloud Forum](https://forum.aspose.cloud/c/html)
-- **Blog:** [Aspose.HTML for Cloud Blog](https://blog.aspose.cloud/category/aspose-products/aspose-html-cloud/)
-
-<br>
-
-<a name="ContactUs"></a>
-## Contact Us
-
-Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/html).
+[Product Page](https://products.aspose.cloud/html/net) | [Documentation](https://docs.aspose.cloud/display/htmlcloud/Home) | [API Reference](https://apireference.aspose.cloud/html/) | [Code Samples](https://github.com/aspose-html-cloud/aspose-html-cloud-dotnet) | [Blog](https://blog.aspose.cloud/category/html/) | [Free Support](https://forum.aspose.cloud/c/html) | [Free Trial](https://dashboard.aspose.cloud/#/apps)
