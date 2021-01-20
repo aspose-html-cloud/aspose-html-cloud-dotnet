@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Aspose.HTML.Cloud.Sdk</AssemblyName>
+    <Configurations>Debug;Release;QA</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,8 +12,16 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath></OutputPath>
+	<DefineConstants>PRODUCTION</DefineConstants>
     <DocumentationFile>bin\Release\netstandard2.0\Aspose.HTML.Cloud.Sdk.xml</DocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='QA|AnyCPU'">
+    <OutputPath />
+    <DefineConstants></DefineConstants>
+    <DocumentationFile>bin\QA\netstandard2.0\Aspose.HTML.Cloud.Sdk.xml</DocumentationFile>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <Compile Remove="Extensions\**" />

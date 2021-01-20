@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;ReleaseQA;QA</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -12,6 +13,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;PRODUCTION</DefineConstants>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='QA|AnyCPU'">
+    <DefineConstants>TRACE;PRODUCTION</DefineConstants>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\Aspose.HTML.Cloud.SDK.Net\Aspose.HTML.Cloud.Sdk.csproj" />
