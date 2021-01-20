@@ -1,9 +1,6 @@
 ## Conversion options
 
-[TOC]
-
 <a name="PDFConversionOptions"></a>
-
 ### PDFConversionOptions
 ```code
 ConversionOptions pdfOpts = new PDFConversionOptions()
@@ -26,10 +23,7 @@ Name | Type | Description  | Notes
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional] 
  **JpegQuality** | **Number**| Quality of jpeg compression in percent. | [optional]
 
-
-
 <a name="XPSConversionOptions"></a>
-
 ### XPSConversionOptions
 ```code
 ConversionOptions xpsOpts = new XPSConversionOptions()
@@ -49,10 +43,7 @@ Name | Type | Description  | Notes
  **TopMargin** | **Number**| Top resulting document page margin in points (1/96 inch). | [optional] 
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional] 
 
-
-
 <a name="JPEGConversionOptions"></a>
-
 ### JPEGConversionOptions
 ```code
 ConversionOptions jpgOpts = new JPEGConversionOptions()
@@ -75,10 +66,7 @@ Name | Type | Description  | Notes
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
  **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
-
-
 <a name="PNGConversionOptions"></a> 
-
 ### PNGConversionOptions
 ```code
 ConversionOptions pngOpts = new PNGConversionOptions()
@@ -101,10 +89,7 @@ Name | Type | Description  | Notes
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
  **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
-
-
 <a name="BMPConversionOptions"></a>
-
 ### BMPConversionOptions
 ```code
 ConversionOptions bmpOpts = new BMPConversionOptions()
@@ -127,10 +112,7 @@ Name | Type | Description  | Notes
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
  **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
-
-
 <a name="GIFConversionOptions"></a>
-
 ### GIFConversionOptions
 ```code
 ConversionOptions gifOpts = new GIFConversionOptions()
@@ -153,10 +135,7 @@ Name | Type | Description  | Notes
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
  **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
-
-
 <a name="TIFFConversionOptions"></a>
-
 ### TIFFConversionOptions
 ```code
 ConversionOptions tiffOpts = new TIFFConversionOptions()
@@ -179,35 +158,7 @@ Name | Type | Description  | Notes
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional]
  **Resolution** | **Number**| Resolution of resulting image. The default is 96 dpi. | [optional]
 
-
-
-<a name="DOCConversionOptions"></a>
-
-### DOCConversionOptions
-
-```code
-ConversionOptions tiffOpts = new TIFFConversionOptions()
-    .SetHeight(800)
-    .SetWidth(1000)
-    .SetLeftMargin(10)
-    .SetRightMargin(10)
-    .SetBottomMargin(10)
-    .SetTopMargin(10);
-```
-
-| Name             | Type       | Description                                                  | Notes      |
-| ---------------- | ---------- | ------------------------------------------------------------ | ---------- |
-| **Width**        | **Number** | Resulting document page width in points (1/96 inch).         | [optional] |
-| **Height**       | **Number** | Resulting document page height in points (1/96 inch).        | [optional] |
-| **LeftMargin**   | **Number** | Left resulting document page margin in points (1/96 inch).   | [optional] |
-| **RightMargin**  | **Number** | Right resulting document page margin in points (1/96 inch).  | [optional] |
-| **TopMargin**    | **Number** | Top resulting document page margin in points (1/96 inch).    | [optional] |
-| **BottomMargin** | **Number** | Bottom resulting document page margin in points (1/96 inch). | [optional] |
-
-
-
 <a name="MarkdownConversionOptions"></a>
-
 ### MarkdownConversionOptions
 ```code
 ConversionOptions mdOpts = new MarkdownConversionOptions()
@@ -217,12 +168,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **UseGit** | **Boolean**| Use [Git Markdown flavor](https://github.github.com/gfm/) to save. | [optional] [default to false]
 
-
-
 <a name="MHTMLConversionOptions"></a>
-
 ### MHTMLConversionOptions
 ```code
-ConversionOptions mhtmlOpts = new MHTMLConversionOptions();
+ConversionOptions mdOpts = new MHTMLConversionOptions();
 ```
-

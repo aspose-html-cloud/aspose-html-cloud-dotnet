@@ -25,7 +25,7 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 <a name="KeyFeatures"></a>
 ## Key Features
 
-* Conversion of HTML documents into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
+* Conversion of HTML documents into various formats; PDF, XPS, DOCX, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
 * Conversion of an MHTML document into the same formats that are supported for HTML
 * Conversion of an ePub document into the same formats that are supported for HTML
 * Conversion of an HTML document from the Web by its URL to MHTML document format
