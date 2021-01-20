@@ -21,8 +21,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.AppSid)
-                .WithAppKey(fixture.AppKey)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
             var remoteFile = api.Storage.UploadFile(TestHelper.srcDir + "html_file.html", "/html_file.html");

@@ -97,8 +97,8 @@ namespace Aspose.HTML.Cloud.Sdk
         /// <param name="appSid"></param>
         /// <param name="appKey"></param>
         /// <param name="baseUrl"></param>
-        public HtmlApi(String appSid, String appKey, String baseUrl)
-            : this(appSid, appKey, baseUrl, Configuration.Default.Timeout)
+        public HtmlApi(String clientId, String clientSecret, String baseUrl)
+            : this(clientId, clientSecret, baseUrl, Configuration.Default.Timeout)
         {
         }
 
@@ -109,11 +109,11 @@ namespace Aspose.HTML.Cloud.Sdk
         /// <param name="appKey"></param>
         /// <param name="baseUrl"></param>
         /// <param name="timeout"></param>
-        public HtmlApi(String appSid, String appKey, String baseUrl, TimeSpan timeout)
+        public HtmlApi(String clientId, String clientSecret, String baseUrl, TimeSpan timeout)
             : this(new Configuration()
             {
-                AppKey = appKey,
-                AppSid = appSid,
+                ClientSecret = clientSecret,
+                ClientId = clientId,
                 BaseUrl = baseUrl,
                 Timeout = timeout
             })

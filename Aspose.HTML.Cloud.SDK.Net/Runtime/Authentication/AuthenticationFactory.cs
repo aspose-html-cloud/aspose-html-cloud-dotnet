@@ -38,11 +38,11 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
                 return new JwtAuth(conf.ExternalAuthToken);
             }
 
-            if (!string.IsNullOrEmpty(conf.AppSid)
-                    && !string.IsNullOrEmpty(conf.AppKey))
+            if (!string.IsNullOrEmpty(conf.ClientId)
+                    && !string.IsNullOrEmpty(conf.ClientSecret))
             {
                 var authUrl = conf.AuthUrl;
-                return new JwtAuth(conf.AppSid, conf.AppKey, conf.AuthUrl);
+                return new JwtAuth(conf.ClientId, conf.ClientSecret, conf.AuthUrl);
             }
             else
                 return new DummyAuth();

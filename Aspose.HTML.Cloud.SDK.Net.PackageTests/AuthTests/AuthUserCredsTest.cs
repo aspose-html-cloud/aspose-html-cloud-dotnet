@@ -33,8 +33,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             ApiBaseUrl = fixture.ApiServiceBaseUrl;
             client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
-                .WithAppSid(fixture.AppSid)
-                .WithAppKey(fixture.AppKey)
+                .WithAppSid(fixture.ClientId)
+                .WithAppKey(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }

@@ -65,8 +65,8 @@ namespace Aspose.HTML.Cloud.Sdk
         public string BaseUrl { get; set; } = "/v4.0/html/";
 
         public string AuthUrl { get; set; } = DEF_AUTH_URL;
-        public string AppKey { get; set; }
-        public string AppSid { get; set; }
+        public string ClientSecret { get; set; }
+        public string ClientId { get; set; }
         public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
 
         public HttpClient HttpClient { get; set; } = new HttpClient();
@@ -109,15 +109,15 @@ namespace Aspose.HTML.Cloud.Sdk
         //}
 #endregion
 
-        public Configuration WithAppKey(string appKey)
+        public Configuration WithClientSecret(string clientSecret)
         {
-            this.AppKey = appKey;
+            this.ClientSecret = clientSecret;
             return this;
         }
 
-        public Configuration WithAppSid(string appSid)
+        public Configuration WithClientId(string clientId)
         {
-            this.AppSid = appSid;
+            this.ClientId = clientId;
             return this;
         }
 
@@ -194,15 +194,15 @@ namespace Aspose.HTML.Cloud.Sdk
                 return this;
             }
 
-            public ConfigurationBuilder WithAppKey(string appKey)
+            public ConfigurationBuilder WithClientSecret(string clientSecret)
             {
-                configuration.AppKey = appKey;
+                configuration.ClientSecret = clientSecret;
                 return this;
             }
 
-            public ConfigurationBuilder WithAppSid(string appSid)
+            public ConfigurationBuilder WithClientId(string clientId)
             {
-                configuration.AppSid = appSid;
+                configuration.ClientId = clientId;
                 return this;
             }
 

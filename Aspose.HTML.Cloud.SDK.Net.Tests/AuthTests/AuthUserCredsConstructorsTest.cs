@@ -44,7 +44,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         [Fact]
         public void AuthenticateJwt_Sequence()
         {
-            var folder = "/HTML";
+            var folder = "/Html";
             api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
             var storageApi = api.Storage;
 
