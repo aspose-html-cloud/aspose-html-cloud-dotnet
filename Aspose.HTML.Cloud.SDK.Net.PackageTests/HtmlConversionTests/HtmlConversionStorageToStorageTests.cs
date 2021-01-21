@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class HtmlConversionStorageToStorageTests 
+    public class HtmlConversionStorageToStorageTests
         : IClassFixture<BaseTest>, IDisposable
     {
         private readonly HttpClient client;
@@ -21,8 +21,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.ClientId)
-                .WithAppKey(fixture.ClientSecret)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
             var remoteFile = api.Storage.UploadFile(TestHelper.srcDir + "html_file.html", "/html_file.html");
@@ -32,7 +32,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromStorageFileToStorage_PDF()
         {
             // Convert to single file
-            ConverterBuilder convHtmlPdf = new ConverterBuilder()                   
+            ConverterBuilder convHtmlPdf = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new PDFConversionOptions())
                 .SaveToStorage(destFolder);
@@ -308,6 +308,46 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorage(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff);
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length >= 1);
+        }
+
+        [Fact]
+        public void ConvertFromStorageFileToStorage_DOC()
+        {
+            // Convert to single or multiple files with default options
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromStorageFile(sourceFile)
+                .To(new DOCConversionOptions())
+                .SaveToStorage(destFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc);
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length >= 1);
+        }
+
+        [Fact]
+        public void ConvertFromStorageFileToStorage_DOC_WithParams()
+        {
+            ConversionOptions docOpts = new DOCConversionOptions()
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10);
+
+            // Convert to single or multiple files with options
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromStorageFile(sourceFile)
+                .To(docOpts)
+                .SaveToStorage(destWithParamFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");

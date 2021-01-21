@@ -32,34 +32,34 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         [Fact]
         public void AuthenticateJwt_Single()
         {
-            string storageName = "First Storage";
+            //string storageName = "First Storage";
 
-            api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
+            //api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
 
-            var storageApi = api.Storage;
-            Assert.True(storageApi.Exists(storageName));
+            //var storageApi = api.Storage;
+            //Assert.True(storageApi.Exists(storageName));
 
         }
 
         [Fact]
         public void AuthenticateJwt_Sequence()
         {
-            var folder = "/HTML";
-            api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
-            var storageApi = api.Storage;
+            //var folder = "/HTML";
+            //api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
+            //var storageApi = api.Storage;
 
-            var exists = storageApi.DirectoryExists(folder);
-            Assert.True(exists);
+            //var exists = storageApi.DirectoryExists(folder);
+            //Assert.True(exists);
 
-            var rndFolder = $"/NewFolder_{Guid.NewGuid():N}";
-            exists = storageApi.DirectoryExists(rndFolder);
-            Assert.False(exists);
+            //var rndFolder = $"/NewFolder_{Guid.NewGuid():N}";
+            //exists = storageApi.DirectoryExists(rndFolder);
+            //Assert.False(exists);
 
-            var dirInfo = storageApi.CreateDirectory(rndFolder);
-            Assert.NotNull(dirInfo);
+            //var dirInfo = storageApi.CreateDirectory(rndFolder);
+            //Assert.NotNull(dirInfo);
 
-            exists = storageApi.DirectoryExists(rndFolder);
-            Assert.True(exists);
+            //exists = storageApi.DirectoryExists(rndFolder);
+            //Assert.True(exists);
 
         }
 

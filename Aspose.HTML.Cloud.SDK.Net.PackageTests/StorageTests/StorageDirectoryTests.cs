@@ -4,7 +4,6 @@ using Xunit;
 using Assert = Xunit.Assert;
 using System;
 using Aspose.HTML.Cloud.Sdk.Runtime.Utils;
-using Aspose.HTML.Cloud.Sdk.IO;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
@@ -19,8 +18,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.ClientId)
-                .WithAppKey(fixture.ClientSecret)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }
@@ -63,7 +62,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             exists = storage.DirectoryExists(folder);
             Assert.True(exists);
-            
+
         }
 
         [Fact]
@@ -76,26 +75,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         }
 
-        //[Fact]
-        //public void CheckDirectoryExistsTest_1()
-        //{
-        //    var folder = "/HTML";
 
-        //    var storage = api.Storage;
-        //    var builtUri = PathUtility.BuildPath("storage", "", folder);
-        //    Assert.True($"storage://{folder}" == builtUri);
-
-        //    var remoteDir = new RemoteDirectory(new Uri(builtUri), null);
-        //    var exists = storage.DirectoryExists(remoteDir);
-        //    Assert.True(exists);
-        //}
 
         [Fact]
         public void DeleteDirectoryTest()
         {
             var folder = $"/NewFolder_{Guid.NewGuid():N}";
             var storageName = ""; // default
-            
+
             var storage = api.Storage;
             var dirInfo = storage.CreateDirectory(folder, storageName);
             Assert.NotNull(dirInfo);
@@ -136,7 +123,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             exists = storage.DirectoryExists(folder);
             Assert.False(exists);
-           
+
         }
 
         #endregion

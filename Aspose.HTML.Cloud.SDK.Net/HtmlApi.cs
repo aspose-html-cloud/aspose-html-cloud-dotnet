@@ -84,18 +84,18 @@ namespace Aspose.HTML.Cloud.Sdk
         /// <summary>
         /// Constructor. Initializes a class instance with user credentials and default API server URL. 
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
-        public HtmlApi(String appSid, String appKey)
-            : this(appSid, appKey, Configuration.Default.BaseUrl, Configuration.Default.Timeout)
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        public HtmlApi(String clientId, String clientSecret)
+            : this(clientId, clientSecret, Configuration.Default.BaseUrl, Configuration.Default.Timeout)
         {
         }
 
         /// <summary>
         /// Constructor. Initializes a class instance with user credentials and explicit API server URL.
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
         /// <param name="baseUrl"></param>
         public HtmlApi(String clientId, String clientSecret, String baseUrl)
             : this(clientId, clientSecret, baseUrl, Configuration.Default.Timeout)
@@ -105,8 +105,8 @@ namespace Aspose.HTML.Cloud.Sdk
         /// <summary>
         /// Constructor. Initializes a class instance with user credentials, explicit API server URL and HTTP(S) connection timeout.
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
         /// <param name="baseUrl"></param>
         /// <param name="timeout"></param>
         public HtmlApi(String clientId, String clientSecret, String baseUrl, TimeSpan timeout)

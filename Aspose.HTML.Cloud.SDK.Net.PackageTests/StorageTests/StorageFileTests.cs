@@ -19,8 +19,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.ClientId)
-                .WithAppKey(fixture.ClientSecret)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }
@@ -37,20 +37,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var exists = storage.FileExists(filePath);
         }
 
-        //[Fact]
-        //public void CheckFileExistsTest_1()
-        //{
-        //    var filePath = "/test.html";
-
-        //    var storage = api.Storage;
-        //    var builtUri = PathUtility.BuildPath("storage", "", filePath);
-        //    Assert.True($"storage://{filePath}" == builtUri);
-
-        //    var remoteFile = new RemoteFile(new Uri(builtUri), null);
-        //    var exists = storage.FileExists(remoteFile);
-        //    Assert.True(exists);
-           
-        //}
 
         [Fact]
         public void GetFilesListTest()
@@ -63,13 +49,13 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.NotEmpty(files);
             Assert.True(files.Count > 0);
             Assert.True(files[0].Info != null && files[0].Info.Size > 0);
-            
+
         }
 
         [Fact]
         public void GetFilesListTest_1()
         {
-            var folder = "/HTML";
+            var folder = "/HtmlTestDoc";
 
             var storage = api.Storage;
             var files = storage.GetFiles(folder);
@@ -77,7 +63,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.NotEmpty(files);
             Assert.True(files.Count > 0);
             Assert.True(files[0].Info != null && files[0].Info.Size > 0);
-            
+
         }
 
         [Fact]
@@ -90,20 +76,21 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var file = storage.GetFileInfo(filePath);
 
             Assert.Equal(fileName, file.Name);
-            
+
         }
 
         [Fact]
         public void GetFileFromDirectoryTest()
         {
-            var storageFolder = "/HTML";
-            var fileName = "html_example1.html";
+            var storageFolder = "/Html/TestData";
+            var fileName = "testpage1.html";
 
             var storage = api.Storage;
             var directory = storage.GetDirectory(storageFolder);
+            Assert.NotNull(directory);
             var file = storage.GetFileInfo(directory, fileName);
             Assert.NotNull(file);
-            Assert.Equal(fileName, file.Name);           
+            Assert.Equal(fileName, file.Name);
         }
 
         #endregion
@@ -114,10 +101,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void CopyFileTest()
         {
-            var storagePathSrc = "/HTML/html_example1.html";
+            var storagePathSrc = "/Html/TestData/testpage1.html";
             var storagePathDst = "/HTML/Testout/html_example1_copy.html";
 
             var storage = api.Storage;
+            var exists = storage.FileExists(storagePathSrc);
+            Assert.True(exists);
 
             var resultFile = storage.CopyFile(
                 storagePathSrc, storagePathDst, "", "", NameCollisionOption.ReplaceExisting);
@@ -127,7 +116,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             //Assert.Equal(sourceFile.Info.Size, resultFile.Info.Size);
             Assert.Equal(destinationFile.Path, resultFile.Path);
-            
+
         }
 
         [Fact]
@@ -156,7 +145,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             //delete = storage.DeleteFile(file);
             //Assert.False(delete);
-            
+
         }
 
         #endregion
@@ -176,7 +165,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 var content = reader.ReadToEnd();
                 Assert.Equal("Hello World!!", content);
             }
-            
+
         }
 
         #endregion

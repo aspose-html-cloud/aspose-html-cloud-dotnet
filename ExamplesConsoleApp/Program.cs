@@ -10,15 +10,15 @@ namespace ExamplesConsoleApp
     {
         static void Main(string[] args)
         {
-            string AppSid = "html.cloud";
-            string AppKey = "html.cloud";
+            string ClientId = "html.cloud";
+            string ClientSecret = "html.cloud";
             string baseUrl = "https://localhost:5001/v4.0/html";
 
             string appDir = AppDomain.CurrentDomain.BaseDirectory;
             string projPath = appDir.Substring(0, appDir.IndexOf("\\bin"));
             string sourceFile = Path.Combine(projPath, "TestSource", "test.html");
 
-            var api = new HtmlApi(appSid : AppSid, appKey : AppKey, baseUrl: baseUrl);
+            var api = new HtmlApi(clientId : ClientId, clientSecret : ClientSecret, baseUrl: baseUrl);
             
             // Convert to single file
             ConverterBuilder convHtmlPdf = new ConverterBuilder()

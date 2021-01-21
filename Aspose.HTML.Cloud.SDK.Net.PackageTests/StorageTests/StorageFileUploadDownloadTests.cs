@@ -18,8 +18,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.ClientId)
-                .WithAppKey(fixture.ClientSecret)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }
@@ -30,7 +30,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void UploadFileTest()
         {
             var localPath = "d:\\aspose\\TestData\\html_example1.html";
-            var storagePath = "/HTML/Testout/html_example1.html";
+            var storagePath = "/HTML/html_example1.html";
 
             var storage = api.Storage;
             var exists = storage.FileExists(storagePath);
@@ -43,7 +43,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             exists = storage.FileExists(storagePath);
             Assert.True(exists);
-            
+
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var parsed = PathUtility.Parse(file.Path);
             var finfo = storage.GetFileInfo(parsed.Path, parsed.StorageName);
             Assert.Equal(data.Length, finfo.Info.Size);
-            
+
         }
 
         [Fact]
@@ -69,13 +69,13 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             storage.DownloadFile(storagePath, localPath);
 
             Assert.True(System.IO.File.Exists(localPath));
-            
+
         }
 
         [Fact]
         public void DownloadFileFromLIstTest()
         {
-            var storagePath = "/HTML";
+            var storagePath = "/HtmlTestDoc";
             var localPath = "c:\\work\\";
 
             var storage = api.Storage;
@@ -86,7 +86,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             storage.DownloadFile(files.First(), local);
 
             Assert.True(System.IO.File.Exists(local));
-            
+
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             var fileData = storage.DownloadData(filePath);
             Assert.Equal(data, fileData);
-            
+
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var storage = api.Storage;
             var fileData = storage.DownloadData(filePath);
             Assert.True(fileData.Length > 0);
-            
+
         }
 
         #endregion
@@ -140,7 +140,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             exists = storage.FileExists(storagePath);
             Assert.True(exists);
-            
+
         }
 
         [Fact]
@@ -159,7 +159,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var parsed = PathUtility.Parse(file.Path);
             var finfo = storage.GetFileInfo(parsed.Path, parsed.StorageName);
             Assert.Equal(data.Length, finfo.Info.Size);
-            
+
         }
 
         [Fact]
@@ -176,7 +176,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //    Thread.Sleep(10);
 
             Assert.True(System.IO.File.Exists("c:\\folder\\file.html"));
-            
+
         }
 
         #endregion

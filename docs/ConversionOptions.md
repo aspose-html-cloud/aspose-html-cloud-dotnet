@@ -24,6 +24,7 @@ Name | Type | Description  | Notes
  **JpegQuality** | **Number**| Quality of jpeg compression in percent. | [optional]
 
 <a name="XPSConversionOptions"></a>
+
 ### XPSConversionOptions
 ```code
 ConversionOptions xpsOpts = new XPSConversionOptions()
@@ -43,7 +44,31 @@ Name | Type | Description  | Notes
  **TopMargin** | **Number**| Top resulting document page margin in points (1/96 inch). | [optional] 
  **BottomMargin** | **Number**| Bottom resulting document page margin in points (1/96 inch). | [optional] 
 
+<a name="DocConversionOptions"></a>
+
+### DOCConversionOptions
+
+```code
+ConversionOptions xpsOpts = new DOCConversionOptions()
+    .SetHeight(800)
+    .SetWidth(1000)
+    .SetLeftMargin(10)
+    .SetRightMargin(10)
+    .SetBottomMargin(10)
+    .SetTopMargin(10);
+```
+
+| Name             | Type       | Description                                                  | Notes      |
+| ---------------- | ---------- | ------------------------------------------------------------ | ---------- |
+| **Width**        | **Number** | Resulting document page width in points (1/96 inch).         | [optional] |
+| **Height**       | **Number** | Resulting document page height in points (1/96 inch).        | [optional] |
+| **LeftMargin**   | **Number** | Left resulting document page margin in points (1/96 inch).   | [optional] |
+| **RightMargin**  | **Number** | Right resulting document page margin in points (1/96 inch).  | [optional] |
+| **TopMargin**    | **Number** | Top resulting document page margin in points (1/96 inch).    | [optional] |
+| **BottomMargin** | **Number** | Bottom resulting document page margin in points (1/96 inch). | [optional] |
+
 <a name="JPEGConversionOptions"></a>
+
 ### JPEGConversionOptions
 ```code
 ConversionOptions jpgOpts = new JPEGConversionOptions()

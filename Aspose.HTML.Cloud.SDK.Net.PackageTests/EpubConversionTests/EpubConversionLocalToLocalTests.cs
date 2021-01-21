@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class EpubConversionLocalToLocalTests 
+    public class EpubConversionLocalToLocalTests
         : IClassFixture<BaseTest>, IDisposable
     {
         private readonly HttpClient client;
@@ -22,8 +22,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.ClientId)
-                .WithAppKey(fixture.ClientSecret)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }
@@ -32,7 +32,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromLocalFileToLocal_PDF()
         {
             // Convert to single file
-            ConverterBuilder convHtmlPdf = new ConverterBuilder()                   
+            ConverterBuilder convHtmlPdf = new ConverterBuilder()
                 .FromLocalFile(sourceFile)
                 .To(new PDFConversionOptions())
                 .SaveToLocal(destFolder);
@@ -308,6 +308,46 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff);
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length >= 1);
+        }
+
+        [Fact]
+        public void ConvertFromLocalFileToLocal_DOC()
+        {
+            // Convert to single file
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromLocalFile(sourceFile)
+                .To(new DOCConversionOptions())
+                .SaveToLocal(destFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc); ;
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length >= 1);
+        }
+
+        [Fact]
+        public void ConvertFromLocalFileToLocal_DOC_WithParams()
+        {
+            ConversionOptions docOpts = new DOCConversionOptions()
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10);
+
+            // Convert to single or multiple files with options
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromLocalFile(sourceFile)
+                .To(docOpts)
+                .SaveToLocal(destWithParamFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");

@@ -3,24 +3,25 @@
   <metadata>
     <id>Aspose.HTML-Cloud</id>
 	  <title>Aspose.HTML Cloud SDK for .NET</title>
-    <version>20.11.0</version>
+    <version>20.12.0</version>
     <authors>asposecloud</authors>
     <owners>asposemarketplace</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
 	  <license type="expression">MIT</license>
     <description>Aspose.HTML Cloud for .NET is a programming SDK that allows software developers to manipulate and convert HTML documents from within their own applications. A Wrapper of RESTful APIs, Aspose.HTML Cloud for .NET speeds up HTML programming and conversion.</description>
     <releaseNotes>
-      Aspose.HTML Cloud for .NET SDK release (v.20.11).
+      Aspose.HTML Cloud for .NET SDK release (v.20.12).
 	  
-	  New generation of Aspose.HTML Cloud SDK for .NET/C# is provided in this release. It enables your .NET applications to easily convert HTML/XHTML documents from your local file system, from your Aspose cloud storage and any pages from Web. Also ePub, MHTML, Markdown formats are allowed as the source formats of conversion. The source documents can be rendered as PDF, XPS, JPEG, PNG, GIF, BMP, TIFF, Markdown (only from HTML/XHTML files). Also MHTML can be converted to HTML. 
+	  New generation of Aspose.HTML Cloud SDK for .NET/C# is provided in this release. It enables your .NET applications to easily convert HTML/XHTML documents from your local file system, from your Aspose cloud storage and any pages from Web. Also ePub, MHTML, Markdown formats are allowed as the source formats of conversion. The source documents can be rendered as PDF, XPS, DOCX, JPEG, PNG, GIF, BMP, TIFF, Markdown (only from HTML/XHTML files). Also MHTML can be converted to HTML. 
 	  
-	  GENERAL NOTE: this version of SDK has been redesigned from scratch being based on new Aspose.HTML Cloud REST API (v4.0), so currently it provides only the conversion feature; other features that are still available in the versions up to v.20.08 are planned to be implemented in this SDK later.
+	  GENERAL NOTE: this version of SDK is based on new Aspose.HTML Cloud REST API (v4.0), so currently it provides only the conversion feature and the cloud storage access functionality; other features that are still available in the versions up to v.20.08 are planned to be implemented step by step in this SDK later.
 	  
 	  What's new in this release
 	  
-	  1. Conversion interface has been simplified, it provides more flexible conversion parameters setup; also a conversion operation can run synchronously or asynchronously. 
-	  2. Redesigned storage access is provided using SDK entry point HtmlApi.Storage. The synchronous and asynchronous file upload and download methods are provided; also the asynchronous download provides ability to get progress data for long-time downloads.    	  
-	  
+	  1. Conversion to DOCX format support has been implemented.
+	  2. Bug of the conversion (incorrect result format when the conversion result is saved to the local file system) has been fixed.
+	  3. IMPORTANT: naming changes in HtmlApi and Configuration classes that may impact existing applications that use this SDK; all occurrences of AppSid and AppKey and derived names have been replaced to ClientId and ClientSecret respectively, to match the common naming standard of Aspose applications.
+
 	  
 	  For details, see https://github.com/aspose-html-cloud/aspose-html-cloud-dotnet/blob/master/README.md
     </releaseNotes>
