@@ -25,7 +25,7 @@ See [API Reference](https://apireference.aspose.cloud/html/) for full API specif
 <a name="KeyFeatures"></a>
 ## Key Features
 
-* Conversion of HTML documents into various formats; PDF, XPS, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
+* Conversion of HTML documents into various formats; PDF, XPS, DOCX, Markdown document formats and JPEG, PNG, GIF, BMP, TIFF raster graphics formats are supported
 * Conversion of an MHTML document into the same formats that are supported for HTML
 * Conversion of an ePub document into the same formats that are supported for HTML
 * Conversion of an HTML document from the Web by its URL to MHTML document format
@@ -44,8 +44,8 @@ For more details, please visit our [documentation website](https://docs.aspose.c
 
 To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
-
 <a name="HowTo-installation"></a>
+
 ### Installation
 
 Get the ready package from [NuGet](https://www.nuget.org/packages/Aspose.HTML-Cloud/) or build from source available in this repository folder Aspose.HTML-Cloud.
@@ -139,10 +139,10 @@ namespace ExamplesConsoleApp
 Specifies input data for conversion. 
 
 Possible conversions:
- - HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
- - XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD
- - MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
- - EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF
+ - HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD, DOC, DOCX
+ - XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, MHTML, MD, DOC, DOCX
+ - MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOC, DOCX
+ - EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOC, DOCX
 
 
   Method | Parameters | Description
@@ -169,6 +169,7 @@ Specifies the output format for conversion.
 [BMPConversionOptions](docs/ConversionOptions.md#BMPConversionOptions) | Converting source file or URL to single or several images in BMP format.
 [PDFConversionOptions](docs/ConversionOptions.md#PDFConversionOptions) | Converting source file or URL to PDF.
 [XPSConversionOptions](docs/ConversionOptions.md#XPSConversionOptions) | Converting source file or URL to XPS.
+DocConversionOptions | Converting source file or URL to DOC/DOCX 
 [MarkdownConversionOptions](docs/ConversionOptions.md#MarkdownConversionOptions) | Converting source file or URL to Markdown.
 
 ### SaveTo...

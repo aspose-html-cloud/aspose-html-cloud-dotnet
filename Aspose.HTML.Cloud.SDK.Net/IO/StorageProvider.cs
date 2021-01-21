@@ -152,7 +152,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             var rootDir = PathUtility.GetFolderPath(directoryUri);
             var dirs = GetDirectories(rootDir, storageName);
             var sel = dirs.Where(d => d.Name.Replace("/", "") == Path.GetFileName(directoryUri)).ToArray();
-            return sel?.First();
+            return sel.Length > 0 ? sel[0] : null ;
         }
 
         /// <summary>
@@ -590,10 +590,11 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                 var response = apiInvoker.CallGetAsStream(url, HttpCompletionOption.ResponseHeadersRead);
 
                 try
-                {               
-                    var dir = Path.GetDirectoryName(localFilePath);
-                    if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
-                        Directory.CreateDirectory(dir);
+                {         
+                    // AR 12-01-2021: bugfix - dir path treated as file
+                    //var dir = Path.GetDirectoryName(localFilePath);
+                    //if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                    //    Directory.CreateDirectory(dir);
 
                     using (var outputStream = File.Create(localFilePath))
                     using (var wr = new BinaryWriter(outputStream))

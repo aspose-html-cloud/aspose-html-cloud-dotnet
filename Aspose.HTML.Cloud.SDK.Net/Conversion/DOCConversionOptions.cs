@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="AuthenticationFactory.cs">
+// <copyright company="Aspose" file="DOCConversionOptions.cs">
 //   Copyright (c) 2020 Aspose.HTML Cloud
 // </copyright>
 // <summary>
@@ -24,44 +24,53 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
-    class AuthenticationFactory
+    public class DOCConversionOptions : FixedLayoutConversionOptions
     {
-
-        public IAuthenticator CreateAuth(Configuration configuration)
+        public DOCConversionOptions() : base(OutputFormats.DOCX)
         {
-            var conf = configuration ?? Configuration.NewDefault();
-
-            if(conf.UseExternalAuthentication)
-            {
-                return new JwtAuth(conf.ExternalAuthToken);
-            }
-
-            if (!string.IsNullOrEmpty(conf.ClientId)
-                    && !string.IsNullOrEmpty(conf.ClientSecret))
-            {
-                var authUrl = conf.AuthUrl;
-                return new JwtAuth(conf.ClientId, conf.ClientSecret, conf.AuthUrl);
-            }
-            else
-                return new DummyAuth();
         }
 
+        public DOCConversionOptions SetWidth(int width)
+        {
+            Width = width;
+            return this;
+        }
 
-        //public IAuthenticator CreateJwtAuth(Configuration configuration)
-        //{
-        //    return new JwtAuth(configuration?.AppSid, configuration?.AppKey, configuration?.AuthUrl);
-        //}
+        public DOCConversionOptions SetHeight(int height)
+        {
+            Height = height;
+            return this;
+        }
 
-        //IAuthenticator CreateJwtAuth(string token)
-        //{
-        //    return null; // not implemented
-        //}
+        public DOCConversionOptions SetLeftMargin(int leftMargin)
+        {
+            LeftMargin = leftMargin;
+            return this;
+        }
 
-        //public IAuthenticator CreateDummyAuth()
-        //{
-        //    return new DummyAuth();
-        //}
+        public DOCConversionOptions SetRightMargin(int rightMargin)
+        {
+            RightMargin = rightMargin;
+            return this;
+        }
+
+        public DOCConversionOptions SetTopMargin(int topMargin)
+        {
+            TopMargin = topMargin;
+            return this;
+        }
+
+        public DOCConversionOptions SetBottomMargin(int bottomMargin)
+        {
+            BottomMargin = bottomMargin;
+            return this;
+        }
+
     }
 }

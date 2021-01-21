@@ -1,28 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="DirConversionLocalToLocalTests.cs">
-//   Copyright (c) 2020 Aspose.HTML Cloud
-// </copyright>
-// <summary>
-//   Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-// 
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-// 
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
+﻿
 using Aspose.HTML.Cloud.Sdk.Conversion;
 using Aspose.HTML.Cloud.Sdk.Runtime.Core.Model;
 using System;
@@ -46,8 +22,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             // client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 // .WithHttpClient(client)
-                .WithAppSid(fixture.AppSid)
-                .WithAppKey(fixture.AppKey)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }
@@ -332,6 +308,46 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocal(destWithParamFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff);
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length >= 1);
+        }
+
+        [Fact]
+        public void ConvertFromLocalDirToLocal_DOC()
+        {
+            // Convert to single file
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromLocalDirectory(sourceDir, "index.html")
+                .To(new DOCConversionOptions())
+                .SaveToLocal(destFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc); ;
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length == 1);
+        }
+
+        [Fact]
+        public void ConvertFromLocalDirToLocal_DOC_WithParams()
+        {
+            ConversionOptions docOpts = new DOCConversionOptions()
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10);
+
+            // Convert to single or multiple files with options
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromLocalDirectory(sourceDir, "index.html")
+                .To(docOpts)
+                .SaveToLocal(destWithParamFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");

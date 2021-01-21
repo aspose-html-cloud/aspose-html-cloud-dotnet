@@ -56,13 +56,13 @@ namespace Aspose.HTML.Cloud.Sdk
 
         private ApiInvokerFactory apiInvokerFactory;
         private IAuthenticator Authenticator { get; set; }
-        
+
         /// <summary>
         /// Constructor. Initializes a class instance with API parameters provided by specified Configuration object.
         /// </summary>
         /// <param name="configuration"></param>
         public HtmlApi(Configuration configuration)
-        {         
+        {
             restClient = configuration.HttpClient;
             taskFactory = new TaskFactory(cancellationTokenSource.Token);
 
@@ -84,36 +84,36 @@ namespace Aspose.HTML.Cloud.Sdk
         /// <summary>
         /// Constructor. Initializes a class instance with user credentials and default API server URL. 
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
-        public HtmlApi(String appSid, String appKey)
-            : this(appSid, appKey, Configuration.Default.BaseUrl, Configuration.Default.Timeout)
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        public HtmlApi(String clientId, String clientSecret)
+            : this(clientId, clientSecret, Configuration.Default.BaseUrl, Configuration.Default.Timeout)
         {
         }
 
         /// <summary>
         /// Constructor. Initializes a class instance with user credentials and explicit API server URL.
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
         /// <param name="baseUrl"></param>
-        public HtmlApi(String appSid, String appKey, String baseUrl)
-            : this(appSid, appKey, baseUrl, Configuration.Default.Timeout)
+        public HtmlApi(String clientId, String clientSecret, String baseUrl)
+            : this(clientId, clientSecret, baseUrl, Configuration.Default.Timeout)
         {
         }
 
         /// <summary>
         /// Constructor. Initializes a class instance with user credentials, explicit API server URL and HTTP(S) connection timeout.
         /// </summary>
-        /// <param name="appSid"></param>
-        /// <param name="appKey"></param>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
         /// <param name="baseUrl"></param>
         /// <param name="timeout"></param>
-        public HtmlApi(String appSid, String appKey, String baseUrl, TimeSpan timeout)
+        public HtmlApi(String clientId, String clientSecret, String baseUrl, TimeSpan timeout)
             : this(new Configuration()
             {
-                AppKey = appKey,
-                AppSid = appSid,
+                ClientSecret = clientSecret,
+                ClientId = clientId,
                 BaseUrl = baseUrl,
                 Timeout = timeout
             })
@@ -138,7 +138,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 //To storage
                 if (outputPath.StartsWith("storage://"))
                 {
-                    var result = (Directory.Exists(inputParams[0])) 
+                    var result = (Directory.Exists(inputParams[0]))
                         ? ConvertLocalDirectory(inputParams, builder.Options, outputPath)
                         : inputParams[0].ToLower().EndsWith(".zip")
                           ? ConvertLocalArchive(inputParams, builder.Options, outputPath)
@@ -305,16 +305,26 @@ namespace Aspose.HTML.Cloud.Sdk
 
             List<string> files = new List<string>();
 
+            // AR 12-01-2021: bugfix - dir path treated as file
+            if (!Directory.Exists(outputPath))
+            {
+                if (File.Exists(outputPath))
+                    File.Delete(outputPath);
+                Directory.CreateDirectory(outputPath);
+            }
+
             foreach (var f in result.Files)
             {
-                Storage.DownloadFile(f, outputPath);
+                var targetPath = Path.Combine(outputPath, Path.GetFileName(f.Name));
+                Storage.DownloadFile(f, targetPath);
+                //Storage.DownloadFile(f, outputPath);
                 files.Add(f.Name);
             }
 
             return new ConversionResult()
             {
                 Status = "success",
-                Description = $"All converded files in {outputPath}",
+                Description = $"All converted files in {outputPath}",
                 Files = files.ToArray()
             };
         }

@@ -39,19 +39,9 @@ namespace Aspose.HTML.Cloud.Sdk
         public const string CONF_CLIENTID = "client_id";
         public const string CONF_CLIENTSECRET = "client_secret";
 
-#if PRODUCTION
         public const string DEF_AUTH_URL = "https://api.aspose.cloud/connect/token";
         public const string DEF_API_URL = "https://api.aspose.cloud/v4.0/html";
-#else
-        public const string DEF_AUTH_URL = "https://api-qa.aspose.cloud/connect/token";
 
-#if DEBUG
-        public const string DEF_API_URL = "http://localhost:5000/v4.0/html";
-#else
-        public const string DEF_API_URL = "https://api-qa.aspose.cloud/v4.0/html";
-#endif
-
-#endif
 
         public static string[] ConfigParams = { 
             CONF_AUTHURL, 
@@ -65,8 +55,8 @@ namespace Aspose.HTML.Cloud.Sdk
         public string BaseUrl { get; set; } = "/v4.0/html/";
 
         public string AuthUrl { get; set; } = DEF_AUTH_URL;
-        public string AppKey { get; set; }
-        public string AppSid { get; set; }
+        public string ClientSecret { get; set; }
+        public string ClientId { get; set; }
         public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
 
         public HttpClient HttpClient { get; set; } = new HttpClient();
@@ -109,15 +99,15 @@ namespace Aspose.HTML.Cloud.Sdk
         //}
 #endregion
 
-        public Configuration WithAppKey(string appKey)
+        public Configuration WithClientSecret(string clientSecret)
         {
-            this.AppKey = appKey;
+            this.ClientSecret = clientSecret;
             return this;
         }
 
-        public Configuration WithAppSid(string appSid)
+        public Configuration WithClientId(string clientId)
         {
-            this.AppSid = appSid;
+            this.ClientId = clientId;
             return this;
         }
 
@@ -194,15 +184,15 @@ namespace Aspose.HTML.Cloud.Sdk
                 return this;
             }
 
-            public ConfigurationBuilder WithAppKey(string appKey)
+            public ConfigurationBuilder WithClientSecret(string clientSecret)
             {
-                configuration.AppKey = appKey;
+                configuration.ClientSecret = clientSecret;
                 return this;
             }
 
-            public ConfigurationBuilder WithAppSid(string appSid)
+            public ConfigurationBuilder WithClientId(string clientId)
             {
-                configuration.AppSid = appSid;
+                configuration.ClientId = clientId;
                 return this;
             }
 

@@ -18,8 +18,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.AppSid)
-                .WithAppKey(fixture.AppKey)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }
@@ -30,7 +30,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void UploadFileTest()
         {
             var localPath = "d:\\aspose\\TestData\\html_example1.html";
-            var storagePath = "/HTML/Testout/html_example1.html";
+            var storagePath = "/HTML/html_example1.html";
 
             var storage = api.Storage;
             var exists = storage.FileExists(storagePath);
@@ -75,7 +75,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void DownloadFileFromLIstTest()
         {
-            var storagePath = "/HTML";
+            var storagePath = "/HtmlTestDoc";
             var localPath = "c:\\work\\";
 
             var storage = api.Storage;

@@ -22,8 +22,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
                 //.WithHttpClient(client)
-                .WithAppSid(fixture.AppSid)
-                .WithAppKey(fixture.AppKey)
+                .WithClientId(fixture.ClientId)
+                .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
         }
@@ -313,6 +313,48 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Status == "success");
             Assert.True(result.Files.Length >= 1);
         }
+
+
+        [Fact]
+        public void ConvertFromLocalZipToLocal_DOC()
+        {
+            // Convert to single file
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromLocalArchive(sourceArch, "index.html")
+                .To(new DOCConversionOptions())
+                .SaveToLocal(destFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc); ;
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length == 1);
+        }
+
+        [Fact]
+        public void ConvertFromLocalZipToLocal_DOC_WithParams()
+        {
+            ConversionOptions docOpts = new DOCConversionOptions()
+                .SetHeight(800)
+                .SetWidth(1000)
+                .SetLeftMargin(10)
+                .SetRightMargin(10)
+                .SetBottomMargin(10)
+                .SetTopMargin(10);
+
+            // Convert to single or multiple files with options
+            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+                .FromLocalArchive(sourceArch, "index.html")
+                .To(docOpts)
+                .SaveToLocal(destWithParamFolder);
+
+            ConversionResult result = api.Convert(convHtmlDoc);
+
+            //ToDo: Status - to enum
+            Assert.True(result.Status == "success");
+            Assert.True(result.Files.Length >= 1);
+        }
+
 
         [Fact]
         public void ConvertFromLocalZipToLocal_MD()

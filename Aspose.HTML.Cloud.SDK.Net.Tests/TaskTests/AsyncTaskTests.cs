@@ -18,8 +18,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
         public AsyncTaskTests()
         {
             api = new HtmlApi(cb => cb
-                .WithAppSid(AppSid)
-                .WithAppKey(AppKey)
+                .WithClientId(ClientId)
+                .WithClientSecret(ClientSecret)
                 .WithAuthUrl(AuthServiceUrl)
                 .WithBaseUrl(ApiServiceBaseUrl));
         }
