@@ -46,15 +46,16 @@ For more details, please visit our [documentation website](https://docs.aspose.c
 <a name="HowTo-prerequisites"></a>
 ### Prerequisites
 
-To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
-
+To use Aspose HTML for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create `Client ID` and `Client Secret` at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
 <a name="HowTo-installation"></a>
+
 ### Installation
 
 Get the ready package from [NuGet](https://www.nuget.org/packages/Aspose.HTML-Cloud/) or build from source available in this repository folder Aspose.HTML-Cloud.
 
 <a name="HowTo-install-nuget"></a>
+
 #### Install Aspose.HTML-Cloud via NuGet
 
 
@@ -78,9 +79,9 @@ From within Visual Studio:
 
 ### Run tests and examples
 
-To run tests, firstly modify the Settings\servercreds.json file setting up your AppSID & AppKey that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
+To run tests, firstly modify the Settings\servercreds.json file setting up your `Client ID` & `Client Secret` that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
 
-To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up AppSID, AppKey, and optionally DataPath.
+To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up **ClientID**, **ClientSecret**, and optionally DataPath.
 
 <a name="CodeExample"></a>
 ### Usage sample
@@ -94,7 +95,7 @@ In this example, the HTML document located by local path is converted to another
  2. In the solution, create a  C# console application project.
  3. In the console project, install the last version of Aspose.HTML-Cloud package from NuGet  ( see [Install Aspose.HTML-Cloud via NuGet](README.md#HowTo-install-nuget) above ).
  4. Copy the code snippet below and replace Program.cs file content.
- 5. Replace APPKEY and APPSID variable values in the code with respective values from your account ( see [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) page ).
+ 5. Replace `ClientSecret` and `ClientId` variable values in the code with respective values from your account ( see [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) page ).
  6. Run the application and check a result by the path displayed in the console output.
 
 For more buildable and executable examples, refer the [**Documentation for API Endpoints**](README.md#Doc_API) chapter.
@@ -112,15 +113,15 @@ namespace ExamplesConsoleApp
     {
         static void Main(string[] args)
         {
-            string AppSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
-            string AppKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            string ClientId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+            string ClientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
             string appDir = AppDomain.CurrentDomain.BaseDirectory;
             string projPath = appDir.Substring(0, appDir.IndexOf("\\bin"));
             string sourceFile = Path.Combine(projPath, "TestSource", "test.html");
 
             // Creating api with credentials.
-            var api = new HtmlApi(appSid : AppSid, appKey : AppKey);
+            var api = new HtmlApi(clientId : clientId, clientSecret : ClientSecret);
 
             // Create converter by ConverterBuilder
             ConverterBuilder convHtmlPdf = new ConverterBuilder()

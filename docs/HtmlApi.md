@@ -2,7 +2,33 @@
 
 A facade class that provides wrapper methods of Aspose.HTML Cloud REST API.
 
-[TOC]
+## Table of contents
+
+> - [**Summary**](HtmlApi.md#Summary)
+> - [**Namespace**](HtmlApi.md#Namespace)
+> - [**Constructors**](HtmlApi.md#Constructors)
+>   - [Examples of constructor usage](HtmlApi.md#Constructors_Examples)
+> - [**Properties**](HtmlApi.md#Properties)
+>   - [Storage](HtmlApi.md#Properties_Storage)
+> - [**Public methods**](HtmlApi.md#Public_Methods)
+>   - [ConvertAsync](HtmlApi.md#ConvertAsync)
+>   - [ConvertAsync (overloaded)](HtmlApi.md#ConvertAsync_1)
+>   - [GetConversion](HtmlApi.md#GetConversion)
+>   - [DeleteTask](HtmlApi.md#DeleteTask)
+>   - [Convert](HtmlApi.md#Convert)
+>   - [Convert (overloaded)](HtmlApi.md#Convert_1)
+>   - [Convert (overloaded, builder-style)](HtmlApi.md#Convert_builder)
+>   - [ConvertWebSiteAsync](HtmlApi.md#ConvertWebSiteAsync)
+>   - [ConvertWebSite](HtmlApi.md#ConvertWebSite)
+>   - [ConvertWebSite (overloaded)](HtmlApi.md#ConvertWebSite_1)
+>   - [ConvertLocalFileAsync](HtmlApi.md#ConvertLocalFileAsync)
+>   - [ConvertLocalFileAsync (overloaded)](HtmlApi.md#ConvertLocalFileAsync_1)
+>   - [ConvertLocalFile](HtmlApi.md#ConvertLocalFile)
+>   - [ConvertLocalFile (overloaded)](HtmlApi.md#ConvertLocalFile_1)
+>   - [ConvertLocalDirectory](HtmlApi.md#ConvertLocalDirectory)
+>
+
+
 
 <a name="Summary" />
 
@@ -16,7 +42,11 @@ In the current version, it provides:
 - a group of synchronous and asynchronous conversion methods that work with various data sources, such as local files, files in the cloud storage, web pages. The supported source file types are: HTML (including HTML pages with local resources in ZIP archive), MHTML, ePub, Markdown. The supported output formats the source files can be converted to are: PDF, XPS, JPEG, BMP, PNG, GIF, TIFF. 
 - an entry point of the cloud storage access API.
 
+For additional information about Aspose.HTML Cloud REST API and SDKs, visit the [Aspose documentation site](https://docs.aspose.cloud/html/overview/).
 
+
+
+<a name="Namespace" />
 
 ## Namespace 
 
@@ -24,7 +54,7 @@ Aspose.HTML.Cloud.Sdk
 
 <br>
 
-
+<a name="Constructors" />
 
 ## Constructors
 
@@ -57,8 +87,7 @@ Initializes a class instance with user credentials and explicit API server URL.
 Initializes a class instance with user credentials, explicit API server URL and HTTP(S) connection timeout.
 
 
-
-
+<a name="Constructors_Examples" />
 #### Examples of constructor usage
 
 Here are examples of various **HtmlApi** initialization ways. 
@@ -77,36 +106,43 @@ using(var api =  new HtmlApi(conf))
 ```
 
 
-
 An example of initialization by user credentials with explicit authentication service and HTML API service URLs using the configuration builder: 
 
-```
-var AppSid = "clientid";
-var AppKey = ""cXdD45HHTn&&-Bu^787;
+```c#
+var clientId = "clientid";
+var clientSecret = ""cXdD45HHTn&&-Bu^787;
 var ApiServiceBaseUrl = "https://api.aspose.cloud";
 var AuthServiceUrl = "https://api.aspose.cloud";
 
-var api =  new HtmlApi(cb => cb
-                .WithAppSid(AppSid)
-                .WithAppKey(AppKey)
+using( var api =  new HtmlApi(cb => cb
+                .WithClientId(clientId)
+                .WithClientSecret(clientSecret)
                 .WithAuthUrl(AuthServiceUrl)
-                .WithBaseUrl(ApiServiceBaseUrl));
+                .WithBaseUrl(ApiServiceBaseUrl)))
+{
+    // business code ...
+}
 ```
 
 
 
 An example of initialization by user credentials using the configuration builder: 
 
-``` 
+``` c#
 var AppSid = "clientid";
 var AppKey = ""cXdD45HHTn&&-Bu^787;
 
-var api = new HtmlApi(cb => cb
-                .WithAppSid(AppSid)
-                .WithAppKey(AppKey)); 
-                // URLs of authentication and HTML API services aren't specified explicitly
-                // default values are assumed ( 
-                // https://api.aspose.cloud/connect/token and https://api.aspose.cloud/v4.0/html respectively )
+    // URLs of authentication and HTML API services aren't specified explicitly
+    // default values are assumed ( 
+    // https://api.aspose.cloud/connect/token and https://api.aspose.cloud/v4.0/html respectively )
+using(var api = new HtmlApi(cb => cb
+                .WithClientId(clientId)
+                .WithClientSecret(clientSecret)))
+{
+    // business code ...
+}
+
+      
                 
 ```
 
@@ -128,11 +164,16 @@ var api = new HtmlApi(cb => cb
 
 ```
 
-<br>
+<br/>
+
+<a name="Properties" />
 
 ## Properties
 
-#### **Storage**
+<a name="Properties_Storage" />
+
+### **Storage**
+
 > ```
 > StorageProvider  Storage { get; }
 > ```
@@ -143,25 +184,35 @@ See [**StorageProvider**](StorageProvider.md) for detailed specification of Stor
 
 <br>
 
+
+
+<a name="Public_Methods" />
+
 ## Public Methods
 
 #### *Common parameters*
 
 The list of parameters that are used by most of methods:
 
-| Name                | Description                                                  | Type                                          | Note     |
-| ------------------- | ------------------------------------------------------------ | --------------------------------------------- | -------- |
-| source              | A source file (or files).                                    | [**ConversionSource**]()                      |          |
-| options             | Specifies the conversion options, i.e. the resulting file format and other result parameters, such as page size and margins, image resolution etc. | [**ConversionOptions**](ConversionOptions.md) |          |
-| outputFilePath      | A storage path where the result file will be saved; by default, it is a system temporary storage path. | string                                        | optional |
-| nameCollisionOption | How to handle a resulting file name collision. There are 3 options: *FailIfExists* (default), *GenerateUniqueName*, *ReplaceExisting.* | enum **NameCollisionOption**                  | optional |
-| observer            | Object that will get notifications on the conversion process state changes. It must implement the interface *IObserver<Conversion.Conversion>* | [IObserver]()<[Conversion.Conversion]()>      | optional |
+| Name                | Description                                                  | Type                                                         | Note     |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| source              | A source file (or files).                                    | [**ConversionSource**](ConversionSource.md)                  |          |
+| options             | Specifies the conversion options, i.e. the resulting file format and other result parameters, such as page size and margins, image resolution etc. | [**ConversionOptions**](ConversionOptions.md)                |          |
+| outputFilePath      | A storage path where the result file will be saved; by default, it is a system temporary storage path. | string                                                       | optional |
+| nameCollisionOption | How to handle a resulting file name collision. There are 3 options: *FailIfExists* (default), *GenerateUniqueName*, *ReplaceExisting.* | enum **NameCollisionOption**                                 | optional |
+| observer            | Object that will get notifications on the conversion process state changes. It must implement the interface *IObserver<Conversion.Conversion>* | [IObserver](https://docs.microsoft.com/en-us/dotnet/api/system.iobserver-1?view=net-5.0)<[Conversion.Conversion]()> | optional |
+
+**Note concerning `observer` parameter:**
+
+Default implementation of [IObserver](https://docs.microsoft.com/en-us/dotnet/api/system.iobserver-1?view=net-5.0)<[Conversion.Conversion]()> interface is an internal class ConversionObserver. This implementation does nothing.
+
+You are free to create your own implementation of [IObserver](https://docs.microsoft.com/en-us/dotnet/api/system.iobserver-1?view=net-5.0)<[Conversion.Conversion]()> interface and use its instance as `observer` parameter calling asynchronous conversion methods to receive notification on the process errors or work completion.
 
 
 
+<a name="ConvertAsync" />
 
-
-#### ConvertAsync
+### ConvertAsync
 
 > ```
 > AsyncResult<Conversion.Conversion> ConvertAsync(
@@ -175,8 +226,8 @@ The list of parameters that are used by most of methods:
 Starts asynchronously a long-time conversion operation of a source file (or files) specified by *source* parameter and returns an **AsyncResult** object that allows watching for the current asynchronous operation status. 
 
 
-
-#### ConvertAsync
+<a name="ConvertAsync_1" />
+### ConvertAsync
 
 > ```
 > AsyncResult<Conversion.Conversion> ConvertAsync(
@@ -190,8 +241,8 @@ Starts asynchronously a long-time conversion operation of a source file (or file
 Overloaded method.  Starts asynchronously a long-time conversion operation of a list of storage files.
 
 
-
-#### GetConversion
+<a name="GetConversion" />
+### GetConversion
 
 > ```
 > AsyncResult<Conversion.Conversion> GetConversion(string id)
@@ -200,8 +251,8 @@ Overloaded method.  Starts asynchronously a long-time conversion operation of a 
 Gets a current status of long-time conversion operation started previously by the *ConvertAsync* method.
 
 
-
-#### DeleteTask
+<a name="DeleteTask" />
+### DeleteTask
 
 > ```
 > bool DeleteTask(string id)
@@ -209,9 +260,9 @@ Gets a current status of long-time conversion operation started previously by th
 
 Cancels a long-time conversion operation started previously by the *ConvertAsync* method.
 
+<a name="Convert" />
 
-
-#### Convert
+### Convert
 
 > ```
 > Conversion.Conversion Convert(
@@ -224,9 +275,9 @@ Cancels a long-time conversion operation started previously by the *ConvertAsync
 
 Converts synchronously a file (or files) specified by  *source* parameter. This method is a synchronous mode of the *ConvertAsync*. Returns the Conversion.Conversion object with a list of conversion results.
 
+<a name="Convert_1" />
 
-
-#### Convert
+### Convert
 
 > ```
 > Conversion.Conversion Convert(
@@ -240,7 +291,21 @@ Overloaded method. Converts synchronously a list of storage files. This method i
 
 The specialized versions of the conversion methods are described below.
 
-#### ConvertWebSiteAsync
+<a name="Convert_builder" />
+
+### Convert
+
+> ```
+> Conversion.Conversion Convert(ConversionBuilder builder)
+> ```
+
+Overloaded method. Uses the builder style  setup of the conversion parameters using [ConversionBuilder](ConversionBuilder.md) class. 
+
+
+
+<a name="ConvertWebSiteAsync" />
+
+### ConvertWebSiteAsync
 
 > ```
 > AsyncResult<Conversion.Conversion> ConvertWebSiteAsync(
@@ -254,8 +319,8 @@ The specialized versions of the conversion methods are described below.
 Starts asynchronously a long-time conversion operation of a web page specified by its URL (*address* parameter). This method is an analog of the *ConvertAsync* specialized for web pages.
 
 
-
-#### ConvertWebSite
+<a name="ConvertWebSite" />
+### ConvertWebSite
 
 > ```
 > Conversion.Conversion ConvertWebSite(
@@ -269,8 +334,8 @@ Starts asynchronously a long-time conversion operation of a web page specified b
 Synchronous mode of the *ConvertWebSiteAsync* method. Converts a web page specified by its URL.
 
 
-
-#### ConvertWebSite
+<a name="ConvertWebSite_1" />
+### ConvertWebSite
 
 > ```
 > Conversion.Conversion ConvertWebSite(
@@ -283,9 +348,9 @@ Synchronous mode of the *ConvertWebSiteAsync* method. Converts a web page specif
 
 Overloaded method. Synchronous mode of the *ConvertWebSiteAsync* method. Converts several web pages specified the list of their URLs.
 
+<a name="ConvertLocalFileAsync" />
 
-
-#### ConvertLocalFileAsync
+### ConvertLocalFileAsync
 
 > ```
 > AsyncResult<Conversion.Conversion> ConvertLocalFileAsync(
@@ -299,8 +364,8 @@ Overloaded method. Synchronous mode of the *ConvertWebSiteAsync* method. Convert
 Starts asynchronously a long-time conversion operation of a file specified by its local file system path.
 
 
-
-#### ConvertLocalFileAsync
+<a name="ConvertLocalFileAsync_1" />
+### ConvertLocalFileAsync
 
 > ```
 > AsyncResult<Conversion.Conversion> ConvertLocalFileAsync(
@@ -313,9 +378,9 @@ Starts asynchronously a long-time conversion operation of a file specified by it
 
 Overloaded method.  Starts asynchronously a long-time conversion operation of several files specified by a list of their local file system paths.
 
+<a name="ConvertLocalFile" />
 
-
-#### ConvertLocalFile
+### ConvertLocalFile
 
 > ```
 > Conversion.Conversion ConvertLocalFile(
@@ -329,8 +394,8 @@ Overloaded method.  Starts asynchronously a long-time conversion operation of se
 Synchronous mode of the *ConvertLocalFileAsync* method. Converts a file specified by its local file system path.
 
 
-
-#### ConvertLocalFile
+<a name="ConvertLocalFile_1" />
+### ConvertLocalFile
 
 > ```
 > Conversion.Conversion ConvertLocalFile(
@@ -343,9 +408,9 @@ Synchronous mode of the *ConvertLocalFileAsync* method. Converts a file specifie
 
 Overloaded method. Synchronous mode of the *ConvertLocalFileAsync* method. Converts several files specified by a list of their local file system paths.
 
+<a name="ConvertLocalDirectory" />
 
-
-#### ConvertLocalDirectory
+### ConvertLocalDirectory
 
 > ```
 > Conversion.Conversion ConvertLocalDirectory(

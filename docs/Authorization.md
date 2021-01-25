@@ -4,19 +4,19 @@ There are two ways to authorize Aspose.HTML Cloud REST API calls provided by SDK
 
 * by user credentials
 
-The client application provides user credentials, i.e. appSid and appKey, and (optionally) an URL of authorization service that provides access tokens (all their parameters can be provided explicitly or implicitly, i.e. from a config file or environment variables). Then SDK authorizes the REST API calls internally: it obtains an access token, uses it for API calls and handles the token expiration itself acquiring it again.   
+The client application provides user credentials, i.e. `clientId` and `clientSecret`, and (optionally) an URL of authorization service that provides access tokens (all their parameters can be provided explicitly or implicitly, i.e. from a config file or environment variables). Then SDK authorizes the REST API calls internally: it obtains an access token, uses it for API calls and handles the token expiration itself acquiring it again.   
 
 #### Example
 
-```csharp
+```c#
 
-string baseUrl = "https://api.aspose.cloud";
-string authUrl = "https://api.aspose.cloud";
+string baseUrl = "https://api.aspose.cloud";  //  /v4.0/html will be appended by default
+string authUrl = "https://api.aspose.cloud";  //  /connect/token will be appended
 
-string appSid = "xxxxxxxxxxxxxxxxx";
-string appKey = "xxxxxxxxxxxxxxxxx";
+string clientId = "xxxxxxxxxxxxxxxxx";
+string clientSecret = "xxxxxxxxxxxxxxxxx";
 
-HtmlApi api = new HtmlApi(appSid, appKey, baseUrl, authUrl);
+HtmlApi api = new HtmlApi(clientId, clientSecret, baseUrl, authUrl);
 .....
 // business code is here
 .....
@@ -30,48 +30,20 @@ The client application provides a token that is acquired by itself or obtained f
 
 #### Example
 
-```csharp
+```c#
 
-string baseUrl = "https://api.aspose.cloud";
-
-
-try
-{
-	HtmlApi api = new HtmlApi(tokenObj, baseUrl);
-	.....
-	// business code is here
-	.....
-}
-catch(Exception ex)
-{
-	if(ex is SdkAuthException 
-		&& ((SdkAuthException)ex).ErrorReason == SdkAuthException.Reason.TokenExpired )
-	{
-		// handle here by re-creating HtmlApi instance with a new token
-		.... 
-	}
-}
-
-```
-
-Since v19.9.1, there is an option to use access token itself, without issued_on and expires_in parameters because they can be obtained from the token.
-
-#### Example
-
-```csharp
-
-string baseUrl = "https://api.aspose.cloud";
+string baseUrl = "https://api.aspose.cloud";   //  /v4.0/html will be appended by default
 
 string token = "..............."; // here is the access token string
 
 try
 {
-    HtmlApi api = new HtmlApi(cb => cb
-            .WithBaseUrl(baseUrl)
-            .WithExternalAuthentication(token));
-	.....
-	// business code is here
-	.....
+    using(HtmlApi api = new HtmlApi(cb => cb.WithExternalAuthentication(token)))
+    {
+        // .....
+        // business code is here
+        // .....
+    }
 }
 catch(Exception ex)
 {
@@ -84,4 +56,8 @@ catch(Exception ex)
 }
 
 ```
+
+
+
+For additional information about Aspose.HTML Cloud REST API and SDKs, visit the [Aspose documentation site](https://docs.aspose.cloud/html/overview/).
 

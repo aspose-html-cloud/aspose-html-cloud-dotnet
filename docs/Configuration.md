@@ -2,8 +2,38 @@
 
 Configuration class for SDK API facade objects.
 
-[TOC]
+## Table of contents
 
+>- [**Summary**](Configuration.md#Summary)
+>- [**Namespace**](Configuration.md#Namespace)
+>- [**Properties**](Configuration.md#Properties)
+>  - [BaseUrl](Configuration.md#BaseUrl)
+>  - [AuthUrl](Configuration.md#AuthUrl)
+>  - [ClientId](Configuration.md#ClientId)
+>  - [ClientSecret](Configuration.md#ClientSecret)
+>  - [HttpClient](Configuration.md#HttpClient)
+>  - [UseExternalAuthentication](Configuration.md#UseExternalAuthentication)
+>- [**Public methods**](Configuration.md#Public_Methods)
+>  - [New](Configuration.md#New)
+>  - [NewDefault](Configuration.md#NewDefault)
+>  - [WithClientId](Configuration.md#WithClientId)
+>  - [WithClientSecret](Configuration.md#WithClientSecret)
+>  - [WithTimeout](Configuration.md#WithTimeout)
+>  - [WithExternalAuthentication](Configuration.md#WithExternalAuthentication)
+>- [**Nested classes**](Configuration.md#Nested_class)
+>   - [**ConfigurationBuilder**](Configuration.md#ConfigurationBuilder)
+>      - [WithBaseUrl](Configuration.md#ConfigurationBuilder_WithBaseUrl)
+>      - [WithAuthUrl](Configuration.md#ConfigurationBuilder_WithAuthUrl)
+>      - [WithClientId](Configuration.md#ConfigurationBuilder_WithClientId)
+>      - [WithClientSecret](Configuration.md#ConfigurationBuilder_WithClientSecret)
+>      - [WithTimeout](Configuration.md#ConfigurationBuilder_WithTimeout)
+>      - [WithExternalAuthentication](Configuration.md#ConfigurationBuilder_WithExternalAuthentication)
+>- [Examples](Configuration.md#Examples)
+>
+
+
+
+<a name="Summary" />
 
 
 ## Summary
@@ -11,12 +41,19 @@ Configuration class for SDK API facade objects.
 The configuration is a class that initializes API facade objects with needed settings, such as credentials, called REST API URL, timeout etc.
 See [**HtmlApi**](HtmdApi.md) constructors with a Configuration parameter.
 
+For additional information about Aspose.HTML Cloud REST API and SDKs, visit the [Aspose documentation site](https://docs.aspose.cloud/html/overview/).
+
+<a name="Namespace" />
+
 ### Namespace 
 
 Aspose.Html.Cloud.Sdk
 
+<a name="Properties" />
 
 ## Properties
+
+<a name="BaseUrl" />
 
 #### BaseUrl
 
@@ -24,7 +61,9 @@ Aspose.Html.Cloud.Sdk
 > string BaseUrl { get; set; }
 > ```
 
-A REST API service URL being called by SDK.
+A REST API service URL being called by SDK. Default value is https://api.aspose.cloud/v4/0/html
+
+<a name="AuthUrl" />
 
 #### AuthUrl
 
@@ -32,23 +71,29 @@ A REST API service URL being called by SDK.
 > string AuthUrl { get; set; }
 > ```
 
-An authentication service URL.
+An authentication service URL. Default value is https://api.aspose.cloud/connect/token
 
-#### AppSid 
+<a name="ClientId" />
 
-> ```
-> string AppSid { get; set; }
-> ```
-
-An application SID (client ID).
-
-#### AppKey
+#### ClientId 
 
 > ```
-> string AppKey { get; set; }
+> string ClientId { get; set; }
 > ```
 
-An application key (client secret).
+Client ID credential.
+
+<a name="ClientSecret" />
+
+#### ClientSecret
+
+> ```
+> string ClientSecret { get; set; }
+> ```
+
+Client secret credential.
+
+<a name="HttpClient" />
 
 #### HttpClient 
 
@@ -58,7 +103,7 @@ An application key (client secret).
 
 An HTTP client object with predefined properties (Used mainly for test purposes).
 
-
+<a name="UseExternalAuthentication" />
 
 #### UseExternalAuthentication 
 
@@ -70,9 +115,11 @@ Checks whether SDK uses an authentication token obtained from external provided 
 
 
 
-
+<a name="Public_Methods" />
 
 ## Public methods
+
+<a name="New" />
 
 #### New
 
@@ -82,6 +129,8 @@ Checks whether SDK uses an authentication token obtained from external provided 
 
 A fabric method. Initializes an empty Configuration instance; then all needed configuration values should be set up by public properties or builder-style methods below.
 
+<a name="NewDefault" />
+
 #### NewDefault
 
 > ```
@@ -90,27 +139,27 @@ A fabric method. Initializes an empty Configuration instance; then all needed co
 
 A fabric method. Initializes an empty Configuration instance with default **BaseUrl** and **AuthUrl** values.
 
+<a name="WithClientId" />
 
-
-#### WithAppSid
-
-> ```
-> Configuration WithAppSid(string appSid)
-> ```
-
-A builder-style method. Sets the user's application SID (client ID).
-
-
-
-#### WithAppKey
+#### WithClientId
 
 > ```
-> Configuration WithAppKey(string appKey)
+> Configuration WithClientId(string ClientId)
 > ```
 
-A builder-style method. Sets the user's application key (client secret).
+A builder-style method. Sets the user's client ID.
 
+<a name="WithClientSecret" />
 
+#### WithClientSecret
+
+> ```
+> Configuration WithClientSecret(string clientSecret)
+> ```
+
+A builder-style method. Sets the user's client secret.
+
+<a name="WithTimeout" />
 
 #### WithTimeout
 
@@ -120,7 +169,7 @@ A builder-style method. Sets the user's application key (client secret).
 
 A builder-style method. Sets the HTTP connection timeout. 
 
-
+<a name="WithExternalAuthentication" />
 
 #### WithExternalAuthentication
 
@@ -132,13 +181,21 @@ A builder-style method. Sets a JWT authentication token obtained from external s
 
 
 
-## Nested class
+<a name="Nested_class" />
+
+## Nested classes
+
+<a name="ConfigurationBuilder" />
 
 ## ConfigurationBuilder
 
 A builder class that is used to set up **Configuration** objects.
 
+<a name="ConfigurationBuilder_PublicMethods" />
+
 ### Public methods
+
+<a name="ConfigurationBuilder_WithBaseUrl" />
 
 #### WithBaseUrl
 
@@ -148,6 +205,8 @@ A builder class that is used to set up **Configuration** objects.
 
 Sets the API service URL.
 
+<a name="ConfigurationBuilder_WithAuthUrl" />
+
 #### WithAuthUrl
 
 > ```
@@ -156,27 +215,27 @@ Sets the API service URL.
 
 Sets the authentication service URL.
 
+<a name="ConfigurationBuilder_WithClientId" />
 
-
-#### WithAppSid
-
-> ```
-> ConfigurationBuilder WithAppSid(string appSid)
-> ```
-
-Sets the user's application SID (client ID).
-
-
-
-#### WithAppKey
+#### WithClientId
 
 > ```
-> ConfigurationBuilder WithAppKey(string appKey)
+> ConfigurationBuilder WithClientId(string appSid)
 > ```
 
-Sets the user's application key (client secret).
+Sets the user's client ID.
 
+<a name="ConfigurationBuilder_WithClientSecret" />
 
+#### WithClientSecret
+
+> ```
+> ConfigurationBuilder WithClientSecret(string clientSecret)
+> ```
+
+Sets the user's client secret.
+
+<a name="ConfigurationBuilder_WithTimeout" />
 
 #### WithTimeout
 
@@ -186,7 +245,7 @@ Sets the user's application key (client secret).
 
 Sets the HTTP connection timeout.
 
-
+<a name="ConfigurationBuilder_WithHttpClient" />
 
 #### WithHttpClient
 
@@ -196,9 +255,9 @@ Sets the HTTP connection timeout.
 
 Assigns an HTTP client object with predefined properties for the **Configuration** (Used mainly for test purposes).
 
+<a name="ConfigurationBuilder_WithExternalAuthentication" />
 
-
-#### WithExternalAuthenticationS
+#### WithExternalAuthentication
 
 > ```
 > ConfigurationBuilder WithExternalAuthentication(string token)
@@ -206,34 +265,40 @@ Assigns an HTTP client object with predefined properties for the **Configuration
 
 Sets a JWT authentication token obtained from external source.
 
-
+<a name="Examples" />
 
 ## Examples
 
 Configure an **HtmlApi** object with default **Configuration**.
 
 ```
-var api = new HtmlApi(Configuration.NewDefault());
+using(var api = new HtmlApi(Configuration.NewDefault()))
+{
+	// ... your code is here  
+}
 ```
 
 
 
 Configure an **HtmlApi** object with a **Configuration **object when parameters are explicitly set in a constructor. 
 
-```csharp
+```c#
 var AppSid = "clientid";
 var AppKey = ""cXdD45HHTn&&-Bu^787;
-var ApiServiceBaseUrl = "https://api.aspose.cloud";
-var AuthServiceUrl = "https://api.aspose.cloud";
+var ApiServiceBaseUrl = "https://api.aspose.cloud";  //  /v4.0/html will be appended by default
+var AuthServiceUrl = "https://api.aspose.cloud";     //  /connect/token will be appended by default
 
 var config = new Configuration() {
-                AppSid = appSid,
-				AppKey = appKey,
+                ClientId = clientId,
+				ClientSecret = clientSecret,
 				ApiBaseUrl = basePath,
 				AuthUrl = authPath
             };			
 			
-var api = new HtmlApi(config);
+using(var api = new HtmlApi(config))
+{
+	// ... your code is here     
+}
 
 
 ```
@@ -242,26 +307,28 @@ var api = new HtmlApi(config);
 
 Configure an **HtmlApi** object with the **ConfigurationBuilder**. 
 
-```
+```c#
 var AppSid = "clientid";
 var AppKey = ""cXdD45HHTn&&-Bu^787;
-var ApiServiceBaseUrl = "https://api.aspose.cloud";
-var AuthServiceUrl = "https://api.aspose.cloud";
+var ApiServiceBaseUrl = "https://api.aspose.cloud";   //  /v4.0/html will be appended by default 
+var AuthServiceUrl = "https://api.aspose.cloud";      //  /connect/token will be appended by default
 
-var api = new HtmlApi(cb => cb
-                .WithAppSid(appSid)
-                .WithAppKey(appKey)
+using(var api = new HtmlApi(cb => cb
+                .WithClientId(clientId)
+                .WithClientSecret(clientSecret)
                 .WithAuthUrl(AuthServiceUrl)
-                .WithBaseUrl(ApiServiceBaseUrl));
+                .WithBaseUrl(ApiServiceBaseUrl)))
+{
+	// ... your code is here    
+}
+                
 ```
 
 
 
 Configure an **HtmlApi** object with externally obtained authentication token.
 
- 
-
-```
+```c#
 
 string token;
 
@@ -270,7 +337,10 @@ string token;
 
 var conf = Configuration.NewDefault()
 			.WithExternalAuthentication(token);
-var api = new HtmlApi(conf);
+using(var api = new HtmlApi(conf))
+{
+	// ... your code is here
+}
 
 ```
 
