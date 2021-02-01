@@ -30,6 +30,9 @@ using Aspose.HTML.Cloud.Sdk.Runtime.Core.Model;
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
+    /// <summary>
+    /// Conversion task class.
+    /// </summary>
     public class Conversion
     {
         public const string UPLOADING = "uploading";
@@ -39,8 +42,14 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         public const string FAULTED = "faulted";
         public const string CANCELED = "canceled";
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Id { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Status { get; private set; }
 
         public RemoteFile[] Files { get; private set; }

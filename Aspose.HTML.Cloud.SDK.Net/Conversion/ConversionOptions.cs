@@ -27,6 +27,9 @@ using Newtonsoft.Json;
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
+    /// <summary>
+    /// Base abstract class of all format specific conversion options classes
+    /// </summary>
     public abstract class ConversionOptions
     {
         protected ConversionOptions(OutputFormats format)
@@ -34,9 +37,16 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             this.Format = format;
         }
 
+        /// <summary>
+        /// Conversion result format.
+        /// </summary>
         [JsonIgnore]
         public OutputFormats Format { get; }
 
+        /// <summary>
+        /// Serializes the ConversionOptions object to JSON.
+        /// </summary>
+        /// <returns></returns>
         public string ToJson()
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();

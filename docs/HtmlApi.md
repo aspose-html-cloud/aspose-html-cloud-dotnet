@@ -289,8 +289,6 @@ Converts synchronously a file (or files) specified by  *source* parameter. This 
 
 Overloaded method. Converts synchronously a list of storage files. This method is a synchronous mode of the *ConvertAsync* (overloaded).
 
-The specialized versions of the conversion methods are described below.
-
 <a name="Convert_builder" />
 
 ### Convert
@@ -302,6 +300,8 @@ The specialized versions of the conversion methods are described below.
 Overloaded method. Uses the builder style  setup of the conversion parameters using [ConversionBuilder](ConversionBuilder.md) class. 
 
 
+
+The specialized versions of the conversion methods are described below.
 
 <a name="ConvertWebSiteAsync" />
 

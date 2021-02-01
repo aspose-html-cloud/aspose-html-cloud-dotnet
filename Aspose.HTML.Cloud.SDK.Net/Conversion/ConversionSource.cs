@@ -29,6 +29,9 @@ using System.Collections.Generic;
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
+    /// <summary>
+    /// Base abstract class of all conversion source classes.
+    /// </summary>
     public abstract class ConversionSource
     {
         protected ConversionSource(List<string> paths)

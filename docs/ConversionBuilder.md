@@ -1,4 +1,4 @@
-# ConversionBuilder
+# ConverterBuilder
 
 A class that is used to build the conversion parameters.
 
@@ -30,7 +30,7 @@ A class that is used to build the conversion parameters.
 
 ## Summary
 
-**ConversionBuilder** class provides a convenient, compact and elegant way to specify parameters of conversion.
+**ConverterBuilder** class provides a convenient, compact and elegant way to specify parameters of conversion.
 
 For additional information about Aspose.HTML Cloud REST API and SDKs, visit the [Aspose documentation site](https://docs.aspose.cloud/html/overview/).
 

@@ -43,6 +43,9 @@ using Newtonsoft.Json;
 
 namespace Aspose.HTML.Cloud.Sdk
 {
+    /// <summary>
+    /// A facade class that provides wrapper methods of Aspose.HTML Cloud REST API.
+    /// </summary>
     public class HtmlApi : IDisposable
     {
         private const string CONVERSION_URI = "/v4.0/html/conversion";
@@ -120,8 +123,16 @@ namespace Aspose.HTML.Cloud.Sdk
         {
         }
 
+        /// <summary>
+        /// Entry point to storage access API.
+        /// </summary>
         public StorageProvider Storage { get; }
 
+        /// <summary>
+        /// Starts a conversion synchronously using ConversionBuilder class to setup the conversion parameters. 
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
         public ConversionResult Convert(ConverterBuilder builder)
         {
             string first = builder.InputPath.First();
@@ -330,7 +341,9 @@ namespace Aspose.HTML.Cloud.Sdk
         }
 
         /// <summary>
-        /// 
+        /// Converts synchronously a file (or files) specified by source parameter. 
+        /// This method is a synchronous mode of the ConvertAsync. 
+        /// Returns the Conversion.Conversion object with a list of conversion results.
         /// </summary>
         /// <param name="source"></param>
         /// <param name="options"></param>
@@ -351,9 +364,11 @@ namespace Aspose.HTML.Cloud.Sdk
         }
 
         /// <summary>
-        /// 
+        /// Converts synchronously a file (or files) specified by source parameter. 
+        /// This method is a synchronous mode of the ConvertAsync. 
+        /// Returns the Conversion.Conversion object with a list of conversion results.
         /// </summary>
-        /// <param name="source"></param>"Электроника шаг за шагом." Рудольф Сворень
+        /// <param name="source"></param>
         /// <param name="options"></param>
         /// <param name="outputFilePath"></param>
         /// <param name="nameCollisionOption"></param>
@@ -483,7 +498,9 @@ namespace Aspose.HTML.Cloud.Sdk
         }
 
         /// <summary>
-        /// 
+        /// Converts synchronously a file (or files) specified by source parameter. 
+        /// This method is a synchronous mode of the ConvertAsync. 
+        /// Returns the Conversion.Conversion object with a list of conversion results.
         /// </summary>
         /// <param name="files"></param>
         /// <param name="options"></param>
@@ -500,6 +517,16 @@ namespace Aspose.HTML.Cloud.Sdk
             return Convert(ConversionSource.FromRemoteFile(files), options, outputFilePath, nameCollisionOption, observer);
         }
 
+        /// <summary>
+        /// Starts asynchronously a long-time conversion operation of a source file (or files) 
+        /// specified by source parameter and returns an AsyncResult object that allows watching for the current asynchronous operation status. 
+        /// </summary>
+        /// <param name="files"></param>
+        /// <param name="options"></param>
+        /// <param name="outputFilePath"></param>
+        /// <param name="nameCollisionOption"></param>
+        /// <param name="observer"></param>
+        /// <returns></returns>
         public AsyncResult<Conversion.Conversion> ConvertAsync(
             List<RemoteFile> files, 
             ConversionOptions options,
@@ -510,6 +537,18 @@ namespace Aspose.HTML.Cloud.Sdk
             return ConvertAsync(ConversionSource.FromRemoteFile(files), options, outputFilePath, nameCollisionOption, observer);
         }
 
+        /// <summary>
+        /// Converts synchronously a file specified by filePath parameter. 
+        /// This method is a synchronous mode of the ConvertAsync. 
+        /// Returns the Conversion.Conversion object with a list of conversion results.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="options"></param>
+        /// <param name="outputFilePath"></param>
+        /// <param name="storageName"></param>
+        /// <param name="nameCollisionOption"></param>
+        /// <param name="observer"></param>
+        /// <returns></returns>
         private Conversion.Conversion Convert(
             string filePath,
             ConversionOptions options, string outputFilePath = null, string storageName = null,
@@ -519,6 +558,16 @@ namespace Aspose.HTML.Cloud.Sdk
             return Convert(ConversionSource.FromRemoteFile(new List<string>() { filePath }), options, outputFilePath, nameCollisionOption, observer);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePaths"></param>
+        /// <param name="options"></param>
+        /// <param name="outputFilePath"></param>
+        /// <param name="storageName"></param>
+        /// <param name="nameCollisionOption"></param>
+        /// <param name="observer"></param>
+        /// <returns></returns>
         private Conversion.Conversion Convert(
             List<string> filePaths, 
             ConversionOptions options, string outputFilePath = null, string storageName = null,
