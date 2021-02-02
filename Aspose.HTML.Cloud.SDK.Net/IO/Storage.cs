@@ -25,6 +25,9 @@
 
 namespace Aspose.HTML.Cloud.Sdk.IO
 {
+    /// <summary>
+    /// Class of the storage description
+    /// </summary>
     public class Storage
     {
         public Storage(string name, long usedSize, long totalSize)

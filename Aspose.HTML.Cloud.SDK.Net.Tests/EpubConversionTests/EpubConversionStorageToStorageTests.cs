@@ -9,28 +9,27 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
     public class EpubConversionStorageToStorageTests 
         : IClassFixture<BaseTest>, IDisposable
     {
-        private readonly HttpClient client;
         private HtmlApi api;
-        private string sourceFile = "/example.epub";
-        private string destFolder = "StorageFileToStorage";
-        private string destWithParamFolder = "StorageFileToStorageWithParam";
-
 
         public EpubConversionStorageToStorageTests(BaseTest fixture)
         {
-            //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
-                //.WithHttpClient(client)
                 .WithClientId(fixture.ClientId)
                 .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
-            var remoteFile = api.Storage.UploadFile(TestHelper.srcDir + "/example.epub", "example.epub");
+
+            var remoteFile = api.Storage.UploadFile(
+                TestHelper.srcDir + "example.epub",
+                "/example.epub", null, IO.NameCollisionOption.ReplaceExisting);
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_PDF()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlPdf = new ConverterBuilder()                   
                 .FromStorageFile(sourceFile)
@@ -44,9 +43,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_PDF_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions pdfOpts = new PDFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -60,7 +62,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlPdf = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(pdfOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlPdf);
 
@@ -72,6 +74,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_XPS()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlXps = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
@@ -88,6 +93,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_XPS_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions xpsOpts = new XPSConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -100,7 +108,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlXps = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(xpsOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlXps);
 
@@ -112,6 +120,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_JPG()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlJpg = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
@@ -125,9 +136,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_JPG_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions jpgOpts = new JPEGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -141,7 +155,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlJpg = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(jpgOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlJpg);
 
@@ -153,6 +167,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_PNG()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlPng = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
@@ -166,9 +183,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_PNG_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions pngOpts = new PNGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -182,7 +202,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlPng = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(pngOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlPng);
 
@@ -194,6 +214,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_BMP()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlBmp = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
@@ -210,6 +233,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_BMP_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions bmpOpts = new BMPConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -223,7 +249,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlBmp = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(bmpOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlBmp);
 
@@ -235,6 +261,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_GIF()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlGif = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
@@ -248,9 +277,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_GIF_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions gifOpts = new GIFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -264,7 +296,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlGif = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(gifOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlGif);
 
@@ -276,6 +308,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_TIFF()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlTiff = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
@@ -289,9 +324,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_TIFF_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions tiffOpts = new TIFFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -305,7 +343,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlTiff = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(tiffOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlTiff);
 
@@ -317,6 +355,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_DOC()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             // Convert to single file
             ConverterBuilder convHtmlDoc = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
@@ -330,9 +371,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_DOC_WithParams()
         {
+            string sourceFile = "/example.epub";
+            string destFolder = "/TestResult/Epub";
+
             ConversionOptions docOpts = new DOCConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -345,7 +389,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder convHtmlDoc = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(docOpts)
-                .SaveToStorage(destWithParamFolder);
+                .SaveToStorage(destFolder);
 
             ConversionResult result = api.Convert(convHtmlDoc);
 

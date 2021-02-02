@@ -15,9 +15,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         public StorageFileUploadDownloadTests(BaseTest fixture)
         {
-            //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
-                //.WithHttpClient(client)
                 .WithClientId(fixture.ClientId)
                 .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)

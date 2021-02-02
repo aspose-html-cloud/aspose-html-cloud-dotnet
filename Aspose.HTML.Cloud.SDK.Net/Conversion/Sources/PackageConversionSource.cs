@@ -2,7 +2,7 @@
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion.Sources
 {
-    public abstract class PackageConversionSource : ConversionSource
+    internal abstract class PackageConversionSource : ConversionSource
     {
         public List<string> StartPoints { get; private set; }
 

@@ -16,9 +16,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         public StorageFileTests(BaseTest fixture)
         {
-            //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
-                //.WithHttpClient(client)
                 .WithClientId(fixture.ClientId)
                 .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
@@ -35,6 +33,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             var storage = api.Storage;
             var exists = storage.FileExists(filePath);
+            Assert.True(exists);
         }
 
         [Fact]
@@ -48,8 +47,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             var remoteFile = new RemoteFile(new Uri(builtUri), null);
             var exists = storage.FileExists(remoteFile);
-            Assert.True(exists);
-           
+            Assert.True(exists);          
         }
 
         [Fact]

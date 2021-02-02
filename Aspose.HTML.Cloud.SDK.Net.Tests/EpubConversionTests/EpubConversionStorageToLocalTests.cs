@@ -10,35 +10,34 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
     public class EpubConversionStorageToLocalTests 
         : IClassFixture<BaseTest>, IDisposable
     {
-        private readonly HttpClient client;
         private HtmlApi api;
-        private string sourceFile = "example.epub"; /*"/epub_file.epub";*/
-        private string destFolder = Path.Combine(TestHelper.dstDir, "StorageFileToLocal");
-        private string destWithParamFolder = Path.Combine(TestHelper.dstDir, "StorageFileToLocalWithParam");
-
 
         public EpubConversionStorageToLocalTests(BaseTest fixture)
         {
-            //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
-                //.WithHttpClient(client)
                 .WithClientId(fixture.ClientId)
                 .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
                 .WithBaseUrl(fixture.ApiServiceBaseUrl));
-            var remoteFile = api.Storage.UploadFile(TestHelper.srcDir + "/example.epub", "example.epub");
+
+            var remoteFile = api.Storage.UploadFile(
+                TestHelper.srcDir + "example.epub", 
+                "/example.epub", null, IO.NameCollisionOption.ReplaceExisting);
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_PDF()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlPdf = new ConverterBuilder()                   
+            ConverterBuilder builder = new ConverterBuilder()                   
                 .FromStorageFile(sourceFile)
                 .To(new PDFConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPdf); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -48,6 +47,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_PDF_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions pdfOpts = new PDFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -58,12 +60,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetQuality(95);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlPdf = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(pdfOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPdf);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -73,13 +75,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_XPS()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlXps = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new XPSConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlXps); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -89,6 +94,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_XPS_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions xpsOpts = new XPSConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -98,12 +106,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlXps = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(xpsOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlXps);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -113,13 +121,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_JPG()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlJpg = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new JPEGConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlJpg); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -129,6 +140,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact/*(Skip = "Out of memory")*/]
         public void ConvertFromStorageFileToStorage_JPG_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions jpgOpts = new JPEGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -139,12 +153,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlJpg = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(jpgOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlJpg);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -154,22 +168,28 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_PNG()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlPng = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new PNGConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPng); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_PNG_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions pngOpts = new PNGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -180,12 +200,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlPng = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(pngOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPng);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -195,22 +215,28 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_BMP()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlBmp = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new BMPConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlBmp); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_BMP_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions bmpOpts = new BMPConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -221,12 +247,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlBmp = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(bmpOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlBmp);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -236,22 +262,28 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_GIF()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlGif = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new GIFConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlGif); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_GIF_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions gifOpts = new GIFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -262,12 +294,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlGif = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(gifOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlGif);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -277,22 +309,28 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_TIFF()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlTiff = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new TIFFConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlTiff); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
             Assert.True(result.Files.Length >= 1);
         }
 
-        [Fact/*(Skip = "Out of memory")*/]
+        [Fact]
         public void ConvertFromStorageFileToStorage_TIFF_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions tiffOpts = new TIFFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -303,12 +341,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlTiff = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(tiffOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlTiff);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -318,13 +356,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_DOC()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub");
+
             // Convert to single file
-            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(new DOCConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlDoc); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -334,6 +375,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromStorageFileToStorage_DOC_WithParams()
         {
+            string sourceFile = "example.epub";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Epub", "WithParams");
+
             ConversionOptions docOpts = new DOCConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -343,12 +387,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlDoc = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromStorageFile(sourceFile)
                 .To(docOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlDoc);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");

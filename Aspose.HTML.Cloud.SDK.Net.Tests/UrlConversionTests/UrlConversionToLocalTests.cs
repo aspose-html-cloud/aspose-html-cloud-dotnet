@@ -10,18 +10,11 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
     public class UrlConversionToLocalTests 
         : IClassFixture<BaseTest>, IDisposable
     {
-        private readonly HttpClient client;
         private HtmlApi api;
-        private string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
-        private string destFolder = Path.Combine(TestHelper.dstDir, "UrlToLocal");
-        private string destWithParamFolder = Path.Combine(TestHelper.dstDir, "UrlToLocalWithParam");
-
 
         public UrlConversionToLocalTests(BaseTest fixture)
         {
-            //client = fixture.CreateClient();
             api = new HtmlApi(cb => cb
-                //.WithHttpClient(client)
                 .WithClientId(fixture.ClientId)
                 .WithClientSecret(fixture.ClientSecret)
                 .WithAuthUrl(fixture.AuthServiceUrl)
@@ -31,13 +24,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_PDF()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlPdf = new ConverterBuilder()                   
+            ConverterBuilder builder = new ConverterBuilder()                   
                 .FromUrl(sourceUrl)
                 .To(new PDFConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPdf); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -47,6 +43,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_PDF_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions pdfOpts = new PDFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -57,12 +56,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetQuality(95);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlPdf = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(pdfOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPdf);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -72,13 +71,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_XPS()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlXps = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new XPSConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlXps); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -88,6 +90,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_XPS_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions xpsOpts = new XPSConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -97,12 +102,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlXps = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(xpsOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlXps);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -112,13 +117,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_JPG()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlJpg = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new JPEGConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlJpg); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -128,6 +136,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_JPG_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions jpgOpts = new JPEGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -138,12 +149,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlJpg = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(jpgOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlJpg);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -153,13 +164,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_PNG()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlPng = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new PNGConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPng); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -169,6 +183,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_PNG_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions pngOpts = new PNGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -179,12 +196,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlPng = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(pngOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlPng);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -194,13 +211,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_BMP()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlBmp = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new BMPConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlBmp);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -210,6 +230,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_BMP_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions bmpOpts = new BMPConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -220,12 +243,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlBmp = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(bmpOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlBmp);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -235,13 +258,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_GIF()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlGif = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new GIFConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlGif); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -251,6 +277,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_GIF_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions gifOpts = new GIFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -261,12 +290,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlGif = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(gifOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlGif);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -276,13 +305,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_TIFF()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlTiff = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new TIFFConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlTiff); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -292,6 +324,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_TIFF_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions tiffOpts = new TIFFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -302,12 +337,12 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetResolution(300);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlTiff = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(tiffOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlTiff);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -317,13 +352,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_MD()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlMD = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new MarkdownConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlMD); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -333,16 +371,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_MD_WithParams()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url", "WithParams");
+
             ConversionOptions mdOpts = new MarkdownConversionOptions()
                 .SetUseGit(true);
 
             // Convert to single or multiple files with options
-            ConverterBuilder convHtmlMD = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(mdOpts)
-                .SaveToLocal(destWithParamFolder);
+                .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlMD);
+            ConversionResult result = api.Convert(builder);
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");
@@ -352,13 +393,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConvertFromUrlToLocal_MHTML()
         {
+            string sourceUrl = "https://stallman.org/articles/anonymous-payments-thru-phones.html";
+            string destFolder = Path.Combine(TestHelper.dstDir, "Url");
+
             // Convert to single file
-            ConverterBuilder convHtmlMHTML = new ConverterBuilder()
+            ConverterBuilder builder = new ConverterBuilder()
                 .FromUrl(sourceUrl)
                 .To(new MHTMLConversionOptions())
                 .SaveToLocal(destFolder);
 
-            ConversionResult result = api.Convert(convHtmlMHTML); ;
+            ConversionResult result = api.Convert(builder); ;
 
             //ToDo: Status - to enum
             Assert.True(result.Status == "success");

@@ -2,7 +2,7 @@
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion.Sources
 {
-    public abstract class FileSetConversionSource : ConversionSource
+    internal abstract class FileSetConversionSource : ConversionSource
     {
         protected FileSetConversionSource(List<string> paths)
             : base(paths)

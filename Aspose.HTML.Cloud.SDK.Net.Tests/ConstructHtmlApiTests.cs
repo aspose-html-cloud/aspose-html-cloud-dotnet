@@ -37,7 +37,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .WithClientSecret("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
                 .WithClientId("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
                 .WithTimeout(TimeSpan.FromMinutes(10));
-                //.WithHttpClient(httpClient);
 
             using (var api = new HtmlApi(cfg))
             {
@@ -53,7 +52,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .WithClientSecret("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
                 .WithClientId("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
                 .WithTimeout(TimeSpan.FromMinutes(10))))
-            //.WithHttpClient(httpClient)))
             {
                 // 
             }

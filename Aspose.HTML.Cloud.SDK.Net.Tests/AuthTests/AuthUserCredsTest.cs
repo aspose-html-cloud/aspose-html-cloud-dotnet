@@ -113,8 +113,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             using (var api2 = new HtmlApi(cb => cb
             .WithBaseUrl(ApiBaseUrl)
             .WithExternalAuthentication(token)))
-            {
-                
+            {              
                 var storageApi = api.Storage;
 
                 var exists = storageApi.DirectoryExists(folder);

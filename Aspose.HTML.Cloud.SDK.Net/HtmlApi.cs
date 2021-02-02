@@ -44,7 +44,7 @@ using Newtonsoft.Json;
 namespace Aspose.HTML.Cloud.Sdk
 {
     /// <summary>
-    /// A facade class that provides wrapper methods of Aspose.HTML Cloud REST API.
+    /// Facade class that provides wrapper methods of Aspose.HTML Cloud REST API.
     /// </summary>
     public class HtmlApi : IDisposable
     {
@@ -559,7 +559,9 @@ namespace Aspose.HTML.Cloud.Sdk
         }
 
         /// <summary>
-        /// 
+        /// Converts synchronously a file (or files) specified by filePaths parameter. 
+        /// This method is a synchronous mode of the ConvertAsync. 
+        /// Returns the Conversion.Conversion object with a list of conversion results.
         /// </summary>
         /// <param name="filePaths"></param>
         /// <param name="options"></param>
@@ -577,6 +579,18 @@ namespace Aspose.HTML.Cloud.Sdk
             return Convert(ConversionSource.FromRemoteFile(filePaths), options, outputFilePath, nameCollisionOption, observer);
         }
 
+        /// <summary>
+        /// Starts asynchronously a long-time conversion operation of a source file (or files) 
+        /// specified by *filePaths* parameter and returns an AsyncResult object that allows 
+        /// watching for the current asynchronous operation status. 
+        /// </summary>
+        /// <param name="filePaths"></param>
+        /// <param name="options"></param>
+        /// <param name="storageName"></param>
+        /// <param name="outputFilePath"></param>
+        /// <param name="nameCollisionOption"></param>
+        /// <param name="observer"></param>
+        /// <returns></returns>
         public AsyncResult<Conversion.Conversion> ConvertAsync(
             List<string> filePaths, 
             ConversionOptions options,
@@ -589,7 +603,8 @@ namespace Aspose.HTML.Cloud.Sdk
         }
 
         /// <summary>
-        /// Overloaded method. Synchronous mode of method *ConvertWebSiteAsync*. Converts several web pages specified the list of their URLs.
+        /// Overloaded method. Synchronous mode of method *ConvertWebSiteAsync*. 
+        /// Converts several web pages specified the list of their URLs.
         /// </summary>
         /// <param name="address"></param>
         /// <param name="options"></param>
@@ -629,7 +644,7 @@ namespace Aspose.HTML.Cloud.Sdk
 
         /// <summary>
         /// Starts asynchronously a long-time conversion operation on the web page specified by its URL (address parameter). 
-        /// Analog of *ConvertAsync* specialized for web pages
+        /// Analog of ConvertAsync specialized for web pages
         /// </summary>
         /// <param name="address"></param>
         /// <param name="options"></param>
@@ -812,6 +827,11 @@ namespace Aspose.HTML.Cloud.Sdk
             return result;
         }
 
+        /// <summary>
+        /// Cancels long-time asynchronous operation started previously.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool DeleteTask(string id)
         {
             var query = CONVERSION_URI + $@"/{id}";

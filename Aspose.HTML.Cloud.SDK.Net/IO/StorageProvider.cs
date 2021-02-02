@@ -38,6 +38,9 @@ using System.Threading.Tasks;
 
 namespace Aspose.HTML.Cloud.Sdk.IO
 {
+    /// <summary>
+    /// Facade class that provides wrapper methods of storage access REST API.
+    /// </summary>
     public sealed class StorageProvider
     {
         private Configuration configuration;

@@ -28,7 +28,10 @@ using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.IO
 {
-    public class RemoteFileSystem
+    /// <summary>
+    /// Abstract base class of the storage object descriptor classes.
+    /// </summary>
+    public abstract class RemoteFileSystem
     {
         private readonly Uri uri;
 
