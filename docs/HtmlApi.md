@@ -11,21 +11,22 @@ A facade class that provides wrapper methods of Aspose.HTML Cloud REST API.
 > - [**Properties**](HtmlApi.md#Properties)
 >   - [Storage](HtmlApi.md#Properties_Storage)
 > - [**Public methods**](HtmlApi.md#Public_Methods)
->   - [ConvertAsync](HtmlApi.md#ConvertAsync)
->   - [ConvertAsync (overloaded)](HtmlApi.md#ConvertAsync_1)
+>   - [Convert](HtmlApi.md#Convert)
 >   - [GetConversion](HtmlApi.md#GetConversion)
 >   - [DeleteTask](HtmlApi.md#DeleteTask)
->   - [Convert](HtmlApi.md#Convert)
->   - [Convert (overloaded)](HtmlApi.md#Convert_1)
->   - [Convert (overloaded, builder-style)](HtmlApi.md#Convert_builder)
->   - [ConvertWebSiteAsync](HtmlApi.md#ConvertWebSiteAsync)
->   - [ConvertWebSite](HtmlApi.md#ConvertWebSite)
->   - [ConvertWebSite (overloaded)](HtmlApi.md#ConvertWebSite_1)
+>   - [Convert ](HtmlApi.md#Convert_builder)
+>   - [ConvertUrlAsync](HtmlApi.md#ConvertUrlAsync)
+>   - [ConvertUrlAsync (overloaded)](HtmlApi.md#ConvertUrlAsync_1)
+>   - [ConvertUrl](HtmlApi.md#ConvertUrl)
+>   - [ConvertUrl (overloaded)](HtmlApi.md#ConvertUrl_1)
 >   - [ConvertLocalFileAsync](HtmlApi.md#ConvertLocalFileAsync)
 >   - [ConvertLocalFileAsync (overloaded)](HtmlApi.md#ConvertLocalFileAsync_1)
 >   - [ConvertLocalFile](HtmlApi.md#ConvertLocalFile)
 >   - [ConvertLocalFile (overloaded)](HtmlApi.md#ConvertLocalFile_1)
 >   - [ConvertLocalDirectory](HtmlApi.md#ConvertLocalDirectory)
+>   - [ConvertLocalDirectory (overloaded)](HtmlApi.md#ConvertLocalDirectory_1)
+>   - [ConvertLocalArchive](HtmlApi.md#ConvertLocalArchive)
+>   - [ConvertLocalArchive (overloaded)](HtmlApi.md#ConvertLocalArchive_1)
 >
 
 
@@ -70,32 +71,20 @@ Initializes a class instance with API parameters using a configuration builder.
 
 
 
-> **HtmlApi (String appSid, String appKey)**
+> **HtmlApi (String clientId, String clientSecret)**
 
 Initializes a class instance with user credentials and default API server URL.
 
-
-
-> **HtmlApi (String appSid, String appKey, String baseUrl)**
-
-Initializes a class instance with user credentials and explicit API server URL.
-
-
-
-> **HtmlApi (String appSid, String appKey, String baseUrl, TimeSpan timeout)**
-
-Initializes a class instance with user credentials, explicit API server URL and HTTP(S) connection timeout.
-
-
 <a name="Constructors_Examples" />
+
 #### Examples of constructor usage
 
 Here are examples of various **HtmlApi** initialization ways. 
 
 An example of initialization by the **Configuration** object:
 
-```
-var conf = Configuration.NewDefault(); 
+```c#
+var conf = Configuration.New(); 
 conf.Timeout = TimeSpan.FromMinutes(5);
 
 using(var api =  new HtmlApi(conf))
@@ -106,31 +95,12 @@ using(var api =  new HtmlApi(conf))
 ```
 
 
-An example of initialization by user credentials with explicit authentication service and HTML API service URLs using the configuration builder: 
-
-```c#
-var clientId = "clientid";
-var clientSecret = ""cXdD45HHTn&&-Bu^787;
-var ApiServiceBaseUrl = "https://api.aspose.cloud";
-var AuthServiceUrl = "https://api.aspose.cloud";
-
-using( var api =  new HtmlApi(cb => cb
-                .WithClientId(clientId)
-                .WithClientSecret(clientSecret)
-                .WithAuthUrl(AuthServiceUrl)
-                .WithBaseUrl(ApiServiceBaseUrl)))
-{
-    // business code ...
-}
-```
-
-
 
 An example of initialization by user credentials using the configuration builder: 
 
 ``` c#
-var AppSid = "clientid";
-var AppKey = ""cXdD45HHTn&&-Bu^787;
+var clientId = "clientid";
+var clientSecret = ""cXdD45HHTn&&-Bu^787;
 
     // URLs of authentication and HTML API services aren't specified explicitly
     // default values are assumed ( 
@@ -150,16 +120,19 @@ using(var api = new HtmlApi(cb => cb
 
 An example of initialization by externally obtained authentication token using the configuration builder: 
 
-```code
+```c#
 
 string token;
 
 // get the JWT token from some external source here
 // ...............
 
-var api = new HtmlApi(cb => cb
-            .WithBaseUrl(ApiBaseUrl)
-            .WithExternalAuthentication(token));
+using(var api = new HtmlApi(cb => cb
+            .WithExternalAuthentication(token)))
+{
+    // business code ...    
+}
+            
 
 
 ```
@@ -196,9 +169,11 @@ The list of parameters that are used by most of methods:
 
 | Name                | Description                                                  | Type                                                         | Note     |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| source              | A source file (or files).                                    | [**ConversionSource**](ConversionSource.md)                  |          |
+| startPoint          | When the conversion source is a directory or an archive that contain an HTML file with resources (see [ConvertLocalDirectory](HtmlApi.md#ConvertLocalDirectory) or [ConvertLocalArchive](HtmlApi.md#ConvertLocalArchive)), this parameter specifies a main document file (usually HTML) | string                                                       |          |
 | options             | Specifies the conversion options, i.e. the resulting file format and other result parameters, such as page size and margins, image resolution etc. | [**ConversionOptions**](ConversionOptions.md)                |          |
-| outputFilePath      | A storage path where the result file will be saved; by default, it is a system temporary storage path. | string                                                       | optional |
+| outputPath          | A storage path where the result file will be saved; by default, it is a system temporary storage path. | string                                                       | optional |
+| outputPath          | An instance of one of PathParameter descendant classes; it represents a local or storage path where the result file will be saved. | **[PathParameter](ApiParameter.md)**                         |          |
+| resources           | When the conversion source is an HTML file that contains relative links to local resources (images, CSS etc.), these resource paths can be specified by this parameter. | List<string>                                                 | optional |
 | nameCollisionOption | How to handle a resulting file name collision. There are 3 options: *FailIfExists* (default), *GenerateUniqueName*, *ReplaceExisting.* | enum **NameCollisionOption**                                 | optional |
 | observer            | Object that will get notifications on the conversion process state changes. It must implement the interface *IObserver<Conversion.Conversion>* | [IObserver](https://docs.microsoft.com/en-us/dotnet/api/system.iobserver-1?view=net-5.0)<[Conversion.Conversion]()> | optional |
 
@@ -210,35 +185,23 @@ You are free to create your own implementation of [IObserver](https://docs.micro
 
 
 
-<a name="ConvertAsync" />
+<a name="Convert_builder" />
 
-### ConvertAsync
-
-> ```
-> AsyncResult<Conversion.Conversion> ConvertAsync(
->             ConversionSource source,
->             ConversionOptions options,
->             string outputFilePath = null,
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
-> ```
-
-Starts asynchronously a long-time conversion operation of a source file (or files) specified by *source* parameter and returns an **AsyncResult** object that allows watching for the current asynchronous operation status. 
-
-
-<a name="ConvertAsync_1" />
-### ConvertAsync
+### Convert
 
 > ```
-> AsyncResult<Conversion.Conversion> ConvertAsync(
->             List<RemoteFile> files,
->             ConversionOptions options,
->             string outputFilePath = null,
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
+> Conversion.Conversion Convert(ConversionBuilder builder)
 > ```
 
-Overloaded method.  Starts asynchronously a long-time conversion operation of a list of storage files.
+Runs synchronously a conversion with source, target and other parameters Converts synchronously a file (or files) Uses the builder style  setup of the conversion parameters using [ConversionBuilder](ConversionBuilder.md) class. 
+
+
+
+The specialized versions of the conversion methods are described below.
+
+
+
+
 
 
 <a name="GetConversion" />
@@ -260,93 +223,67 @@ Gets a current status of long-time conversion operation started previously by th
 
 Cancels a long-time conversion operation started previously by the *ConvertAsync* method.
 
-<a name="Convert" />
+<a name="ConvertUrlAsync" />
 
-### Convert
+### ConvertUrlAsync
 
 > ```
-> Conversion.Conversion Convert(
->          ConversionSource source,
+> AsyncResult<Conversion.Conversion> ConvertUrlAsync(
+>             string url, 
+>             ConversionOptions options,
+>             PathParameter outputPath = null, 
+>             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>             IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Starts asynchronously a long-time conversion operation of a web page specified by its URL (*address* parameter). 
+
+<a name="ConvertUrlAsync_1" />
+
+### ConvertUrlAsync
+
+> ```
+> AsyncResult<Conversion.Conversion> ConvertUrlAsync(
+>          string url, 
 >          ConversionOptions options,
->          string outputFilePath = null,
+>          string outputPath = null, 
 >          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
 >          IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Converts synchronously a file (or files) specified by  *source* parameter. This method is a synchronous mode of the *ConvertAsync*. Returns the Conversion.Conversion object with a list of conversion results.
+Overloaded method. Starts asynchronously a long-time conversion operation of a web page specified by its URL (*address* parameter). 
 
-<a name="Convert_1" />
+<a name="ConvertUrl" />
 
-### Convert
-
-> ```
-> Conversion.Conversion Convert(
->             List<RemoteFile> files, 
->             ConversionOptions options, string outputFilePath = null,
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
-> ```
-
-Overloaded method. Converts synchronously a list of storage files. This method is a synchronous mode of the *ConvertAsync* (overloaded).
-
-<a name="Convert_builder" />
-
-### Convert
-
-> ```
-> Conversion.Conversion Convert(ConversionBuilder builder)
-> ```
-
-Overloaded method. Uses the builder style  setup of the conversion parameters using [ConversionBuilder](ConversionBuilder.md) class. 
-
-
-
-The specialized versions of the conversion methods are described below.
-
-<a name="ConvertWebSiteAsync" />
-
-### ConvertWebSiteAsync
-
-> ```
-> AsyncResult<Conversion.Conversion> ConvertWebSiteAsync(
->             string address, 
->             ConversionOptions options,
->             string outputFilePath = null, 
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
-> ```
-
-Starts asynchronously a long-time conversion operation of a web page specified by its URL (*address* parameter). This method is an analog of the *ConvertAsync* specialized for web pages.
-
-
-<a name="ConvertWebSite" />
-### ConvertWebSite
+### ConvertUrl
 
 > ```
 > Conversion.Conversion ConvertWebSite(
->             string address,
+>             string url,
 >             ConversionOptions options,
->             string outputFilePath = null,
+>             PathParameter outputPath = null,
 >             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Synchronous mode of the *ConvertWebSiteAsync* method. Converts a web page specified by its URL.
+Synchronous mode of the *ConvertUrlAsync* method. Converts a web page specified by its URL.
 
+<a name="ConvertUrl_1" />
 
-<a name="ConvertWebSite_1" />
-### ConvertWebSite
+### ConvertUrl
 
 > ```
 > Conversion.Conversion ConvertWebSite(
->             List<string> address, 
+>             string url,
 >             ConversionOptions options,
->             string outputFilePath = null, 
+>             string outputPath = null, 
 >             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
 >             IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Overloaded method. Synchronous mode of the *ConvertWebSiteAsync* method. Converts several web pages specified the list of their URLs.
+Overloaded method. Synchronous mode of the *ConvertUrlAsync* method. Converts a web page specified by its URL.
+
+
 
 <a name="ConvertLocalFileAsync" />
 
@@ -354,11 +291,12 @@ Overloaded method. Synchronous mode of the *ConvertWebSiteAsync* method. Convert
 
 > ```
 > AsyncResult<Conversion.Conversion> ConvertLocalFileAsync(
->             string filePath,
->             ConversionOptions options,
->             string outputFilePath = null,
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
+>          string filePath,
+>          ConversionOptions options,
+>          PathParameter outputPath,
+>          List<string> resources,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
 > ```
 
 Starts asynchronously a long-time conversion operation of a file specified by its local file system path.
@@ -369,14 +307,15 @@ Starts asynchronously a long-time conversion operation of a file specified by it
 
 > ```
 > AsyncResult<Conversion.Conversion> ConvertLocalFileAsync(
->             List<string> filePaths, 
->             ConversionOptions options,
->             string outputFilePath = null, 
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
+>          string filePath, 
+>          ConversionOptions options,
+>          string outputFilePath = null, 
+>          List<string> resources = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Overloaded method.  Starts asynchronously a long-time conversion operation of several files specified by a list of their local file system paths.
+Overloaded method.  Starts asynchronously a long-time conversion operation of a file specified by its local file system path.
 
 <a name="ConvertLocalFile" />
 
@@ -384,11 +323,12 @@ Overloaded method.  Starts asynchronously a long-time conversion operation of se
 
 > ```
 > Conversion.Conversion ConvertLocalFile(
->             string filePath,
->             ConversionOptions options,
->             string outputFilePath = null,
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
+>          string filePath,
+>          ConversionOptions options,
+>          PathParameter outputPath,
+>          List<string> resources = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
 > ```
 
 Synchronous mode of the *ConvertLocalFileAsync* method. Converts a file specified by its local file system path.
@@ -399,11 +339,12 @@ Synchronous mode of the *ConvertLocalFileAsync* method. Converts a file specifie
 
 > ```
 > Conversion.Conversion ConvertLocalFile(
->             List<string> filePath, 
->             ConversionOptions options,
->             string outputFilePath = null, 
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
+>          string filePath, 
+>          ConversionOptions options,
+>          string outputPath = null,
+>          List<string> resources = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
 > ```
 
 Overloaded method. Synchronous mode of the *ConvertLocalFileAsync* method. Converts several files specified by a list of their local file system paths.
@@ -414,11 +355,60 @@ Overloaded method. Synchronous mode of the *ConvertLocalFileAsync* method. Conve
 
 > ```
 > Conversion.Conversion ConvertLocalDirectory(
->             List<string> paths,
->             ConversionOptions options,
->             string outputFilePath = null,
->             NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
->             IObserver<Conversion.Conversion> observer = null)
+>          string directoryPath,
+>          string startPoint,
+>          ConversionOptions options,
+>          PathParameter outputFilePath = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
 > ```
 
-Converts synchronously files in a list of local directories.
+Converts synchronously an HTML file located with its resource files in a local directory.
+
+<a name="ConvertLocalDirectory_1" />
+
+### ConvertLocalDirectory
+
+> ```
+> Conversion.Conversion ConvertLocalDirectory(
+>          string directoryPath,
+>          string startPoint,
+>          ConversionOptions options,
+>          string outputFilePath = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Overload method. Converts synchronously an HTML file located with its resource files in a local directory.
+
+<a name="ConvertLocalArchive" />
+
+### ConvertLocalArchive
+
+> ```
+> Conversion.Conversion ConvertLocalDirectory(
+>          string archivePath,
+>          string startPoint,
+>          ConversionOptions options,
+>          PathParameter outputFilePath = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Converts synchronously an HTML file located with its resource files in a ZIP archive.
+
+<a name="ConvertLocalArchive_1" />
+
+### ConvertLocalArchive
+
+> ```
+> Conversion.Conversion ConvertLocalDirectory(
+>          string archivePath,
+>          string startPoint,
+>          ConversionOptions options,
+>          string outputFilePath = null,
+>          NameCollisionOption nameCollisionOption = NameCollisionOption.FailIfExists,
+>          IObserver<Conversion.Conversion> observer = null)
+> ```
+
+Overload method. Converts synchronously an HTML file located with its resource files in a ZIP archive.

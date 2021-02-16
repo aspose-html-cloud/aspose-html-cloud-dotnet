@@ -10,16 +10,15 @@ The client application provides user credentials, i.e. `clientId` and `clientSec
 
 ```c#
 
-string baseUrl = "https://api.aspose.cloud";  //  /v4.0/html will be appended by default
-string authUrl = "https://api.aspose.cloud";  //  /connect/token will be appended
-
 string clientId = "xxxxxxxxxxxxxxxxx";
 string clientSecret = "xxxxxxxxxxxxxxxxx";
 
-HtmlApi api = new HtmlApi(clientId, clientSecret, baseUrl, authUrl);
-.....
+using(HtmlApi api = new HtmlApi(clientId, clientSecret))
+{
+//.....
 // business code is here
-.....
+//.....
+}
 
 ```
 

@@ -10,14 +10,25 @@ namespace Aspose.HTML.Cloud.Sdk.ApiParameters
     /// <typeparam name="TValue"></typeparam>
     public class ApiParameter<TValue>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public ApiParameter(string name, TValue value)
         {
             Name = name;
             Value = value;
         }
 
+        /// <summary>
+        /// Parameter name. Read-only property.
+        /// </summary>
         public string Name { get; protected set; }
 
+        /// <summary>
+        /// Parameter value. Read-only property.
+        /// </summary>
         public TValue Value { get; protected set; }
     }
 

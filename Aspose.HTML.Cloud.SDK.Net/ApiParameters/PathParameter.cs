@@ -13,6 +13,9 @@ namespace Aspose.HTML.Cloud.Sdk.ApiParameters
             : base(name, path)
         { }
 
+        /// <summary>
+        /// File or directory path. Read-only property.
+        /// </summary>
         public virtual string Path
         {
             get { return Value; }

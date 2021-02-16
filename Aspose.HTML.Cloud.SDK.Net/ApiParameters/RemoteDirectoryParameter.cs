@@ -5,7 +5,7 @@ using System.Text;
 namespace Aspose.HTML.Cloud.Sdk.ApiParameters
 {
     /// <summary>
-    /// 
+    /// Class that represents a directory path in the cloud storage.
     /// </summary>
     public class RemoteDirectoryParameter : PathParameter
     {
@@ -24,7 +24,7 @@ namespace Aspose.HTML.Cloud.Sdk.ApiParameters
         public string Storage { get; protected set; }
 
         /// <summary>
-        /// 
+        /// Full storage path in "storage://{Storage}/{FolderPath}" format
         /// </summary>
         public string FullRemotePath
         {

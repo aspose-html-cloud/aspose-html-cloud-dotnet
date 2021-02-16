@@ -7,29 +7,23 @@ Configuration class for SDK API facade objects.
 >- [**Summary**](Configuration.md#Summary)
 >- [**Namespace**](Configuration.md#Namespace)
 >- [**Properties**](Configuration.md#Properties)
->  - [BaseUrl](Configuration.md#BaseUrl)
->  - [AuthUrl](Configuration.md#AuthUrl)
->  - [ClientId](Configuration.md#ClientId)
->  - [ClientSecret](Configuration.md#ClientSecret)
->  - [HttpClient](Configuration.md#HttpClient)
->  - [UseExternalAuthentication](Configuration.md#UseExternalAuthentication)
->- [**Public methods**](Configuration.md#Public_Methods)
->  - [New](Configuration.md#New)
->  - [NewDefault](Configuration.md#NewDefault)
->  - [WithClientId](Configuration.md#WithClientId)
->  - [WithClientSecret](Configuration.md#WithClientSecret)
->  - [WithTimeout](Configuration.md#WithTimeout)
->  - [WithExternalAuthentication](Configuration.md#WithExternalAuthentication)
->- [**Nested classes**](Configuration.md#Nested_class)
+>    - [ClientId](Configuration.md#ClientId)
+>    - [ClientSecret](Configuration.md#ClientSecret)
+> - [**Public methods**](Configuration.md#Public_Methods)
+>    - [New](Configuration.md#New)
+>    - [WithClientId](Configuration.md#WithClientId)
+>    - [WithClientSecret](Configuration.md#WithClientSecret)
+>   - [WithTimeout](Configuration.md#WithTimeout)
+> - [**Nested classes**](Configuration.md#Nested_class)
 >   - [**ConfigurationBuilder**](Configuration.md#ConfigurationBuilder)
 >      - [WithBaseUrl](Configuration.md#ConfigurationBuilder_WithBaseUrl)
 >      - [WithAuthUrl](Configuration.md#ConfigurationBuilder_WithAuthUrl)
 >      - [WithClientId](Configuration.md#ConfigurationBuilder_WithClientId)
 >      - [WithClientSecret](Configuration.md#ConfigurationBuilder_WithClientSecret)
->      - [WithTimeout](Configuration.md#ConfigurationBuilder_WithTimeout)
+>     - [WithTimeout](Configuration.md#ConfigurationBuilder_WithTimeout)
 >      - [WithExternalAuthentication](Configuration.md#ConfigurationBuilder_WithExternalAuthentication)
->- [Examples](Configuration.md#Examples)
->
+> - [Examples](Configuration.md#Examples)
+> 
 
 
 
@@ -53,26 +47,6 @@ Aspose.Html.Cloud.Sdk
 
 ## Properties
 
-<a name="BaseUrl" />
-
-#### BaseUrl
-
-> ```
-> string BaseUrl { get; set; }
-> ```
-
-A REST API service URL being called by SDK. Default value is https://api.aspose.cloud/v4/0/html
-
-<a name="AuthUrl" />
-
-#### AuthUrl
-
-> ```
-> string AuthUrl { get; set; }
-> ```
-
-An authentication service URL. Default value is https://api.aspose.cloud/connect/token
-
 <a name="ClientId" />
 
 #### ClientId 
@@ -93,28 +67,6 @@ Client ID credential.
 
 Client secret credential.
 
-<a name="HttpClient" />
-
-#### HttpClient 
-
-> ```
-> HttpClient HttpClient { get; set; }
-> ```
-
-An HTTP client object with predefined properties (Used mainly for test purposes).
-
-<a name="UseExternalAuthentication" />
-
-#### UseExternalAuthentication 
-
-> ```
-> bool UseExternalAuthentication { get; }
-> ```
-
-Checks whether SDK uses an authentication token obtained from external provided (if true) or the SDK calls are authenticated internally (if false).
-
-
-
 <a name="Public_Methods" />
 
 ## Public methods
@@ -127,17 +79,7 @@ Checks whether SDK uses an authentication token obtained from external provided 
 > static Configuration New()
 > ```
 
-A fabric method. Initializes an empty Configuration instance; then all needed configuration values should be set up by public properties or builder-style methods below.
-
-<a name="NewDefault" />
-
-#### NewDefault
-
-> ```
-> static Configuration NewDefault()
-> ```
-
-A fabric method. Initializes an empty Configuration instance with default **BaseUrl** and **AuthUrl** values.
+A fabric method. Initializes an empty Configuration instance with default API service URL and authentication service URL; then all needed configuration values should be set up by public properties or builder-style methods below.
 
 <a name="WithClientId" />
 
@@ -170,14 +112,6 @@ A builder-style method. Sets the user's client secret.
 A builder-style method. Sets the HTTP connection timeout. 
 
 <a name="WithExternalAuthentication" />
-
-#### WithExternalAuthentication
-
-> ```
-> Configuration WithExternalAuthentication(string token)
-> ```
-
-A builder-style method. Sets a JWT authentication token obtained from external source. It also sets *UseExternalAuthentication*  property to *true*.
 
 
 
@@ -272,7 +206,7 @@ Sets a JWT authentication token obtained from external source.
 Configure an **HtmlApi** object with default **Configuration**.
 
 ```
-using(var api = new HtmlApi(Configuration.NewDefault()))
+using(var api = new HtmlApi(Configuration.New()))
 {
 	// ... your code is here  
 }
@@ -283,16 +217,12 @@ using(var api = new HtmlApi(Configuration.NewDefault()))
 Configure an **HtmlApi** object with a **Configuration **object when parameters are explicitly set in a constructor. 
 
 ```c#
-var AppSid = "clientid";
-var AppKey = ""cXdD45HHTn&&-Bu^787;
-var ApiServiceBaseUrl = "https://api.aspose.cloud";  //  /v4.0/html will be appended by default
-var AuthServiceUrl = "https://api.aspose.cloud";     //  /connect/token will be appended by default
+var clientId = "clientid";
+var clientSecret = ""cXdD45HHTn&&-Bu^787;
 
 var config = new Configuration() {
                 ClientId = clientId,
-				ClientSecret = clientSecret,
-				ApiBaseUrl = basePath,
-				AuthUrl = authPath
+				ClientSecret = clientSecret
             };			
 			
 using(var api = new HtmlApi(config))
@@ -315,9 +245,7 @@ var AuthServiceUrl = "https://api.aspose.cloud";      //  /connect/token will be
 
 using(var api = new HtmlApi(cb => cb
                 .WithClientId(clientId)
-                .WithClientSecret(clientSecret)
-                .WithAuthUrl(AuthServiceUrl)
-                .WithBaseUrl(ApiServiceBaseUrl)))
+                .WithClientSecret(clientSecret)))
 {
 	// ... your code is here    
 }
@@ -326,7 +254,7 @@ using(var api = new HtmlApi(cb => cb
 
 
 
-Configure an **HtmlApi** object with externally obtained authentication token.
+Configure an **HtmlApi** object with the **ConfigurationBuilder** that specifies externally obtained authentication token.
 
 ```c#
 
@@ -335,9 +263,8 @@ string token;
 // get the JWT token from some external source here
 // ...............
 
-var conf = Configuration.NewDefault()
-			.WithExternalAuthentication(token);
-using(var api = new HtmlApi(conf))
+using(var api = new HtmlApi(cb => cb
+                           .WithExternalAuthentication(token)))
 {
 	// ... your code is here
 }
