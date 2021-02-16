@@ -4,21 +4,26 @@ using System.Net.Http;
 using System.Text;
 using Xunit;
 using Assert = Xunit.Assert;
+using Aspose.HTML.Cloud.Sdk.Runtime.Utils;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class StorageTests : IClassFixture<BaseTest>, IDisposable
+    public class StorageTests :  IDisposable
     {
-        private readonly HttpClient client;
-        private HtmlApi api;
-
-        public StorageTests(BaseTest fixture)
+        string CliendId { get; set; }
+        string ClientSecret { get; set; }
+        public StorageTests()
         {
-            api = new HtmlApi(cb => cb
-                .WithClientId(fixture.ClientId)
-                .WithClientSecret(fixture.ClientSecret)
-                .WithAuthUrl(fixture.AuthServiceUrl)
-                .WithBaseUrl(fixture.ApiServiceBaseUrl));
+            IConfiguration config = new ConfigurationBuilder()
+                .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
+
+            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientSecret = config["AsposeUserCredentials:ClientSecret"];
+
+            if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
+                Directory.SetCurrentDirectory(@"..\..\..");
         }
 
         #region Storage tests
@@ -26,15 +31,19 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void GetStorageInfoTest()
         {
-            string storageName = "First Storage";
+            string storageName = "First Storage";  // put your storage name here
 
-            var storageApi = api.Storage;
-            Assert.True(storageApi.Exists(storageName));
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                var storageApi = api.Storage;
+                Assert.True(storageApi.Exists(storageName));
 
-            var storage = storageApi.GetStorage(storageName);
-            Assert.Equal(storageName, storage.Name);
-            Assert.True(storage.TotalSize > 0);
-           
+                var storage = storageApi.GetStorage(storageName);
+                Assert.Equal(storageName, storage.Name);
+                Assert.True(storage.TotalSize > 0);
+            }        
         }
 
         #endregion
@@ -63,8 +72,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         public void Dispose()
         {
-            client?.Dispose();
-            api?.Dispose();
         }
 
 

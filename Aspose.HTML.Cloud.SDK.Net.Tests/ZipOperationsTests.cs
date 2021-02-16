@@ -6,8 +6,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class ZipOperationsTests
     {
-        string sourceDir = TestHelper.srcDir + "ZipUnzipOperations";
-        string destDir = TestHelper.dstDir + "ZipUnzipOperationsResult";
+        string sourceDir = TestHelper.SrcDir + "ZipUnzipOperations";
+        string destDir = TestHelper.DstDir + "ZipUnzipOperationsResult";
 
 
         [Fact]

@@ -51,7 +51,6 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
         public ApiInvoker<TResult> GetInvoker<TResult>()
         {
             return ApiInvoker<TResult>.New(Authenticator, HttpClient, Configuration.BaseUrl);
-            //return ApiInvoker<TResult>.New(Configuration, Authenticator);
         }
     }
 }

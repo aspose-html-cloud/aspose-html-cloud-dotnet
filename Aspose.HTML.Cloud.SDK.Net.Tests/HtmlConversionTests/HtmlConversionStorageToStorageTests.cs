@@ -1,54 +1,61 @@
 ﻿using Aspose.HTML.Cloud.Sdk.Conversion;
 using Aspose.HTML.Cloud.Sdk.Runtime.Core.Model;
 using System;
+using System.IO;
 using System.Net.Http;
 using Xunit;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class HtmlConversionStorageToStorageTests 
-        : IClassFixture<BaseTest>, IDisposable
     {
-        private HtmlApi api;
+        string CliendId { get; set; }
+        string ClientSecret { get; set; }
 
-        public HtmlConversionStorageToStorageTests(BaseTest fixture)
+        public HtmlConversionStorageToStorageTests()
         {
-            api = new HtmlApi(cb => cb
-                .WithClientId(fixture.ClientId)
-                .WithClientSecret(fixture.ClientSecret)
-                .WithAuthUrl(fixture.AuthServiceUrl)
-                .WithBaseUrl(fixture.ApiServiceBaseUrl));
+            IConfiguration config = new ConfigurationBuilder()
+                .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
 
-            var remoteFile = api.Storage.UploadFile(
-                TestHelper.srcDir + "html_file.html",
-                "/html_file.html", null, IO.NameCollisionOption.ReplaceExisting);
+            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientSecret = config["AsposeUserCredentials:ClientSecret"];
+
+            if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
+                Directory.SetCurrentDirectory(@"..\..\..");
+
+            using (var api = new HtmlApi(CliendId, ClientSecret))
+            {
+                var remoteFile = api.Storage.UploadFile(
+                    @"Input\html_file.html",
+                    "/html_file.html", null,
+                    IO.NameCollisionOption.ReplaceExisting);
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_PDF()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()                   
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new PDFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)              
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_PDF_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions pdfOpts = new PDFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -58,44 +65,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetQuality(95);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(pdfOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)              
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_XPS()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new XPSConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)              
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_XPS_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions xpsOpts = new XPSConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -104,44 +111,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetBottomMargin(10)
                 .SetTopMargin(10);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(xpsOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)              
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_JPG()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new JPEGConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)              
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_JPG_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions jpgOpts = new JPEGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -151,44 +158,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(jpgOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_PNG()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new PNGConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_PNG_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions pngOpts = new PNGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -198,44 +205,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(pngOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId) 
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_BMP()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new BMPConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId) 
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_BMP_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions bmpOpts = new BMPConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -245,44 +252,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(bmpOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId) 
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_GIF()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new GIFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId) 
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_GIF_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions gifOpts = new GIFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -292,44 +299,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(gifOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId) 
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_TIFF()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new TIFFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)   
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_TIFF_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions tiffOpts = new TIFFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -339,44 +346,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(tiffOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)   
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_DOC()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single or multiple files with default options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new DOCConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)  
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_DOC_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions docOpts = new DOCConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -385,82 +392,81 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetBottomMargin(10)
                 .SetTopMargin(10);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(docOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)  
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_MD()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new MarkdownConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_MD_WithParams()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html/WithParams";
-
             ConversionOptions mdOpts = new MarkdownConversionOptions()
                 .SetUseGit(true);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(mdOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromStorageFileToStorage_MHTML()
         {
-            string sourceFile = "/html_file.html";
-            string destFolder = "/TestResult/Html";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromStorageFile(sourceFile)
+                .FromStorageFile("/html_file.html")
                 .To(new MHTMLConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Html");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId) 
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
-        public void Dispose()
-        {
-            api.Dispose();
-        }
     }
 }

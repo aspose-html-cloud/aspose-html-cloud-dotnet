@@ -31,7 +31,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
 
         public IAuthenticator CreateAuth(Configuration configuration)
         {
-            var conf = configuration ?? Configuration.NewDefault();
+            var conf = configuration ?? Configuration.New();
 
             if(conf.UseExternalAuthentication)
             {

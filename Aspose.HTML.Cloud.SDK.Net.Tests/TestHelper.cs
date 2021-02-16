@@ -7,10 +7,10 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     static class TestHelper
     {
-        public static string appDir = AppDomain.CurrentDomain.BaseDirectory;
-        public static string projPath = appDir.Substring(0, appDir.IndexOf("\\bin"));
-        public static string srcDir = projPath + "/TestSource/";
-        public static string dstDir = projPath + "/TestResult/";
+        public static string AppDir { get; private set; } = AppDomain.CurrentDomain.BaseDirectory;
+        public static string ProjPath { get; private set; } = AppDir.Substring(0, AppDir.IndexOf("\\bin"));
+        public static string SrcDir { get; private set; } = ProjPath + "/Input/"; //"/TestSource/";
+        public static string DstDir { get; private set; } = ProjPath + "/Output/"; //"/TestResult/";
 
         public static MultipartFormDataContent PrepareMultipart(string pathToFile, params KeyValuePair<string, string>[] formParams) 
         {

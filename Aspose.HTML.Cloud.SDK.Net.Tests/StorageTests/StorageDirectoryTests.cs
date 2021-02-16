@@ -3,23 +3,28 @@ using Aspose.HTML.Cloud.Sdk.IO;
 using Xunit;
 using Assert = Xunit.Assert;
 using System;
+using System.IO;
 using Aspose.HTML.Cloud.Sdk.Runtime.Utils;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class StorageDirectoryTests : IClassFixture<BaseTest>, IDisposable
+    public class StorageDirectoryTests :  IDisposable
     {
+        string CliendId { get; set; }
+        string ClientSecret { get; set; }
 
-        private readonly HttpClient client;
-        private HtmlApi api;
-
-        public StorageDirectoryTests(BaseTest fixture)
+        public StorageDirectoryTests()
         {
-            api = new HtmlApi(cb => cb
-                .WithClientId(fixture.ClientId)
-                .WithClientSecret(fixture.ClientSecret)
-                .WithAuthUrl(fixture.AuthServiceUrl)
-                .WithBaseUrl(fixture.ApiServiceBaseUrl));
+            IConfiguration config = new ConfigurationBuilder()
+                .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
+
+            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientSecret = config["AsposeUserCredentials:ClientSecret"];
+
+            if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
+                Directory.SetCurrentDirectory(@"..\..\..");
         }
 
 
@@ -29,9 +34,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void GetDirectoriesListTest()
         {
             var folder = "/";
-            var storage = api.Storage;
-            var directories = storage.GetDirectories(folder);
-            Assert.NotEmpty(directories);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                var storage = api.Storage;
+                var directories = storage.GetDirectories(folder);
+                Assert.NotEmpty(directories);
+            }
         }
 
 
@@ -39,10 +49,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void GetDirectoryTest()
         {
             var folder = "/HtmlTestDoc";
-            var storage = api.Storage;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                var storage = api.Storage;
 
-            var directory = storage.GetDirectory(folder);
-            Assert.Equal("HtmlTestDoc/", directory.Name);
+                var directory = storage.GetDirectory(folder);
+                Assert.Equal("HtmlTestDoc/", directory.Name);
+            }
         }
 
         [Fact]
@@ -50,40 +65,52 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             var folder = $"/NewFolder_{Guid.NewGuid():N}";
 
-            var storage = api.Storage;
-            var exists = storage.DirectoryExists(folder);
-            Assert.False(exists);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                var storage = api.Storage;
+                var exists = storage.DirectoryExists(folder);
+                Assert.False(exists);
 
-            var dirInfo = storage.CreateDirectory(folder);
-            Assert.NotNull(dirInfo);
+                var dirInfo = storage.CreateDirectory(folder);
+                Assert.NotNull(dirInfo);
 
-            exists = storage.DirectoryExists(folder);
-            Assert.True(exists);
-            
+                exists = storage.DirectoryExists(folder);
+                Assert.True(exists);
+            }        
         }
 
         [Fact]
         public void CheckDirectoryExistsTest()
         {
             var folder = "/HTML";
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                var storage = api.Storage;
+                var exists = storage.DirectoryExists(folder);
 
-            var storage = api.Storage;
-            var exists = storage.DirectoryExists(folder);
-
+            }
         }
 
         [Fact]
         public void CheckDirectoryExistsTest_1()
         {
             var folder = "/HTML";
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                var storage = api.Storage;
+                var builtUri = PathUtility.BuildPath("storage", "", folder);
+                Assert.True($"storage://{folder}" == builtUri);
 
-            var storage = api.Storage;
-            var builtUri = PathUtility.BuildPath("storage", "", folder);
-            Assert.True($"storage://{folder}" == builtUri);
-
-            var remoteDir = new RemoteDirectory(new Uri(builtUri), null);
-            var exists = storage.DirectoryExists(remoteDir);
-            Assert.True(exists);
+                var remoteDir = new RemoteDirectory(new Uri(builtUri), null);
+                var exists = storage.DirectoryExists(remoteDir);
+                Assert.True(exists);
+            }
         }
 
         [Fact]
@@ -91,17 +118,23 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             var folder = $"/NewFolder_{Guid.NewGuid():N}";
             var storageName = ""; // default
-            
-            var storage = api.Storage;
-            var dirInfo = storage.CreateDirectory(folder, storageName);
-            Assert.NotNull(dirInfo);
-            var exists = storage.DirectoryExists(folder, storageName);
-            Assert.True(exists);
 
-            var delRes = storage.DeleteDirectory(folder, storageName);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                var storage = api.Storage;
+                var dirInfo = storage.CreateDirectory(folder, storageName);
+                Assert.NotNull(dirInfo);
+                var exists = storage.DirectoryExists(folder, storageName);
+                Assert.True(exists);
 
-            exists = storage.DirectoryExists(folder);
-            Assert.False(exists);
+                var delRes = storage.DeleteDirectory(folder, storageName);
+
+                exists = storage.DirectoryExists(folder);
+                Assert.False(exists);
+            }
+
         }
 
         [Fact]
@@ -110,37 +143,39 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var folder = $"/NewFolder_{Guid.NewGuid():N}";
             var storageName = ""; // default
 
-            var storage = api.Storage;
-            var dirInfo = storage.CreateDirectory(folder, storageName);
-            Assert.NotNull(dirInfo);
-            var exists = storage.DirectoryExists(folder, storageName);
-            Assert.True(exists);
+            using (var api = new HtmlApi(cb => cb
+     .WithClientId(CliendId)
+     .WithClientSecret(ClientSecret)))
+            {
+                var storage = api.Storage;
+                var dirInfo = storage.CreateDirectory(folder, storageName);
+                Assert.NotNull(dirInfo);
+                var exists = storage.DirectoryExists(folder, storageName);
+                Assert.True(exists);
 
-            var subfolder = $"{folder}/1";
-            dirInfo = storage.CreateDirectory(subfolder, storageName);
-            Assert.NotNull(dirInfo);
-            exists = storage.DirectoryExists(subfolder, storageName);
-            Assert.True(exists);
+                var subfolder = $"{folder}/1";
+                dirInfo = storage.CreateDirectory(subfolder, storageName);
+                Assert.NotNull(dirInfo);
+                exists = storage.DirectoryExists(subfolder, storageName);
+                Assert.True(exists);
 
-            subfolder = $"{folder}/2";
-            dirInfo = storage.CreateDirectory(subfolder, storageName);
-            Assert.NotNull(dirInfo);
-            exists = storage.DirectoryExists(subfolder, storageName);
-            Assert.True(exists);
+                subfolder = $"{folder}/2";
+                dirInfo = storage.CreateDirectory(subfolder, storageName);
+                Assert.NotNull(dirInfo);
+                exists = storage.DirectoryExists(subfolder, storageName);
+                Assert.True(exists);
 
-            var delRes = storage.DeleteDirectory(folder, storageName, true);
+                var delRes = storage.DeleteDirectory(folder, storageName, true);
 
-            exists = storage.DirectoryExists(folder);
-            Assert.False(exists);
-           
+                exists = storage.DirectoryExists(folder);
+                Assert.False(exists);
+            }          
         }
 
         #endregion
 
         public void Dispose()
         {
-            client?.Dispose();
-            api?.Dispose();
         }
 
 

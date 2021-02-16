@@ -1,18 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Aspose.HTML.Cloud.Sdk</AssemblyName>
+    <UserSecretsId>d7c9e673-0894-42aa-abcf-eab87505f18b</UserSecretsId>
+    <Version>21.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\Aspose.HTML.Cloud.Sdk.xml</DocumentationFile>
     <DefineConstants></DefineConstants>
-    <OutputPath>bin\Release\netstandard2.0\Aspose.HTML.Cloud.Sdk.xml</OutputPath>
+    <OutputPath></OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\netstandard2.0\Aspose.HTML.Cloud.Sdk.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.7" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />

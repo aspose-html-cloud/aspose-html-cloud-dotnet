@@ -4,48 +4,51 @@ using System;
 using System.IO;
 using System.Net.Http;
 using Xunit;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class ZipConversionLocalToStorageTests 
-        : IClassFixture<BaseTest>, IDisposable
+    public class ZipConversionLocalToStorageTests
     {
-        private HtmlApi api;
+        string CliendId { get; set; }
+        string ClientSecret { get; set; }
 
-        public ZipConversionLocalToStorageTests(BaseTest fixture)
+        public ZipConversionLocalToStorageTests()
         {
-            api = new HtmlApi(cb => cb
-                .WithClientId(fixture.ClientId)
-                .WithClientSecret(fixture.ClientSecret)
-                .WithAuthUrl(fixture.AuthServiceUrl)
-                .WithBaseUrl(fixture.ApiServiceBaseUrl));
+            IConfiguration config = new ConfigurationBuilder()
+                .AddUserSecrets<HtmlConversionLocalToLocalTests>().Build();
+
+            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientSecret = config["AsposeUserCredentials:ClientSecret"];
+
+            if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
+                Directory.SetCurrentDirectory(@"..\..\..");
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_PDF()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()                   
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new PDFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder); 
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
+    
 
         [Fact]
         public void ConvertFromLocalZipToStorage_PDF_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions pdfOpts = new PDFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -55,44 +58,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetQuality(95);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(pdfOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_XPS()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new XPSConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_XPS_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions xpsOpts = new XPSConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -101,44 +104,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetBottomMargin(10)
                 .SetTopMargin(10);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(xpsOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_JPG()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new JPEGConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_JPG_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions jpgOpts = new JPEGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -148,44 +151,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(jpgOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_PNG()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new PNGConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_PNG_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions pngOpts = new PNGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -195,44 +198,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(pngOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_BMP()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new BMPConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_BMP_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions bmpOpts = new BMPConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -242,44 +245,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(bmpOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_GIF()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new GIFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_GIF_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions gifOpts = new GIFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -289,44 +292,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(gifOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_TIFF()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new TIFFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_TIFF_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions tiffOpts = new TIFFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -336,44 +339,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(tiffOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_DOC()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new DOCConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_DOC_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions docOpts = new DOCConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -382,82 +385,81 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetBottomMargin(10)
                 .SetTopMargin(10);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(docOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_MD()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new MarkdownConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_MD_WithParams()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip/WithParams";
-
             ConversionOptions mdOpts = new MarkdownConversionOptions()
                 .SetUseGit(true);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(mdOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalZipToStorage_MHTML()
         {
-            string sourceArch = Path.Combine(TestHelper.srcDir, "ZipTests", "test1.zip");
-            string destFolder = "/TestResult/Zip";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalArchive(sourceArch, "index.html")
+                .FromLocalArchive(@"Input\ZipTests\test1.zip", "index.html")
                 .To(new MHTMLConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Zip");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
-        public void Dispose()
-        {
-            api.Dispose();
-        }
     }
 }

@@ -24,50 +24,52 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace Aspose.HTML.Cloud.Sdk
 {
     /// <summary>
     /// Configuration class for SDK API facade objects.
     /// </summary>
-    public class Configuration 
+    /// 
+    public class Configuration : Dictionary<string, object>, IDisposable
     {
-        public const string CONF_AUTHURL = "AuthUrl";
-        public const string CONF_APIBASEURL = "ApiBaseUrl";
-        public const string CONF_APPSID = "AppSid";
-        public const string CONF_APPKEY = "AppKey";
-        public const string CONF_TIMEOUT = "Timeout";
+        protected Dictionary<string, object> dictProperties = new Dictionary<string, object>();
 
-        public const string CONF_CLIENTID = "client_id";
-        public const string CONF_CLIENTSECRET = "client_secret";
+        const string CONF_AUTHURL = "AuthUrl";
+        const string CONF_APIBASEURL = "ApiBaseUrl";
+        const string CONF_TIMEOUT = "Timeout";
+        const string CONF_EXTAUTHTOKEN = "ExternalAuthToken";
+
+        const string CONF_CLIENTID = "ClientId";
+        const string CONF_CLIENTSECRET = "ClientSecret";
 
         public const string DEF_AUTH_URL = "https://api.aspose.cloud/connect/token";
         public const string DEF_API_URL = "https://api.aspose.cloud/v4.0/html";
 
-
-        public static string[] ConfigParams = { 
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static string[] ConfigParams = { 
             CONF_AUTHURL, 
             CONF_APIBASEURL, 
-            CONF_APPSID, 
-            CONF_APPKEY, 
             CONF_TIMEOUT,
             CONF_CLIENTID,
-            CONF_CLIENTSECRET
+            CONF_CLIENTSECRET,
+            CONF_EXTAUTHTOKEN
         };
 
+        #region .ctor
         /// <summary>
-        /// A REST API service URL being called by SDK. 
-        /// Default value is https://api.aspose.cloud/v4/0/html
+        /// Internally used constructor
         /// </summary>
-        public string BaseUrl { get; set; } = "/v4.0/html/";
+        internal Configuration() { }
 
-        /// <summary>
-        /// An authentication service URL. 
-        /// Default value is https://api.aspose.cloud/connect/token
-        /// </summary>
-        public string AuthUrl { get; set; } = DEF_AUTH_URL;
+        #endregion
 
+        #region Public properties
         /// <summary>
         /// Client secret credential.
         /// </summary>
@@ -83,100 +85,39 @@ namespace Aspose.HTML.Cloud.Sdk
         /// </summary>
         public TimeSpan Timeout { get; set; } = TimeSpan.FromMinutes(1);
 
+        #endregion
+
+        #region Internal properties
+        /// <summary>
+        /// A REST API service URL being called by SDK. 
+        /// Default value is https://api.aspose.cloud/v4/0/html
+        /// </summary>
+        internal string BaseUrl { get; set; } = "https://api.aspose.cloud/v4/0/html";
+
+        /// <summary>
+        /// An authentication service URL. 
+        /// Default value is https://api.aspose.cloud/connect/token
+        /// </summary>
+        internal string AuthUrl { get; set; } = "https://api.aspose.cloud/connect/token";
+
         /// <summary>
         /// Assigns an HTTP client object with predefined properties for the Configuration 
         /// (Used mainly for test purposes, don't use it directly).
         /// </summary>
-        public HttpClient HttpClient { get; set; } = new HttpClient();
+        internal HttpClient HttpClient { get; set; } = new HttpClient();
 
         internal string ExternalAuthToken { get; private set; }
 
         /// <summary>
         /// Checks whether SDK uses an authentication token obtained from external provided (if true) or the SDK calls are authenticated internally (if false).
         /// </summary>
-        public bool UseExternalAuthentication { get; private set; } = false;
-
-        internal static readonly Configuration Default = new Configuration();
+        internal bool UseExternalAuthentication { get; private set; } = false;
 
         /// <summary>
-        /// A fabric method. 
-        /// Initializes an empty Configuration instance with default BaseUrl and AuthUrl values.
+        /// Default instance on Configuration
         /// </summary>
-        /// <returns></returns>
-        public static Configuration New()
-        {
-            //return new Configuration();
-            return new Configuration()
-            {
-                AuthUrl = DEF_AUTH_URL,
-                BaseUrl = DEF_API_URL
-            };
-        }
-
-        /// <summary>
-        /// Obsolete method. Use New instead.
-        /// </summary>
-        /// <returns></returns>
-        public static Configuration NewDefault()
-        {
-            return New();
-            //return new Configuration() {
-            //    AuthUrl = DEF_AUTH_URL,
-            //    BaseUrl = DEF_API_URL
-            //};
-        }
-
-        #region REM - reserved for future implementation
-        //public static Configuration GetFromAppConfig()
-        //{
-        //    // TODO:
-        //    return NewDefault();
-        //}
-
-        //public static Configuration GetFromEnvironment()
-        //{
-        //    //Dictionary<string, string> dictEnv = new Dictionary<string, string>(Environment.GetEnvironmentVariables(), );
-        //    //dictEnv.Select()
-        //    //.
-        //    var args = Environment.GetCommandLineArgs();
-
-        //    // TODO:
-        //    return NewDefault();
-        //}
-        #endregion
-
-        /// <summary>
-        /// A builder-style method. Sets the user's client secret.
-        /// </summary>
-        /// <param name="clientSecret"></param>
-        /// <returns></returns>
-        public Configuration WithClientSecret(string clientSecret)
-        {
-            this.ClientSecret = clientSecret;
-            return this;
-        }
-
-        /// <summary>
-        /// A builder-style method. Sets the user's client ID.
-        /// </summary>
-        /// <param name="clientId"></param>
-        /// <returns></returns>
-        public Configuration WithClientId(string clientId)
-        {
-            this.ClientId = clientId;
-            return this;
-        }
-
-        /// <summary>
-        /// A builder-style method. Sets the HTTP connection timeout. 
-        /// </summary>
-        /// <param name="timeout"></param>
-        /// <returns></returns>
-        public Configuration WithTimeout(TimeSpan timeout)
-        {
-            this.Timeout = timeout;
-            return this;
-        }
+        internal static readonly Configuration Default = Configuration.New();
+            //new Configuration();
 
         /// <summary>
         /// A builder-style method. Sets a JWT authentication token obtained from external source. 
@@ -184,7 +125,7 @@ namespace Aspose.HTML.Cloud.Sdk
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Configuration WithExternalAuthentication(string token)
+        internal Configuration WithExternalAuthentication(string token)
         {
             UseExternalAuthentication = !string.IsNullOrEmpty(token);
             ExternalAuthToken = token;
@@ -224,6 +165,124 @@ namespace Aspose.HTML.Cloud.Sdk
             }
         }
 
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// A fabric method. 
+        /// Initializes an empty Configuration instance with default BaseUrl and AuthUrl values.
+        /// </summary>
+        /// <returns>Configuration</returns>
+        public static Configuration New()
+        {
+            var conf = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
+                .AddUserSecrets<Configuration>()
+                .Build();
+
+            var apiUrl = conf["DebugAsposeServices:RestApiUrl"];
+            var authUrl = conf["DebugAsposeServices:AuthUrl"];
+
+            return new Configuration()
+            {
+                AuthUrl = string.IsNullOrEmpty(authUrl) ? DEF_AUTH_URL : authUrl,
+                BaseUrl = string.IsNullOrEmpty(apiUrl) ? DEF_API_URL : apiUrl
+            };
+        }
+
+        #region REM - reserved for future implementation
+        //public static Configuration GetFromAppConfig()
+        //{
+        //    // TODO:
+        //    return NewDefault();
+        //}
+
+        //public static Configuration GetFromEnvironment()
+        //{
+        //    //Dictionary<string, string> dictEnv = new Dictionary<string, string>(Environment.GetEnvironmentVariables(), );
+        //    //dictEnv.Select()
+        //    //.
+        //    var args = Environment.GetCommandLineArgs();
+
+        //    // TODO:
+        //    return NewDefault();
+        //}
+        #endregion
+
+        /// <summary>
+        /// A builder-style method. Sets the user's client secret.
+        /// </summary>
+        /// <param name="clientSecret"></param>
+        /// <returns>Configuration - reference to the calling object.</returns>
+        public Configuration WithClientSecret(string clientSecret)
+        {
+            this.ClientSecret = clientSecret;
+            return this;
+        }
+
+        /// <summary>
+        /// A builder-style method. Sets the user's client ID.
+        /// </summary>
+        /// <param name="clientId">Client ID.</param>
+        /// <returns>Configuration - reference to the calling object.</returns>
+        public Configuration WithClientId(string clientId)
+        {
+            this.ClientId = clientId;
+            return this;
+        }
+
+        /// <summary>
+        /// A builder-style method. Sets the HTTP connection timeout. 
+        /// </summary>
+        /// <param name="timeout">HTTP connection timeout as TimeSpan.</param>
+        /// <returns>Configuration - reference to the calling object.</returns>
+        public Configuration WithTimeout(TimeSpan timeout)
+        {
+            this.Timeout = timeout;
+            return this;
+        }
+
+
+        /// <summary>
+        /// A builder-style method. Sets a custom Configuration property.
+        /// </summary>
+        /// <param name="key">Property name.</param>
+        /// <param name="value">Property value.</param>
+        /// <returns>Configuration - reference to the calling object.</returns>
+        public Configuration WithProperty(string key, object value)
+        {
+            if (dictProperties.ContainsKey(key))
+                dictProperties[key] = value;
+            else
+                dictProperties.Add(key, value);
+
+            switch(key)
+            {
+                case CONF_APIBASEURL:
+                    BaseUrl = (string)value;
+                    break;
+                case CONF_AUTHURL:
+                    AuthUrl = (string)value;
+                    break;
+                case CONF_EXTAUTHTOKEN:
+                    return WithExternalAuthentication((string)value);
+            }
+            return this;
+        }
+
+        #endregion
+
+        #region IDisposable implementation
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+
+
         /// <summary>
         /// Builder class that is used to set up Configuration objects.
         /// </summary>
@@ -232,14 +291,14 @@ namespace Aspose.HTML.Cloud.Sdk
             private Configuration configuration;
             internal ConfigurationBuilder(Action<Configuration.ConfigurationBuilder> func)
             {
-                configuration = new Configuration();
+                configuration = Configuration.New();
                 func(this);
             }
 
             /// <summary>
             /// Sets the API service URL.
             /// </summary>
-            /// <param name="url"></param>
+            /// <param name="url">API service URL.</param>
             /// <returns></returns>
             public ConfigurationBuilder WithBaseUrl(string url)
             {
@@ -250,7 +309,7 @@ namespace Aspose.HTML.Cloud.Sdk
             /// <summary>
             /// Sets the authentication service URL.
             /// </summary>
-            /// <param name="url"></param>
+            /// <param name="url">Authentication service URL.</param>
             /// <returns></returns>
             public ConfigurationBuilder WithAuthUrl(string url)
             {
@@ -261,7 +320,7 @@ namespace Aspose.HTML.Cloud.Sdk
             /// <summary>
             /// Sets the user's client secret.
             /// </summary>
-            /// <param name="clientSecret"></param>
+            /// <param name="clientSecret">Client secret.</param>
             /// <returns></returns>
             public ConfigurationBuilder WithClientSecret(string clientSecret)
             {
@@ -272,7 +331,7 @@ namespace Aspose.HTML.Cloud.Sdk
             /// <summary>
             /// Sets the user's client ID.
             /// </summary>
-            /// <param name="clientId"></param>
+            /// <param name="clientId">Client ID.</param>
             /// <returns></returns>
             public ConfigurationBuilder WithClientId(string clientId)
             {
@@ -283,7 +342,7 @@ namespace Aspose.HTML.Cloud.Sdk
             /// <summary>
             /// Sets the HTTP connection timeout.
             /// </summary>
-            /// <param name="timeout"></param>
+            /// <param name="timeout">HTTP connection timeout.</param>
             /// <returns></returns>
             public ConfigurationBuilder WithTimeout(TimeSpan timeout)
             {
@@ -300,7 +359,7 @@ namespace Aspose.HTML.Cloud.Sdk
             /// <summary>
             /// Sets a JWT authentication token obtained from external source.
             /// </summary>
-            /// <param name="token"></param>
+            /// <param name="token">Externally obtained JWT token.</param>
             /// <returns></returns>
             public ConfigurationBuilder WithExternalAuthentication(string token)
             {

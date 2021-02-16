@@ -2,15 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
+    <UserSecretsId>d1f67216-cd83-425a-b444-1f1ee4b0db7c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Input\**" />
     <Compile Remove="testResult\**" />
     <Compile Remove="testSource\**" />
+    <EmbeddedResource Remove="Input\**" />
     <EmbeddedResource Remove="testResult\**" />
     <EmbeddedResource Remove="testSource\**" />
+    <None Remove="Input\**" />
     <None Remove="testResult\**" />
     <None Remove="testSource\**" />
   </ItemGroup>
@@ -18,6 +21,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.7" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.14.5" />
     <PackageReference Include="xunit" Version="2.4.1" />

@@ -1,0 +1,88 @@
+$(function () {
+    var tables = $('.main_table .sortable').parents('.main_table');
+    $('.sortable', tables).attr('title', 'Сортировка');
+    
+    // Для плагина нужны thead и tbody
+    // tfoot не участвует в сортировке
+    tables.each(function () {
+        var table = $(this);
+        if ($('thead', table).length === 0) {
+            var oldThead = $('tr.thead, tr:has(th)', table);
+            var newThead = $('<thead>');
+            //oldThead.before(newThead);
+            table.prepend(newThead);
+            newThead.append(oldThead);
+            
+            if ($('tbody', table).length === 0) {
+                var oldTbody = $('tr:not(.thead)', table);
+                var newTbody = $('<tbody>');
+                newThead.after(newTbody);
+                newTbody.append(oldTbody);
+            }
+        }
+        
+        if ($('tfoot', table).length === 0) {
+            var oldTfoot = $('tr.tfoot', table);
+            var newTfoot = $('<tfoot>');
+            table.append(newTfoot);
+            newTfoot.append(oldTfoot);
+        }
+    });
+    
+    if (tables.length) {
+        $('th:not(.sortable)', tables).addClass('sorter-false');
+        configTableSorter();
+        tables.tablesorter().bind('sortEnd', function(e) {
+            var table = $(this);
+            var classes = ['odd', 'even'];
+            $('tr.odd, tr.even', table).each(function (index) {
+                $(this).removeClass(classes).addClass(classes[index % 2]);
+            });
+        });
+    }
+    
+    function configTableSorter() {
+        // 217,1
+        // 760
+        // 4 410,8
+        // 82 468
+        // 244,7%
+        // 215 674 290
+        
+        const re = /^[\d ,.%-]+$/;
+        
+        $.tablesorter.addParser({
+            id: 'my_numeric_parser',
+            is: function(s, table, cell, $cell) {
+                // s is the text from the cell
+                // table is the current table (as a DOM element; not jQuery object)
+                // cell is the current table cell (DOM element)
+                // $cell is the current table cell (jQuery object; added v2.18.0)
+                // return false if you don't want this parser to be auto detected
+                
+                const result = s.match(re);
+                
+                return result && result.length > 0;
+            },
+            format: function(s, table, cell, cellIndex) {
+                // s is the text from the cell
+                // table is the current table (as a DOM element; not jQuery object)
+                // cell is the current table cell (DOM element)
+                // cellIndex is the current cell's column index
+                // format your data for normalization
+                // (i.e. do something to get and/or modify your data, then return it)
+                const result = s.match(re);
+                if (result && result.length > 0) {
+                    s = s.replace(/[^\d,.-]/g, '').replace(',', '.');
+                }
+                
+                return s;
+            },
+            // flag for filter widget (true = ALWAYS search parsed values; false = search cell text)
+            parsed: true,
+            // set the type to either numeric or text (text uses a natural sort function
+            // so it will work for everything, but numeric is faster for numbers
+            type: 'numeric'
+        });
+    }
+});

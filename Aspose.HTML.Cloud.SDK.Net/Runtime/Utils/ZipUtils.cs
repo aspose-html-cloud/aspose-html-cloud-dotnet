@@ -27,6 +27,7 @@
 using System;
 using System.IO;
 using System.IO.Compression;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -80,6 +81,28 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Utils
         }
 
 
+        public static byte[] ZipFileList(string entryPoint, List<string> files)
+        {
+            byte[] result;
+
+            using (var ms = new MemoryStream())
+            {
+                using (var archive = new ZipArchive(ms, ZipArchiveMode.Create, true))
+                {
+                    var entryDir = Path.GetDirectoryName(entryPoint);
+
+                    foreach (var file in files)
+                    {
+                        var fileRelPath = Path.GetDirectoryName(file).Replace(entryDir, "");
+                        var fileName = Path.GetFileName(file);
+                        archive.CreateEntryFromAny(file, fileRelPath);
+                    }
+                }
+                result = ms.ToArray();
+            }
+            return result;
+        }
+
         public static void ZipFolder(string inDir, string outFile)
         {
             if (!Directory.Exists(inDir))
@@ -121,6 +144,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Utils
             
             return outputZip;
         }
+
 
         public static void UnzipFolder(string zipPath, string outputFolder)
         {

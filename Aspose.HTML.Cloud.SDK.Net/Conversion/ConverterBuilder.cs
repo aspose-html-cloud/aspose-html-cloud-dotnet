@@ -69,76 +69,55 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// </summary>
         /// <param name="inPath">Source directory path.</param>
         /// <param name="startPoint">File name that is a root HTML document.</param>
-        /// <param name="files">List of relative paths of resource files.</param>
         /// <returns></returns>
-        public ConverterBuilder FromLocalDirectory(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromLocalDirectory(string inputPath, string startPoint = null)
         {
-            if (String.IsNullOrEmpty(inPath))
+            if (String.IsNullOrEmpty(inputPath))
                 throw new ArgumentNullException("inputPath");
 
-            if (!Directory.Exists(inPath))
+            if (!Directory.Exists(inputPath))
                 throw new IOException("Directory not exists");
 
-            InputPath = new List<string>() { "file://" + inPath, startPoint};
-
-            foreach (var f in files) 
-            {
-                InputPath.Add(f);
-            }
-
+            InputPath = new List<string>() { "file://" + inputPath, startPoint};
             return this;
         }
 
         /// <summary>
         /// Sets up a conversion source as a ZIP file with linked resources inside, located in a local file system.
         /// </summary>
-        /// <param name="inPath">Source archive path.</param>
+        /// <param name="archivePath">Source archive path.</param>
         /// <param name="startPoint">File name that is a root HTML document in the archive root.</param>
-        /// <param name="files">List of relative paths of resource files withing the archive.</param>
         /// <returns></returns>
-        public ConverterBuilder FromLocalArchive(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromLocalArchive(string archivePath, string startPoint)
         {
-            if (String.IsNullOrEmpty(inPath))
+            if (String.IsNullOrEmpty(archivePath))
                 throw new ArgumentNullException("inputPath");
 
-            if (!File.Exists(inPath))
+            if (!File.Exists(archivePath))
                 throw new IOException("Zip file not exists");
 
-            if (!inPath.ToLower().EndsWith(".zip"))
+            if (!archivePath.ToLower().EndsWith(".zip"))
                 throw new ArgumentException("File must be a zip file.");
 
-            InputPath = new List<string>() { "file://" + inPath, startPoint };
-
-            foreach (var f in files)
-            {
-                InputPath.Add(f);
-            }
-
+            InputPath = new List<string>() { "file://" + archivePath, startPoint };
             return this;
         }
 
         /// <summary>
         /// Sets up a conversion source as a ZIP file with linked resources inside, located in a cloud storage.
         /// </summary>
-        /// <param name="inPath">Source archive path.</param>
+        /// <param name="archivePath">Source archive path.</param>
         /// <param name="startPoint">File name that is a root HTML document in the archive root.</param>
-        /// <param name="files">List of relative paths of resource files withing the archive.</param>
         /// <returns></returns>
-        public ConverterBuilder FromStorageArchive(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromStorageArchive(string archivePath, string startPoint)
         {
-            if (String.IsNullOrEmpty(inPath))
+            if (String.IsNullOrEmpty(archivePath))
                 throw new ArgumentNullException("inputPath");
 
-            if (!inPath.ToLower().EndsWith(".zip"))
+            if (!archivePath.ToLower().EndsWith(".zip"))
                 throw new ArgumentException("File must be a zip file.");
 
-            InputPath = new List<string>() { "storage://" + inPath, startPoint };
-
-            foreach (var f in files)
-            {
-                InputPath.Add(f);
-            }
-
+            InputPath = new List<string>() { "storage://" + archivePath, startPoint };
             return this;
         }
 
@@ -148,9 +127,8 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// </summary>
         /// <param name="inPath">Source directory path.</param>
         /// <param name="startPoint">File name that is a root HTML document.</param>
-        /// <param name="files">List of relative paths of resource files.</param>
         /// <returns></returns>
-        public ConverterBuilder FromStorageDirectory(string inPath, string startPoint, params string[] files)
+        public ConverterBuilder FromStorageDirectory(string inPath, string startPoint)
         {
             if (!inPath.EndsWith("/"))
                 inPath += "/";
@@ -158,8 +136,28 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
                 inPath = inPath.Insert(0, "/");
 
             InputPath = new List<string>() { "file://" + inPath, startPoint };
+            return this;
+        }
 
-            foreach (var f in files)
+        /// <summary>
+        /// Sets up a conversion source as a file, located in a local file system.
+        /// </summary>
+        /// <param name="filePath">Source file path</param>
+        /// <param name="resources">List of relative paths of resource files (optional).</param>
+        /// <returns></returns>
+        public ConverterBuilder FromLocalFile(string filePath, params string[] resources)
+        {
+            if (String.IsNullOrEmpty(filePath))
+                throw new ArgumentNullException("Input path is empty");
+
+            filePath = filePath.Trim();
+
+            if (!File.Exists(filePath))
+                throw new IOException("File not exists");
+
+            InputPath = new List<string> { "file://" + filePath };
+
+            foreach (var f in resources)
             {
                 InputPath.Add(f);
             }
@@ -170,47 +168,34 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// <summary>
         /// Sets up a conversion source as a file, located in a local file system.
         /// </summary>
-        /// <param name="inputPath">Source file path</param>
+        /// <param name="filePath">Source file path</param>
+        /// <param name="resources">List of relative paths of resource files (optional).</param>
         /// <returns></returns>
-        public ConverterBuilder FromLocalFile(string inputPath)
+        public ConverterBuilder FromStorageFile(string filePath, params string[] resources)
         {
-            if (String.IsNullOrEmpty(inputPath))
+            if (String.IsNullOrEmpty(filePath))
                 throw new ArgumentNullException("Input path is empty");
 
-            inputPath = inputPath.Trim();
+            if (!filePath.StartsWith("/"))
+                filePath = filePath.Insert(0, "/");
 
-            if (!File.Exists(inputPath))
-                throw new IOException("File not exists");
+            InputPath = new List<string>(){ "storage://" + filePath };
 
-            InputPath = new List<string> { "file://" + inputPath };
-            return this;
-        }
-
-        /// <summary>
-        /// Sets up a conversion source as a file, located in a local file system.
-        /// </summary>
-        /// <param name="inPath">Source file path</param>
-        /// <returns></returns>
-        public ConverterBuilder FromStorageFile(string inPath)
-        {
-            if (String.IsNullOrEmpty(inPath))
-                throw new ArgumentNullException("Input path is empty");
-
-            if (!inPath.StartsWith("/"))
-                inPath = inPath.Insert(0, "/");
-
-            InputPath = new List<string>(){ "storage://" + inPath };
+            foreach (var f in resources)
+            {
+                InputPath.Add(f);
+            }
             return this;
         }
 
         /// <summary>
         /// Sets up the conversion source as a Web page by its URL.
         /// </summary>
-        /// <param name="inPath">Source Web page URL</param>
+        /// <param name="url">Source Web page URL</param>
         /// <returns></returns>
-        public ConverterBuilder FromUrl(string inPath)
+        public ConverterBuilder FromUrl(string url)
         {
-            InputPath = new List<string>() { inPath };
+            InputPath = new List<string>() { url };
             return this;
         }
 
@@ -232,8 +217,16 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// </summary>
         /// <param name="outputDirectory">Local directory path to save to.</param>
         /// <returns></returns>
-        public ConverterBuilder SaveToLocal(string outputDirectory)
+        public ConverterBuilder SaveToLocalDirectory(string outputDirectory)   /* filePath=  c:\word\out.jpg; out.jpg*/
         {
+            //var fullPath = Path.GetFullPath(filePath);
+            //var fileName = Path.GetFileName(fullPath);
+            //var dir = Path.GetDirectoryName(fullPath);
+            //// out (1).jpg; out (2).jpg; 
+
+
+            //// filePath = "my.pdf"
+
             if (String.IsNullOrEmpty(outputDirectory))
                 throw new ArgumentNullException("Output path is empty");
 
@@ -241,12 +234,22 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return this;
         }
 
+
+        //public ConverterBuilder SaveToLocal(string filePath)
+        //{
+        //public ConverterBuilder SaveToLocal(string filePath)
+        //{
+        //    return this;
+        //}
+        //    return this;
+        //}
+
         /// <summary>
         /// Sets up the cloud storage directory where the conversion result will be saved to.
         /// </summary>
         /// <param name="outputDirectory">Storage directory path to save to.</param>
         /// <returns></returns>
-        public ConverterBuilder SaveToStorage(string outputDirectory)
+        public ConverterBuilder SaveToStorageDirectory(string outputDirectory)
         {
             if (String.IsNullOrEmpty(outputDirectory))
                 throw new ArgumentNullException("Output path is empty");
@@ -260,5 +263,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             OutputPath = "storage://" + outputDirectory.Trim();
             return this;
         }
+
+        //public ConverterBuilder SaveToStorage(string filePath)
+        //{
+        //    return this;
+        //}
+
     }
 }

@@ -11,42 +11,40 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Aspose.HTML.Cloud.Sdk.Runtime.Utils;
+using Microsoft.Extensions.Configuration;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
 {
 
-    public class AuthUserCredsTest : IClassFixture<BaseTest>, IDisposable
+    public class AuthUserCredsTest : IDisposable
     {
-        private readonly string QA_APPSID = "html.cloud";
-        private readonly string QA_APPKEY = "html.cloud";
-        private readonly string LOCAL_BASE_URL = "https://localhost:5001/v4.0/html";
-        private const string LOCAL_DOCKER_BASE_URL = "https://localhost:47976/v4.0/html";
-        
-
-        private readonly HttpClient client;
-        private HtmlApi api;
-
-        private string ApiBaseUrl { get; set; }
+        string CliendId { get; set; }
+        string ClientSecret { get; set; }
 
         public AuthUserCredsTest(BaseTest fixture)
         {
-            ApiBaseUrl = fixture.ApiServiceBaseUrl;
-            client = fixture.CreateClient();
-            api = new HtmlApi(cb => cb
-                .WithClientId(fixture.ClientId)
-                .WithClientSecret(fixture.ClientSecret)
-                .WithAuthUrl(fixture.AuthServiceUrl)
-                .WithBaseUrl(fixture.ApiServiceBaseUrl));
+            IConfiguration config = new ConfigurationBuilder()
+                .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
+
+            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientSecret = config["AsposeUserCredentials:ClientSecret"];
+
+            if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
+                Directory.SetCurrentDirectory(@"..\..\..");
         }
 
         [Fact]
         public void AuthenticateJwt_Single ()
         {
-            string storageName = "First Storage";
+            var folder = "/HTML";
 
-            var storageApi = api.Storage;
-            Assert.True(storageApi.Exists(storageName));
-
+            using (var api = new HtmlApi(cb => cb
+                .WithClientId(CliendId)
+                .WithClientSecret(ClientSecret)))
+            {
+                var storageApi = api.Storage;
+                Assert.True(storageApi.DirectoryExists(folder));
+            }
         }
 
         [Fact]
@@ -54,21 +52,25 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         {
             var folder = "/HTML";
 
-            var storageApi = api.Storage;
+            using (var api = new HtmlApi(cb => cb
+                .WithClientId(CliendId)
+                .WithClientSecret(ClientSecret)))
+            {
+                var storageApi = api.Storage;
 
-            var exists = storageApi.DirectoryExists(folder);
-            Assert.True(exists);
+                var exists = storageApi.DirectoryExists(folder);
+                Assert.True(exists);
 
-            var rndFolder = $"/NewFolder_{Guid.NewGuid():N}";
-            exists = storageApi.DirectoryExists(rndFolder);
-            Assert.False(exists);
+                var rndFolder = $"/NewFolder_{Guid.NewGuid():N}";
+                exists = storageApi.DirectoryExists(rndFolder);
+                Assert.False(exists);
 
-            var dirInfo = storageApi.CreateDirectory(rndFolder);
-            Assert.NotNull(dirInfo);
+                var dirInfo = storageApi.CreateDirectory(rndFolder);
+                Assert.NotNull(dirInfo);
 
-            exists = storageApi.DirectoryExists(rndFolder);
-            Assert.True(exists);
-            
+                exists = storageApi.DirectoryExists(rndFolder);
+                Assert.True(exists);
+            }           
         }
 
         [Fact]
@@ -92,8 +94,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
                 List<KeyValuePair<string, string>> authReqContent = new List<KeyValuePair<string, string>>
                         {
                             new KeyValuePair<string, string>("grant_type", "client_credentials"),
-                            new KeyValuePair<string, string>("client_id", QA_APPSID),
-                            new KeyValuePair<string, string>("client_secret", QA_APPKEY)
+                            new KeyValuePair<string, string>("client_id", CliendId),
+                            new KeyValuePair<string, string>("client_secret", ClientSecret)
                         };
                 authReq.Content = new FormUrlEncodedContent(authReqContent);
                 authReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
@@ -111,11 +113,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
 
             // base URL (REST API service URL) and externally obtained auth token are required here
             using (var api2 = new HtmlApi(cb => cb
-            .WithBaseUrl(ApiBaseUrl)
-            .WithExternalAuthentication(token)))
+                .WithExternalAuthentication(token)))
             {              
-                var storageApi = api.Storage;
-
+                var storageApi = api2.Storage;
                 var exists = storageApi.DirectoryExists(folder);
                 Assert.True(exists);
             }
@@ -124,8 +124,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
 
         public void Dispose()
         {
-            client?.Dispose();
-            api?.Dispose();
         }
     }
 }

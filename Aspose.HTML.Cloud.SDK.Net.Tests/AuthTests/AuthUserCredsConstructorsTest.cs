@@ -11,62 +11,67 @@ using Assert = Xunit.Assert;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Aspose.HTML.Cloud.Sdk.Runtime.Utils;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
 {
-    public class AuthUserCredsConstructorsTest : BaseTest, IDisposable
+    public class AuthUserCredsConstructorsTest : IDisposable
     {
-        private readonly string QA_APPSID = "html.cloud";
-        private readonly string QA_APPKEY = "html.cloud";
-        private readonly string LOCAL_BASE_URL = "https://localhost:5001/v4.0/html";
-        private const string LOCAL_DOCKER_BASE_URL = "https://localhost:47976/v4.0/html";
-
-        private readonly HttpClient client;
-        private HtmlApi api;
+        string CliendId { get; set; }
+        string ClientSecret { get; set; }
 
         public AuthUserCredsConstructorsTest()
         {
+            IConfiguration config = new ConfigurationBuilder()
+                .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
 
+            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientSecret = config["AsposeUserCredentials:ClientSecret"];
+
+            if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
+                Directory.SetCurrentDirectory(@"..\..\..");
         }
 
         [Fact]
         public void AuthenticateJwt_Single()
         {
-            string storageName = "First Storage";
+            var folder = "/Html";
 
-            api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
-
-            var storageApi = api.Storage;
-            Assert.True(storageApi.Exists(storageName));
-
+            using (var api = new HtmlApi(CliendId, ClientSecret))
+            {
+                var storageApi = api.Storage;
+                var exists = storageApi.DirectoryExists(folder);
+                Assert.True(exists);
+            }
         }
 
         [Fact]
         public void AuthenticateJwt_Sequence()
         {
             var folder = "/Html";
-            api = new HtmlApi(QA_APPSID, QA_APPKEY, ApiServiceBaseUrl);
-            var storageApi = api.Storage;
 
-            var exists = storageApi.DirectoryExists(folder);
-            Assert.True(exists);
+            using (var api = new HtmlApi(CliendId, ClientSecret))
+            {
+                var storageApi = api.Storage;
 
-            var rndFolder = $"/NewFolder_{Guid.NewGuid():N}";
-            exists = storageApi.DirectoryExists(rndFolder);
-            Assert.False(exists);
+                var exists = storageApi.DirectoryExists(folder);
+                Assert.True(exists);
 
-            var dirInfo = storageApi.CreateDirectory(rndFolder);
-            Assert.NotNull(dirInfo);
+                var rndFolder = $"/NewFolder_{Guid.NewGuid():N}";
+                exists = storageApi.DirectoryExists(rndFolder);
+                Assert.False(exists);
 
-            exists = storageApi.DirectoryExists(rndFolder);
-            Assert.True(exists);
+                var dirInfo = storageApi.CreateDirectory(rndFolder);
+                Assert.NotNull(dirInfo);
 
+                exists = storageApi.DirectoryExists(rndFolder);
+                Assert.True(exists);
+            }
         }
 
         public void Dispose()
         {
-            client?.Dispose();
-            api?.Dispose();
         }
     }
 }

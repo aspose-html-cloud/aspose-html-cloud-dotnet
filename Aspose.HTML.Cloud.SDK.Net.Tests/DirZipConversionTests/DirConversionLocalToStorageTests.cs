@@ -5,48 +5,50 @@ using System;
 using System.IO;
 using System.Net.Http;
 using Xunit;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class DirConversionLocalToStorageTests 
-        : IClassFixture<BaseTest>, IDisposable
     {
-        private HtmlApi api;
+        string CliendId { get; set; }
+        string ClientSecret { get; set; }
 
-        public DirConversionLocalToStorageTests(BaseTest fixture)
+        public DirConversionLocalToStorageTests()
         {
-            api = new HtmlApi(cb => cb
-                .WithClientId(fixture.ClientId)
-                .WithClientSecret(fixture.ClientSecret)
-                .WithAuthUrl(fixture.AuthServiceUrl)
-                .WithBaseUrl(fixture.ApiServiceBaseUrl));
+            IConfiguration config = new ConfigurationBuilder()
+                .AddUserSecrets<HtmlConversionLocalToLocalTests>().Build();
+
+            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientSecret = config["AsposeUserCredentials:ClientSecret"];
+
+            if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
+                Directory.SetCurrentDirectory(@"..\..\..");
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_PDF()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
-            ConverterBuilder builder = new ConverterBuilder()                   
-                .FromLocalDirectory(sourceDir, "index.html")
+            ConverterBuilder builder = new ConverterBuilder()
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new PDFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToLocalDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_PDF_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions pdfOpts = new PDFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -56,44 +58,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetQuality(95);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(pdfOpts)
-                .SaveToStorage(destFolder);
+                .SaveToLocalDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_XPS()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new XPSConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_XPS_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions xpsOpts = new XPSConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -102,44 +104,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetBottomMargin(10)
                 .SetTopMargin(10);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(xpsOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_JPG()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new JPEGConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_JPG_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions jpgOpts = new JPEGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -149,44 +151,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(jpgOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_PNG()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new PNGConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_PNG_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions pngOpts = new PNGConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -196,44 +198,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(pngOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_BMP()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new BMPConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_BMP_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions bmpOpts = new BMPConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -243,44 +245,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(bmpOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_GIF()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new GIFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_GIF_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions gifOpts = new GIFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -290,44 +292,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(gifOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_TIFF()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new TIFFConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_TIFF_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions tiffOpts = new TIFFConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -337,44 +339,44 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetTopMargin(10)
                 .SetResolution(300);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(tiffOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_DOC()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new DOCConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_DOC_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions docOpts = new DOCConversionOptions()
                 .SetHeight(800)
                 .SetWidth(1000)
@@ -383,82 +385,80 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SetBottomMargin(10)
                 .SetTopMargin(10);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(docOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length >= 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_MD()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new MarkdownConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_MD_WithParams()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory/WithParams";
-
             ConversionOptions mdOpts = new MarkdownConversionOptions()
                 .SetUseGit(true);
 
-            // Convert to single or multiple files with options
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(mdOpts)
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
-            ConversionResult result = api.Convert(builder);
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
 
         [Fact]
         public void ConvertFromLocalDirToStorage_MHTML()
         {
-            string sourceDir = Path.Combine(TestHelper.srcDir, "DirectoryTests", "HtmlSite2");
-            string destFolder = "/TestResult/Directory";
-
-            // Convert to single file
             ConverterBuilder builder = new ConverterBuilder()
-                .FromLocalDirectory(sourceDir, "index.html")
+                .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new MHTMLConversionOptions())
-                .SaveToStorage(destFolder);
+                .SaveToStorageDirectory("/TestResult/Dir");
 
-            ConversionResult result = api.Convert(builder); ;
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(CliendId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                ConversionResult result = api.Convert(builder);
 
-            //ToDo: Status - to enum
-            Assert.True(result.Status == "success");
-            Assert.True(result.Files.Length == 1);
-        }
-
-        public void Dispose()
-        {
-            api.Dispose();
+                Assert.True(result.Status == "success");
+                Assert.True(result.Files.Any());
+            }
         }
     }
 }
