@@ -34,7 +34,7 @@ namespace Aspose.HTML.Cloud.Sdk
     /// Configuration class for SDK API facade objects.
     /// </summary>
     /// 
-    public class Configuration : Dictionary<string, object>, IDisposable
+    public class Configuration : IDisposable
     {
         protected Dictionary<string, object> dictProperties = new Dictionary<string, object>();
 
@@ -276,7 +276,16 @@ namespace Aspose.HTML.Cloud.Sdk
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if(dictProperties!= null)
+            {
+                foreach(var key in dictProperties.Keys)
+                {
+                    if (dictProperties[key] is IDisposable)
+                        ((IDisposable)dictProperties[key]).Dispose();
+                }
+                dictProperties.Clear();
+            }
+            
         }
 
         #endregion
