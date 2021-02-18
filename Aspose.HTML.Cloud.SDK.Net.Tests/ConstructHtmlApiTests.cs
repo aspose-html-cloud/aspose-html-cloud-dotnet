@@ -4,13 +4,11 @@ using Xunit;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class ConfigureApiConnector : IClassFixture<BaseTest>
+    public class ConfigureApiConnector 
     {
-        private readonly HttpClient httpClient;
 
-        public ConfigureApiConnector(BaseTest fixture)
+        public ConfigureApiConnector()
         {
-            httpClient = fixture.CreateClient();
         }
 
         [Fact]
@@ -20,8 +18,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             {
                 ClientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
                 ClientId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-                Timeout = TimeSpan.FromMinutes(10),
-                HttpClient = httpClient
+                Timeout = TimeSpan.FromMinutes(10)
             };
             using (var api = new HtmlApi(cfg))
             {

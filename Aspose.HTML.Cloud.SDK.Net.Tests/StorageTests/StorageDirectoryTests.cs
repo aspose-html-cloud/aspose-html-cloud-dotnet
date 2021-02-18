@@ -12,7 +12,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class StorageDirectoryTests :  IDisposable
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
         public StorageDirectoryTests()
@@ -20,7 +20,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -35,7 +35,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             var folder = "/";
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -50,7 +50,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             var folder = "/HtmlTestDoc";
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -66,7 +66,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var folder = $"/NewFolder_{Guid.NewGuid():N}";
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -86,7 +86,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             var folder = "/HTML";
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -100,7 +100,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         {
             var folder = "/HTML";
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -120,7 +120,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var storageName = ""; // default
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -144,7 +144,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var storageName = ""; // default
 
             using (var api = new HtmlApi(cb => cb
-     .WithClientId(CliendId)
+     .WithClientId(ClientId)
      .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;

@@ -18,15 +18,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
 
     public class AuthUserCredsTest : IDisposable
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
-        public AuthUserCredsTest(BaseTest fixture)
+        public AuthUserCredsTest()
         {
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -39,7 +39,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             var folder = "/HTML";
 
             using (var api = new HtmlApi(cb => cb
-                .WithClientId(CliendId)
+                .WithClientId(ClientId)
                 .WithClientSecret(ClientSecret)))
             {
                 var storageApi = api.Storage;
@@ -53,7 +53,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             var folder = "/HTML";
 
             using (var api = new HtmlApi(cb => cb
-                .WithClientId(CliendId)
+                .WithClientId(ClientId)
                 .WithClientSecret(ClientSecret)))
             {
                 var storageApi = api.Storage;
@@ -94,7 +94,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
                 List<KeyValuePair<string, string>> authReqContent = new List<KeyValuePair<string, string>>
                         {
                             new KeyValuePair<string, string>("grant_type", "client_credentials"),
-                            new KeyValuePair<string, string>("client_id", CliendId),
+                            new KeyValuePair<string, string>("client_id", ClientId),
                             new KeyValuePair<string, string>("client_secret", ClientSecret)
                         };
                 authReq.Content = new FormUrlEncodedContent(authReqContent);

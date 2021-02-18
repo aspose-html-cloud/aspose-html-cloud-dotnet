@@ -53,6 +53,8 @@ namespace Aspose.HTML.Cloud.Sdk
         private const string CONVERSION_URI = "/v4.0/html/conversion";
         private const int UPDATE_INTERVAL = 100;
 
+        public const string ERRMSG_NOUSERCREDS = "Authorization failed: Client ID and/or Client Secret were not specified. If you have no user credentials, please visit https://dashboard.aspose.cloud/#/ to create a free account.";
+
         private static readonly StorageFactory StorageFactory = StorageFactory.Instance;
         private HttpClient restClient;
         readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -67,6 +69,11 @@ namespace Aspose.HTML.Cloud.Sdk
         /// <param name="configuration">Configuration instance with API parameters.</param>
         public HtmlApi(Configuration configuration)
         {
+            if(string.IsNullOrEmpty(configuration.ClientId) ||
+                string.IsNullOrEmpty(configuration.ClientSecret))
+            {
+                throw new ApiException(401, ERRMSG_NOUSERCREDS);
+            }
             restClient = configuration.HttpClient;
             taskFactory = new TaskFactory(cancellationTokenSource.Token);
 
@@ -189,7 +196,7 @@ namespace Aspose.HTML.Cloud.Sdk
                         return new ConversionResult()
                         {
                             Status = result.Status,
-                            Description = $"Conversion falied.",
+                            Description = $"Conversion failed.",
                             Files = null
                         };
                     }
@@ -205,14 +212,26 @@ namespace Aspose.HTML.Cloud.Sdk
                           ? ConvertLocalArchive(inputParams[0], inputParams[1], builder.Options, new RemoteDirectoryParameter(null))
                           : ConvertLocalFile(inputParams[0], builder.Options, new RemoteDirectoryParameter(null));
 
-                    ConversionResult res = SaveToLocal(outPath, result);
+                    if(result.Status == Conversion.Conversion.COMPLETED)
+                    {
+                        ConversionResult res = SaveToLocal(outPath, result);
 
-                    // Clear directory in the server
-                    var dir = result.Files[0].Path;
-                    dir = dir.Substring(0, dir.LastIndexOf("/"));
-                    bool clear = Storage.DeleteDirectory(dir, storageName, true);
+                        // Clear directory in the server
+                        var dir = result.Files[0].Path;
+                        dir = dir.Substring(0, dir.LastIndexOf("/"));
+                        bool clear = Storage.DeleteDirectory(dir, storageName, true);
 
-                    return res;
+                        return res;
+                    }
+                    else
+                    {
+                        return new ConversionResult()
+                        {
+                            Status = result.Status,
+                            Description = $"Conversion failed.",
+                            Files = null
+                        };
+                    }
                 }
             }
             //From storage
@@ -266,7 +285,12 @@ namespace Aspose.HTML.Cloud.Sdk
                     }
                     else
                     {
-                        throw new Exception("Handler error status");
+                        return new ConversionResult()
+                        {
+                            Status = result.Status,
+                            Description = $"Conversion failed.",
+                            Files = null
+                        };
                     }
                 }
             }
@@ -276,15 +300,26 @@ namespace Aspose.HTML.Cloud.Sdk
                 if (outputPath.StartsWith("file://"))
                 {
                     var result = Convert(inputParams, builder.Options);
+                    if(result.Status == Conversion.Conversion.COMPLETED)
+                    {
+                        string outPath = outputPath.Remove(0, 7);
+                        ConversionResult res = SaveToLocal(outPath, result);
 
-                    string outPath = outputPath.Remove(0, 7);
-                    ConversionResult res = SaveToLocal(outPath, result);
-
-                    // Clear directory in the server
-                    var dir = result.Files[0].Path;
-                    dir = dir.Substring(0, dir.LastIndexOf("/"));
-                    bool clear = Storage.DeleteDirectory(dir, storageName, true);
-                    return res;
+                        // Clear directory in the server
+                        var dir = result.Files[0].Path;
+                        dir = dir.Substring(0, dir.LastIndexOf("/"));
+                        bool clear = Storage.DeleteDirectory(dir, storageName, true);
+                        return res;
+                    }
+                    else
+                    {
+                        return new ConversionResult()
+                        {
+                            Status = result.Status,
+                            Description = $"Conversion failed.",
+                            Files = null
+                        };
+                    }
                 }
                 // To storage
                 else if (outputPath.StartsWith("storage://"))
@@ -315,7 +350,12 @@ namespace Aspose.HTML.Cloud.Sdk
                     }
                     else
                     {
-                        throw new Exception("Handler error status");
+                        return new ConversionResult()
+                        {
+                            Status = result.Status,
+                            Description = $"Conversion failed.",
+                            Files = null
+                        };
                     }
                 }
             }
@@ -745,8 +785,6 @@ namespace Aspose.HTML.Cloud.Sdk
 
                 try
                 {
-
-
                     switch (source)
                     {
                         case LocalFileSetConversionSource local:
@@ -852,6 +890,7 @@ namespace Aspose.HTML.Cloud.Sdk
                 catch(Exception ex)
                 {
                     result.Data.WithStatus(Conversion.Conversion.FAULTED);
+                    result.WithError(ex);
                     observer.OnError(ex);
                     result.Complete();
                 }

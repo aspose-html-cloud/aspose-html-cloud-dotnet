@@ -5,13 +5,10 @@ using Xunit;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class JsonOptsConversionTests : IClassFixture<BaseTest>
+    public class JsonOptsConversionTests 
     {
-        private readonly HttpClient client;
-
-        public JsonOptsConversionTests(BaseTest fixture)
+        public JsonOptsConversionTests()
         {
-            client = fixture.CreateClient();
         }
 
         [Fact]

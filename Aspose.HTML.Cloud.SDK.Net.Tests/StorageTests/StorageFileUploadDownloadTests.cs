@@ -11,17 +11,17 @@ using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Tests
 {
-    public class StorageFileUploadDownloadTests : IClassFixture<BaseTest>, IDisposable
+    public class StorageFileUploadDownloadTests : IDisposable
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
-        public StorageFileUploadDownloadTests(BaseTest fixture)
+        public StorageFileUploadDownloadTests()
         {
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -37,7 +37,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var storagePath = "/HTML/html_example1.html";
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -58,7 +58,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void UploadBytesTest()
         {
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -78,7 +78,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var localPath = "c:\\work\\html_example1.html";
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -96,7 +96,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var localPath = @"Output\StorageDownload";
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -117,7 +117,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var filePath = "/test_hello.html";
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -135,7 +135,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var filePath = "/HTML/html_example1.html";
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -156,7 +156,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             var storagePath = "/HTML/Testout/html_example1.html";
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -181,7 +181,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void UploadBytesAsyncTest()
         {
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
@@ -204,9 +204,11 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void DownloadFileAsyncTest()
         {
             var filePath = "/HTML/html_example1.html";
+            if (System.IO.File.Exists("c:\\folder\\file.html"))
+                File.Delete("c:\\folder\\file.html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;

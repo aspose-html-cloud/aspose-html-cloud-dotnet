@@ -11,7 +11,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class EpubConversionStorageToStorageTests 
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
         public EpubConversionStorageToStorageTests()
@@ -19,13 +19,13 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionStorageToLocalTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
                 Directory.SetCurrentDirectory(@"..\..\..");
 
-            using (var api = new HtmlApi(CliendId, ClientSecret))
+            using (var api = new HtmlApi(ClientId, ClientSecret))
             {
                 var remoteFile = api.Storage.UploadFile(
                     @"Input\example.epub",
@@ -43,7 +43,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -71,7 +71,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -90,7 +90,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -117,7 +117,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -136,7 +136,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -164,7 +164,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -183,7 +183,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -211,7 +211,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -230,7 +230,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -258,7 +258,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -277,7 +277,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -305,7 +305,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -324,7 +324,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -355,7 +355,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -374,7 +374,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -404,7 +404,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToStorageDirectory("/TestResult/Epub/WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);

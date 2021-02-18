@@ -12,14 +12,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class StorageTests :  IDisposable
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
         public StorageTests()
         {
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -34,7 +34,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             string storageName = "First Storage";  // put your storage name here
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storageApi = api.Storage;

@@ -494,6 +494,8 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         {
             var asyncRes = UploadDataAsync(data, fileUri, storageName, option);
             asyncRes.AsyncWaitHandle.WaitOne();
+            if (asyncRes.Error != null)
+                throw asyncRes.Error;
             return asyncRes.Data;
         }
 
@@ -520,19 +522,28 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             var uploadDir = uploadUri.Substring(0, uploadUri.LastIndexOf(uploadFileName));
 
             taskFactory.StartNew(() => {
-                var apiInvoker = InvokerFactory.GetInvoker<FilesUploadResultEx>();
-                var response = apiInvoker.CallPost(
-                    RequestUrlBuilder.GetBuilder(FILE_URI)
-                        .WithPath(uploadDir)
-                        .WithStorageName(storageName), content);
+                try
+                {
+                    var apiInvoker = InvokerFactory.GetInvoker<FilesUploadResultEx>();
+                    var response = apiInvoker.CallPost(
+                        RequestUrlBuilder.GetBuilder(FILE_URI)
+                            .WithPath(uploadDir)
+                            .WithStorageName(storageName), content);
 
-                var resFile = new RemoteFile(new Uri(response.Uploaded[0]),
-                    new RemoteFileSystemInfo(
-                        response.UploadedInfo[0].Size, 
-                        response.UploadedInfo[0].ModifiedDate.Value));
+                    var resFile = new RemoteFile(new Uri(response.Uploaded[0]),
+                        new RemoteFileSystemInfo(
+                            response.UploadedInfo[0].Size,
+                            response.UploadedInfo[0].ModifiedDate.Value));
 
-                res.WithData(resFile);
-                res.Complete();               
+                    res.WithData(resFile);
+                    res.Complete();
+                }
+                catch(Exception ex)
+                {
+                    res.WithError(ex);
+                    res.Complete();
+                }
+            
             }, cancellationTokenSource.Token);
 
             return res;
@@ -661,6 +672,8 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         {
             var res = DownloadDataAsync(fileUri, storageName, versionId);
             res.AsyncWaitHandle.WaitOne();
+            if (res.Error != null)
+                throw res.Error;
             return res.Data;
         }
 
@@ -699,36 +712,45 @@ namespace Aspose.HTML.Cloud.Sdk.IO
 
             taskFactory.StartNew(() =>  {
 
-                var apiInvoker = InvokerFactory.GetInvoker<StreamResponse>();
-                var response = apiInvoker.CallGetAsStream(url, HttpCompletionOption.ResponseHeadersRead);
-               
-                using (var outputStream = new MemoryStream())
-                using (var wr = new BinaryWriter(outputStream))
-                using (var resourceStream = response.Stream)
+                try
                 {
-                    byte[] buffer = new byte[4096];
-                    int readBytes = 0;
-                    long totalBytes = response.StreamLength;
-                    long totalRead = 0;
+                    var apiInvoker = InvokerFactory.GetInvoker<StreamResponse>();
+                    var response = apiInvoker.CallGetAsStream(url, HttpCompletionOption.ResponseHeadersRead);
 
-                    while ((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
+                    using (var outputStream = new MemoryStream())
+                    using (var wr = new BinaryWriter(outputStream))
+                    using (var resourceStream = response.Stream)
                     {
-                        totalRead += readBytes;
-                        // TODO: progress here
-                        if (cancellationTokenSource.IsCancellationRequested)
-                        {
-                            res.Complete();
-                            // set Cancel status
-                            break;
-                        }
+                        byte[] buffer = new byte[4096];
+                        int readBytes = 0;
+                        long totalBytes = response.StreamLength;
+                        long totalRead = 0;
 
-                        progressCallback?.Report(new ProgressData { ProcessedBytes = totalRead, TotalBytes = totalBytes });
-                        wr.Write(buffer, 0, readBytes);
+                        while ((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
+                        {
+                            totalRead += readBytes;
+                            // TODO: progress here
+                            if (cancellationTokenSource.IsCancellationRequested)
+                            {
+                                res.Complete();
+                                // set Cancel status
+                                break;
+                            }
+
+                            progressCallback?.Report(new ProgressData { ProcessedBytes = totalRead, TotalBytes = totalBytes });
+                            wr.Write(buffer, 0, readBytes);
+                        }
+                        wr.Flush();
+                        res.WithData(outputStream.ToArray());
+                        res.Complete();
                     }
-                    wr.Flush();
-                    res.WithData(outputStream.ToArray());
+                }
+                catch (Exception ex)
+                {
+                    res.WithError(ex);
                     res.Complete();
                 }
+
             }, cancellationTokenSource.Token);
 
             return res;

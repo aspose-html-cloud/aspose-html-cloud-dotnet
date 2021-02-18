@@ -11,7 +11,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class HtmlConversionLocalToLocalTests 
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
         public HtmlConversionLocalToLocalTests()
@@ -19,7 +19,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionLocalToLocalTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -35,7 +35,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -63,7 +63,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              
+                 .WithClientId(ClientId)              
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -82,7 +82,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -109,7 +109,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -128,7 +128,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -156,7 +156,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)                  // from user secrets
+                 .WithClientId(ClientId)                  // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -175,7 +175,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -203,7 +203,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)                  // from user secrets
+                 .WithClientId(ClientId)                  // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -222,7 +222,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder); 
@@ -250,7 +250,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)                  // from user secrets
+                 .WithClientId(ClientId)                  // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -269,7 +269,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -297,7 +297,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)                  // from user secrets
+                 .WithClientId(ClientId)                  // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -316,7 +316,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -344,7 +344,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)                  // from user secrets
+                 .WithClientId(ClientId)                  // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -363,7 +363,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -390,7 +390,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)                  // from user secrets
+                 .WithClientId(ClientId)                  // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -409,7 +409,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -434,7 +434,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html\WithParams");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)                  // from user secrets
+                 .WithClientId(ClientId)                  // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);
@@ -453,7 +453,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 .SaveToLocalDirectory(@"Output\Html");
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              // from user secrets
+                 .WithClientId(ClientId)              // from user secrets
                  .WithClientSecret(ClientSecret)))
             {
                 ConversionResult result = api.Convert(builder);

@@ -18,7 +18,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
 {
     public class AuthUserCredsConstructorsTest : IDisposable
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
         public AuthUserCredsConstructorsTest()
@@ -26,7 +26,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionStorageToStorageTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -38,7 +38,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         {
             var folder = "/Html";
 
-            using (var api = new HtmlApi(CliendId, ClientSecret))
+            using (var api = new HtmlApi(ClientId, ClientSecret))
             {
                 var storageApi = api.Storage;
                 var exists = storageApi.DirectoryExists(folder);
@@ -51,7 +51,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         {
             var folder = "/Html";
 
-            using (var api = new HtmlApi(CliendId, ClientSecret))
+            using (var api = new HtmlApi(ClientId, ClientSecret))
             {
                 var storageApi = api.Storage;
 

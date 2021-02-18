@@ -43,6 +43,14 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
         public string Id { get; }
         public int Status { get; protected set; }
 
+        public Exception Error { get; protected set;  }
+
+        internal Result WithError(Exception ex)
+        {
+            this.Error = ex;
+            return this;
+        }
+
         internal static AsyncResult<TData> CreateAsyncResult<TData>()
         {
             return new AsyncResult<TData>();

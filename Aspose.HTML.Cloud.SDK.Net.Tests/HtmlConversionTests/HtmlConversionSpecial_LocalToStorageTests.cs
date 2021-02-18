@@ -12,7 +12,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class HtmlConversionSpecial_LocalToStorageTests
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
         public HtmlConversionSpecial_LocalToStorageTests()
@@ -20,7 +20,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionLocalToLocalTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -31,7 +31,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromLocalFileToStorage_PDF()
         {
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 Conversion.Conversion result = api.ConvertLocalFile(
@@ -48,7 +48,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromLocalDirToStorage_PDF()
         {
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 Conversion.Conversion result = api.ConvertLocalDirectory(
@@ -66,7 +66,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromLocalArchiveToStorage_PDF()
         {
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 Conversion.Conversion result = api.ConvertLocalArchive(
@@ -84,7 +84,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void ConvertFromLocalFileToStorage_PDF_WithResources()
         {
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 Conversion.Conversion result = api.ConvertLocalFile(

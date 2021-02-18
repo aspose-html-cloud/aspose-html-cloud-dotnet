@@ -13,18 +13,16 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
 {
     public class AsyncTaskTests 
     {
-        string CliendId { get; set; }
+        string ClientId { get; set; }
         string ClientSecret { get; set; }
 
-        private string sourceFile = TestHelper.SrcDir + "html_file.html";
-        private string destFolder = Path.Combine(TestHelper.DstDir, "TaskTests");
 
         public AsyncTaskTests()
         {
             IConfiguration config = new ConfigurationBuilder()
                 .AddUserSecrets<HtmlConversionLocalToLocalTests>().Build();
 
-            CliendId = config["AsposeUserCredentials:ClientId"];
+            ClientId = config["AsposeUserCredentials:ClientId"];
             ClientSecret = config["AsposeUserCredentials:ClientSecret"];
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
@@ -35,7 +33,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
         public void CreateTaskLongConversion()
         {
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)              
+                 .WithClientId(ClientId)              
                  .WithClientSecret(ClientSecret)))
             {
                 var result = api.ConvertLocalFileAsync(@"Input\html_file.html", new PDFConversionOptions());
@@ -54,7 +52,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
         {
             var lstStatus = new List<string>();
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var result = api.ConvertLocalFileAsync(@"Input\epub_file.epub", new PDFConversionOptions());
@@ -89,7 +87,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.TaskTests
             var lstStatus = new List<string>();
 
             using (var api = new HtmlApi(cb => cb
-                 .WithClientId(CliendId)
+                 .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var result = api.ConvertLocalFileAsync(@"Input\epub_file.epub",
