@@ -28,23 +28,23 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
         #region Storage tests
 
-        [Fact]
-        public void GetStorageInfoTest()
-        {
-            string storageName = "First Storage";  // put your storage name here
+        //[Fact]
+        //public void GetStorageInfoTest()
+        //{
+        //    string storageName = "First Storage";  // put your storage name here
 
-            using (var api = new HtmlApi(cb => cb
-                 .WithClientId(ClientId)
-                 .WithClientSecret(ClientSecret)))
-            {
-                var storageApi = api.Storage;
-                Assert.True(storageApi.Exists(storageName));
+        //    using (var api = new HtmlApi(cb => cb
+        //         .WithClientId(ClientId)
+        //         .WithClientSecret(ClientSecret)))
+        //    {
+        //        var storageApi = api.Storage;
+        //        Assert.True(storageApi.Exists(storageName));
 
-                var storage = storageApi.GetStorage(storageName);
-                Assert.Equal(storageName, storage.Name);
-                Assert.True(storage.TotalSize > 0);
-            }        
-        }
+        //        var storage = storageApi.GetStorage(storageName);
+        //        Assert.Equal(storageName, storage.Name);
+        //        Assert.True(storage.TotalSize > 0);
+        //    }        
+        //}
 
         #endregion
 

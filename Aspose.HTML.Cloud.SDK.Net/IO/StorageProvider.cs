@@ -468,13 +468,20 @@ namespace Aspose.HTML.Cloud.Sdk.IO
             taskFactory.StartNew(() =>
             {
                 var apiInvoker = InvokerFactory.GetInvoker<FilesUploadResult>();
-                var response = apiInvoker.CallPost(
-                    RequestUrlBuilder.GetBuilder(FILE_URI)
-                        .WithPath(uploadDir)
-                        .WithStorageName(storageName), content);
-                // TO DO: 
-                var resfile = new RemoteFile(new Uri(response.Uploaded.First()), null);
-                res.WithData(resfile);
+                try
+                {
+                    var response = apiInvoker.CallPost(
+                        RequestUrlBuilder.GetBuilder(FILE_URI)
+                            .WithPath(uploadDir)
+                            .WithStorageName(storageName), content);
+                    // TO DO: 
+                    var resfile = new RemoteFile(new Uri(response.Uploaded.First()), null);
+                    res.WithData(resfile);
+                }
+                catch(Exception ex)
+                {
+                    res.WithError(ex);
+                }
                 res.Complete();
                 
             }, cancellationTokenSource.Token);
@@ -639,8 +646,9 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                 }
                 catch(Exception ex)
                 {
+                    res.WithError(ex);
                     res.Complete();
-                    throw ex;
+                    //throw ex;
                 }
             }, cancellationTokenSource.Token);
             return res;
