@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 
-namespace Aspose.HTML.Cloud.Sdk.Tests.MarkdownConversionTests
+namespace Aspose.HTML.Cloud.Sdk.Tests
 {
     public class MarkdownConversionSpecial_LocalToLocal
     {

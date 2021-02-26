@@ -27,6 +27,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
                 Directory.SetCurrentDirectory(@"..\..\..");
+
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                api.Storage.UploadFile(@"Input\html_file.html", "html_file.html", "", NameCollisionOption.ReplaceExisting);
+                api.Storage.UploadFile(@"Input\testpage1.html", "/TestData/testpage1.html", "", NameCollisionOption.ReplaceExisting);
+            }
+                
         }
 
 
@@ -35,14 +44,15 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void CheckFileExistsTest()
         {
-            var filePath = "/test.html";
+            var filePath = "/html_file.html";
 
             using (var api = new HtmlApi(cb => cb
                  .WithClientId(ClientId)
                  .WithClientSecret(ClientSecret)))
             {
                 var storage = api.Storage;
-                var exists = storage.FileExists(filePath);
+                var exists = storage.FileExists(filePath);                  
+
                 Assert.True(exists);
             }
         }
@@ -50,7 +60,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void CheckFileExistsTest_1()
         {
-            var filePath = "/test.html";
+            var filePath = "/html_file.html";
 
             using (var api = new HtmlApi(cb => cb
                  .WithClientId(ClientId)
@@ -63,7 +73,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 var remoteFile = new RemoteFile(new Uri(builtUri), null);
                 var exists = storage.FileExists(remoteFile);
                 Assert.True(exists);
-            }     
+            }
         }
 
         [Fact]
@@ -87,7 +97,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void GetFilesListTest_1()
         {
-            var folder = "/HtmlTestDoc";
+            var folder = "/TestData";
 
             using (var api = new HtmlApi(cb => cb
                  .WithClientId(ClientId)
@@ -105,7 +115,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void GetFileInfoTest()
         {
-            var filePath = "/test.html";
+            var filePath = "/TestData/testpage1.html";
             var fileName = Path.GetFileName(filePath);
 
             using (var api = new HtmlApi(cb => cb
@@ -122,7 +132,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void GetFileFromDirectoryTest()
         {
-            var storageFolder = "/Html/TestData";
+            var storageFolder = "/TestData";
             var fileName = "testpage1.html";
 
             using (var api = new HtmlApi(cb => cb
@@ -146,8 +156,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void CopyFileTest()
         {
-            var storagePathSrc = "/Html/TestData/testpage1.html";
-            var storagePathDst = "/HTML/Testout/html_example1_copy.html";
+            var storagePathSrc = "/TestData/testpage1.html";
+            var storagePathDst = "/Testout/testpage1_copy.html";
 
             using (var api = new HtmlApi(cb => cb
                  .WithClientId(ClientId)
@@ -171,7 +181,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void DeleteFile()
         {
-            var storagePath = "/HTML/Testout";
+            var storagePath = "/TestData";
             //var storagePath = "folder/file.html";
             var storageFilePath = "";
 

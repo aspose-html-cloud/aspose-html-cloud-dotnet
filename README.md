@@ -4,39 +4,23 @@ Aspose.HTML Cloud for .NET is a programming SDK that allows software developers 
 This cloud SDK assists to develop cloud-based [HTML page rendering, processing, translation & conversion](https://products.aspose.cloud/html/net) apps in C#, ASP.NET & other .NET languages via REST API.
 
 ## HTML Processing Features
-- Fetch the HTML page along with its resources as a ZIP archive by providing the page URL.
-- Based on page URL, retrieve all images of an HTML page as a ZIP package.
-- Load data from a local file to populate the HTML document template.
-- Use the request body to populate the HTML document template.
-- Convert HTML page to numerous other file formats.
+- Convert HTML or XHTML page to numerous other file formats.
+- Convert ePub, MHTML, Markdown file to numerous other file formats.
+- Manipulate files and directories in cloud storage (upload/download files, get directory contents, create and delete directories, copy and move files and directories) 
 
-## Read & Write HTML Formats
-HTML, XHTML, zipped HTML, zipped XHTML, MHTML, HTML containing SVG markup, Markdown, JSON
+### Read & Write HTML Formats
+HTML, XHTML, zipped HTML, zipped XHTML, MHTML, HTML containing SVG markup, Markdown
 
-## Save HTML As
+### Read HTML Formats
+
+*eBook*: EPUB
+
+### Save HTML As
 *Fixed Layout*: PDF, XPS, DOCX
 *Images*: TIFF, JPEG, PNG, BMP, GIF
-*Other*: TXT, ZIP (images)
+*Other*: ZIP (archived images)
 
-## Read HTML Formats
-*eBook*: EPUB
-*Other*: XML, SVG
 
-## Enhancements Version 20.12
-
-- Conversion to DOCX format support is provided
-- Bug fix: conversion result saving to the local file system produced incorrect file format.
-- To match the common standard, all occurrences of AppSid & AppKey (and similar names) in the SDK source code have been replaced to ClientId & ClientSecret respectively. 
-
-## Enhancements Version 20.11
-
-- New generation of Aspose.HTML Cloud SDK for .NET (C#) is provided.
-- This version of SDK has been redesigned from scratch being based on the new Aspose.HTML Cloud REST API (v3.0).
-- Currently, it provides only the conversion feature. Other features that are still available in the versions up to v.20.08 are planned to be implemented in this SDK later.
-- Conversion interface provides a more flexible conversion parameters setup.
-- Redesigned storage access is provided using SDK entry point HtmlApi.Storage.
-- Availability of synchronous and asynchronous file upload and download methods.
-- Asynchronous download provides the ability to get progress data for the longer downloads.
 
 ## How to use the SDK?
 
@@ -79,9 +63,17 @@ From within Visual Studio:
 
 ### Run tests and examples
 
-To run tests, firstly modify the Settings\servercreds.json file setting up your `Client ID` & `Client Secret` that you have obtained before (see Prerequisites) and basePath if it differs from http://api.aspose.cloud.
+To run tests, firstly modify the user secrets of Aspose.HTML.Cloud.Sdk.Tests project: in Solution Explorer, right-click the project and select Manage User Secrets menu item. Then replace secrets.json file contents with the following JSON:
 
-To run examples, modify the Aspose.HTML.Cloud.SDK.Examples\App.config file setting up **ClientID**, **ClientSecret**, and optionally DataPath.
+{
+  "AsposeUserCredentials": {
+    "ClientId": "your_client_id",
+    "ClientSecret": "your_client_secret"
+  }
+} 
+
+where `ClientId` & `ClientSecret` fields should be replaced with your `Client ID` & `Client Secret` that you have obtained before (see Prerequisites) 
+
 
 <a name="CodeExample"></a>
 ### Usage sample
@@ -196,6 +188,28 @@ string[] Files | A list of conversion result files.
 string Description | A description in case of unsuccessful conversion.
 
 <a name="Dependencies"></a>
+## Enhancements Version 21.02
+
+- a
+
+## Enhancements Version 20.12
+
+- Conversion to DOCX format support is provided
+- Bug fix: conversion result saving to the local file system produced incorrect file format.
+- To match the common standard, all occurrences of AppSid & AppKey (and similar names) in the SDK source code have been replaced to ClientId & ClientSecret respectively. 
+
+## Enhancements Version 20.11
+
+- New generation of Aspose.HTML Cloud SDK for .NET (C#) is provided.
+- This version of SDK has been redesigned from scratch being based on the new Aspose.HTML Cloud REST API (v4.0).
+- Currently, it provides only the conversion feature. Other features that are still available in the versions up to v.20.08 are planned to be implemented in this SDK later.
+- Conversion interface provides a more flexible conversion parameters setup.
+- Redesigned storage access is provided using SDK entry point HtmlApi.Storage.
+- Availability of synchronous and asynchronous file upload and download methods.
+- Asynchronous download provides the ability to get progress data for the longer downloads.
+
+
+
 ## Dependencies
 
 .NET Standard 2.0 or later

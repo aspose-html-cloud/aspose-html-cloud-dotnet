@@ -4,6 +4,7 @@ using System.Linq;
 using Xunit;
 using Assert = Xunit.Assert;
 using Aspose.HTML.Cloud.Sdk.Runtime.Utils;
+using Aspose.HTML.Cloud.Sdk.IO;
 using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
 
             if (Directory.GetCurrentDirectory().IndexOf(@"\bin") >= 0)
                 Directory.SetCurrentDirectory(@"..\..\..");
+
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                api.Storage.UploadFile(@"Input\html_file.html", "html_file.html", "", NameCollisionOption.ReplaceExisting);
+                api.Storage.UploadFile(@"Input\testpage1.html", "/TestData/testpage1.html", "", NameCollisionOption.ReplaceExisting);
+            }
         }
 
         #region Storage File tests - upload/download 
@@ -33,8 +42,8 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void UploadFileTest()
         {
-            var localPath = "d:\\aspose\\TestData\\html_example1.html";
-            var storagePath = "/HTML/html_example1.html";
+            var localPath = @"Input\html_file.html";
+            var storagePath = "/TestData/html_file.html";
 
             using (var api = new HtmlApi(cb => cb
                  .WithClientId(ClientId)
@@ -74,7 +83,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void DownloadFileTest()
         {
-            var storagePath = "/HTML/html_example1.html";
+            var storagePath = "/TestData/html_example1.html";
             var localPath = "c:\\work\\html_example1.html";
 
             using (var api = new HtmlApi(cb => cb
@@ -92,7 +101,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void DownloadFileFromLIstTest()
         {
-            var storagePath = "/HtmlTestDoc";
+            var storagePath = "/TestData/";
             var localPath = @"Output\StorageDownload";
 
             using (var api = new HtmlApi(cb => cb
@@ -215,9 +224,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                 var task = storage.DownloadFileAsync(filePath, "c:\\folder\\file.html");
 
                 task.AsyncWaitHandle.WaitOne();
-                // OR
-                //while (!result.IsCompleted)
-                //    Thread.Sleep(10);
 
                 Assert.True(System.IO.File.Exists("c:\\folder\\file.html"));
             }           
