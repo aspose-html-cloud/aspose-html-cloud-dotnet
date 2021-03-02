@@ -85,10 +85,10 @@ Conversion output format. Read-only property that is set up by [To]([](Conversio
 
 <a name="InputPath" />
 
-### InputPath
+### InputPaths
 
 > ```c#
-> List<string> InputPath { get; private set; }
+> List<string> InputPaths { get; private set; }
 > ```
 
 List of one or more paths that specify the conversion source. Read-only property that is set up by one of From methods.
@@ -124,6 +124,22 @@ All builder methods are divided into 3 groups:
 - "From" methods; they specify a conversion source of various types;
 - To method that specifies a conversion result format and some options specified for concrete output format;
 - "SaveTo" methods;  they specify a destination where the conversion result will be saved.
+
+### From...
+
+Specifies input data for conversion.
+
+Possible conversions:
+
+ - HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOCX, MHTML, MD
+
+ - XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOCX, MHTML, MD
+
+ - MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, DOCX, GIF, TIFF
+
+ - EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOCX
+
+   
 
 One of From methods, To method and one of SaveTo methods are required to be called with **ConversionBuilder** instance.
 

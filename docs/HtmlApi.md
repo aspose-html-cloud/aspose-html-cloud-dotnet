@@ -201,28 +201,6 @@ The specialized versions of the conversion methods are described below.
 
 
 
-
-
-
-<a name="GetConversion" />
-### GetConversion
-
-> ```
-> AsyncResult<Conversion.Conversion> GetConversion(string id)
-> ```
-
-Gets a current status of long-time conversion operation started previously by the *ConvertAsync* method.
-
-
-<a name="DeleteTask" />
-### DeleteTask
-
-> ```
-> bool DeleteTask(string id)
-> ```
-
-Cancels a long-time conversion operation started previously by the *ConvertAsync* method.
-
 <a name="ConvertUrlAsync" />
 
 ### ConvertUrlAsync

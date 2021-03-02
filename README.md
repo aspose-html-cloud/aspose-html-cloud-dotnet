@@ -65,12 +65,14 @@ From within Visual Studio:
 
 To run tests, firstly modify the user secrets of Aspose.HTML.Cloud.Sdk.Tests project: in Solution Explorer, right-click the project and select Manage User Secrets menu item. Then replace secrets.json file contents with the following JSON:
 
+```json
 {
   "AsposeUserCredentials": {
     "ClientId": "your_client_id",
     "ClientSecret": "your_client_secret"
   }
 } 
+```
 
 where `ClientId` & `ClientSecret` fields should be replaced with your `Client ID` & `Client Secret` that you have obtained before (see Prerequisites) 
 
@@ -129,72 +131,17 @@ namespace ExamplesConsoleApp
 }
 ```
 
-## ConverterBuilder
-
-### From...
-
-Specifies input data for conversion.
-
-Possible conversions:
- - HTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOCX, MHTML, MD
- - XHTML -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOCX, MHTML, MD
- - MHTML -> HTML, PDF, XPS, JPEG, PNG, BMP, DOCX, GIF, TIFF
- - EPUB -> PDF, XPS, JPEG, PNG, BMP, GIF, TIFF, DOCX
 
 
-  Method | Parameters | Description
- ------------ | ------------- | -------------
-FromLocalFile(string inputPath) | inputPath - path to a local file | A source is a file in a local file system.
-FromStorageFile(string inputPath) | inputPath - path to the file in the cloud storage | A source is a file in the cloud (user storage).
-FromLocalDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the local directory<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a local directory with linked resources (css, image, etc.) in this directory.
-FromLocalArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to a zip archive<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in a local file system.
-FromStorageDirectory(string inputDir, string startPoint, params string[] files) | inputDir - path to the directory in the storage<br> startPoint - name of the file for conversion<br> files - other files in the directory for conversion (optional) | Converts a file or files in a directory with linked resources (css, image, etc.) in this directory.
-FromStorageArchive(string inputPath, string startPoint, params string[] files) | inputPath - path to zip archive in the storage<br> startPoint - file in the archive for conversion<br> files - other files in the archive for conversion (optional) | A source with linked resources is a zip archive, located in the storage.
-FromUrl(string urlAddress) | urlAddress - web site for conversion | A source gets from a URL.
 
 
-### To(ConversionOptions)
-
-Specifies the output format for conversion.
-
-  Options | Description
- ------------ | -------------
-[GIFConversionOptions](docs/ConversionOptions.md#GIFConversionOptions) | Converting source file or URL to single or several images in GIF format.
-[JPEGConversionOptions](docs/ConversionOptions.md#JPEGConversionOptions) | Converting source file or URL to single or several images in JPEG format.
-[PNGConversionOptions](docs/ConversionOptions.md#PNGConversionOptions) | Converting source file or URL to single or several images in PNG format.
-[TIFFConversionOptions](docs/ConversionOptions.md#TIFFConversionOptions) | Converting source file or URL to single or several images in TIFF format.
-[BMPConversionOptions](docs/ConversionOptions.md#BMPConversionOptions) | Converting source file or URL to single or several images in BMP format.
-[PDFConversionOptions](docs/ConversionOptions.md#PDFConversionOptions) | Converting source file or URL to PDF.
-[XPSConversionOptions](docs/ConversionOptions.md#XPSConversionOptions) | Converting source file or URL to XPS.
-[DOCConversionOptions](docs/ConversionOptions.md#DOCConversionOptions) | Converting source file or URL to DOCX. 
-[MarkdownConversionOptions](docs/ConversionOptions.md#MarkdownConversionOptions) | Converting source file or URL to Markdown.
-
-### SaveTo...
-
-The target directory for a conversion result.
-
-  Method | Parameters | Description
- ------------ | ------------- | -------------
-SaveToLocal(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the local file system to save a conversion result.
-SaveToStorage(string outputDirectory) | outputDirectory - directory to save a result. | A directory in the cloud (user storage) to save a conversion result.
-
-## ConversionResult
-
-Result object for conversion.
-
-  Field | Description
- ------------ | -------------
-string[] Files | A list of conversion result files.
-string Description | A description in case of unsuccessful conversion.
-
-<a name="Dependencies"></a>
 ## Enhancements Version 21.02
 
-- a
+- Conversion API has been revised and simplified by excluding a number of ambiguous methods . 
 
 ## Enhancements Version 20.12
 
-- Conversion to DOCX format support is provided
+- Conversion to DOCX format support is provided.
 - Bug fix: conversion result saving to the local file system produced incorrect file format.
 - To match the common standard, all occurrences of AppSid & AppKey (and similar names) in the SDK source code have been replaced to ClientId & ClientSecret respectively. 
 
@@ -209,6 +156,8 @@ string Description | A description in case of unsuccessful conversion.
 - Asynchronous download provides the ability to get progress data for the longer downloads.
 
 
+
+<a name="Dependencies"></a>
 
 ## Dependencies
 
@@ -230,6 +179,7 @@ All URIs are relative to *https://api.aspose.cloud/v4.0*.
 ### Class: [*HtmlApi*](docs/HtmlApi.md)
 
 <a name="Doc_Auth"></a>
+
 ## Documentation for authorization methods
 
 Since Aspose.HTML Cloud REST API currently supports only JWT authorization, SDK also uses JWT tokens to authorize REST API access.
