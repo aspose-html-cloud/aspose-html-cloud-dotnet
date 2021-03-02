@@ -33,7 +33,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder builder = new ConverterBuilder()
                 .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(new PDFConversionOptions())
-                .SaveToLocalDirectory("/TestResult/Dir");
+                .SaveToStorageDirectory("/TestResult/Dir");
 
             using (var api = new HtmlApi(cb => cb
                  .WithClientId(ClientId)
@@ -61,7 +61,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             ConverterBuilder builder = new ConverterBuilder()
                 .FromLocalDirectory(@"Input\DirectoryTests\HtmlSite2", "index.html")
                 .To(pdfOpts)
-                .SaveToLocalDirectory("/TestResult/Dir/WithParams");
+                .SaveToStorageDirectory("/TestResult/Dir/WithParams");
 
             using (var api = new HtmlApi(cb => cb
                  .WithClientId(ClientId)

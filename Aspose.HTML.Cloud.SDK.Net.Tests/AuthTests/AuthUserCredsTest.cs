@@ -82,7 +82,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             // this code block emulates an external source of an authentication token
             using(var authClient = new HttpClient())
             {
-                var authUrl = "https://api-qa.aspose.cloud/connect/token";
+                var authUrl = "https://api.aspose.cloud/connect/token";
                 
                 HttpRequestMessage authReq = new HttpRequestMessage()
                 {

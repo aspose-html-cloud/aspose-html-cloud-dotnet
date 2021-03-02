@@ -14,12 +14,11 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [Fact]
         public void ConfigureViaObjectStyleTest()
         {
-            var cfg = new Configuration()
-            {
-                ClientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-                ClientId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-                Timeout = TimeSpan.FromMinutes(10)
-            };
+            var cfg = Configuration.New();
+            cfg.ClientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            cfg.ClientId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+            cfg.Timeout = TimeSpan.FromMinutes(10);
+
             using (var api = new HtmlApi(cfg))
             {
                 // 

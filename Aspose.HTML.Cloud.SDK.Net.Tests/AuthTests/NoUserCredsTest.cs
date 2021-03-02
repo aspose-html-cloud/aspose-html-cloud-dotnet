@@ -26,14 +26,14 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             var ex = Assert.Throws<ApiException>(() =>
             {
                 // API entry point inited without user credentials
-                using(var api = new HtmlApi(new Configuration()))
+                using(var api = new HtmlApi(Configuration.New()))
                 {
                     // never will be reached in this test
                     api.Storage.GetDirectories("/");
                 }
             });
             Assert.Equal(401, ex.ErrorCode);
-            Assert.Equal(HtmlApi.ERRMSG_NOUSERCREDS, ex.Message);
+            Assert.Equal(HtmlApi.ERRMSG_NO_USER_CREDS, ex.Message);
         }
 
     }

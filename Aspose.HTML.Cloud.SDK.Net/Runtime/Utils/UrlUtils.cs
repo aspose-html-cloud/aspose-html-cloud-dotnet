@@ -30,7 +30,7 @@ using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Utils
 {
-    public static class UrlUtils
+    internal static class UrlUtils
     {
         public static string ToQueryString(this List<string> model, string name)
         {

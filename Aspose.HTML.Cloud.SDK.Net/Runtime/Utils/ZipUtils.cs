@@ -34,7 +34,7 @@ using System.Threading.Tasks;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Utils
 {
-    public static class ZipUtils
+    internal static class ZipUtils
     {
         public static void CreateEntryFromAny(this ZipArchive archive, String sourceName, String entryName = "")
         {

@@ -48,20 +48,5 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
                 return new DummyAuth();
         }
 
-
-        //public IAuthenticator CreateJwtAuth(Configuration configuration)
-        //{
-        //    return new JwtAuth(configuration?.AppSid, configuration?.AppKey, configuration?.AuthUrl);
-        //}
-
-        //IAuthenticator CreateJwtAuth(string token)
-        //{
-        //    return null; // not implemented
-        //}
-
-        //public IAuthenticator CreateDummyAuth()
-        //{
-        //    return new DummyAuth();
-        //}
     }
 }

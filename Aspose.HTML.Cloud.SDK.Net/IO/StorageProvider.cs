@@ -201,7 +201,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                      .WithStorageName(storageName)
                      .WithPath(directoryUri)
                      .WithParameter("recursive", paramRecursive));
-            //// TODO
+
             return true;
         }
 
@@ -236,7 +236,6 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                      .WithSourceStorage(srcStorageName)
                      .WithDestinationStorage(destStorageName), new ByteArrayContent(new byte[] { }));
 
-            //// TODO
             var pathString = PathUtility.BuildPath("storage", destStorageName, destDirectoryUri);
             return new RemoteDirectory(new Uri(pathString), new RemoteFileSystemInfo(0, DateTime.MinValue));
         }
@@ -288,7 +287,6 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                      .WithSourceStorage(srcStorageName)
                      .WithDestinationStorage(destStorageName), new ByteArrayContent(new byte[] { }));
 
-            //// TODO
             var pathString = PathUtility.BuildPath("storage", destStorageName, destDirectoryUri);
             return new RemoteDirectory(new Uri(pathString), null);
         }
@@ -345,7 +343,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
         /// Overloaded method. Checks if a file specified by the Path property of RemoteFile object exists.
         /// </summary>
         /// <param name="file"></param>
-        /// <returns></returns 
+        /// <returns></returns> 
         public bool FileExists(RemoteFile file)
         {
             var parsed = PathUtility.Parse(file.Path);           
@@ -629,7 +627,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                         while ((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
                         {
                             totalRead += readBytes;
-                            // TODO: progress here
+
                             if (cancellationTokenSource.IsCancellationRequested)
                             {
                                 // set Cancel status
@@ -737,7 +735,7 @@ namespace Aspose.HTML.Cloud.Sdk.IO
                         while ((readBytes = resourceStream.Read(buffer, 0, buffer.Length)) != 0)
                         {
                             totalRead += readBytes;
-                            // TODO: progress here
+
                             if (cancellationTokenSource.IsCancellationRequested)
                             {
                                 res.Complete();

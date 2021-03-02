@@ -27,6 +27,9 @@ using Newtonsoft.Json;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Core.Model
 {
+    /// <summary>
+    /// Conversion result descriptor
+    /// </summary>
     public class ConversionResult : OperationResult
     {
         [JsonProperty("description")]

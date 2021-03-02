@@ -29,10 +29,10 @@ using System.Collections.Generic;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Core.Model
 {
-    public class ConversionRequest
+    internal class ConversionRequest
     {
         [JsonProperty("inputPath")]
-        public List<string> InputUrl { get; set; }
+        public List<string> InputUrls { get; set; }
         
         [JsonProperty("outputPath")]
         public string OutputUrl { get; set; }

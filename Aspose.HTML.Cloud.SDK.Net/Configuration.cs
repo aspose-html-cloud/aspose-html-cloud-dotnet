@@ -38,27 +38,33 @@ namespace Aspose.HTML.Cloud.Sdk
     {
         protected Dictionary<string, object> dictProperties = new Dictionary<string, object>();
 
-        const string CONF_AUTHURL = "AuthUrl";
-        const string CONF_APIBASEURL = "ApiBaseUrl";
+        const string CONF_AUTH_URL = "AuthUrl";
+        const string CONF_API_BASE_URL = "ApiBaseUrl";
         const string CONF_TIMEOUT = "Timeout";
-        const string CONF_EXTAUTHTOKEN = "ExternalAuthToken";
+        const string CONF_EXT_AUTH_TOKEN = "ExternalAuthToken";
 
-        const string CONF_CLIENTID = "ClientId";
-        const string CONF_CLIENTSECRET = "ClientSecret";
+        const string CONF_CLIENT_ID = "ClientId";
+        const string CONF_CLIENT_SECRET = "ClientSecret";
 
+        /// <summary>
+        /// Default authentication service URL 
+        /// </summary>
         public const string DEF_AUTH_URL = "https://api.aspose.cloud/connect/token";
+        /// <summary>
+        /// Delault underlying REST API service URL
+        /// </summary>
         public const string DEF_API_URL = "https://api.aspose.cloud/v4.0/html";
 
         /// <summary>
         /// 
         /// </summary>
         internal static string[] ConfigParams = { 
-            CONF_AUTHURL, 
-            CONF_APIBASEURL, 
+            CONF_AUTH_URL, 
+            CONF_API_BASE_URL, 
             CONF_TIMEOUT,
-            CONF_CLIENTID,
-            CONF_CLIENTSECRET,
-            CONF_EXTAUTHTOKEN
+            CONF_CLIENT_ID,
+            CONF_CLIENT_SECRET,
+            CONF_EXT_AUTH_TOKEN
         };
 
         #region .ctor
@@ -66,6 +72,40 @@ namespace Aspose.HTML.Cloud.Sdk
         /// Internally used constructor
         /// </summary>
         internal Configuration() { }
+
+        /// <summary>
+        /// Constructor. Accepts client ID and client secret as parameters.
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        public Configuration(string clientId, string clientSecret)
+            : this(clientId, clientSecret, TimeSpan.FromMinutes(1))
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor. Accepts client ID, client secret and HTTP connection timeout as parameters.
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        /// <param name="timeout"></param>
+        public Configuration(string clientId, string clientSecret, TimeSpan timeout)
+        {
+            var conf = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
+                .AddUserSecrets<Configuration>()
+                .Build();
+
+            var apiUrl = conf["DebugAsposeServices:RestApiUrl"];
+            var authUrl = conf["DebugAsposeServices:AuthUrl"];
+
+            AuthUrl = string.IsNullOrEmpty(authUrl) ? DEF_AUTH_URL : authUrl;
+            BaseUrl = string.IsNullOrEmpty(apiUrl) ? DEF_API_URL : apiUrl;
+
+            ClientId = clientId;
+            ClientSecret = clientSecret;
+            Timeout = timeout;
+        }
 
         #endregion
 
@@ -171,7 +211,7 @@ namespace Aspose.HTML.Cloud.Sdk
 
         /// <summary>
         /// A fabric method. 
-        /// Initializes an empty Configuration instance with default BaseUrl and AuthUrl values.
+        /// Initializes an empty Configuration instance with default REST API service and authorization service URLs.
         /// </summary>
         /// <returns>Configuration</returns>
         public static Configuration New()
@@ -189,25 +229,6 @@ namespace Aspose.HTML.Cloud.Sdk
                 BaseUrl = string.IsNullOrEmpty(apiUrl) ? DEF_API_URL : apiUrl
             };
         }
-
-        #region REM - reserved for future implementation
-        //public static Configuration GetFromAppConfig()
-        //{
-        //    // TODO:
-        //    return NewDefault();
-        //}
-
-        //public static Configuration GetFromEnvironment()
-        //{
-        //    //Dictionary<string, string> dictEnv = new Dictionary<string, string>(Environment.GetEnvironmentVariables(), );
-        //    //dictEnv.Select()
-        //    //.
-        //    var args = Environment.GetCommandLineArgs();
-
-        //    // TODO:
-        //    return NewDefault();
-        //}
-        #endregion
 
         /// <summary>
         /// A builder-style method. Sets the user's client secret.
@@ -258,13 +279,13 @@ namespace Aspose.HTML.Cloud.Sdk
 
             switch(key)
             {
-                case CONF_APIBASEURL:
+                case CONF_API_BASE_URL:
                     BaseUrl = (string)value;
                     break;
-                case CONF_AUTHURL:
+                case CONF_AUTH_URL:
                     AuthUrl = (string)value;
                     break;
-                case CONF_EXTAUTHTOKEN:
+                case CONF_EXT_AUTH_TOKEN:
                     return WithExternalAuthentication((string)value);
             }
             return this;
@@ -358,12 +379,6 @@ namespace Aspose.HTML.Cloud.Sdk
                 configuration.Timeout = timeout;
                 return this;
             }
-
-            //public ConfigurationBuilder WithHttpClient(HttpClient httpClient)
-            //{
-            //    configuration.HttpClient = httpClient;
-            //    return this;
-            //}
 
             /// <summary>
             /// Sets a JWT authentication token obtained from external source.

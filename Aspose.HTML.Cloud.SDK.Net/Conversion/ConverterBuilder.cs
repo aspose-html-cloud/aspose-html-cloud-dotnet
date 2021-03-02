@@ -35,11 +35,6 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
     public class ConverterBuilder
     {
         /// <summary>
-        /// Format of the conversion source file(s). Read-only property that is derived from the source .
-        /// </summary>
-        public InputFormats InputFormat { get; private set; }
-
-        /// <summary>
         /// Conversion output format. 
         /// Read-only property that is set up by To method.
         /// </summary>
@@ -49,7 +44,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// List of one or more paths that specify the conversion source. 
         /// Read-only property that is set up by one of From methods.
         /// </summary>
-        public List<string> InputPath { get; private set; }
+        public List<string> InputPaths { get; private set; }
 
         /// <summary>
         /// Path of the conversion result file.  
@@ -67,7 +62,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// Sets up a conversion source as a file or files in a directory 
         /// with linked resources (css, image, etc.), located in a local file system.
         /// </summary>
-        /// <param name="inPath">Source directory path.</param>
+        /// <param name="inputPath">Source directory path.</param>
         /// <param name="startPoint">File name that is a root HTML document.</param>
         /// <returns></returns>
         public ConverterBuilder FromLocalDirectory(string inputPath, string startPoint = null)
@@ -78,7 +73,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!Directory.Exists(inputPath))
                 throw new IOException("Directory not exists");
 
-            InputPath = new List<string>() { "file://" + inputPath, startPoint};
+            InputPaths = new List<string>() { "file://" + inputPath, startPoint};
             return this;
         }
 
@@ -99,7 +94,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!archivePath.ToLower().EndsWith(".zip"))
                 throw new ArgumentException("File must be a zip file.");
 
-            InputPath = new List<string>() { "file://" + archivePath, startPoint };
+            InputPaths = new List<string>() { "file://" + archivePath, startPoint };
             return this;
         }
 
@@ -117,7 +112,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!archivePath.ToLower().EndsWith(".zip"))
                 throw new ArgumentException("File must be a zip file.");
 
-            InputPath = new List<string>() { "storage://" + archivePath, startPoint };
+            InputPaths = new List<string>() { "storage://" + archivePath, startPoint };
             return this;
         }
 
@@ -135,7 +130,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!inPath.StartsWith("/"))
                 inPath = inPath.Insert(0, "/");
 
-            InputPath = new List<string>() { "file://" + inPath, startPoint };
+            InputPaths = new List<string>() { "storage://" + inPath, startPoint };
             return this;
         }
 
@@ -155,11 +150,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!File.Exists(filePath))
                 throw new IOException("File not exists");
 
-            InputPath = new List<string> { "file://" + filePath };
+            InputPaths = new List<string> { "file://" + filePath };
 
             foreach (var f in resources)
             {
-                InputPath.Add(f);
+                InputPaths.Add(f);
             }
 
             return this;
@@ -179,11 +174,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             if (!filePath.StartsWith("/"))
                 filePath = filePath.Insert(0, "/");
 
-            InputPath = new List<string>(){ "storage://" + filePath };
+            InputPaths = new List<string>(){ "storage://" + filePath };
 
             foreach (var f in resources)
             {
-                InputPath.Add(f);
+                InputPaths.Add(f);
             }
             return this;
         }
@@ -195,7 +190,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// <returns></returns>
         public ConverterBuilder FromUrl(string url)
         {
-            InputPath = new List<string>() { url };
+            InputPaths = new List<string>() { url };
             return this;
         }
 
@@ -219,30 +214,12 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
         /// <returns></returns>
         public ConverterBuilder SaveToLocalDirectory(string outputDirectory)   /* filePath=  c:\word\out.jpg; out.jpg*/
         {
-            //var fullPath = Path.GetFullPath(filePath);
-            //var fileName = Path.GetFileName(fullPath);
-            //var dir = Path.GetDirectoryName(fullPath);
-            //// out (1).jpg; out (2).jpg; 
-
-
-            //// filePath = "my.pdf"
-
             if (String.IsNullOrEmpty(outputDirectory))
                 throw new ArgumentNullException("Output path is empty");
 
             OutputPath = "file://" + outputDirectory.Trim();
             return this;
         }
-
-
-        //public ConverterBuilder SaveToLocal(string filePath)
-        //{
-        //public ConverterBuilder SaveToLocal(string filePath)
-        //{
-        //    return this;
-        //}
-        //    return this;
-        //}
 
         /// <summary>
         /// Sets up the cloud storage directory where the conversion result will be saved to.
@@ -263,11 +240,6 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             OutputPath = "storage://" + outputDirectory.Trim();
             return this;
         }
-
-        //public ConverterBuilder SaveToStorage(string filePath)
-        //{
-        //    return this;
-        //}
 
     }
 }

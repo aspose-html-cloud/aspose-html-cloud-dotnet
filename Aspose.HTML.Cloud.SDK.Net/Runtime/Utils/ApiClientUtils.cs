@@ -31,7 +31,7 @@ using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Utils
 {
-    public static class ApiClientUtils
+    internal static class ApiClientUtils
     {
         /// <summary>
         /// If parameter is DateTime, output in a formatted string (default ISO 8601), customizable with Configuration.DateTime.

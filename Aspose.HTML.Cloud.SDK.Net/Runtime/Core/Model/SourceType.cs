@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="StorageException.cs">
+// <copyright company="Aspose" file="SourceType.cs">
 //   Copyright (c) 2020 Aspose.HTML Cloud
 // </copyright>
 // <summary>
@@ -23,12 +23,27 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 
-namespace Aspose.HTML.Cloud.Sdk.IO
+namespace Aspose.HTML.Cloud.Sdk.Runtime.Core.Model
 {
-    class StorageException : ApiException
-    {
 
+    internal enum SourceType
+    {
+        /// <summary>
+        /// Can't determine the operation data source
+        /// </summary>
+        Unknown = 0, 
+        /// <summary>
+        /// Local file system object
+        /// </summary>
+        Local,       
+        /// <summary>
+        /// Remote storage object
+        /// </summary>
+        Remote,
+        /// <summary>
+        /// Web resource by its URL
+        /// </summary>
+        Url    
     }
 }

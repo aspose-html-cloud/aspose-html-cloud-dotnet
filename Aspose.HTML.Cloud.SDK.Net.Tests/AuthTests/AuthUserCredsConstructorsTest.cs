@@ -34,7 +34,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
         }
 
         [Fact]
-        public void AuthenticateJwt_Single()
+        public void AuthenticateUserCreds_Single()
         {
             var folder = "/Html";
 
@@ -46,8 +46,9 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.AuthTests
             }
         }
 
+
         [Fact]
-        public void AuthenticateJwt_Sequence()
+        public void AuthenticateUserCreds_Sequence()
         {
             var folder = "/Html";
 

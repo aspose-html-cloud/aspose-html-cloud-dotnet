@@ -122,18 +122,6 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
                 result.AccessToken = token;
                 result.TokenType = "Bearer";
 
-                // TODO: manual JWT token parsing, 
-                // to exclude System.IdentityModel.Tokens.Jwt dependency
-                //
-                //byte[] hdr_data = Convert.FromBase64String(result.Header);
-                //byte[] pl_data = Convert.FromBase64String(result.Payload);
-                //string hdr = Encoding.ASCII.GetString(hdr_data);
-                //string pl = Encoding.ASCII.GetString(pl_data);
-                //string sg = result.Signature;
-                //result.ClientId =
-                //    result.IssuedOn =
-                //    result.ExpiresInSeconds =
-
                 var jwtHandler = new JwtSecurityTokenHandler();
                 if (jwtHandler.CanReadToken(token))
                 {

@@ -25,6 +25,9 @@
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Core.Model
 {
+    /// <summary>
+    /// Base class of operation result descriptors.
+    /// </summary>
     public class OperationResult
     {
         public const string PENDING = "pending";
@@ -33,13 +36,24 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Core.Model
         public const string FAULTED = "faulted";
         public const string CANCELED = "canceled";
 
-
+        /// <summary>
+        /// Operation status code.
+        /// </summary>
         public int Code { get; set; }
 
+        /// <summary>
+        /// Operation identifier.
+        /// </summary>
         public Identifier Id { get; set; }
 
+        /// <summary>
+        /// Status verbose description.
+        /// </summary>
         public string Status { get; set; }
 
+        /// <summary>
+        /// Operation links. Usage depends of concrete operation.
+        /// </summary>
         public Links Links { get; set; }
     }
 }

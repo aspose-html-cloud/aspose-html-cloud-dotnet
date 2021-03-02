@@ -28,6 +28,9 @@ using System.Collections.Generic;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
 {
+    /// <summary>
+    /// Authentication exception raised by SDK method.
+    /// </summary>
     public class SdkAuthException : Exception
     {
         public enum Reason

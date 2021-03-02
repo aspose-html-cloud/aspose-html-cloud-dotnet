@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Aspose.HTML.Cloud.Sdk</AssemblyName>
     <UserSecretsId>d7c9e673-0894-42aa-abcf-eab87505f18b</UserSecretsId>
-    <Version>21.1.0</Version>
+    <Version>21.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

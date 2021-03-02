@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright company="Aspose" file="RemoteStream.cs">
+// <copyright company="Aspose" file="TargetType.cs">
 //   Copyright (c) 2020 Aspose.HTML Cloud
 // </copyright>
 // <summary>
@@ -21,43 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 // </summary>
-// -------------------------------------------------------------------------------------------------------------------- 
+// --------------------------------------------------------------------------------------------------------------------
 
-using System.IO;
 
-namespace Aspose.HTML.Cloud.Sdk.IO
+namespace Aspose.HTML.Cloud.Sdk.Runtime.Core.Model
 {
-    class RemoteStream : Stream
+    internal enum TargetType
     {
-        public override void Flush()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void SetLength(long value)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override bool CanRead { get; }
-        public override bool CanSeek { get; }
-        public override bool CanWrite { get; }
-        public override long Length { get; }
-        public override long Position { get; set; }
+        /// <summary>
+        /// Can't determite the operation result saving target.
+        /// </summary>
+        Unknown = 0, 
+        /// <summary>
+        /// Save operation result to the local file system.
+        /// </summary>
+        Local,
+        /// <summary>
+        /// Upload operation result to the remote storage.
+        /// </summary>
+        Remote
     }
 }

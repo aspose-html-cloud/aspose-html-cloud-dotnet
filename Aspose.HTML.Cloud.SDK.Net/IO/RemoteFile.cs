@@ -24,15 +24,16 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-
 using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo("Aspose.HTML.Cloud.Sdk.Tests")]
 
 namespace Aspose.HTML.Cloud.Sdk.IO
 {
+    /// <summary>
+    /// Remote storage file descriptor.
+    /// </summary>
     public class RemoteFile : RemoteFileSystem
     {
-        internal RemoteFile(Uri uri, RemoteFileSystemInfo info) 
+        public RemoteFile(Uri uri, RemoteFileSystemInfo info) 
             : base(uri, info)
         {}
     }

@@ -30,7 +30,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
     /// <summary>
     /// Internally used interface. Represents an abstraction of the authentification functionality.
     /// </summary>
-    public interface IAuthenticator
+    internal interface IAuthenticator
     {
         bool Authenticate(HttpRequestMessage request);
         void RetryAuthentication();

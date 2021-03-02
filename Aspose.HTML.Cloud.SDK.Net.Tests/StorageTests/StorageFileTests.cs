@@ -34,6 +34,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
             {
                 api.Storage.UploadFile(@"Input\html_file.html", "html_file.html", "", NameCollisionOption.ReplaceExisting);
                 api.Storage.UploadFile(@"Input\testpage1.html", "/TestData/testpage1.html", "", NameCollisionOption.ReplaceExisting);
+                api.Storage.UploadFile(@"Input\testpage1.html", "/TestData/testpage1_copy.html", "", NameCollisionOption.ReplaceExisting);
             }
                 
         }
@@ -182,7 +183,6 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         public void DeleteFile()
         {
             var storagePath = "/TestData";
-            //var storagePath = "folder/file.html";
             var storageFilePath = "";
 
             using (var api = new HtmlApi(cb => cb

@@ -45,6 +45,59 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         }
 
         [Fact]
+        public void ConvertFromLocalFileToStorage_PDF_1()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalFile(
+                    filePath: @"Input\html_file.html",
+                    options: new PDFConversionOptions(),
+                    outputPath: "/TestResult/Html/ConvertLocal");
+                // string outputPath is treated as remote storage path
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
+        public void ConvertFromLocalFileToStorage_JPEG()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalFile(
+                    filePath: @"Input\html_file.html",
+                    options: new JPEGConversionOptions(),
+                    outputPath: new RemoteDirectoryParameter("/TestResult/Html/ConvertLocal"));
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
+        public void ConvertFromLocalFileToStorage_JPEG_1()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalFile(
+                    filePath: @"Input\html_file.html",
+                    options: new JPEGConversionOptions(),
+                    outputPath: "/TestResult/Html/ConvertLocal");
+                // string outputPath is treated as remote storage path
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
         public void ConvertFromLocalDirToStorage_PDF()
         {
             using (var api = new HtmlApi(cb => cb
@@ -63,6 +116,62 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         }
 
         [Fact]
+        public void ConvertFromLocalDirToStorage_PDF_1()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalDirectory(
+                    directoryPath: @"Input\DirectoryTests\HtmlSite2",
+                    startPoint: "index.html",
+                    options: new PDFConversionOptions(),
+                    outputPath: "/TestResult/Dir/ConvertLocal2");
+                    // string outputPath is treated as default remote storage path
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
+        public void ConvertFromLocalDirToStorage_JPEG()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalDirectory(
+                    directoryPath: @"Input\DirectoryTests\HtmlSite2",
+                    startPoint: "index.html",
+                    options: new JPEGConversionOptions(),
+                    outputPath: new RemoteDirectoryParameter("/TestResult/Dir/ConvertLocal"));
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
+        public void ConvertFromLocalDirToStorage_JPEG_1()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalDirectory(
+                    directoryPath: @"Input\DirectoryTests\HtmlSite2",
+                    startPoint: "index.html",
+                    options: new JPEGConversionOptions(),
+                    outputPath: "/TestResult/Dir/ConvertLocal2");
+                // string outputPath is treated as default remote storage path
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
         public void ConvertFromLocalArchiveToStorage_PDF()
         {
             using (var api = new HtmlApi(cb => cb
@@ -74,6 +183,62 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
                     startPoint: "index.html",
                     options: new PDFConversionOptions(),
                     outputPath: new RemoteDirectoryParameter("/TestResult/Zip/ConvertLocal"));
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
+        public void ConvertFromLocalArchiveToStorage_PDF_1()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {             
+                Conversion.Conversion result = api.ConvertLocalArchive(
+                    archivePath: @"Input\ZipTests\test1.zip",
+                    startPoint: "index.html",
+                    options: new PDFConversionOptions(),
+                    outputPath: "/TestResult/Zip/ConvertLocal"); 
+                    // string outputPath is treated as remote storage path
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
+        public void ConvertFromLocalArchiveToStorage_JPEG()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalArchive(
+                    archivePath: @"Input\ZipTests\test1.zip",
+                    startPoint: "index.html",
+                    options: new JPEGConversionOptions(),
+                    outputPath: new RemoteDirectoryParameter("/TestResult/Zip/ConvertLocal"));
+
+                Assert.True(result.Status == "completed");
+                Assert.True(result.Files.Any());
+            }
+        }
+
+        [Fact]
+        public void ConvertFromLocalArchiveToStorage_JPEG_1()
+        {
+            using (var api = new HtmlApi(cb => cb
+                 .WithClientId(ClientId)
+                 .WithClientSecret(ClientSecret)))
+            {
+                Conversion.Conversion result = api.ConvertLocalArchive(
+                    archivePath: @"Input\ZipTests\test1.zip",
+                    startPoint: "index.html",
+                    options: new JPEGConversionOptions(),
+                    outputPath: "/TestResult/Zip/ConvertLocal");
+                // string outputPath is treated as remote storage path
 
                 Assert.True(result.Status == "completed");
                 Assert.True(result.Files.Any());
