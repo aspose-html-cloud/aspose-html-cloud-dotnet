@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Data>
+	<Title>Test</Title>
+	<Name>John</Name>
+	<Surname>Smith</Surname>
+	<Address>
+		<Number>200</Number>
+		<Street>Austin rd.</Street>
+		<City>Dallas</City>
+	</Address>
+</Data>

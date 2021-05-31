@@ -33,8 +33,6 @@ bld/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 [Tt]estout*/
-[Oo]utput*/
-
 
 # NUNIT
 *.VisualState.xml
