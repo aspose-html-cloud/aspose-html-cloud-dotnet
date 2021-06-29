@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Aspose.HTML.Cloud.Sdk.Tests.Base;
+using Aspose.Html.Cloud.Sdk.Client;
 
 
 namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
@@ -40,7 +41,25 @@ namespace Aspose.HTML.Cloud.Sdk.Tests.Conversion
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.Code);
             Assert.IsTrue(this.StorageApi.FileOrFolderExists(outPath, storage));
-         }
+        }
+
+        [TestMethod]
+        public void Test_PutHtmlConvert_Pdf_StorageDocToStorage_NoStorageFile()
+        {
+            string methodName = "PutConvertDocumentToPdf";
+            string name = "testpage999999.html";
+            string folder = StorageTestDataPath;
+            string storage = null;
+
+            var exception = Assert.ThrowsException<ApiException>(() => {
+                string outPath = Path.Combine(testoutStorageFolder, $"{name}_converted_at_{DateTime.Now.ToString("yyMMdd_hhmmss")}.pdf");
+                var response = this.HtmlApi.PutConvertDocumentToPdf(name, outPath, null, null, null, null, null, null, folder);
+            });
+            var path = $"{folder}/{name}";
+            Assert.IsTrue(exception.ErrorCode == (int)System.Net.HttpStatusCode.NotFound);
+            var msg = $"Error calling {methodName}: StatusCode=404 (NotFound); Dynabic.Storage.Exceptions.HttpWebException : Requested storage file not found by path '{ path }' or storage error";
+            Assert.AreEqual(msg, exception.Message);
+        }
 
         [TestMethod]
         public void Test_PostHtmlConvert_Pdf_LocalFileToStorage()

@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspose.HTML.Cloud.SDK.Examp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspose.HTML.Cloud.Sdk.Tests", "Aspose.HTML.Cloud.Sdk.Tests\Aspose.HTML.Cloud.Sdk.Tests.csproj", "{BB1069A8-29E0-4709-86AB-FC9CD9CE97F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aspose.HTML.Cloud.Sdk.PackageTests", "Aspose.HTML.Cloud.Sdk.PackageTests\Aspose.HTML.Cloud.Sdk.PackageTests.csproj", "{C08F9CC3-734F-483E-9A79-AE5C4C4D0E1F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using Newtonsoft.Json;
 
 using Aspose.Html.Cloud.Sdk.Client;
 using Aspose.Html.Cloud.Sdk.Api.Model;
@@ -65,13 +66,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         {
             HttpResponseMessage resp = ApiClient.CallGet(path, queryParams);
 
-            if (((int)resp.StatusCode) >= 400)
-                throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
-                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
-            else if (((int)resp.StatusCode) == 0)
-                throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+            GenerateApiException(resp, methodName);
 
             var fileName = "";
             if (resp.Content.Headers.ContentDisposition != null
@@ -103,13 +98,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         {
             HttpResponseMessage resp = ApiClient.CallPut(path, queryParams, headerParams, bodyStream);
 
-            if (((int)resp.StatusCode) >= 400)
-                throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
-                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
-            else if (((int)resp.StatusCode) == 0)
-                throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+            GenerateApiException(resp, methodName);
 
             var response = new AsposeResponse()
             {
@@ -128,13 +117,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
                 bodyFileName = PAR_FILENAME_I;
 
             HttpResponseMessage resp = ApiClient.CallPost(path, queryParams, headerParams, bodyStream, bodyFileName);
-            if (((int)resp.StatusCode) >= 400)
-                throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
-                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
-            else if (((int)resp.StatusCode) == 0)
-                throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+            GenerateApiException(resp, methodName);
 
             var response = new AsposeResponse()
             {
@@ -147,13 +130,7 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         protected AsposeResponse CallDeleteApi(string path, Dictionary<string, string> queryParams, string methodName = "<unknown>")
         {
             HttpResponseMessage resp = ApiClient.CallDelete(path, queryParams);
-            if (((int)resp.StatusCode) >= 400)
-                throw new ApiException((int)resp.StatusCode,
-                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
-                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), resp.ReasonPhrase), resp.ReasonPhrase);
-            else if (((int)resp.StatusCode) == 0)
-                throw new ApiException((int)resp.StatusCode,
-                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+            GenerateApiException(resp, methodName);
 
             var response = new AsposeResponse()
             {
@@ -164,6 +141,28 @@ namespace Aspose.Html.Cloud.Sdk.Api.Internal
         }
 
         #endregion 
+
+        protected ApiError GetErrorResponseContentAsObject(HttpResponseMessage response)
+        {
+            string jsonContent = response.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<ApiError>(jsonContent);
+        }
+
+        protected void GenerateApiException(HttpResponseMessage resp, string methodName = "<unknown>")
+        {
+            if (((int)resp.StatusCode) >= 400)
+            {
+                var errObj = GetErrorResponseContentAsObject(resp);
+                throw new ApiException((int)resp.StatusCode,
+                    string.Format("Error calling {0}: StatusCode={1} ({2}); {3}",
+                    methodName, (int)resp.StatusCode, resp.StatusCode.ToString(), errObj.Message), errObj);
+            }    
+            else if (((int)resp.StatusCode) == 0)
+            {
+                throw new ApiException((int)resp.StatusCode,
+                   string.Format("Error calling {0}:  StatusCode=0; {1}", methodName, resp.ReasonPhrase), resp.ReasonPhrase);
+            }
+        }
 
     }
 }

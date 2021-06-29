@@ -90,6 +90,8 @@ namespace Aspose.HTML.Cloud.Examples
             Runners.Add("ConvertHTMLByUrl.MHTML", new ConvertHTMLByUrl("mhtml"));
             // == Example == convert HTML document from storage to PDF
             Runners.Add("ConvertHTMLByName.PDF", new ConvertHTMLByName("pdf"));
+            // == Example == convert HTML document from storage to PDF - storage file doesn't exist
+            Runners.Add("ConvertHTMLByName.PDF.NoStorageFile", new ConvertHTMLByName_NoStorageFile("pdf"));
             // == Example == convert HTML document from storage to XPS
             Runners.Add("ConvertHTMLByName.XPS", new ConvertHTMLByName("xps"));
             // == Example == convert HTML document from storage to DOCX
@@ -136,7 +138,7 @@ namespace Aspose.HTML.Cloud.Examples
         public static void Main(string[] args)
         {
             // setup example you want to try out
-            string example = "ExtractHTMLImages_ExtJwtToken";
+            string example = "ConvertHTMLByName.PDF.NoStorageFile";
             ISdkRunner runner = (Runners.ContainsKey(example)) ? Runners[example] : null;
 
             //Console.WriteLine("\nPress any key to continue....");

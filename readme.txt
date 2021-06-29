@@ -1,5 +1,5 @@
 ----------------------------------------------------
-Aspose.HTML Cloud SDK for .NET v.19.10.1 - Readme
+Aspose.HTML Cloud SDK for .NET v.21.06.0 - Readme
 ----------------------------------------------------
 
 This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applications quickly and easily, with zero initial cost.
@@ -8,7 +8,7 @@ This SDK allows you to work with Aspose.HTML Cloud REST APIs in your .NET applic
 Key Features
 ------------------------
 
-* Conversion of HTML document into various formats; PDF, XPS document formats and JPEG, PNG, BMP, TIFF raster graphics formats are supported
+* Conversion of HTML document into various formats; PDF, XPS, DOCX document formats and JPEG, PNG, BMP, TIFF raster graphics formats are supported
 * Conversion of ePUB or MHTML document into the same formats that are supported for HTML
 * Merging HTML/XHTML templates with external data source; XML is supported as source data format
 * Extraction of HTML fragments using XPath queries

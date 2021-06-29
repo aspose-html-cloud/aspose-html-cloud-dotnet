@@ -103,7 +103,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK
         {
             get
             {
-                if (_basePath == null)
+                if (_authPath == null)
                 {
                     string val = ConfigurationManager.AppSettings["authUrl"];
                     if (string.IsNullOrEmpty(val))
@@ -112,7 +112,7 @@ namespace Aspose.HTML.Cloud.Examples.SDK
                         val = ConfigurationManager.AppSettings["baseUrl"] ?? DefaultBaseUrl;
                     _authPath = val;
                 }
-                return _basePath;
+                return _authPath;
             }
         }
 

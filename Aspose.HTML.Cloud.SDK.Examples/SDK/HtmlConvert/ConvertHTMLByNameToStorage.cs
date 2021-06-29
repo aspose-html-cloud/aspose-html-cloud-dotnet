@@ -18,16 +18,21 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
     /// </summary>
     public class ConvertHTMLByNameToStorage : ISdkRunner
     {
-        private string Format { get; set; }
+        protected string Format { get; set; }
+
+        protected string FileName { get; set; }
+
+        protected virtual bool CheckIfStorageFileExists { get; set; } = true;
 
         public ConvertHTMLByNameToStorage(string format)
         {
             Format = format;
+            FileName = "testpage4_embcss.html";
         }
 
         public void Run()
         {
-            var name = "testpage4_embcss.html";
+            var name = FileName;
             var srcPath = Path.Combine(CommonSettings.LocalDataFolder, name);
             string folder = CommonSettings.StorageDataFolder;
             string storage = null;
@@ -48,12 +53,15 @@ namespace Aspose.HTML.Cloud.Examples.SDK.HtmlConvert
             string outFile = $"{Path.GetFileNameWithoutExtension(name)}_converted_at_{DateTime.Now.ToString("yyyyMMdd_hhmmss")}.{ext}";
             string outPath = Path.Combine(outFolder, outFile).Replace('\\', '/');
 
-            if (File.Exists(srcPath))
+            if(CheckIfStorageFileExists)
             {
-                SdkBaseRunner.UploadToStorage(storagePath, srcPath);
+                if (File.Exists(srcPath))
+                {
+                    SdkBaseRunner.UploadToStorage(storagePath, srcPath);
+                }
+                else
+                    throw new Exception(string.Format("Error: file {0} not found.", srcPath));
             }
-            else
-                throw new Exception(string.Format("Error: file {0} not found.", srcPath));
 
             IConversionApi convApi = new HtmlApi(CommonSettings.ClientId, CommonSettings.ClientSecret, CommonSettings.BasePath);
             AsposeResponse response = null;
