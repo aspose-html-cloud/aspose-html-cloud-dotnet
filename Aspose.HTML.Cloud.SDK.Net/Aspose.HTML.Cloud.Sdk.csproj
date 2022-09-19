@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Aspose.HTML.Cloud.Sdk</AssemblyName>
+    <Configurations>Debug;Release;QA</Configurations>
+    <UserSecretsId>3c7a632a-843b-4b5c-a676-53970ee7b13f</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath></OutputPath>
+	<DefineConstants>PRODUCTION</DefineConstants>
+    <DocumentationFile>bin\Release\netstandard2.0\Aspose.HTML.Cloud.Sdk.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='QA|AnyCPU'">
+    <OutputPath />
+    <DefineConstants></DefineConstants>
+    <DocumentationFile>bin\QA\netstandard2.0\Aspose.HTML.Cloud.Sdk.xml</DocumentationFile>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="Extensions\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <None Remove="Extensions\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="Conversion\Sources\FileSetConversionSource.cs" />
+    <Compile Remove="Conversion\Sources\LocalArchiveConversionSource.cs" />
+    <Compile Remove="Conversion\Sources\LocalDirectoryConversionSource.cs" />
+    <Compile Remove="Conversion\Sources\LocalFileSetConversionSource.cs" />
+    <Compile Remove="Conversion\Sources\PackageConversionSource.cs" />
+    <Compile Remove="Conversion\Sources\RemoteArchiveConversionSource.cs" />
+    <Compile Remove="Conversion\Sources\RemoteFileConversionSource.cs" />
+    <Compile Remove="Conversion\Sources\SourceTypes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+</Project>
