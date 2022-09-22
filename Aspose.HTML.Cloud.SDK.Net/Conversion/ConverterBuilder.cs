@@ -37,15 +37,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
     public class ConverterBuilder
     {
         internal ConversionOptions Options { get; private set; }
-
         internal ConversionResultFormat ResultFormat { get; private set; }
-
         internal OutputFormats OutputFormat { get; private set; }
         internal InputFormats InputFormat { get; private set; }
-
         internal string OutputFilePath { get; private set; }
         internal string StorageName { get; set; }
-
         internal ConversionDataSource Source { get; }
 
         /// <summary>
@@ -56,6 +52,12 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             Source = new ConversionDataSource();
         }
 
+        /// <summary>
+        /// Define local file to convert
+        /// </summary>
+        /// <param name="filePath">File path</param>
+        /// <param name="resources">List of resources if any. For example CSS and images files used in HTML</param>
+        /// <returns></returns>
         public ConverterBuilder FromLocalFile(string filePath, IList<string> resources)
         {
             FromLocalFile(filePath);
@@ -63,6 +65,12 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return this;
         }
 
+        /// <summary>
+        /// Define local file to convert
+        /// </summary>
+        /// <param name="filePath">File path</param>
+        /// <param name="resourcesDirectory">Directory with resources. or example CSS and images files used in HTML</param>
+        /// <returns></returns>
         public ConverterBuilder FromLocalFile(string filePath, string resourcesDirectory)
         {
             FromLocalFile(filePath);
@@ -70,6 +78,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return this;
         }
 
+        /// <summary>
+        /// Define local file to convert
+        /// </summary>
+        /// <param name="filePath">File path</param>
+        /// <returns></returns>
         public ConverterBuilder FromLocalFile(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
@@ -96,6 +109,12 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return this;
         }
 
+        /// <summary>
+        /// Define remote file to convert
+        /// </summary>
+        /// <param name="filePath">Path to file in storage</param>
+        /// <param name="storageName">Storage name</param>
+        /// <returns></returns>
         public ConverterBuilder FromStorageFile(string filePath, string storageName)
         {
             if (!string.IsNullOrWhiteSpace(StorageName) &&
@@ -107,6 +126,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return FromStorageFile(filePath);
         }
 
+        /// <summary>
+        /// Define remote file to convert
+        /// </summary>
+        /// <param name="filePath">Path to file in storage</param>
+        /// <returns></returns>
         public ConverterBuilder FromStorageFile(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
@@ -116,7 +140,7 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             var inputFormat = filePath.GetFileFormatFromFile<InputFormats>();
             if (!inputFormat.HasValue)
             {
-                throw new ArgumentException("Not supported output file extension");
+                throw new ArgumentException("Not supported input file extension");
             }
             InputFormat = inputFormat.Value;
             Source.FilePath = filePath;
@@ -124,22 +148,29 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return this;
         }
 
+        /// <summary>
+        /// Define url to convert
+        /// </summary>
+        /// <param name="url">The url</param>
+        /// <returns></returns>
         public ConverterBuilder FromUrl(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
                 throw new ArgumentNullException(nameof(url));
             }
-            var inputFormat = url.GetFileFormatFromFile<InputFormats>();
-            if (!inputFormat.HasValue)
-            {
-                throw new ArgumentException("Not supported output file extension");
-            }
-            InputFormat = inputFormat.Value;
+            // Fallback to HTML since it is url
+            var inputFormat = url.GetFileFormatFromFile<InputFormats>() ?? InputFormats.HTML;
+            InputFormat = inputFormat;
             Source.FilePath = url;
             return this;
         }
 
+        /// <summary>
+        /// Define conversion output local path
+        /// </summary>
+        /// <param name="outputFilePath">Local path to output file</param>
+        /// <returns></returns>
         public ConverterBuilder ToLocalFile(string outputFilePath)
         {
             if (string.IsNullOrWhiteSpace(outputFilePath))
@@ -159,6 +190,12 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return this;
         }
 
+        /// <summary>
+        /// Define conversion output storage path
+        /// </summary>
+        /// <param name="outputFilePath">Storage path to output file</param>
+        /// <param name="storageName">Storage name</param>
+        /// <returns></returns>
         public ConverterBuilder ToStorageFile(string outputFilePath, string storageName)
         {
             if (!string.IsNullOrWhiteSpace(StorageName) &&
@@ -170,6 +207,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return ToStorageFile(outputFilePath);
         }
 
+        /// <summary>
+        /// Define conversion output storage path
+        /// </summary>
+        /// <param name="outputFilePath">Storage path to output file</param>
+        /// <returns></returns>
         public ConverterBuilder ToStorageFile(string outputFilePath)
         {
             if (string.IsNullOrWhiteSpace(outputFilePath))
@@ -189,6 +231,11 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             return this;
         }
 
+        /// <summary>
+        /// Define options used in conversion
+        /// </summary>
+        /// <param name="options">The options</param>
+        /// <returns></returns>
         public ConverterBuilder UseOptions(ConversionOptions options)
         {
             if (options == null)

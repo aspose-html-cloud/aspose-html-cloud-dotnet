@@ -10,7 +10,7 @@
         public BaseTest()
         {
             configuration =
-                new Configuration("5add06cf-9af7-44f6-b180-dfcc2583cfcb", "71a5b89b3f83cd39195d7fc39382babd");
+                new Configuration("client_id", "client_secret");
         }
     }
 }
