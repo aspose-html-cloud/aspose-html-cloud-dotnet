@@ -27,36 +27,66 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
     public class XPSConversionOptions : FixedLayoutConversionOptions
     {
+        /// <summary>
+        /// Setter of XPS width.
+        /// </summary>
+        /// <param name="width">XPS width in inches</param>
+        /// <returns>XPSConversionOptions</returns>
         public XPSConversionOptions SetWidth(int width)
         {
             Width = width;
             return this;
         }
 
+        /// <summary>
+        /// Setter of XPS height.
+        /// </summary>
+        /// <param name="height">XPS height in inches</param>
+        /// <returns>XPSConversionOptions</returns>
         public XPSConversionOptions SetHeight(int height)
         {
             Height = height;
             return this;
         }
 
+        /// <summary>
+        /// Setter of XPS left margin.
+        /// </summary>
+        /// <param name="leftMargin">XPS left margin in inches</param>
+        /// <returns>XPSConversionOptions</returns>
         public XPSConversionOptions SetLeftMargin(int leftMargin)
         {
             LeftMargin = leftMargin;
             return this;
         }
 
+        /// <summary>
+        /// Setter of XPS right margin.
+        /// </summary>
+        /// <param name="rightMargin">XPS right margin in inches</param>
+        /// <returns>XPSConversionOptions</returns>
         public XPSConversionOptions SetRightMargin(int rightMargin)
         {
             RightMargin = rightMargin;
             return this;
         }
 
+        /// <summary>
+        /// Setter of XPS top margin.
+        /// </summary>
+        /// <param name="topMargin">XPS top margin in inches</param>
+        /// <returns>XPSConversionOptions</returns>
         public XPSConversionOptions SetTopMargin(int topMargin)
         {
             TopMargin = topMargin;
             return this;
         }
 
+        /// <summary>
+        /// Setter of XPS bottom margin.
+        /// </summary>
+        /// <param name="bottomMargin">XPS bottom margin in inches</param>
+        /// <returns>XPSConversionOptions</returns>
         public XPSConversionOptions SetBottomMargin(int bottomMargin)
         {
             BottomMargin = bottomMargin;
