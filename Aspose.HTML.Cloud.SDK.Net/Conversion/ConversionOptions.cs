@@ -25,8 +25,11 @@
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
-    public class ConversionOptions
+    /// <summary>
+    /// Conversion options
+    /// </summary>
+    public abstract class ConversionOptions
     {
-
+        // TODO: to interface
     }
 }

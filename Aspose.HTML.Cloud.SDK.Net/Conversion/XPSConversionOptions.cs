@@ -25,6 +25,9 @@
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
+    /// <summary>
+    /// XPS options
+    /// </summary>
     public class XPSConversionOptions : FixedLayoutConversionOptions
     {
         /// <summary>

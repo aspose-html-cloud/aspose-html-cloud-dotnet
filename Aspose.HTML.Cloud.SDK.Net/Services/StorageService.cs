@@ -370,6 +370,9 @@ namespace Aspose.HTML.Cloud.Sdk.Services
             return !await FileExistsAsync(fileUri, storageName);
         }
 
+        /// <summary>
+        /// TODO: To be added if requested by client
+        /// </summary>
         internal async Task<RemoteFile> CopyFileAsync(string srcFileUri, string destFileUri, string srcStorageName = null, string destStorageName = null)
         {
             var apiInvoker = InvokerFactory.GetInvoker<ObjectExist>();
@@ -382,6 +385,9 @@ namespace Aspose.HTML.Cloud.Sdk.Services
             return new RemoteFile(destFileUri, null);
         }
 
+        /// <summary>
+        /// TODO: To be added if requested by client
+        /// </summary>
         internal async Task<RemoteFile> MoveFileAsync(string srcFileUri, string destFileUri, string srcStorageName = null, string destStorageName = null)
         {
             var apiInvoker = InvokerFactory.GetInvoker<ObjectExist>();

@@ -25,17 +25,15 @@
 
 namespace Aspose.HTML.Cloud.Sdk
 {
-    public class Configuration
+    internal class Configuration
     {
-
         internal const string DEF_AUTH_URL = "https://api.aspose.cloud/connect/token";
         internal const string DEF_API_URL = "https://api.aspose.cloud/v4.0/html";
         internal string BaseUrl { get; set; } = "/v4.0/html/";
         internal string AuthUrl { get; set; } = DEF_AUTH_URL;
-        public string ClientSecret { get; set; }
-        public string ClientId { get; set; }
-
-        public Configuration(string clientId, string clientSecret)
+        internal string ClientSecret { get; set; }
+        internal string ClientId { get; set; }
+        internal Configuration(string clientId, string clientSecret)
         {
             ClientSecret = clientSecret;
             ClientId = clientId;

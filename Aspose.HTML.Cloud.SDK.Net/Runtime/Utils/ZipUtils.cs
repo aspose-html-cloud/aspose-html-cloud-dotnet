@@ -31,6 +31,9 @@ using System.Linq;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Utils
 {
+    /// <summary>
+    /// TODO:To be used later
+    /// </summary>
     internal static class ZipUtils
     {
         internal static void CreateEntryFromAny(this ZipArchive archive, string sourceName, string entryName = "")

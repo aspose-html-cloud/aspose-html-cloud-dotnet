@@ -30,6 +30,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
     internal class ApiInvokerFactory
     {
         private IAuthenticator Authenticator { get; }
+
         private Configuration Configuration { get; }
 
         internal ApiInvokerFactory(Configuration configuration)

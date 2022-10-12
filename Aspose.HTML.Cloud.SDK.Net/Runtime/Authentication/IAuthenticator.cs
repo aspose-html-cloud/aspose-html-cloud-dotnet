@@ -28,12 +28,10 @@ using System.Threading.Tasks;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
 {
-    /// <summary>
-    /// Internally used interface. Represents an abstraction of the authentification functionality.
-    /// </summary>
-    public interface IAuthenticator
+    internal interface IAuthenticator
     {
         Task<bool> AuthenticateAsync(HttpRequestMessage request);
+        
         void RetryAuthentication();
 
         bool UseExternalAuthentication { get; }

@@ -43,15 +43,16 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
 
         public enum AuthType
         {
-            Unknown = 0, NoAuth = 1, OAuth2, Jwt
+            Unknown = 0, 
+            NoAuth = 1, 
+            OAuth2, 
+            Jwt
         }
 
         protected static Dictionary<AuthType, string> DictAuthTypes = new Dictionary<AuthType, string>();
-
         protected string MClientId;
         protected string MClientSecret;
         protected AuthFlow MAuthFlow;
-
         protected readonly string MAuthPath;
         protected readonly AuthType MAuthType;
 
@@ -78,7 +79,7 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
             {
                 if (!ExternalAuth)
                 {
-                    var host = MAuthPath; 
+                    var host = MAuthPath;
                     var authUriString = GetAuthUriString(host);
                     using (var authClient = new HttpClient())
                     {
@@ -109,10 +110,10 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
                                 return false;
                             }
                         }
-                        
+
                     }
 
-                    
+
                 }
                 else
                 {

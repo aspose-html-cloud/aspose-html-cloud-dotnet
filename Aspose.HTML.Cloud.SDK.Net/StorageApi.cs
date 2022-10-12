@@ -9,6 +9,9 @@ using Aspose.HTML.Cloud.Sdk.Services;
 
 namespace Aspose.HTML.Cloud.Sdk
 {
+    /// <summary>
+    /// API for manipulations with files and directories
+    /// </summary>
     public class StorageApi
     {
         private readonly StorageService storageService;

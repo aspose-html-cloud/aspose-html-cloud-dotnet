@@ -25,13 +25,39 @@
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
+    /// <summary>
+    /// Conversion options for files with fixed layout
+    /// </summary>
     public abstract class FixedLayoutConversionOptions : ConversionOptions
     {
+        /// <summary>
+        /// Width
+        /// </summary>
         public int? Width { get; set; }
+
+        /// <summary>
+        /// Height
+        /// </summary>
         public int? Height { get; set; }
+
+        /// <summary>
+        /// Left Margin
+        /// </summary>
         public int? LeftMargin { get; set; }
+
+        /// <summary>
+        /// Right Margin
+        /// </summary>
         public int? RightMargin { get; set; }
+
+        /// <summary>
+        /// Top Margin
+        /// </summary>
         public int? TopMargin { get; set; }
+
+        /// <summary>
+        /// Bottom Margin
+        /// </summary>
         public int? BottomMargin { get; set; }
 
     }

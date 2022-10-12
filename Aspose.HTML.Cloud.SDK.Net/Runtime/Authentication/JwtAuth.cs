@@ -61,7 +61,6 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
             MAuthFlow = AuthFlow.Obtained;
         }
 
-
         public async Task<bool> AuthenticateAsync(HttpRequestMessage request)
         {
             var res = await AuthenticateImplAsync(request);
@@ -87,7 +86,6 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
         public bool UseExternalAuthentication => ExternalAuth;
 
         public SdkAuthException AuthError => ErrorImpl;
-
 
         protected override string GetAuthUriString(string host)
         {

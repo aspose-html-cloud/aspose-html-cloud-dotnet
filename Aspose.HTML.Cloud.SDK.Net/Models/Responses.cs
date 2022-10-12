@@ -174,7 +174,7 @@ namespace Aspose.HTML.Cloud.Sdk.Models
         /// <summary>
         /// Public constructor
         /// </summary>
-        public FilesUploadResultEx() : base()
+        public FilesUploadResultEx()
         {
             UploadedInfo = new List<StorageFile>();
             Errors = new List<Error>();
@@ -187,10 +187,19 @@ namespace Aspose.HTML.Cloud.Sdk.Models
 
     }
 
+    /// <summary>
+    /// Stream response
+    /// </summary>
     public class StreamResponse
     {
+        /// <summary>
+        /// Stream
+        /// </summary>
         public Stream  Stream { get; protected set; }
 
+        /// <summary>
+        /// Stream Length
+        /// </summary>
         public long StreamLength { get; protected set; }
 
 
@@ -198,6 +207,11 @@ namespace Aspose.HTML.Cloud.Sdk.Models
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public static async Task<StreamResponse> GetFromHttpResponseAsync(HttpResponseMessage response)
         {
             return new StreamResponse

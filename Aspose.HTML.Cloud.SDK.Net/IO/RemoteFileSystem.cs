@@ -30,16 +30,25 @@ namespace Aspose.HTML.Cloud.Sdk.IO
     /// </summary>
     public class RemoteFileSystem
     {
-        private readonly string _uri;
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="uri">Uri</param>
+        /// <param name="info">Remote file system info</param>
         protected RemoteFileSystem(string uri, RemoteFileSystemInfo info)
         {
-            _uri = uri;
+            Path = uri;
             Info = info;
         }
 
-        public string Path => _uri;
+        /// <summary>
+        /// File path
+        /// </summary>
+        public string Path { get; }
 
+        /// <summary>
+        /// Remote file system info
+        /// </summary>
         public RemoteFileSystemInfo Info { get; }
     }
 }

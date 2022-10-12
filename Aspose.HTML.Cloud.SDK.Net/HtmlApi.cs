@@ -25,12 +25,28 @@
 
 namespace Aspose.HTML.Cloud.Sdk
 {
+    /// <summary>
+    /// HTML CLoud API interface
+    /// </summary>
     public class HtmlApi
     {
         private readonly Configuration config;
+
+        /// <summary>
+        /// Conversion methods API
+        /// </summary>
         public ConvertApi ConvertApi => new ConvertApi(config, StorageApi);
+
+        /// <summary>
+        /// Storage methods API
+        /// </summary>
         public StorageApi StorageApi => new StorageApi(config);
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="clientId">Your CLIENT ID</param>
+        /// <param name="clientSecret">Your CLIENT SECRET</param>
         public HtmlApi(string clientId, string clientSecret)
         {
             config = new Configuration(clientId, clientSecret);

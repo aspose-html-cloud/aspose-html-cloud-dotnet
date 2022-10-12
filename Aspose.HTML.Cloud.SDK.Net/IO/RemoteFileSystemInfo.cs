@@ -32,14 +32,25 @@ namespace Aspose.HTML.Cloud.Sdk.IO
     /// </summary>
     public class RemoteFileSystemInfo
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="size">Size</param>
+        /// <param name="time">Time</param>
         public RemoteFileSystemInfo(long size, DateTime time)
         {
             Size = size;
             LastModifiedDate = time;
         }
 
+        /// <summary>
+        /// Size
+        /// </summary>
         public long Size { get; protected set; }
 
+        /// <summary>
+        /// Last Modified Date
+        /// </summary>
         public DateTime LastModifiedDate { get; protected set; }
 
     }

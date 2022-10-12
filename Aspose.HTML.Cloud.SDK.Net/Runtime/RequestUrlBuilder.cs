@@ -33,7 +33,6 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime
     {
         private readonly Dictionary<string, string> queryParams = new Dictionary<string, string>();
 
-
         private string UrlPath { get; set; }
 
         private RequestUrlBuilder()

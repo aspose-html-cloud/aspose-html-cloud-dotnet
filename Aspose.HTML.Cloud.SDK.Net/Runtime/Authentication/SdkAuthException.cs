@@ -28,17 +28,37 @@ using System.Collections.Generic;
 
 namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
 {
+    /// <summary>
+    /// SDK exception
+    /// </summary>
     public class SdkAuthException : Exception
     {
+        /// <summary>
+        /// Exception Reasons options
+        /// </summary>
         public enum Reason
         {
+            /// <summary>
+            /// Common exception
+            /// </summary>
             Common,
+
+            /// <summary>
+            ///Unknown authentication exception
+            /// </summary>
             UnknownAuthMethod,
+
+            /// <summary>
+            /// Token expired exception
+            /// </summary>
             TokenExpired,
+
+            /// <summary>
+            /// Authentication service error
+            /// </summary>
             AuthServiceConnect
         }
 
-        private readonly Reason mReason;
         private static readonly Dictionary<Reason, string> DictDefaultReasonMsg;
 
         static SdkAuthException()
@@ -52,23 +72,35 @@ namespace Aspose.HTML.Cloud.Sdk.Runtime.Authentication
             };
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="reason">Error reason</param>
+        /// <param name="message">Error message</param>
         public SdkAuthException(Reason reason, string message) : base(message)
         {
-            mReason = reason;
+            ErrorReason = reason;
         }
 
-        public Reason ErrorReason => mReason;
+        /// <summary>
+        /// Error reason
+        /// </summary>
+        public Reason ErrorReason { get; }
 
+        /// <summary>
+        /// Error message
+        /// </summary>
         public override string Message
         {
             get
             {
-                if (base.Message == null)
+                if (base.Message != null)
                 {
-                    if (DictDefaultReasonMsg.ContainsKey(mReason))
-                        return DictDefaultReasonMsg[mReason];
+                    return base.Message;
                 }
-                return base.Message;
+                return DictDefaultReasonMsg.ContainsKey(ErrorReason) 
+                    ? DictDefaultReasonMsg[ErrorReason] 
+                    : base.Message;
             }
         }
 
