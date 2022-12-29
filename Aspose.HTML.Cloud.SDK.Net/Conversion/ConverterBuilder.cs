@@ -26,8 +26,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Aspose.HTML.Cloud.Sdk.Common.Extensions;
 using Aspose.HTML.Cloud.Sdk.Conversion.Sources;
+using static Aspose.HTML.Cloud.Sdk.Models.FilesUploadResult;
 
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
@@ -244,6 +246,37 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
             }
             Options = options;
             return this;
+        }
+
+        /// <summary>
+        /// Validate builder
+        /// </summary>
+        /// <exception cref="Exception">Exception if builder configuration is not valid</exception>
+        public void Validate()
+        {
+            var errors = new List<string>();
+
+            if (InputFormat == InputFormats.UNDEFINED)
+            {
+                errors.Add("Input format is not defined");
+            }
+
+            if (OutputFormat == OutputFormats.UNDEFINED)
+            {
+                errors.Add("Output format is not defined");
+            }
+
+            if (!FormatsValidation.IsSupportedConversion(InputFormat, OutputFormat))
+            {
+                var supportedFormats = FormatsValidation.GetSupportedOutputFormats(InputFormat);
+                errors.Add($"Conversion from {InputFormat} to {OutputFormat} is not supported. {InputFormat} can be converted into {string.Join(", ", supportedFormats.Select(f=>f.ToString()))}");
+            }
+
+            if (errors.Any())
+            {
+                throw new Exception(string.Join("; ", errors));
+            }
+
         }
     }
 }

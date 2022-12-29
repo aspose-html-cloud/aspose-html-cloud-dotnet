@@ -23,6 +23,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Aspose.HTML.Cloud.Sdk.Conversion
 {
     /// <summary>
@@ -32,10 +36,16 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
     {
         UNDEFINED, 
         HTML, 
-        XHTML, 
+        XHTML,
+        MHTML,
         EPUB, 
         SVG, 
-        MD
+        MD,
+        JPEG,
+        PNG,
+        BMP,
+        GIF,
+        TIFF
     }
 
     /// <summary>
@@ -43,16 +53,106 @@ namespace Aspose.HTML.Cloud.Sdk.Conversion
     /// </summary>
     public enum OutputFormats
     {
+        UNDEFINED,
         JPEG = 1, 
         PNG, 
         BMP, 
         GIF, 
         TIFF,
         MD, 
-        MHTML, 
+        MHTML,
+        HTML,
         PDF, 
         XPS, 
         DOC, 
-        DOCX
+        DOCX,
+        SVG
+    }
+
+    internal static class FormatsValidation
+    {
+        private static readonly Dictionary<InputFormats, OutputFormats[]> SupportedFormats =
+            new Dictionary<InputFormats, OutputFormats[]>
+            {
+                {
+                    InputFormats.HTML,
+                    new[]
+                    {
+                        OutputFormats.PDF, OutputFormats.XPS, OutputFormats.DOC, OutputFormats.DOCX,
+                        OutputFormats.JPEG, OutputFormats.PNG, OutputFormats.BMP, OutputFormats.GIF, OutputFormats.TIFF,
+                        OutputFormats.MHTML, OutputFormats.MD
+                    }
+                },
+                {
+                    InputFormats.XHTML,
+                    new[]
+                    {
+                        OutputFormats.PDF, OutputFormats.XPS, OutputFormats.DOC, OutputFormats.DOCX,
+                        OutputFormats.JPEG, OutputFormats.PNG, OutputFormats.BMP, OutputFormats.GIF, OutputFormats.TIFF,
+                        OutputFormats.MHTML, OutputFormats.MD
+                    }
+                },
+                {
+                    InputFormats.MHTML,
+                    new[]
+                    {
+                        OutputFormats.HTML,
+                        OutputFormats.PDF, OutputFormats.XPS, OutputFormats.DOC, OutputFormats.DOCX,
+                        OutputFormats.JPEG, OutputFormats.PNG, OutputFormats.BMP, OutputFormats.GIF, OutputFormats.TIFF
+                    }
+                },
+                {
+                    InputFormats.EPUB,
+                    new[]
+                    {
+                        OutputFormats.PDF, OutputFormats.XPS, OutputFormats.DOC, OutputFormats.DOCX,
+                        OutputFormats.JPEG, OutputFormats.PNG, OutputFormats.BMP, OutputFormats.GIF, OutputFormats.TIFF
+                    }
+                },
+                {
+                    InputFormats.SVG,
+                    new[]
+                    {
+                        OutputFormats.PDF, OutputFormats.XPS,
+                        OutputFormats.JPEG, OutputFormats.PNG, OutputFormats.BMP, OutputFormats.GIF, OutputFormats.TIFF
+                    }
+                },
+                {
+                    InputFormats.MD,
+                    new[]
+                    {
+                        OutputFormats.HTML, OutputFormats.MHTML,
+                        OutputFormats.PDF, OutputFormats.XPS, OutputFormats.DOC, OutputFormats.DOCX,
+                        OutputFormats.JPEG, OutputFormats.PNG, OutputFormats.BMP, OutputFormats.GIF, OutputFormats.TIFF
+                    }
+                },
+                {
+                    InputFormats.PNG, new[] { OutputFormats.SVG }
+                },
+                {
+                    InputFormats.JPEG, new[] { OutputFormats.SVG }
+                },
+                {
+                    InputFormats.GIF, new[] { OutputFormats.SVG }
+                },
+                {
+                    InputFormats.BMP, new[] { OutputFormats.SVG }
+                },
+                {
+                    InputFormats.TIFF, new[] { OutputFormats.SVG }
+                }
+            };
+
+        internal static bool IsSupportedConversion(InputFormats inputFormat, OutputFormats output)
+        {
+            return SupportedFormats.ContainsKey(inputFormat) && SupportedFormats[inputFormat].Any(f => f == output);
+        }
+
+        internal static OutputFormats[] GetSupportedOutputFormats(InputFormats inputFormat)
+        {
+            return SupportedFormats.ContainsKey(inputFormat)
+                ? SupportedFormats[inputFormat]
+                : Array.Empty<OutputFormats>();
+        }
     }
 }

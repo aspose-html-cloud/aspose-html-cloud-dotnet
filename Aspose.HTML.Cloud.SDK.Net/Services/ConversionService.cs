@@ -39,6 +39,7 @@ namespace Aspose.HTML.Cloud.Sdk.Services
         {
             try
             {
+                builder.Validate();
                 var result = await ExecuteConversionAsync(builder, observer);
 
                 if (result.Status == ConvertResultStatus.Completed)

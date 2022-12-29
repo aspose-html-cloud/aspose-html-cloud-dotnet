@@ -38,6 +38,11 @@ namespace Aspose.HTML.Cloud.Sdk
         public ConvertApi ConvertApi => new ConvertApi(config, StorageApi);
 
         /// <summary>
+        /// Vectorization methods API
+        /// </summary>
+        public VectorizationApi VectorizationApi => new VectorizationApi(config, StorageApi);
+
+        /// <summary>
         /// Storage methods API
         /// </summary>
         public StorageApi StorageApi => new StorageApi(config);

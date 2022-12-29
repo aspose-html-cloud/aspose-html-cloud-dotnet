@@ -31,6 +31,7 @@ namespace Aspose.HTML.Cloud.Sdk.Tests
         [InlineData(OutputFormats.DOC)]
         [InlineData(OutputFormats.MD)]
         [InlineData(OutputFormats.MHTML)]
+        [InlineData(OutputFormats.SVG)]
         public async Task ConvertFromLocalFileToLocalFile(OutputFormats format)
         {
             var outputFileName = Path.Combine(destFolder, $"testFile.{format}".ToLower());
